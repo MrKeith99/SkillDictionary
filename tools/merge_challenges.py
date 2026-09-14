@@ -21,7 +21,7 @@ from collections import OrderedDict, defaultdict
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)                      # SkillDictionary/
-LEGACY = os.path.join(os.path.dirname(ROOT), "dictionary")
+LEGACY = os.path.join(ROOT, "extraction")
 
 # Administrative lines whose value is derived from the challenge total rather than
 # fixed by the dictionary. Keyed by legacy id -> formula expression over `total_score`.

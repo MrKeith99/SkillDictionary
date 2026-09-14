@@ -1,0 +1,469 @@
+{
+  "challenge": "Doing Laundry Challenge",
+  "rulebook_section": "5.4",
+  "max_time_minutes": 7,
+  "total_score": 4415,
+  "challenge_rules": {
+    "cloth_placement": {
+      "source": "\u00a75.4 rule 2",
+      "rule": "Clothes must be placed on the table before folding; folding on the floor is not allowed."
+    },
+    "folding_assistance_scale": {
+      "source": "\u00a75.4 rule 6",
+      "levels": [
+        {
+          "help": "minimal (smoothing wrinkles, stabilizing cloth)",
+          "penalty": -100
+        },
+        {
+          "help": "partial (folding one half, aligning edges)",
+          "penalty": -200
+        },
+        {
+          "help": "major (completing entire fold/stack)",
+          "penalty": "maximum"
+        }
+      ],
+      "ambiguity": "Rule 6 lists -100/-200 for minimal/partial help, but the score sheet lists -200 (main) and 5x-100 (additional) for flattening plus a separate percentage penalty up to -800/-400. Reconcile the two scales."
+    }
+  },
+  "skills": [
+    {
+      "id": "NAV-NAVIGATE-02",
+      "area": "NAV",
+      "skill": "Navigate",
+      "modifiers": [
+        "laundry_area"
+      ],
+      "description": "Navigating to the laundry area",
+      "level": "E",
+      "points": 15,
+      "count": 1,
+      "points_total": 15,
+      "type": "achievement",
+      "section": "Main Goal",
+      "assistance": {
+        "permitted": false
+      }
+    },
+    {
+      "id": "MAN-PICK-03",
+      "area": "MAN",
+      "skill": "Pick",
+      "modifiers": [
+        "clothing",
+        "basket"
+      ],
+      "description": "Picking up a piece of clothing from the basket",
+      "level": "C",
+      "points": 100,
+      "count": 1,
+      "points_total": 100,
+      "type": "achievement",
+      "section": "Main Goal",
+      "assistance": {
+        "permitted": true,
+        "listed_in_task_description": true,
+        "self_score": 0,
+        "extra_penalty_ref": null,
+        "blocks_dependents": false,
+        "note": "\u00a75.4 rule 6 lists 'handing clothes to the robot' as reducing the score, but no quantified line exists on the sheet; \u00a73.7.2 default applies."
+      },
+      "ambiguity": "Assistance for handing clothes is named in rule 6 but unpriced on the score sheet."
+    },
+    {
+      "id": "MAN-PICK-03P",
+      "area": "MAN",
+      "skill": "Pick",
+      "modifiers": [
+        "multiple_at_once"
+      ],
+      "description": "Picking up multiple at once",
+      "level": "C",
+      "points": -100,
+      "count": 1,
+      "points_total": -100,
+      "type": "penalty_behavior",
+      "section": "Main Goal",
+      "related_skill": "MAN-PICK-03"
+    },
+    {
+      "id": "MAN-FOLD-01",
+      "area": "MAN",
+      "skill": "Fold",
+      "modifiers": [
+        "single",
+        "loose"
+      ],
+      "description": "Folding a piece of clothing",
+      "level": "X",
+      "points": 800,
+      "count": 1,
+      "points_total": 800,
+      "type": "achievement",
+      "section": "Main Goal",
+      "depends_on": [
+        {
+          "ref": "MAN-PICK-03",
+          "nature": "physical",
+          "blocking": true,
+          "satisfiable_by_assistance": true,
+          "note": "Cloth must be on the table before folding (\u00a75.4 rule 2); may arrive via assisted handover."
+        },
+        {
+          "ref": "MAN-TRANSPORT-01",
+          "nature": "physical",
+          "blocking": false,
+          "satisfiable_by_assistance": true,
+          "note": "Basket transport is one route to the table, not required."
+        }
+      ],
+      "assistance": {
+        "permitted": true,
+        "listed_in_task_description": true,
+        "self_score": 0,
+        "extra_penalty_ref": "GEN-HUMANASSIST-07",
+        "blocks_dependents": false,
+        "note": "Graduated: flattening/arranging -200; during-folding help applies a percentage penalty up to -800."
+      },
+      "note": "Quality assessed holistically against Appendix A examples."
+    },
+    {
+      "id": "MAN-FOLD-01P1",
+      "area": "MAN",
+      "skill": "Fold",
+      "modifiers": [
+        "quality_penalty"
+      ],
+      "description": "Quality penalties",
+      "level": "X",
+      "points": -800,
+      "count": 1,
+      "points_total": -800,
+      "type": "penalty_behavior",
+      "section": "Main Goal",
+      "related_skill": "MAN-FOLD-01"
+    },
+    {
+      "id": "GEN-HUMANASSIST-06",
+      "area": "GEN",
+      "skill": null,
+      "modifiers": [
+        "flatten_arrange_before_folding"
+      ],
+      "description": "Human assistance: Flattening/Arranging clothing before folding",
+      "level": "-",
+      "points": -200,
+      "count": 1,
+      "points_total": -200,
+      "type": "penalty_behavior",
+      "section": "Main Goal"
+    },
+    {
+      "id": "GEN-HUMANASSIST-07",
+      "area": "GEN",
+      "skill": null,
+      "modifiers": [
+        "folding_assistance_pct"
+      ],
+      "description": "Human assistance during folding (percentage penalty per amount of help)",
+      "level": "-",
+      "points": -800,
+      "count": 1,
+      "points_total": -800,
+      "type": "penalty_behavior",
+      "section": "Main Goal",
+      "related_skill": "MAN-FOLD-01",
+      "penalty_type": "percentage",
+      "basis": "MAN-FOLD-01 points"
+    },
+    {
+      "id": "MAN-APPLIANCE-03",
+      "area": "MAN",
+      "skill": "Appliance",
+      "modifiers": [
+        "washing_machine_door",
+        "open"
+      ],
+      "description": "Opening the washing machine door",
+      "level": "X",
+      "points": 300,
+      "count": 1,
+      "points_total": 300,
+      "type": "achievement",
+      "section": "Extra Rewards",
+      "assistance": {
+        "permitted": true,
+        "listed_in_task_description": true,
+        "self_score": 0,
+        "extra_penalty_ref": null,
+        "blocks_dependents": false,
+        "note": "\u00a75.4 rule 6 names this as reducing score but the sheet has no line; \u00a73.7.2 default (score zero) applies. Contrast with Pick & Place, where the equivalent appliance assistance is explicitly -0."
+      },
+      "ambiguity": "Unpriced assistance. Decide whether this should mirror Pick & Place's explicit -0 treatment of appliance doors."
+    },
+    {
+      "id": "MAN-PICK-04",
+      "area": "MAN",
+      "skill": "Pick",
+      "modifiers": [
+        "clothing",
+        "washing_machine"
+      ],
+      "description": "Removing one or more pieces of clothing from the washing machine",
+      "level": "X",
+      "points": 300,
+      "count": 1,
+      "points_total": 300,
+      "type": "achievement",
+      "section": "Extra Rewards",
+      "depends_on": [
+        {
+          "ref": "MAN-APPLIANCE-03",
+          "nature": "physical",
+          "blocking": false,
+          "satisfiable_by_assistance": true,
+          "note": "Door may be opened with assistance; these points remain available."
+        }
+      ],
+      "assistance": {
+        "permitted": true,
+        "listed_in_task_description": true,
+        "self_score": 0,
+        "extra_penalty_ref": null,
+        "blocks_dependents": false,
+        "note": "Falls back to \u00a73.7.2 default: assisted element scores zero."
+      }
+    },
+    {
+      "id": "MAN-PICK-04P",
+      "area": "MAN",
+      "skill": "Pick",
+      "modifiers": [
+        "touches_floor"
+      ],
+      "description": "The clothing touches the floor",
+      "level": "X",
+      "points": -200,
+      "count": 1,
+      "points_total": -200,
+      "type": "penalty_behavior",
+      "section": "Extra Rewards",
+      "related_skill": "MAN-PICK-04"
+    },
+    {
+      "id": "MAN-TRANSPORT-01",
+      "area": "MAN",
+      "skill": "TransportWithBasket",
+      "modifiers": [],
+      "description": "Using the basket for transportation",
+      "level": "X",
+      "points": 300,
+      "count": 1,
+      "points_total": 300,
+      "type": "achievement",
+      "section": "Extra Rewards",
+      "assistance": {
+        "permitted": true,
+        "listed_in_task_description": false,
+        "self_score": 0,
+        "extra_penalty_ref": null,
+        "blocks_dependents": false,
+        "note": "Falls back to \u00a73.7.2 default: assisted element scores zero."
+      },
+      "note": "Basket must be placed in reach of the folding surface; requires two arms to carry."
+    },
+    {
+      "id": "MAN-TRANSPORT-01P",
+      "area": "MAN",
+      "skill": "TransportWithBasket",
+      "modifiers": [
+        "dropped_or_lost"
+      ],
+      "description": "Laundry is dropped or otherwise lost during transportation",
+      "level": "X",
+      "points": -200,
+      "count": 1,
+      "points_total": -200,
+      "type": "penalty_behavior",
+      "section": "Extra Rewards",
+      "related_skill": "MAN-TRANSPORT-01"
+    },
+    {
+      "id": "MAN-FOLD-02",
+      "area": "MAN",
+      "skill": "Fold",
+      "modifiers": [
+        "additional_item"
+      ],
+      "description": "Folding additional clothes (per item)",
+      "level": "X",
+      "points": 400,
+      "count": 5,
+      "points_total": 2000,
+      "type": "achievement",
+      "section": "Extra Rewards",
+      "depends_on": [
+        {
+          "ref": "MAN-FOLD-01",
+          "nature": "sequential",
+          "blocking": false,
+          "satisfiable_by_assistance": true,
+          "note": "Additional folds are independently scoreable."
+        }
+      ],
+      "assistance": {
+        "permitted": true,
+        "listed_in_task_description": true,
+        "self_score": 0,
+        "extra_penalty_ref": "GEN-HUMANASSIST-09",
+        "blocks_dependents": false
+      }
+    },
+    {
+      "id": "MAN-FOLD-02P1",
+      "area": "MAN",
+      "skill": "Fold",
+      "modifiers": [
+        "quality_penalty",
+        "additional"
+      ],
+      "description": "Quality penalties (additional clothes)",
+      "level": "X",
+      "points": -400,
+      "count": 1,
+      "points_total": -400,
+      "type": "penalty_behavior",
+      "section": "Extra Rewards",
+      "related_skill": "MAN-FOLD-02"
+    },
+    {
+      "id": "GEN-HUMANASSIST-08",
+      "area": "GEN",
+      "skill": null,
+      "modifiers": [
+        "flatten_arrange_before_folding",
+        "additional"
+      ],
+      "description": "Human assistance: Flattening/Arranging before folding (additional)",
+      "level": "-",
+      "points": -100,
+      "count": 5,
+      "points_total": -500,
+      "type": "penalty_behavior",
+      "section": "Extra Rewards"
+    },
+    {
+      "id": "GEN-HUMANASSIST-09",
+      "area": "GEN",
+      "skill": null,
+      "modifiers": [
+        "folding_assistance_pct",
+        "additional"
+      ],
+      "description": "Human assistance during folding, additional clothes (percentage penalty)",
+      "level": "-",
+      "points": -400,
+      "count": 5,
+      "points_total": -2000,
+      "type": "penalty_behavior",
+      "section": "Extra Rewards",
+      "related_skill": "MAN-FOLD-02",
+      "penalty_type": "percentage",
+      "basis": "MAN-FOLD-02 points"
+    },
+    {
+      "id": "MAN-STACK-01",
+      "area": "MAN",
+      "skill": "Stack",
+      "modifiers": [
+        "folded_clothes"
+      ],
+      "description": "Stacking folded clothes neatly (per item)",
+      "level": "C",
+      "points": 100,
+      "count": 6,
+      "points_total": 600,
+      "type": "achievement",
+      "section": "Extra Rewards",
+      "depends_on": [
+        {
+          "ref": "MAN-FOLD-01",
+          "nature": "sequential",
+          "blocking": true,
+          "satisfiable_by_assistance": true,
+          "note": "Only folded items can be stacked."
+        },
+        {
+          "ref": "MAN-FOLD-02",
+          "nature": "sequential",
+          "blocking": false,
+          "satisfiable_by_assistance": true
+        }
+      ],
+      "assistance": {
+        "permitted": true,
+        "listed_in_task_description": true,
+        "self_score": 0,
+        "extra_penalty_ref": "GEN-HUMANASSIST-07",
+        "blocks_dependents": false,
+        "note": "Major help completing the entire fold/stack carries the maximum penalty (\u00a75.4 rule 6)."
+      }
+    },
+    {
+      "id": "GEN-HUMANASSIST-03B",
+      "area": "GEN",
+      "skill": null,
+      "modifiers": [
+        "environment_change"
+      ],
+      "description": "Human assistance: environment changes (per item)",
+      "level": "-",
+      "points": -40,
+      "count": 1,
+      "points_total": -40,
+      "type": "penalty_behavior",
+      "section": "Penalties"
+    },
+    {
+      "id": "SPECIAL-NOTATTEND",
+      "area": "SPECIAL",
+      "skill": null,
+      "modifiers": [],
+      "description": "Not attending (see sec. 3.8.1)",
+      "level": "-",
+      "points": -500,
+      "count": 1,
+      "points_total": -500,
+      "type": "administrative",
+      "section": "Special Penalties & Bonuses"
+    },
+    {
+      "id": "SPECIAL-ALTSTART",
+      "area": "SPECIAL",
+      "skill": null,
+      "modifiers": [],
+      "description": "Using alternative start signal (see sec. 3.6.8)",
+      "level": "-",
+      "points": -100,
+      "count": 1,
+      "points_total": -100,
+      "type": "administrative",
+      "section": "Special Penalties & Bonuses"
+    },
+    {
+      "id": "SPECIAL-OUTSTANDING",
+      "area": "SPECIAL",
+      "skill": null,
+      "modifiers": [],
+      "description": "Outstanding performance (see sec. 3.8.3)",
+      "level": "-",
+      "points": 441,
+      "count": 1,
+      "points_total": 441,
+      "type": "administrative",
+      "section": "Special Penalties & Bonuses"
+    }
+  ],
+  "global_rules_ref": "global_rules.yaml"
+}

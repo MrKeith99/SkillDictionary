@@ -9,7 +9,7 @@ import json, math, os, glob, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-LEGACY = os.path.join(os.path.dirname(ROOT), "dictionary")
+LEGACY = os.path.join(ROOT, "extraction")
 
 d_doc = json.load(open(os.path.join(ROOT, "dist", "dictionary.json")))
 c_doc = json.load(open(os.path.join(ROOT, "dist", "challenges.json")))

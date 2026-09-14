@@ -1,0 +1,64 @@
+{
+  "assistance_default": {
+    "source": "\u00a73.7.2",
+    "rule": "Any task element completed through human assistance is scored as zero points, unless explicitly stated otherwise in the task description."
+  },
+  "assistance_procedure": {
+    "source": "\u00a73.7.1",
+    "requirements": [
+      "Robot must clearly and explicitly request assistance",
+      "Request must specify type of assistance and intended outcome",
+      "Robot must supervise and verify the outcome, not assume success"
+    ]
+  },
+  "assistance_budget": {
+    "source": "\u00a73.7.3",
+    "scope": "run",
+    "rule": "From the second human assistance request onwards, repeated or excessive requests without demonstrating autonomous action may lead the referee to immediately stop the task.",
+    "type": "disqualifying",
+    "note": "Cross-cutting sequence constraint; cannot be expressed per-entry."
+  },
+  "asr_bypass_ladder": {
+    "source": "\u00a73.7.4",
+    "scope": "test",
+    "penalty_type": "percentage",
+    "levels": [
+      {
+        "mode": "ASR with default operator",
+        "penalty_pct": 0.0
+      },
+      {
+        "mode": "ASR with custom operator",
+        "penalty_pct": -0.1
+      },
+      {
+        "mode": "Gestures",
+        "penalty_pct": -0.2
+      },
+      {
+        "mode": "Alternative natural input method",
+        "penalty_pct": -0.2,
+        "note": "up to -20%"
+      }
+    ],
+    "basis": "max_attainable_test_score"
+  },
+  "disqualifying_global": [
+    {
+      "id": "DQ-CHEATING",
+      "source": "\u00a73.8.2",
+      "description": "Cheating or breaking Fair Play",
+      "extra_penalty": -500
+    },
+    {
+      "id": "DQ-COLLISION-MAJOR",
+      "source": "\u00a73.8.2",
+      "description": "Major, grossly negligent collision; TC may disqualify for test or competition"
+    },
+    {
+      "id": "DQ-INACTIVITY",
+      "source": "\u00a73.6.14",
+      "description": "Robot removed from Arena after 30 s of inactivity"
+    }
+  ]
+}

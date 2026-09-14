@@ -1,0 +1,520 @@
+{
+  "challenge": "Human Robot Interaction Challenge",
+  "rulebook_section": "5.1",
+  "max_time_minutes": 7,
+  "total_score": 1450,
+  "challenge_rules": {
+    "custom_operator": {
+      "permitted": false,
+      "source": "\u00a75.1 rule 4",
+      "note": "Since the main focus of the test is HRI, no custom operator can be chosen."
+    },
+    "alternative_hri": {
+      "permitted": true,
+      "penalty_ref": "GEN-ALTHRI-01",
+      "note": "Score reduction per information (name or favorite drink)."
+    }
+  },
+  "skills": [
+    {
+      "id": "OBJ-DETECTEVENT-01",
+      "area": "OBJ",
+      "skill": "DetectEvent",
+      "modifiers": [
+        "audio",
+        "doorbell"
+      ],
+      "description": "Detect the doorbell sound as a signal that a guest has arrived",
+      "level": "E",
+      "points": 30,
+      "count": 2,
+      "points_total": 60,
+      "type": "achievement",
+      "section": "Greeting",
+      "assistance": {
+        "permitted": false,
+        "note": "Waiting for the doorbell is optional; robots may bypass it and meet the guest at the door. Bypassing is an alternative strategy, not assistance."
+      },
+      "note": "Scored only if robot waits at starting position and reacts instantly."
+    },
+    {
+      "id": "MAN-OPEN-01",
+      "area": "MAN",
+      "skill": "Open",
+      "modifiers": [
+        "entrance_door"
+      ],
+      "description": "Open the entrance door for a guest",
+      "level": "X",
+      "points": 200,
+      "count": 2,
+      "points_total": 400,
+      "type": "achievement",
+      "section": "Greeting",
+      "assistance": {
+        "permitted": true,
+        "listed_in_task_description": true,
+        "self_score": 0,
+        "extra_penalty_ref": null,
+        "extra_penalty": 0,
+        "blocks_dependents": false,
+        "note": "Entrance door is open by default; team leader may request it closed to make these points available. Referee opens on request (\u00a75.1 Referee Instructions)."
+      },
+      "note": "Opportunity is opt-in: points only exist if the team requests a closed door."
+    },
+    {
+      "id": "HRI-LOOKAT-01",
+      "area": "HRI",
+      "skill": "LookAt",
+      "modifiers": [
+        "talking_person",
+        "receiving_guest"
+      ],
+      "description": "Look at the person talking, when receiving a guest",
+      "level": "C",
+      "points": 50,
+      "count": 2,
+      "points_total": 100,
+      "type": "achievement",
+      "section": "Greeting",
+      "assistance": {
+        "permitted": false
+      },
+      "note": "Awarded only if the robot continuously tracks the moving person."
+    },
+    {
+      "id": "HRI-OFFERSEAT-01",
+      "area": "HRI",
+      "skill": "OfferSeat",
+      "modifiers": [
+        "new_guest"
+      ],
+      "description": "Offer a free seat to the new guest",
+      "level": "C",
+      "points": 100,
+      "count": 2,
+      "points_total": 200,
+      "type": "achievement",
+      "section": "Greeting",
+      "depends_on": [
+        {
+          "ref": "NAV-FOLLOW-GUEST",
+          "nature": "sequential",
+          "blocking": true,
+          "satisfiable_by_assistance": false,
+          "note": "Guest must be escorted to the living room first."
+        }
+      ],
+      "assistance": {
+        "permitted": false
+      },
+      "note": "Robot must clearly indicate or point to a location or seat."
+    },
+    {
+      "id": "NAV-GAZEDIR-01",
+      "area": "NAV",
+      "skill": "GazeDirection",
+      "modifiers": [
+        "navigation_goal"
+      ],
+      "description": "Look in the direction of navigation or at the navigation goal",
+      "level": "E",
+      "points": 15,
+      "count": 2,
+      "points_total": 30,
+      "type": "achievement",
+      "section": "Greeting",
+      "assistance": {
+        "permitted": false
+      }
+    },
+    {
+      "id": "PPL-DESCRIBE-01",
+      "area": "PPL",
+      "skill": "DescribeAttribute",
+      "modifiers": [
+        "visual",
+        "correct"
+      ],
+      "description": "Tell a visual attribute of the first guest to the second guest (correct)",
+      "level": "C",
+      "points": 20,
+      "count": 4,
+      "points_total": 80,
+      "type": "bonus",
+      "section": "Greeting",
+      "depends_on": [
+        {
+          "ref": "PPL-PERCEIVE-GUEST1",
+          "nature": "informational",
+          "blocking": true,
+          "satisfiable_by_assistance": false
+        }
+      ],
+      "assistance": {
+        "permitted": false
+      }
+    },
+    {
+      "id": "PPL-DESCRIBE-01P",
+      "area": "PPL",
+      "skill": "DescribeAttribute",
+      "modifiers": [
+        "visual",
+        "incorrect"
+      ],
+      "description": "Tell a visual attribute of the first guest to the second guest (incorrect)",
+      "level": "C",
+      "points": -20,
+      "count": 4,
+      "points_total": -80,
+      "type": "penalty_behavior",
+      "section": "Greeting",
+      "related_skill": "PPL-DESCRIBE-01"
+    },
+    {
+      "id": "NLU-NOQUESTION-01",
+      "area": "NLU",
+      "skill": "AvoidNonEssentialQuestions",
+      "modifiers": [],
+      "description": "Not asking non-essential questions to confirm or correct information",
+      "level": "C",
+      "points": 15,
+      "count": 4,
+      "points_total": 60,
+      "type": "bonus",
+      "section": "Greeting",
+      "assistance": {
+        "permitted": false
+      },
+      "note": "Asking a guest to repeat because the robot could not hear is not a non-essential question."
+    },
+    {
+      "id": "HRI-STATEINFO-01",
+      "area": "HRI",
+      "skill": "StateStoredInfo",
+      "modifiers": [
+        "name",
+        "favorite_drink"
+      ],
+      "description": "Say name and favorite drink of each guest (during introduction)",
+      "level": "C",
+      "points": 30,
+      "count": 4,
+      "points_total": 120,
+      "type": "achievement",
+      "section": "Introduction",
+      "depends_on": [
+        {
+          "ref": "NLU-LEARN-GUESTINFO",
+          "nature": "informational",
+          "blocking": true,
+          "satisfiable_by_assistance": true,
+          "note": "Information may be obtained via alternative HRI at -20 per item."
+        }
+      ],
+      "assistance": {
+        "permitted": true,
+        "listed_in_task_description": true,
+        "self_score": 0,
+        "extra_penalty_ref": "GEN-ALTHRI-01",
+        "blocks_dependents": false,
+        "note": "Alternative HRI to understand a guest causes a reduction per information item."
+      }
+    },
+    {
+      "id": "HRI-LOOKAT-02",
+      "area": "HRI",
+      "skill": "LookAt",
+      "modifiers": [
+        "introduction",
+        "correct_guest"
+      ],
+      "description": "While introducing guests, look to the correct guest while talking about the other guest",
+      "level": "C",
+      "points": 50,
+      "count": 2,
+      "points_total": 100,
+      "type": "achievement",
+      "section": "Introduction",
+      "depends_on": [
+        {
+          "ref": "HRI-OFFERSEAT-01",
+          "nature": "sequential",
+          "blocking": true,
+          "satisfiable_by_assistance": false,
+          "note": "Both guests must be seated before introductions."
+        }
+      ],
+      "assistance": {
+        "permitted": false
+      }
+    },
+    {
+      "id": "HRI-RECEIVEHANDOVER-01",
+      "area": "HRI",
+      "skill": "ReceiveHandover",
+      "modifiers": [
+        "bag"
+      ],
+      "description": "Receive the bag from the guest via handover",
+      "level": "C",
+      "points": 50,
+      "count": 1,
+      "points_total": 50,
+      "type": "achievement",
+      "section": "Guiding",
+      "assistance": {
+        "permitted": true,
+        "listed_in_task_description": true,
+        "self_score": 0,
+        "extra_penalty_ref": "HRI-RECEIVEHANDOVER-01P1",
+        "blocks_dependents": false,
+        "note": "Two distinct assisted modes are priced separately (-25 asking for help, -50 bag placed on structure). Neither blocks the follow/drop chain."
+      },
+      "note": "Max points require: robot signals readiness, manipulator within 10 cm of operator's hand, operator completes the handover."
+    },
+    {
+      "id": "HRI-RECEIVEHANDOVER-01P1",
+      "area": "HRI",
+      "skill": "ReceiveHandover",
+      "modifiers": [
+        "assistance_requested"
+      ],
+      "description": "Requesting handover assistance from the guest",
+      "level": "C",
+      "points": -25,
+      "count": 1,
+      "points_total": -25,
+      "type": "penalty_behavior",
+      "section": "Guiding",
+      "related_skill": "HRI-RECEIVEHANDOVER-01"
+    },
+    {
+      "id": "HRI-RECEIVEHANDOVER-01P2",
+      "area": "HRI",
+      "skill": "ReceiveHandover",
+      "modifiers": [
+        "bag_on_structure"
+      ],
+      "description": "Bag placed on the robot structure instead of being handed over",
+      "level": "C",
+      "points": -50,
+      "count": 1,
+      "points_total": -50,
+      "type": "penalty_behavior",
+      "section": "Guiding",
+      "related_skill": "HRI-RECEIVEHANDOVER-01",
+      "ambiguity": "\u00a75.1 rule 5 says 'no points are awarded' for this route, and the sheet also applies -50. Confirm whether both forfeiture and penalty are intended, or only the penalty."
+    },
+    {
+      "id": "NAV-FOLLOW-01",
+      "area": "NAV",
+      "skill": "Follow",
+      "modifiers": [
+        "host",
+        "bag_drop_area"
+      ],
+      "description": "Following the host to the bag drop area",
+      "level": "C",
+      "points": 200,
+      "count": 1,
+      "points_total": 200,
+      "type": "achievement",
+      "section": "Guiding",
+      "depends_on": [
+        {
+          "ref": "HRI-RECEIVEHANDOVER-01",
+          "nature": "physical",
+          "blocking": false,
+          "satisfiable_by_assistance": true,
+          "note": "Robot may carry the bag by any assisted route; following is scoreable regardless."
+        }
+      ],
+      "assistance": {
+        "permitted": true,
+        "listed_in_task_description": true,
+        "self_score": 0,
+        "extra_penalty_ref": "NAV-FOLLOW-01P2",
+        "blocks_dependents": false,
+        "note": "Four penalized recovery forms listed in \u00a75.1 rule 4."
+      }
+    },
+    {
+      "id": "NAV-FOLLOW-01P1",
+      "area": "NAV",
+      "skill": "Follow",
+      "modifiers": [
+        "dropped_bag"
+      ],
+      "description": "Drop the bag while following the host",
+      "level": "C",
+      "points": -50,
+      "count": 1,
+      "points_total": -50,
+      "type": "penalty_behavior",
+      "section": "Guiding",
+      "related_skill": "NAV-FOLLOW-01"
+    },
+    {
+      "id": "NAV-FOLLOW-01P2",
+      "area": "NAV",
+      "skill": "Follow",
+      "modifiers": [
+        "rediscover_operator",
+        "natural"
+      ],
+      "description": "Rediscovering the operator by natural interaction",
+      "level": "C",
+      "points": -50,
+      "count": 1,
+      "points_total": -50,
+      "type": "penalty_behavior",
+      "section": "Guiding",
+      "related_skill": "NAV-FOLLOW-01"
+    },
+    {
+      "id": "NAV-FOLLOW-01P3",
+      "area": "NAV",
+      "skill": "Follow",
+      "modifiers": [
+        "asking_operator_to_wait"
+      ],
+      "description": "Asking the operator to wait",
+      "level": "C",
+      "points": -50,
+      "count": 1,
+      "points_total": -50,
+      "type": "penalty_behavior",
+      "section": "Guiding",
+      "related_skill": "NAV-FOLLOW-01"
+    },
+    {
+      "id": "NAV-FOLLOW-01P4",
+      "area": "NAV",
+      "skill": "Follow",
+      "modifiers": [
+        "physical_contact"
+      ],
+      "description": "Guiding the robot with physical contact (take by the hand)",
+      "level": "C",
+      "points": -150,
+      "count": 1,
+      "points_total": -150,
+      "type": "penalty_behavior",
+      "section": "Guiding",
+      "related_skill": "NAV-FOLLOW-01"
+    },
+    {
+      "id": "MAN-PLACE-01",
+      "area": "MAN",
+      "skill": "Place",
+      "modifiers": [
+        "bag",
+        "correct_area"
+      ],
+      "description": "Drop the bag in the correct area",
+      "level": "C",
+      "points": 50,
+      "count": 1,
+      "points_total": 50,
+      "type": "achievement",
+      "section": "Guiding",
+      "depends_on": [
+        {
+          "ref": "NAV-FOLLOW-01",
+          "nature": "sequential",
+          "blocking": true,
+          "satisfiable_by_assistance": true
+        },
+        {
+          "ref": "HRI-RECEIVEHANDOVER-01",
+          "nature": "physical",
+          "blocking": true,
+          "satisfiable_by_assistance": true,
+          "note": "Robot must be holding the bag; assisted acquisition still permits this line."
+        }
+      ],
+      "assistance": {
+        "permitted": true,
+        "listed_in_task_description": false,
+        "self_score": 0,
+        "extra_penalty_ref": null,
+        "blocks_dependents": false,
+        "note": "Falls back to \u00a73.7.2 default: assisted element scores zero."
+      }
+    },
+    {
+      "id": "HRI-STATEINFO-01P",
+      "area": "HRI",
+      "skill": "StateStoredInfo",
+      "modifiers": [
+        "wrong_info"
+      ],
+      "description": "Wrong guest information was memorized",
+      "level": "C",
+      "points": -40,
+      "count": 4,
+      "points_total": -160,
+      "type": "penalty_behavior",
+      "section": "Penalties",
+      "related_skill": "HRI-STATEINFO-01"
+    },
+    {
+      "id": "GEN-ALTHRI-01",
+      "area": "GEN",
+      "skill": "AlternativeHRI",
+      "modifiers": [],
+      "description": "Alternative HRI",
+      "level": "C",
+      "points": -20,
+      "count": 6,
+      "points_total": -120,
+      "type": "penalty_behavior",
+      "section": "Penalties",
+      "ambiguity": "Fixed -20 per item here, but \u00a73.7.4 prices alternative HRI at up to -20% of max attainable score (=-290). Confirm which governs."
+    },
+    {
+      "id": "HRI-ATTEND-01P",
+      "area": "HRI",
+      "skill": "Attend",
+      "modifiers": [
+        "not_acknowledging"
+      ],
+      "description": "Not acknowledging people",
+      "level": "C",
+      "points": -200,
+      "count": 2,
+      "points_total": -400,
+      "type": "penalty_behavior",
+      "section": "Penalties"
+    },
+    {
+      "id": "SPECIAL-NOTATTEND",
+      "area": "SPECIAL",
+      "skill": null,
+      "modifiers": [],
+      "description": "Not attending (see sec. 3.8.1)",
+      "level": "-",
+      "points": -500,
+      "count": 1,
+      "points_total": -500,
+      "type": "administrative",
+      "section": "Special Penalties & Bonuses"
+    },
+    {
+      "id": "SPECIAL-OUTSTANDING",
+      "area": "SPECIAL",
+      "skill": null,
+      "modifiers": [],
+      "description": "Outstanding performance (see sec. 3.8.3)",
+      "level": "-",
+      "points": 145,
+      "count": 1,
+      "points_total": 145,
+      "type": "administrative",
+      "section": "Special Penalties & Bonuses"
+    }
+  ],
+  "global_rules_ref": "global_rules.yaml"
+}

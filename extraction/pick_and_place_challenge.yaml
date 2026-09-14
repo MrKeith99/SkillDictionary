@@ -1,0 +1,567 @@
+challenge: Pick and Place Challenge
+rulebook_section: '5.2'
+max_time_minutes: 7
+total_score: 3515
+challenge_rules:
+  sequence:
+    source: §5.2 procedure 5
+    note: No predefined sequence; but pouring and closing the dishwasher must occur after prerequisite
+      steps to be scored.
+  assistance_exemptions:
+    source: §5.2 scoresheet
+    free:
+    - opening milk container
+    - moving dishwasher door or rack
+skills:
+- id: NAV-NAVIGATE-01
+  area: NAV
+  skill: Navigate
+  modifiers:
+  - table
+  description: Navigate to the table
+  level: E
+  points: 15
+  count: 1
+  points_total: 15
+  type: achievement
+  assistance:
+    permitted: false
+- id: OBJ-RECOGNIZE-01
+  area: OBJ
+  skill: Recognize
+  modifiers:
+  - known_object
+  description: Correctly recognize an object
+  level: E
+  points: 10
+  count: 12
+  points_total: 120
+  type: achievement
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-HUMANASSIST-01
+    blocks_dependents: false
+    note: Pointing to objects is listed assistance in §5.2 rule 15.
+  note: Robot must clearly communicate perception to the referee (§5.2 rule 16).
+- id: OBJ-PERCEIVE-01
+  area: OBJ
+  skill: Perceive
+  modifiers:
+  - shelf
+  - placement
+  description: Perceive objects on a shelf and indicate the correct placement
+  level: C
+  points: 30
+  count: 2
+  points_total: 60
+  type: achievement
+  assistance:
+    permitted: false
+- id: MAN-PICK-01
+  area: MAN
+  skill: Pick
+  modifiers:
+  - known
+  - transport
+  description: Picking up an object for transportation
+  level: C
+  points: 50
+  count: 12
+  points_total: 600
+  type: achievement
+  section: Picking
+  depends_on:
+  - ref: OBJ-RECOGNIZE-01
+    nature: informational
+    blocking: false
+    satisfiable_by_assistance: true
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-HUMANASSIST-02
+    blocks_dependents: false
+    note: Handover assistance forfeits this line (-0 self) and costs -100; placing remains available.
+- id: MAN-PICK-01B1
+  area: MAN
+  skill: Pick
+  modifiers:
+  - first_pick_bonus
+  description: First Pick Bonus
+  level: C
+  points: 100
+  count: 1
+  points_total: 100
+  type: bonus
+  section: Picking
+  related_skill: MAN-PICK-01
+  depends_on:
+  - ref: MAN-PICK-01
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: false
+    note: Bonus requires an autonomous first pick.
+- id: MAN-PICK-01B2
+  area: MAN
+  skill: Pick
+  modifiers:
+  - from_floor
+  description: From the floor
+  level: C
+  points: 30
+  count: 1
+  points_total: 30
+  type: bonus
+  section: Picking
+  related_skill: MAN-PICK-01
+  depends_on:
+  - ref: MAN-PICK-01
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: false
+- id: MAN-PICK-01B3
+  area: MAN
+  skill: Pick
+  modifiers:
+  - cutlery
+  description: Cutlery
+  level: C
+  points: 50
+  count: 2
+  points_total: 100
+  type: bonus
+  section: Picking
+  related_skill: MAN-PICK-01
+  depends_on:
+  - ref: MAN-PICK-01
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: false
+- id: MAN-PICK-01B4
+  area: MAN
+  skill: Pick
+  modifiers:
+  - plate
+  description: Plate
+  level: C
+  points: 100
+  count: 1
+  points_total: 100
+  type: bonus
+  section: Picking
+  related_skill: MAN-PICK-01
+  depends_on:
+  - ref: MAN-PICK-01
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: false
+- id: MAN-PICK-01B5
+  area: MAN
+  skill: Pick
+  modifiers:
+  - dishwasher_tab
+  description: Dishwasher tab
+  level: C
+  points: 100
+  count: 1
+  points_total: 100
+  type: bonus
+  section: Picking
+  related_skill: MAN-PICK-01
+  depends_on:
+  - ref: MAN-PICK-01
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: false
+- id: MAN-PICK-02P
+  area: MAN
+  skill: Pick
+  modifiers:
+  - auxiliary_table
+  - common_object
+  description: Common object from auxiliary table (picking)
+  level: E
+  points: -20
+  count: 2
+  points_total: -40
+  type: penalty_behavior
+  section: Picking
+  note: Deliberate negative pricing of an easy pick; acts as an Entry-Level discount rather than a tier.
+- id: MAN-PLACE-02
+  area: MAN
+  skill: Place
+  modifiers:
+  - known
+  - designated_location
+  description: Place an object in its designated location
+  level: C
+  points: 40
+  count: 12
+  points_total: 480
+  type: achievement
+  section: Placing
+  depends_on:
+  - ref: MAN-PICK-01
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: true
+    note: Object must be in hand; assisted handover still permits placing.
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-HUMANASSIST-01
+    blocks_dependents: false
+- id: MAN-PLACE-02B1
+  area: MAN
+  skill: Place
+  modifiers:
+  - dishwasher
+  - correct
+  description: Correctly in the dishwasher
+  level: X
+  points: 70
+  count: 3
+  points_total: 210
+  type: bonus
+  section: Placing
+  related_skill: MAN-PLACE-02
+  depends_on:
+  - ref: MAN-APPLIANCE-02
+    nature: physical
+    blocking: false
+    satisfiable_by_assistance: true
+    note: Door may be opened by referee at no cost (-0); these points remain fully available.
+  - ref: MAN-APPLIANCE-01
+    nature: physical
+    blocking: false
+    satisfiable_by_assistance: true
+    note: Rack may be pulled by referee at no cost (-0).
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-HUMANASSIST-01
+    blocks_dependents: false
+  note: Items must be positioned as a human would and be cleanable by the machine (§5.2 rule 9).
+- id: MAN-PLACE-02B2
+  area: MAN
+  skill: Place
+  modifiers:
+  - cabinet
+  - similar_objects
+  description: Next to similar objects in the cabinet
+  level: C
+  points: 20
+  count: 2
+  points_total: 40
+  type: bonus
+  section: Placing
+  related_skill: MAN-PLACE-02
+- id: MAN-PLACE-02P1
+  area: MAN
+  skill: Place
+  modifiers:
+  - breakfast_area
+  - not_cleaned
+  description: Area around breakfast items is not cleaned
+  level: C
+  points: -30
+  count: 4
+  points_total: -120
+  type: penalty_behavior
+  section: Placing
+  related_skill: MAN-PLACE-02
+- id: MAN-INSERT-01
+  area: MAN
+  skill: Insert
+  modifiers:
+  - dishwasher_tab_slot
+  description: In the dishwasher tab slot inside the dishwasher
+  level: X
+  points: 160
+  count: 1
+  points_total: 160
+  type: achievement
+  section: Placing
+  depends_on:
+  - ref: MAN-PICK-01B5
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: true
+  - ref: MAN-APPLIANCE-02
+    nature: physical
+    blocking: false
+    satisfiable_by_assistance: true
+    note: Door assistance is free (-0).
+  assistance:
+    permitted: true
+    listed_in_task_description: false
+    self_score: 0
+    extra_penalty_ref: null
+    blocks_dependents: false
+    note: 'Falls back to §3.7.2 default: assisted element scores zero.'
+- id: MAN-PLACE-02P2
+  area: MAN
+  skill: Place
+  modifiers:
+  - auxiliary_table
+  - common_object
+  description: Common object from auxiliary table (placing)
+  level: E
+  points: -20
+  count: 2
+  points_total: -40
+  type: penalty_behavior
+  section: Placing
+- id: MAN-APPLIANCE-01
+  area: MAN
+  skill: Appliance
+  modifiers:
+  - dishwasher_rack
+  - pull_push
+  description: Pull or push the dishwasher rack
+  level: X
+  points: 100
+  count: 2
+  points_total: 200
+  type: achievement
+  section: Extra Rewards
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-HUMANASSIST-05
+    extra_penalty: 0
+    blocks_dependents: false
+    note: Explicitly free (-0). Assisted execution forfeits this line only.
+- id: MAN-APPLIANCE-02
+  area: MAN
+  skill: Appliance
+  modifiers:
+  - dishwasher_door
+  - open_close
+  - no_assistance
+  description: Open or close the dishwasher door without assistance
+  level: X
+  points: 200
+  count: 2
+  points_total: 400
+  type: achievement
+  section: Extra Rewards
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-HUMANASSIST-05
+    extra_penalty: 0
+    blocks_dependents: false
+    note: Explicitly free (-0). Reward is defined as autonomous ('without assistance').
+  ambiguity: 'Single entry bundles opening and closing, which have different preconditions: §5.2 rule
+    8 awards closing points only after at least one item has been placed inside. Consider splitting into
+    MAN-APPLIANCE-02a (open) and 02b (close, depends_on MAN-PLACE-02B1).'
+- id: MAN-OPEN-02
+  area: MAN
+  skill: Open
+  modifiers:
+  - milk_container
+  - no_assistance
+  description: Open milk container without assistance
+  level: X
+  points: 400
+  count: 1
+  points_total: 400
+  type: achievement
+  section: Extra Rewards
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-HUMANASSIST-04
+    extra_penalty: 0
+    blocks_dependents: false
+    note: Explicitly free (-0); robot must clearly ask for help (§5.2 rule 13).
+- id: MAN-POUR-01
+  area: MAN
+  skill: Pour
+  modifiers:
+  - cereal_or_milk
+  - no_assistance
+  description: Pour cereal or milk into the bowl without assistance
+  level: X
+  points: 200
+  count: 2
+  points_total: 400
+  type: achievement
+  section: Extra Rewards
+  depends_on:
+  - ref: MAN-OPEN-02
+    nature: physical
+    blocking: false
+    satisfiable_by_assistance: true
+    note: Milk container may be opened by referee at no cost; pouring points remain available.
+  - ref: MAN-PLACE-02
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: true
+    note: '§5.2 procedure 5: pouring must occur after prerequisite placing steps to be scored.'
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-HUMANASSIST-04
+    extra_penalty: 0
+    blocks_dependents: false
+  note: A significant amount must be poured; a few drops or bits is not enough.
+- id: MAN-PLACE-02P3
+  area: MAN
+  skill: Place
+  modifiers:
+  - thrown_or_dropped
+  description: Objects thrown or dropped while placing
+  level: C
+  points: -40
+  count: 12
+  points_total: -480
+  type: penalty_behavior
+  section: Penalties
+  related_skill: MAN-PLACE-02
+- id: GEN-BREAKFAST-01P
+  area: GEN
+  skill: null
+  modifiers:
+  - typical_setting
+  description: Breakfast not served in a typical meal setting
+  level: '-'
+  points: -50
+  count: 1
+  points_total: -50
+  type: penalty_behavior
+  section: Penalties
+- id: MAN-PICK-01P1
+  area: MAN
+  skill: Pick
+  modifiers:
+  - dropped_on_floor
+  description: Objects dropped on the floor
+  level: C
+  points: -40
+  count: 12
+  points_total: -480
+  type: penalty_behavior
+  section: Penalties
+  related_skill: MAN-PICK-01
+- id: MAN-POUR-01P
+  area: MAN
+  skill: Pour
+  modifiers:
+  - spilling
+  description: Spilling cereal and milk while pouring
+  level: X
+  points: -100
+  count: 2
+  points_total: -200
+  type: penalty_behavior
+  section: Penalties
+  related_skill: MAN-POUR-01
+- id: GEN-HUMANASSIST-01
+  area: GEN
+  skill: null
+  modifiers:
+  - object_repositioned
+  description: 'Human assistance: object repositioned by a person'
+  level: '-'
+  points: -30
+  count: 12
+  points_total: -360
+  type: penalty_behavior
+  section: Penalties
+- id: GEN-HUMANASSIST-02
+  area: GEN
+  skill: null
+  modifiers:
+  - handover
+  description: 'Human assistance: handover'
+  level: '-'
+  points: -100
+  count: 24
+  points_total: -2400
+  type: penalty_behavior
+  section: Penalties
+  ambiguity: Count is 24 (2x the 12 picks). Confirm whether this is intended as pick+place handovers counted
+    separately.
+- id: GEN-HUMANASSIST-03
+  area: GEN
+  skill: null
+  modifiers:
+  - environment_change
+  description: 'Human assistance: environment changes (per item)'
+  level: '-'
+  points: -40
+  count: 1
+  points_total: -40
+  type: penalty_behavior
+  section: Penalties
+  note: Applied per item / per group of nearby items moved (§5.2 rule 15).
+- id: GEN-HUMANASSIST-04
+  area: GEN
+  skill: null
+  modifiers:
+  - opening_milk_container
+  description: 'Human assistance: opening milk container'
+  level: '-'
+  points: 0
+  count: 1
+  points_total: 0
+  type: penalty_behavior
+  section: Penalties
+  note: Explicitly zero-cost assistance.
+- id: GEN-HUMANASSIST-05
+  area: GEN
+  skill: null
+  modifiers:
+  - dishwasher_door_or_rack
+  description: 'Human assistance: moving dishwasher door or rack'
+  level: '-'
+  points: 0
+  count: 1
+  points_total: 0
+  type: penalty_behavior
+  section: Penalties
+  note: Explicitly zero-cost assistance.
+- id: SPECIAL-NOTATTEND
+  area: SPECIAL
+  skill: null
+  modifiers: []
+  description: Not attending (see sec. 3.8.1)
+  level: '-'
+  points: -500
+  count: 1
+  points_total: -500
+  type: administrative
+  section: Special Penalties & Bonuses
+- id: SPECIAL-ALTSTART
+  area: SPECIAL
+  skill: null
+  modifiers: []
+  description: Using alternative start signal (see sec. 3.6.8)
+  level: '-'
+  points: -100
+  count: 1
+  points_total: -100
+  type: administrative
+  section: Special Penalties & Bonuses
+- id: SPECIAL-OUTSTANDING
+  area: SPECIAL
+  skill: null
+  modifiers: []
+  description: Outstanding performance (see sec. 3.8.3)
+  level: '-'
+  points: 351
+  count: 1
+  points_total: 351
+  type: administrative
+  section: Special Penalties & Bonuses
+global_rules_ref: global_rules.yaml

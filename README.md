@@ -138,6 +138,7 @@ Hence `blocking` and `satisfiable_by_assistance` are separate fields, and
 ## Layout
 
 ```
+extraction/    per-challenge extractions from the scoresheets — the build SOURCE
 external/      RuleBook git submodule, pinned @ 2026.2 (see external/README.md)
 dictionary/    one file per area — owns definition + points
 challenges/    references dictionary by id; NO points field

@@ -1,0 +1,485 @@
+{
+  "challenge": "Restaurant Challenge",
+  "rulebook_section": "5.5",
+  "max_time_minutes": 15,
+  "total_score": 2360,
+  "challenge_rules": {
+    "restart": {
+      "source": "\u00a75.5.1",
+      "allowed": 1,
+      "note": "All points earned before the restart are voided; scoring resumes from zero."
+    },
+    "barman_assistance": {
+      "source": "\u00a75.5 remarks",
+      "note": "The Professional Barman assists on request; robot may use up to two minutes to instruct the barman per order. If requested, the barman will place the order in a basket or tray."
+    },
+    "disqualifying": [
+      {
+        "id": "DQ-R-TOUCH",
+        "description": "Touching the robot after the start signal"
+      },
+      {
+        "id": "DQ-R-PREMAP",
+        "description": "Mapping the environment in advance"
+      }
+    ],
+    "emergency_stop": {
+      "source": "\u00a75.5 procedure 4",
+      "note": "A TC member follows the robot ready to press the emergency stop button; any physical contact with people or furniture results in immediate emergency stop."
+    }
+  },
+  "skills": [
+    {
+      "id": "PPL-DETECT-01",
+      "area": "PPL",
+      "skill": "DetectCallingOrWaving",
+      "modifiers": [
+        "customer"
+      ],
+      "description": "Detect calling or waving customer",
+      "level": "C",
+      "points": 80,
+      "count": 2,
+      "points_total": 160,
+      "type": "achievement",
+      "section": "Regular Rewards",
+      "assistance": {
+        "permitted": false
+      }
+    },
+    {
+      "id": "NAV-NAVIGATE-03",
+      "area": "NAV",
+      "skill": "Navigate",
+      "modifiers": [
+        "customer_table"
+      ],
+      "description": "Reach a customer's table",
+      "level": "C",
+      "points": 80,
+      "count": 2,
+      "points_total": 160,
+      "type": "achievement",
+      "section": "Regular Rewards",
+      "depends_on": [
+        {
+          "ref": "PPL-DETECT-01",
+          "nature": "informational",
+          "blocking": false,
+          "satisfiable_by_assistance": true
+        }
+      ],
+      "assistance": {
+        "permitted": true,
+        "listed_in_task_description": true,
+        "self_score": 0,
+        "extra_penalty_ref": "NAV-NAVIGATE-03P",
+        "blocks_dependents": false,
+        "note": "If the robot detects a customer but does not reach the table, it must clearly identify the person to earn partial points."
+      }
+    },
+    {
+      "id": "NAV-NAVIGATE-03P",
+      "area": "NAV",
+      "skill": "Navigate",
+      "modifiers": [
+        "guided_to_table"
+      ],
+      "description": "Human Assistance: Being guided to a table",
+      "level": "C",
+      "points": -80,
+      "count": 2,
+      "points_total": -160,
+      "type": "penalty_behavior",
+      "section": "Regular Rewards",
+      "related_skill": "NAV-NAVIGATE-03"
+    },
+    {
+      "id": "NLU-UNDERSTAND-02",
+      "area": "NLU",
+      "skill": "UnderstandCommand",
+      "modifiers": [
+        "order",
+        "confirm"
+      ],
+      "description": "Understand and confirm the order received to the customer",
+      "level": "C",
+      "points": 160,
+      "count": 2,
+      "points_total": 320,
+      "type": "achievement",
+      "section": "Regular Rewards",
+      "depends_on": [
+        {
+          "ref": "NAV-NAVIGATE-03",
+          "nature": "physical",
+          "blocking": false,
+          "satisfiable_by_assistance": true,
+          "note": "Partial credit available if the table is not reached but the customer is identified."
+        }
+      ],
+      "assistance": {
+        "permitted": true,
+        "listed_in_task_description": true,
+        "self_score": 0,
+        "extra_penalty_ref": "GEN-ALTHRI-02",
+        "blocks_dependents": false
+      }
+    },
+    {
+      "id": "GEN-ALTHRI-02",
+      "area": "GEN",
+      "skill": "AlternativeHRI",
+      "modifiers": [
+        "order"
+      ],
+      "description": "Alternative HRI",
+      "level": "C",
+      "points": -80,
+      "count": 2,
+      "points_total": -160,
+      "type": "penalty_behavior",
+      "section": "Regular Rewards",
+      "related_skill": "NLU-UNDERSTAND-02",
+      "ambiguity": "Fixed -80 per order vs \u00a73.7.4's -20% of max attainable (-472). Confirm which governs."
+    },
+    {
+      "id": "HRI-EYECONTACT-01P",
+      "area": "HRI",
+      "skill": "EyeContact",
+      "modifiers": [
+        "taking_order"
+      ],
+      "description": "Not making eye-contact when taking the order",
+      "level": "C",
+      "points": -60,
+      "count": 2,
+      "points_total": -120,
+      "type": "penalty_behavior",
+      "section": "Regular Rewards"
+    },
+    {
+      "id": "HRI-COMMUNICATE-01",
+      "area": "HRI",
+      "skill": "CommunicateOrder",
+      "modifiers": [
+        "barman"
+      ],
+      "description": "Communicate the order to the barman",
+      "level": "C",
+      "points": 80,
+      "count": 2,
+      "points_total": 160,
+      "type": "achievement",
+      "section": "Regular Rewards",
+      "depends_on": [
+        {
+          "ref": "NLU-UNDERSTAND-02",
+          "nature": "informational",
+          "blocking": true,
+          "satisfiable_by_assistance": true
+        }
+      ],
+      "assistance": {
+        "permitted": true,
+        "listed_in_task_description": true,
+        "self_score": 0,
+        "extra_penalty_ref": "NAV-NAVIGATE-05P",
+        "blocks_dependents": false
+      }
+    },
+    {
+      "id": "MAN-PICK-05",
+      "area": "MAN",
+      "skill": "Pick",
+      "modifiers": [
+        "order_item",
+        "kitchen_bar"
+      ],
+      "description": "Picking up the requested items from the Kitchen-bar",
+      "level": "C",
+      "points": 100,
+      "count": 4,
+      "points_total": 400,
+      "type": "achievement",
+      "section": "Regular Rewards",
+      "depends_on": [
+        {
+          "ref": "HRI-COMMUNICATE-01",
+          "nature": "sequential",
+          "blocking": true,
+          "satisfiable_by_assistance": true
+        }
+      ],
+      "assistance": {
+        "permitted": true,
+        "listed_in_task_description": true,
+        "self_score": 0,
+        "extra_penalty_ref": "GEN-HUMANASSIST-10",
+        "blocks_dependents": false,
+        "note": "Barman handover forfeits this line and costs -100; serving remains available."
+      }
+    },
+    {
+      "id": "MAN-PICK-05B",
+      "area": "MAN",
+      "skill": "Pick",
+      "modifiers": [
+        "first_pick_bonus"
+      ],
+      "description": "First Pick Bonus",
+      "level": "C",
+      "points": 100,
+      "count": 1,
+      "points_total": 100,
+      "type": "bonus",
+      "section": "Regular Rewards",
+      "related_skill": "MAN-PICK-05",
+      "depends_on": [
+        {
+          "ref": "MAN-PICK-05",
+          "nature": "sequential",
+          "blocking": true,
+          "satisfiable_by_assistance": false
+        }
+      ]
+    },
+    {
+      "id": "GEN-HUMANASSIST-10",
+      "area": "GEN",
+      "skill": null,
+      "modifiers": [
+        "barman_handover"
+      ],
+      "description": "Human assistance: Asking the Barman to handover object to the robot",
+      "level": "-",
+      "points": -100,
+      "count": 4,
+      "points_total": -400,
+      "type": "penalty_behavior",
+      "section": "Regular Rewards",
+      "related_skill": "MAN-PICK-05"
+    },
+    {
+      "id": "NAV-NAVIGATE-04",
+      "area": "NAV",
+      "skill": "Navigate",
+      "modifiers": [
+        "return_to_table",
+        "order"
+      ],
+      "description": "Return to the customer table with the order",
+      "level": "C",
+      "points": 80,
+      "count": 2,
+      "points_total": 160,
+      "type": "achievement",
+      "section": "Regular Rewards",
+      "depends_on": [
+        {
+          "ref": "MAN-PICK-05",
+          "nature": "physical",
+          "blocking": true,
+          "satisfiable_by_assistance": true
+        }
+      ],
+      "assistance": {
+        "permitted": true,
+        "listed_in_task_description": true,
+        "self_score": 0,
+        "extra_penalty_ref": "GEN-HUMANASSIST-13",
+        "blocks_dependents": false
+      }
+    },
+    {
+      "id": "MAN-PLACE-03",
+      "area": "MAN",
+      "skill": "Place",
+      "modifiers": [
+        "order_item",
+        "customer_table"
+      ],
+      "description": "Serve the order to the customer",
+      "level": "C",
+      "points": 100,
+      "count": 4,
+      "points_total": 400,
+      "type": "achievement",
+      "section": "Regular Rewards",
+      "depends_on": [
+        {
+          "ref": "MAN-PICK-05",
+          "nature": "sequential",
+          "blocking": true,
+          "satisfiable_by_assistance": true,
+          "note": "Items may be acquired via barman handover; serving remains scoreable."
+        },
+        {
+          "ref": "MAN-TRANSPORT-02",
+          "nature": "physical",
+          "blocking": false,
+          "satisfiable_by_assistance": true,
+          "note": "Tray is one transport route, not required."
+        }
+      ],
+      "assistance": {
+        "permitted": true,
+        "listed_in_task_description": true,
+        "self_score": 0,
+        "extra_penalty_ref": "GEN-HUMANASSIST-11",
+        "blocks_dependents": false,
+        "note": "All delivered objects must be placed on the customer's table."
+      }
+    },
+    {
+      "id": "MAN-PLACE-03B",
+      "area": "MAN",
+      "skill": "Place",
+      "modifiers": [
+        "first_place_bonus"
+      ],
+      "description": "First Place Bonus",
+      "level": "C",
+      "points": 100,
+      "count": 1,
+      "points_total": 100,
+      "type": "bonus",
+      "section": "Regular Rewards",
+      "related_skill": "MAN-PLACE-03",
+      "depends_on": [
+        {
+          "ref": "MAN-PLACE-03",
+          "nature": "sequential",
+          "blocking": true,
+          "satisfiable_by_assistance": false
+        }
+      ]
+    },
+    {
+      "id": "GEN-HUMANASSIST-11",
+      "area": "GEN",
+      "skill": null,
+      "modifiers": [
+        "guest_takes_from_tray_or_hand"
+      ],
+      "description": "Human assistance: Guest needing to take the object from a tray or the robot's hand",
+      "level": "-",
+      "points": -100,
+      "count": 4,
+      "points_total": -400,
+      "type": "penalty_behavior",
+      "section": "Regular Rewards",
+      "related_skill": "MAN-PLACE-03"
+    },
+    {
+      "id": "MAN-TRANSPORT-02",
+      "area": "MAN",
+      "skill": "TransportWithTray",
+      "modifiers": [
+        "unattached"
+      ],
+      "description": "Use an unattached tray to transport",
+      "level": "X",
+      "points": 200,
+      "count": 2,
+      "points_total": 400,
+      "type": "achievement",
+      "section": "Extra Rewards",
+      "assistance": {
+        "permitted": true,
+        "listed_in_task_description": true,
+        "self_score": 0,
+        "extra_penalty_ref": null,
+        "blocks_dependents": false,
+        "note": "If requested, the barman will place the order in a basket or tray for the robot to deliver."
+      },
+      "note": "Requires placing items on tray, picking up and transporting the tray, then delivering."
+    },
+    {
+      "id": "NAV-NAVIGATE-05P",
+      "area": "NAV",
+      "skill": "Navigate",
+      "modifiers": [
+        "bar",
+        "not_reaching"
+      ],
+      "description": "Not reaching the bar (barman has to move from behind the bar to interact)",
+      "level": "C",
+      "points": -60,
+      "count": 2,
+      "points_total": -120,
+      "type": "penalty_behavior",
+      "section": "Penalties"
+    },
+    {
+      "id": "GEN-HUMANASSIST-12",
+      "area": "GEN",
+      "skill": null,
+      "modifiers": [
+        "directional_confirmation"
+      ],
+      "description": "Human Assistance: Asking for directional confirmation",
+      "level": "-",
+      "points": -30,
+      "count": 2,
+      "points_total": -60,
+      "type": "penalty_behavior",
+      "section": "Penalties"
+    },
+    {
+      "id": "GEN-HUMANASSIST-13",
+      "area": "GEN",
+      "skill": null,
+      "modifiers": [
+        "told_pointed_location"
+      ],
+      "description": "Human Assistance: Being told/pointed where a table/Kitchen-bar is located",
+      "level": "-",
+      "points": -40,
+      "count": 2,
+      "points_total": -80,
+      "type": "penalty_behavior",
+      "section": "Penalties"
+    },
+    {
+      "id": "SPECIAL-NOTATTEND",
+      "area": "SPECIAL",
+      "skill": null,
+      "modifiers": [],
+      "description": "Not attending (see sec. 3.8.1)",
+      "level": "-",
+      "points": -500,
+      "count": 1,
+      "points_total": -500,
+      "type": "administrative",
+      "section": "Special Penalties & Bonuses"
+    },
+    {
+      "id": "SPECIAL-ALTSTART",
+      "area": "SPECIAL",
+      "skill": null,
+      "modifiers": [],
+      "description": "Using alternative start signal (see sec. 3.6.8)",
+      "level": "-",
+      "points": -100,
+      "count": 1,
+      "points_total": -100,
+      "type": "administrative",
+      "section": "Special Penalties & Bonuses"
+    },
+    {
+      "id": "SPECIAL-OUTSTANDING",
+      "area": "SPECIAL",
+      "skill": null,
+      "modifiers": [],
+      "description": "Outstanding performance (see sec. 3.8.3)",
+      "level": "-",
+      "points": 236,
+      "count": 1,
+      "points_total": 236,
+      "type": "administrative",
+      "section": "Special Penalties & Bonuses"
+    }
+  ],
+  "global_rules_ref": "global_rules.yaml"
+}

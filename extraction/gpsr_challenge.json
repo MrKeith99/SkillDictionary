@@ -1,0 +1,298 @@
+{
+  "challenge": "General Purpose Service Robot Challenge",
+  "rulebook_section": "5.3",
+  "max_time_minutes": 7,
+  "total_score": 1490,
+  "method_note": "Entries are the fixed primitives a generated command is scored against; the command generator composes them at runtime.",
+  "challenge_rules": {
+    "autonomy_skip": {
+      "source": "\u00a75.3 rule 7",
+      "reductions_apply_to": [
+        "use of a custom operator",
+        "bypassing speech recognition",
+        "receiving human assistance to accomplish a command",
+        "instructing a human assistant to perform the whole task"
+      ],
+      "ambiguity": "The last two are declared to incur reductions but have no quantified line on the score sheet. Either add explicit entries or state that \u00a73.7.2 (score zero) governs."
+    },
+    "partial_scoring": {
+      "source": "\u00a75.3 rule 2",
+      "permitted": true
+    }
+  },
+  "skills": [
+    {
+      "id": "NLU-UNDERSTAND-01",
+      "area": "NLU",
+      "skill": "UnderstandCommand",
+      "modifiers": [
+        "spoken"
+      ],
+      "description": "Understand the spoken command",
+      "level": "C",
+      "points": 80,
+      "count": 3,
+      "points_total": 240,
+      "type": "achievement",
+      "section": "Main Goal",
+      "assistance": {
+        "permitted": true,
+        "listed_in_task_description": true,
+        "self_score": 0,
+        "extra_penalty_ref": "NLU-UNDERSTAND-01P1",
+        "blocks_dependents": false,
+        "note": "Custom operator available only after the referee attempts three re-phrased commands."
+      }
+    },
+    {
+      "id": "NLU-UNDERSTAND-01P1",
+      "area": "NLU",
+      "skill": "UnderstandCommand",
+      "modifiers": [
+        "custom_operator"
+      ],
+      "description": "Using a custom operator",
+      "level": "C",
+      "points": -20,
+      "count": 3,
+      "points_total": -60,
+      "type": "penalty_behavior",
+      "section": "Main Goal",
+      "related_skill": "NLU-UNDERSTAND-01",
+      "ambiguity": "Fixed 3x-20 (-60, ~4% of 1490) conflicts with \u00a73.7.4, which sets custom operator at -10% of maximum attainable score (-149). Confirm which governs."
+    },
+    {
+      "id": "NLU-UNDERSTAND-01P2",
+      "area": "NLU",
+      "skill": "UnderstandCommand",
+      "modifiers": [
+        "rephrasing_requested"
+      ],
+      "description": "Request a rephrasing",
+      "level": "C",
+      "points": -30,
+      "count": 6,
+      "points_total": -180,
+      "type": "penalty_behavior",
+      "section": "Main Goal",
+      "related_skill": "NLU-UNDERSTAND-01"
+    },
+    {
+      "id": "PLN-PLAN-01",
+      "area": "PLN",
+      "skill": "DemonstratePlan",
+      "modifiers": [],
+      "description": "Demonstrate a plan has been generated",
+      "level": "C",
+      "points": 100,
+      "count": 3,
+      "points_total": 300,
+      "type": "achievement",
+      "section": "Main Goal",
+      "depends_on": [
+        {
+          "ref": "NLU-UNDERSTAND-01",
+          "nature": "informational",
+          "blocking": true,
+          "satisfiable_by_assistance": true,
+          "note": "Command may be acquired via custom operator or ASR bypass; planning remains scoreable."
+        }
+      ],
+      "assistance": {
+        "permitted": false
+      }
+    },
+    {
+      "id": "PLN-SOLVE-01",
+      "area": "PLN",
+      "skill": "SolveCommand",
+      "modifiers": [
+        "command_1"
+      ],
+      "description": "Solving the first command",
+      "level": "X",
+      "points": 250,
+      "count": 1,
+      "points_total": 250,
+      "type": "achievement",
+      "section": "Main Goal",
+      "depends_on": [
+        {
+          "ref": "NLU-UNDERSTAND-01",
+          "nature": "informational",
+          "blocking": true,
+          "satisfiable_by_assistance": true
+        }
+      ],
+      "assistance": {
+        "permitted": true,
+        "listed_in_task_description": true,
+        "self_score": 0,
+        "extra_penalty_ref": null,
+        "blocks_dependents": false,
+        "note": "\u00a75.3 rule 7 states reductions apply for assistance but does not quantify them; \u00a73.7.2 default is score zero."
+      }
+    },
+    {
+      "id": "PLN-SOLVE-02",
+      "area": "PLN",
+      "skill": "SolveCommand",
+      "modifiers": [
+        "command_2"
+      ],
+      "description": "Solving the second command",
+      "level": "X",
+      "points": 250,
+      "count": 1,
+      "points_total": 250,
+      "type": "achievement",
+      "section": "Main Goal",
+      "depends_on": [
+        {
+          "ref": "NLU-UNDERSTAND-01",
+          "nature": "informational",
+          "blocking": true,
+          "satisfiable_by_assistance": true
+        }
+      ],
+      "assistance": {
+        "permitted": true,
+        "listed_in_task_description": true,
+        "self_score": 0,
+        "extra_penalty_ref": null,
+        "blocks_dependents": false
+      }
+    },
+    {
+      "id": "PLN-SOLVE-03",
+      "area": "PLN",
+      "skill": "SolveCommand",
+      "modifiers": [
+        "command_3"
+      ],
+      "description": "Solving the third command",
+      "level": "X",
+      "points": 250,
+      "count": 1,
+      "points_total": 250,
+      "type": "achievement",
+      "section": "Main Goal",
+      "depends_on": [
+        {
+          "ref": "NLU-UNDERSTAND-01",
+          "nature": "informational",
+          "blocking": true,
+          "satisfiable_by_assistance": true
+        }
+      ],
+      "assistance": {
+        "permitted": true,
+        "listed_in_task_description": true,
+        "self_score": 0,
+        "extra_penalty_ref": null,
+        "blocks_dependents": false
+      }
+    },
+    {
+      "id": "PLN-SOLVE-PARTIAL",
+      "area": "PLN",
+      "skill": "SolveCommand",
+      "modifiers": [
+        "partial"
+      ],
+      "description": "Solving part of a command (percentage penalty)",
+      "level": "X",
+      "points": null,
+      "count": 1,
+      "points_total": null,
+      "type": "penalty_behavior",
+      "section": "Main Goal",
+      "related_skill": "PLN-SOLVE-01",
+      "penalty_type": "percentage",
+      "basis": "similar_scores_in_other_tests",
+      "ambiguity": "No defined percentage or reference table. Strongest candidate for goal-condition predicates with explicit partial_credit fractions."
+    },
+    {
+      "id": "PLN-INTERLEAVE-01",
+      "area": "PLN",
+      "skill": "InterleaveTasks",
+      "modifiers": [],
+      "description": "Interleaved Task Bonus",
+      "level": "X",
+      "points": 200,
+      "count": 1,
+      "points_total": 200,
+      "type": "bonus",
+      "section": "Extra Rewards",
+      "depends_on": [
+        {
+          "ref": "PLN-SOLVE-01",
+          "nature": "sequential",
+          "blocking": true,
+          "satisfiable_by_assistance": true,
+          "note": "Awarded only when all three commands are received at once and execution is meaningfully interleaved."
+        }
+      ],
+      "assistance": {
+        "permitted": false
+      }
+    },
+    {
+      "id": "NLU-UNDERSTAND-01P3",
+      "area": "NLU",
+      "skill": "UnderstandCommand",
+      "modifiers": [
+        "bypassed_speech_rec"
+      ],
+      "description": "Bypassing speech recognition",
+      "level": "C",
+      "points": -50,
+      "count": 3,
+      "points_total": -150,
+      "type": "penalty_behavior",
+      "section": "Penalties",
+      "related_skill": "NLU-UNDERSTAND-01",
+      "ambiguity": "Fixed 3x-50 (-150, ~10%) vs \u00a73.7.4 gesture/alternative-HRI rates of -20% of max attainable. Confirm interaction."
+    },
+    {
+      "id": "SPECIAL-NOTATTEND",
+      "area": "SPECIAL",
+      "skill": null,
+      "modifiers": [],
+      "description": "Not attending (see sec. 3.8.1)",
+      "level": "-",
+      "points": -500,
+      "count": 1,
+      "points_total": -500,
+      "type": "administrative",
+      "section": "Special Penalties & Bonuses"
+    },
+    {
+      "id": "SPECIAL-ALTSTART",
+      "area": "SPECIAL",
+      "skill": null,
+      "modifiers": [],
+      "description": "Using alternative start signal (see sec. 3.6.8)",
+      "level": "-",
+      "points": -100,
+      "count": 1,
+      "points_total": -100,
+      "type": "administrative",
+      "section": "Special Penalties & Bonuses"
+    },
+    {
+      "id": "SPECIAL-OUTSTANDING",
+      "area": "SPECIAL",
+      "skill": null,
+      "modifiers": [],
+      "description": "Outstanding performance (see sec. 3.8.3)",
+      "level": "-",
+      "points": 149,
+      "count": 1,
+      "points_total": 149,
+      "type": "administrative",
+      "section": "Special Penalties & Bonuses"
+    }
+  ],
+  "global_rules_ref": "global_rules.yaml"
+}
