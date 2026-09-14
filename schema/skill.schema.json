@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://robocupathome.org/schema/skill.schema.json",
+  "title": "RoboCup@Home canonical skill entry",
+  "type": "object",
+  "required": ["id", "area", "skill", "variant_number", "modifiers",
+               "description", "level", "type"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Z]+(-[A-Z]+)?-[0-9]{2,}[A-Z]?[0-9]*$",
+      "description": "Canonical id. Permanent; never reused."
+    },
+    "area": {
+      "enum": ["NAV", "MAN", "OBJ", "PPL", "HRI", "NLU", "PLN",
+               "COM", "SAF", "GEN", "SPECIAL"]
+    },
+    "skill": {
+      "type": ["string", "null"],
+      "description": "Canonical verb. null for non-capability lines (assistance, administrative)."
+    },
+    "variant_number": {
+      "type": ["string", "integer"],
+      "description": "Permanent within its stem. Never reused, never reassigned."
+    },
+    "modifiers": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true,
+      "description": "Object/environment properties only. NOT grasp technique or hardware method."
+    },
+    "description": {"type": "string", "minLength": 1},
+    "level": {"enum": ["E", "C", "X", "-"]},
+    "points": {
+      "type": ["integer", "null"],
+      "description": "Priced exactly once, here. null only when the rulebook leaves it unpriced or a formula applies."
+    },
+    "points_formula": {
+      "type": "string",
+      "description": "Used instead of points when the value derives from the challenge total (e.g. §3.8.3)."
+    },
+    "type": {
+      "enum": ["achievement", "bonus", "penalty_behavior",
+               "disqualifying", "administrative"]
+    },
+    "penalty_type": {"enum": ["percentage", "fixed"]},
+    "basis": {"type": "string"},
+    "process_spec": {"type": "string"},
+    "used_by": {"type": "array", "items": {"type": "string"}},
+    "legacy_ids": {"type": "array", "items": {"type": "string"}}
+  },
+  "allOf": [{
+    "if": {"properties": {"type": {"const": "achievement"}}},
+    "then": {
+      "anyOf": [
+        {"required": ["points"], "properties": {"points": {"type": "integer"}}},
+        {"required": ["points_formula"]}
+      ]
+    }
+  }]
+}

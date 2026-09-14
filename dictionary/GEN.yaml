@@ -1,0 +1,236 @@
+area: GEN
+schema_version: 0.2.0
+rulebook_version: '2026.2'
+note: Canonical cross-challenge definitions. Each entry is defined and priced exactly once here; challenges reference it by id.
+skills:
+- id: GEN-ALTERNATIVEHRI-01P
+  area: GEN
+  skill: AlternativeHRI
+  variant_number: '01'
+  modifiers: []
+  description: Alternative HRI
+  level: C
+  points: -20
+  type: penalty_behavior
+  used_by:
+  - hri
+  legacy_ids:
+  - GEN-ALTHRI-01
+- id: GEN-ALTERNATIVEHRI-02P
+  area: GEN
+  skill: AlternativeHRI
+  variant_number: '02'
+  modifiers:
+  - order
+  description: Alternative HRI
+  level: C
+  points: -80
+  type: penalty_behavior
+  used_by:
+  - restaurant
+  legacy_ids:
+  - GEN-ALTHRI-02
+- id: GEN-BREAKFAST-01P
+  area: GEN
+  skill: null
+  variant_number: 01P
+  modifiers:
+  - typical_setting
+  description: Breakfast not served in a typical meal setting
+  level: '-'
+  points: -50
+  type: penalty_behavior
+  used_by:
+  - pick_and_place
+  legacy_ids:
+  - GEN-BREAKFAST-01P
+- id: GEN-HUMANASSIST-01P
+  area: GEN
+  skill: null
+  variant_number: '01'
+  modifiers:
+  - object_repositioned
+  description: 'Human assistance: object repositioned by a person'
+  level: '-'
+  points: -30
+  type: penalty_behavior
+  used_by:
+  - pick_and_place
+  legacy_ids:
+  - GEN-HUMANASSIST-01
+- id: GEN-HUMANASSIST-02P
+  area: GEN
+  skill: null
+  variant_number: '02'
+  modifiers:
+  - handover
+  description: 'Human assistance: handover'
+  level: '-'
+  points: -100
+  type: penalty_behavior
+  used_by:
+  - pick_and_place
+  legacy_ids:
+  - GEN-HUMANASSIST-02
+- id: GEN-HUMANASSIST-04P
+  area: GEN
+  skill: null
+  variant_number: '04'
+  modifiers:
+  - opening_milk_container
+  description: 'Human assistance: opening milk container'
+  level: '-'
+  points: 0
+  type: penalty_behavior
+  used_by:
+  - pick_and_place
+  legacy_ids:
+  - GEN-HUMANASSIST-04
+- id: GEN-HUMANASSIST-05P
+  area: GEN
+  skill: null
+  variant_number: '05'
+  modifiers:
+  - dishwasher_door_or_rack
+  description: 'Human assistance: moving dishwasher door or rack'
+  level: '-'
+  points: 0
+  type: penalty_behavior
+  used_by:
+  - pick_and_place
+  legacy_ids:
+  - GEN-HUMANASSIST-05
+- id: GEN-HUMANASSIST-06P
+  area: GEN
+  skill: null
+  variant_number: '06'
+  modifiers:
+  - flatten_arrange_before_folding
+  description: 'Human assistance: Flattening/Arranging clothing before folding'
+  level: '-'
+  points: -200
+  type: penalty_behavior
+  used_by:
+  - doing_laundry
+  legacy_ids:
+  - GEN-HUMANASSIST-06
+- id: GEN-HUMANASSIST-07P
+  area: GEN
+  skill: null
+  variant_number: '07'
+  modifiers:
+  - folding_assistance_pct
+  description: Human assistance during folding (percentage penalty per amount of help)
+  level: '-'
+  points: -800
+  type: penalty_behavior
+  penalty_type: percentage
+  basis: MAN-FOLD-01 points
+  used_by:
+  - doing_laundry
+  legacy_ids:
+  - GEN-HUMANASSIST-07
+- id: GEN-HUMANASSIST-08P
+  area: GEN
+  skill: null
+  variant_number: '08'
+  modifiers:
+  - additional
+  - flatten_arrange_before_folding
+  description: 'Human assistance: Flattening/Arranging before folding (additional)'
+  level: '-'
+  points: -100
+  type: penalty_behavior
+  used_by:
+  - doing_laundry
+  legacy_ids:
+  - GEN-HUMANASSIST-08
+- id: GEN-HUMANASSIST-09P
+  area: GEN
+  skill: null
+  variant_number: '09'
+  modifiers:
+  - additional
+  - folding_assistance_pct
+  description: Human assistance during folding, additional clothes (percentage penalty)
+  level: '-'
+  points: -400
+  type: penalty_behavior
+  penalty_type: percentage
+  basis: MAN-FOLD-02 points
+  used_by:
+  - doing_laundry
+  legacy_ids:
+  - GEN-HUMANASSIST-09
+- id: GEN-HUMANASSIST-10P
+  area: GEN
+  skill: null
+  variant_number: '10'
+  modifiers:
+  - barman_handover
+  description: 'Human assistance: Asking the Barman to handover object to the robot'
+  level: '-'
+  points: -100
+  type: penalty_behavior
+  used_by:
+  - restaurant
+  legacy_ids:
+  - GEN-HUMANASSIST-10
+- id: GEN-HUMANASSIST-11P
+  area: GEN
+  skill: null
+  variant_number: '11'
+  modifiers:
+  - guest_takes_from_tray_or_hand
+  description: 'Human assistance: Guest needing to take the object from a tray or the robot''s hand'
+  level: '-'
+  points: -100
+  type: penalty_behavior
+  used_by:
+  - restaurant
+  legacy_ids:
+  - GEN-HUMANASSIST-11
+- id: GEN-HUMANASSIST-12P
+  area: GEN
+  skill: null
+  variant_number: '12'
+  modifiers:
+  - directional_confirmation
+  description: 'Human Assistance: Asking for directional confirmation'
+  level: '-'
+  points: -30
+  type: penalty_behavior
+  used_by:
+  - restaurant
+  legacy_ids:
+  - GEN-HUMANASSIST-12
+- id: GEN-HUMANASSIST-13P
+  area: GEN
+  skill: null
+  variant_number: '13'
+  modifiers:
+  - told_pointed_location
+  description: 'Human Assistance: Being told/pointed where a table/Kitchen-bar is located'
+  level: '-'
+  points: -40
+  type: penalty_behavior
+  used_by:
+  - restaurant
+  legacy_ids:
+  - GEN-HUMANASSIST-13
+- id: GEN-HUMANASSIST-14P
+  area: GEN
+  skill: null
+  variant_number: '14'
+  modifiers:
+  - environment_change
+  description: 'Human assistance: environment changes (per item)'
+  level: '-'
+  points: -40
+  type: penalty_behavior
+  used_by:
+  - doing_laundry
+  - pick_and_place
+  legacy_ids:
+  - GEN-HUMANASSIST-03
+  - GEN-HUMANASSIST-03B

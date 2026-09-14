@@ -1,0 +1,162 @@
+area: HRI
+schema_version: 0.2.0
+rulebook_version: '2026.2'
+note: Canonical cross-challenge definitions. Each entry is defined and priced exactly once here; challenges reference it by id.
+skills:
+- id: HRI-ATTEND-01P
+  area: HRI
+  skill: Attend
+  variant_number: 01P
+  modifiers:
+  - not_acknowledging
+  description: Not acknowledging people
+  level: C
+  points: -200
+  type: penalty_behavior
+  used_by:
+  - hri
+  legacy_ids:
+  - HRI-ATTEND-01P
+- id: HRI-COMMUNICATEORDER-01
+  area: HRI
+  skill: CommunicateOrder
+  variant_number: '01'
+  modifiers:
+  - barman
+  description: Communicate the order to the barman
+  level: C
+  points: 80
+  type: achievement
+  used_by:
+  - restaurant
+  legacy_ids:
+  - HRI-COMMUNICATE-01
+- id: HRI-EYECONTACT-01P
+  area: HRI
+  skill: EyeContact
+  variant_number: 01P
+  modifiers:
+  - taking_order
+  description: Not making eye-contact when taking the order
+  level: C
+  points: -60
+  type: penalty_behavior
+  used_by:
+  - restaurant
+  legacy_ids:
+  - HRI-EYECONTACT-01P
+- id: HRI-LOOKAT-01
+  area: HRI
+  skill: LookAt
+  variant_number: '01'
+  modifiers:
+  - receiving_guest
+  - talking_person
+  description: Look at the person talking, when receiving a guest
+  level: C
+  points: 50
+  type: achievement
+  used_by:
+  - hri
+  legacy_ids:
+  - HRI-LOOKAT-01
+- id: HRI-LOOKAT-02
+  area: HRI
+  skill: LookAt
+  variant_number: '02'
+  modifiers:
+  - correct_guest
+  - introduction
+  description: While introducing guests, look to the correct guest while talking about the other guest
+  level: C
+  points: 50
+  type: achievement
+  used_by:
+  - hri
+  legacy_ids:
+  - HRI-LOOKAT-02
+- id: HRI-OFFERSEAT-01
+  area: HRI
+  skill: OfferSeat
+  variant_number: '01'
+  modifiers:
+  - new_guest
+  description: Offer a free seat to the new guest
+  level: C
+  points: 100
+  type: achievement
+  used_by:
+  - hri
+  legacy_ids:
+  - HRI-OFFERSEAT-01
+- id: HRI-RECEIVEHANDOVER-01
+  area: HRI
+  skill: ReceiveHandover
+  variant_number: '01'
+  modifiers:
+  - bag
+  description: Receive the bag from the guest via handover
+  level: C
+  points: 50
+  type: achievement
+  used_by:
+  - hri
+  legacy_ids:
+  - HRI-RECEIVEHANDOVER-01
+- id: HRI-RECEIVEHANDOVER-01P1
+  area: HRI
+  skill: ReceiveHandover
+  variant_number: 01P1
+  modifiers:
+  - assistance_requested
+  description: Requesting handover assistance from the guest
+  level: C
+  points: -25
+  type: penalty_behavior
+  used_by:
+  - hri
+  legacy_ids:
+  - HRI-RECEIVEHANDOVER-01P1
+- id: HRI-RECEIVEHANDOVER-01P2
+  area: HRI
+  skill: ReceiveHandover
+  variant_number: 01P2
+  modifiers:
+  - bag_on_structure
+  description: Bag placed on the robot structure instead of being handed over
+  level: C
+  points: -50
+  type: penalty_behavior
+  used_by:
+  - hri
+  legacy_ids:
+  - HRI-RECEIVEHANDOVER-01P2
+- id: HRI-STATESTOREDINFO-01
+  area: HRI
+  skill: StateStoredInfo
+  variant_number: '01'
+  modifiers:
+  - favorite_drink
+  - name
+  description: Say name and favorite drink of each guest (during introduction)
+  level: C
+  points: 30
+  type: achievement
+  used_by:
+  - hri
+  legacy_ids:
+  - HRI-STATEINFO-01
+- id: HRI-STATESTOREDINFO-02P
+  area: HRI
+  skill: StateStoredInfo
+  variant_number: '02'
+  modifiers:
+  - wrong_info
+  description: Wrong guest information was memorized
+  level: C
+  points: -40
+  type: penalty_behavior
+  used_by:
+  - hri
+  legacy_ids:
+  - HRI-STATEINFO-01P

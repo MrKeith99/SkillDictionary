@@ -1,0 +1,49 @@
+area: OBJ
+schema_version: 0.2.0
+rulebook_version: '2026.2'
+note: Canonical cross-challenge definitions. Each entry is defined and priced exactly once here; challenges reference it by id.
+skills:
+- id: OBJ-DETECTEVENT-01
+  area: OBJ
+  skill: DetectEvent
+  variant_number: '01'
+  modifiers:
+  - audio
+  - doorbell
+  description: Detect the doorbell sound as a signal that a guest has arrived
+  level: E
+  points: 30
+  type: achievement
+  used_by:
+  - hri
+  legacy_ids:
+  - OBJ-DETECTEVENT-01
+- id: OBJ-PERCEIVE-01
+  area: OBJ
+  skill: Perceive
+  variant_number: '01'
+  modifiers:
+  - placement
+  - shelf
+  description: Perceive objects on a shelf and indicate the correct placement
+  level: C
+  points: 30
+  type: achievement
+  used_by:
+  - pick_and_place
+  legacy_ids:
+  - OBJ-PERCEIVE-01
+- id: OBJ-RECOGNIZE-01
+  area: OBJ
+  skill: Recognize
+  variant_number: '01'
+  modifiers:
+  - known_object
+  description: Correctly recognize an object
+  level: E
+  points: 10
+  type: achievement
+  used_by:
+  - pick_and_place
+  legacy_ids:
+  - OBJ-RECOGNIZE-01

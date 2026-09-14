@@ -1,0 +1,189 @@
+challenge: Restaurant Challenge
+rulebook_section: '5.5'
+max_time_minutes: 15
+total_score: 2360
+dictionary_ref: ../dictionary/
+global_rules_ref: ../vocabulary/global_rules.yaml
+challenge_rules:
+  restart:
+    source: §5.5.1
+    allowed: 1
+    note: All points earned before the restart are voided; scoring resumes from zero.
+  barman_assistance:
+    source: §5.5 remarks
+    note: The Professional Barman assists on request; robot may use up to two minutes to instruct the barman per order. If requested, the barman will place the order in a basket or tray.
+  disqualifying:
+  - id: DQ-R-TOUCH
+    description: Touching the robot after the start signal
+  - id: DQ-R-PREMAP
+    description: Mapping the environment in advance
+  emergency_stop:
+    source: §5.5 procedure 4
+    note: A TC member follows the robot ready to press the emergency stop button; any physical contact with people or furniture results in immediate emergency stop.
+entries:
+- ref: PPL-DETECTCALLINGORWAVING-01
+  count: 2
+  section: Regular Rewards
+  assistance:
+    permitted: false
+- ref: NAV-NAVIGATE-03
+  count: 2
+  section: Regular Rewards
+  depends_on:
+  - ref: PPL-DETECTCALLINGORWAVING-01
+    nature: informational
+    blocking: false
+    satisfiable_by_assistance: true
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: NAV-NAVIGATE-03P
+    blocks_dependents: false
+    note: If the robot detects a customer but does not reach the table, it must clearly identify the person to earn partial points.
+- ref: NAV-NAVIGATE-03P
+  count: 2
+  section: Regular Rewards
+  related_skill: NAV-NAVIGATE-03
+- ref: NLU-UNDERSTANDCOMMAND-05
+  count: 2
+  section: Regular Rewards
+  depends_on:
+  - ref: NAV-NAVIGATE-03
+    nature: physical
+    blocking: false
+    satisfiable_by_assistance: true
+    note: Partial credit available if the table is not reached but the customer is identified.
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-ALTERNATIVEHRI-02P
+    blocks_dependents: false
+- ref: GEN-ALTERNATIVEHRI-02P
+  count: 2
+  section: Regular Rewards
+  related_skill: NLU-UNDERSTANDCOMMAND-05
+  ambiguity: Fixed -80 per order vs §3.7.4's -20% of max attainable (-472). Confirm which governs.
+- ref: HRI-EYECONTACT-01P
+  count: 2
+  section: Regular Rewards
+- ref: HRI-COMMUNICATEORDER-01
+  count: 2
+  section: Regular Rewards
+  depends_on:
+  - ref: NLU-UNDERSTANDCOMMAND-05
+    nature: informational
+    blocking: true
+    satisfiable_by_assistance: true
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: NAV-NAVIGATE-05P
+    blocks_dependents: false
+- ref: MAN-PICK-05
+  count: 4
+  section: Regular Rewards
+  depends_on:
+  - ref: HRI-COMMUNICATEORDER-01
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: true
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-HUMANASSIST-10P
+    blocks_dependents: false
+    note: Barman handover forfeits this line and costs -100; serving remains available.
+- ref: MAN-PICK-02B
+  count: 1
+  section: Regular Rewards
+  depends_on:
+  - ref: MAN-PICK-05
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: false
+  related_skill: MAN-PICK-05
+- ref: GEN-HUMANASSIST-10P
+  count: 4
+  section: Regular Rewards
+  related_skill: MAN-PICK-05
+- ref: NAV-NAVIGATE-04
+  count: 2
+  section: Regular Rewards
+  depends_on:
+  - ref: MAN-PICK-05
+    nature: physical
+    blocking: true
+    satisfiable_by_assistance: true
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-HUMANASSIST-13P
+    blocks_dependents: false
+- ref: MAN-PLACE-03
+  count: 4
+  section: Regular Rewards
+  depends_on:
+  - ref: MAN-PICK-05
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: true
+    note: Items may be acquired via barman handover; serving remains scoreable.
+  - ref: MAN-TRANSPORTWITHTRAY-01
+    nature: physical
+    blocking: false
+    satisfiable_by_assistance: true
+    note: Tray is one transport route, not required.
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-HUMANASSIST-11P
+    blocks_dependents: false
+    note: All delivered objects must be placed on the customer's table.
+- ref: MAN-PLACE-03B
+  count: 1
+  section: Regular Rewards
+  depends_on:
+  - ref: MAN-PLACE-03
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: false
+  related_skill: MAN-PLACE-03
+- ref: GEN-HUMANASSIST-11P
+  count: 4
+  section: Regular Rewards
+  related_skill: MAN-PLACE-03
+- ref: MAN-TRANSPORTWITHTRAY-01
+  count: 2
+  section: Extra Rewards
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: null
+    blocks_dependents: false
+    note: If requested, the barman will place the order in a basket or tray for the robot to deliver.
+  note: Requires placing items on tray, picking up and transporting the tray, then delivering.
+- ref: NAV-NAVIGATE-05P
+  count: 2
+  section: Penalties
+- ref: GEN-HUMANASSIST-12P
+  count: 2
+  section: Penalties
+- ref: GEN-HUMANASSIST-13P
+  count: 2
+  section: Penalties
+- ref: SPECIAL-01
+  count: 1
+  section: Special Penalties & Bonuses
+- ref: SPECIAL-02
+  count: 1
+  section: Special Penalties & Bonuses
+- ref: SPECIAL-03
+  count: 1
+  section: Special Penalties & Bonuses

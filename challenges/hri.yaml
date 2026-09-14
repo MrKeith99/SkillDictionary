@@ -1,0 +1,197 @@
+challenge: Human Robot Interaction Challenge
+rulebook_section: '5.1'
+max_time_minutes: 7
+total_score: 1450
+dictionary_ref: ../dictionary/
+global_rules_ref: ../vocabulary/global_rules.yaml
+challenge_rules:
+  custom_operator:
+    permitted: false
+    source: §5.1 rule 4
+    note: Since the main focus of the test is HRI, no custom operator can be chosen.
+  alternative_hri:
+    permitted: true
+    penalty_ref: GEN-ALTERNATIVEHRI-01P
+    note: Score reduction per information (name or favorite drink).
+entries:
+- ref: OBJ-DETECTEVENT-01
+  count: 2
+  section: Greeting
+  assistance:
+    permitted: false
+    note: Waiting for the doorbell is optional; robots may bypass it and meet the guest at the door. Bypassing is an alternative strategy, not assistance.
+  note: Scored only if robot waits at starting position and reacts instantly.
+- ref: MAN-OPEN-01
+  count: 2
+  section: Greeting
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: null
+    extra_penalty: 0
+    blocks_dependents: false
+    note: Entrance door is open by default; team leader may request it closed to make these points available. Referee opens on request (§5.1 Referee Instructions).
+  note: 'Opportunity is opt-in: points only exist if the team requests a closed door.'
+- ref: HRI-LOOKAT-01
+  count: 2
+  section: Greeting
+  assistance:
+    permitted: false
+  note: Awarded only if the robot continuously tracks the moving person.
+- ref: HRI-OFFERSEAT-01
+  count: 2
+  section: Greeting
+  depends_on:
+  - unresolved: true
+    ref: NAV-FOLLOW-GUEST
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: false
+    note: Guest must be escorted to the living room first.
+  assistance:
+    permitted: false
+  note: Robot must clearly indicate or point to a location or seat.
+- ref: NAV-GAZEDIRECTION-01
+  count: 2
+  section: Greeting
+  assistance:
+    permitted: false
+- ref: PPL-DESCRIBEATTRIBUTE-01B
+  count: 4
+  section: Greeting
+  depends_on:
+  - unresolved: true
+    ref: PPL-PERCEIVE-GUEST1
+    nature: informational
+    blocking: true
+    satisfiable_by_assistance: false
+  assistance:
+    permitted: false
+- ref: PPL-DESCRIBEATTRIBUTE-02P
+  count: 4
+  section: Greeting
+  related_skill: PPL-DESCRIBEATTRIBUTE-01B
+- ref: NLU-AVOIDNONESSENTIALQUESTIONS-01B
+  count: 4
+  section: Greeting
+  assistance:
+    permitted: false
+  note: Asking a guest to repeat because the robot could not hear is not a non-essential question.
+- ref: HRI-STATESTOREDINFO-01
+  count: 4
+  section: Introduction
+  depends_on:
+  - unresolved: true
+    ref: NLU-LEARN-GUESTINFO
+    nature: informational
+    blocking: true
+    satisfiable_by_assistance: true
+    note: Information may be obtained via alternative HRI at -20 per item.
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-ALTERNATIVEHRI-01P
+    blocks_dependents: false
+    note: Alternative HRI to understand a guest causes a reduction per information item.
+- ref: HRI-LOOKAT-02
+  count: 2
+  section: Introduction
+  depends_on:
+  - ref: HRI-OFFERSEAT-01
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: false
+    note: Both guests must be seated before introductions.
+  assistance:
+    permitted: false
+- ref: HRI-RECEIVEHANDOVER-01
+  count: 1
+  section: Guiding
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: HRI-RECEIVEHANDOVER-01P1
+    blocks_dependents: false
+    note: Two distinct assisted modes are priced separately (-25 asking for help, -50 bag placed on structure). Neither blocks the follow/drop chain.
+  note: 'Max points require: robot signals readiness, manipulator within 10 cm of operator''s hand, operator completes the handover.'
+- ref: HRI-RECEIVEHANDOVER-01P1
+  count: 1
+  section: Guiding
+  related_skill: HRI-RECEIVEHANDOVER-01
+- ref: HRI-RECEIVEHANDOVER-01P2
+  count: 1
+  section: Guiding
+  related_skill: HRI-RECEIVEHANDOVER-01
+  ambiguity: §5.1 rule 5 says 'no points are awarded' for this route, and the sheet also applies -50. Confirm whether both forfeiture and penalty are intended, or only the penalty.
+- ref: NAV-FOLLOW-01
+  count: 1
+  section: Guiding
+  depends_on:
+  - ref: HRI-RECEIVEHANDOVER-01
+    nature: physical
+    blocking: false
+    satisfiable_by_assistance: true
+    note: Robot may carry the bag by any assisted route; following is scoreable regardless.
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: NAV-FOLLOW-01P2
+    blocks_dependents: false
+    note: Four penalized recovery forms listed in §5.1 rule 4.
+- ref: NAV-FOLLOW-01P1
+  count: 1
+  section: Guiding
+  related_skill: NAV-FOLLOW-01
+- ref: NAV-FOLLOW-01P2
+  count: 1
+  section: Guiding
+  related_skill: NAV-FOLLOW-01
+- ref: NAV-FOLLOW-01P3
+  count: 1
+  section: Guiding
+  related_skill: NAV-FOLLOW-01
+- ref: NAV-FOLLOW-01P4
+  count: 1
+  section: Guiding
+  related_skill: NAV-FOLLOW-01
+- ref: MAN-PLACE-01
+  count: 1
+  section: Guiding
+  depends_on:
+  - ref: NAV-FOLLOW-01
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: true
+  - ref: HRI-RECEIVEHANDOVER-01
+    nature: physical
+    blocking: true
+    satisfiable_by_assistance: true
+    note: Robot must be holding the bag; assisted acquisition still permits this line.
+  assistance:
+    permitted: true
+    listed_in_task_description: false
+    self_score: 0
+    extra_penalty_ref: null
+    blocks_dependents: false
+    note: 'Falls back to §3.7.2 default: assisted element scores zero.'
+- ref: HRI-STATESTOREDINFO-02P
+  count: 4
+  section: Penalties
+  related_skill: HRI-STATESTOREDINFO-01
+- ref: GEN-ALTERNATIVEHRI-01P
+  count: 6
+  section: Penalties
+  ambiguity: Fixed -20 per item here, but §3.7.4 prices alternative HRI at up to -20% of max attainable score (=-290). Confirm which governs.
+- ref: HRI-ATTEND-01P
+  count: 2
+  section: Penalties
+- ref: SPECIAL-01
+  count: 1
+  section: Special Penalties & Bonuses
+- ref: SPECIAL-03
+  count: 1
+  section: Special Penalties & Bonuses

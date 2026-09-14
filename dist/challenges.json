@@ -1,0 +1,1384 @@
+{
+  "schema_version": "0.2.0",
+  "rulebook_version": "2026.2",
+  "challenges": {
+    "doing_laundry": {
+      "challenge": "Doing Laundry Challenge",
+      "rulebook_section": "5.4",
+      "max_time_minutes": 7,
+      "total_score": 4415,
+      "dictionary_ref": "../dictionary/",
+      "global_rules_ref": "../vocabulary/global_rules.yaml",
+      "challenge_rules": {
+        "cloth_placement": {
+          "source": "\u00a75.4 rule 2",
+          "rule": "Clothes must be placed on the table before folding; folding on the floor is not allowed."
+        },
+        "folding_assistance_scale": {
+          "source": "\u00a75.4 rule 6",
+          "levels": [
+            {
+              "help": "minimal (smoothing wrinkles, stabilizing cloth)",
+              "penalty": -100
+            },
+            {
+              "help": "partial (folding one half, aligning edges)",
+              "penalty": -200
+            },
+            {
+              "help": "major (completing entire fold/stack)",
+              "penalty": "maximum"
+            }
+          ],
+          "ambiguity": "Rule 6 lists -100/-200 for minimal/partial help, but the score sheet lists -200 (main) and 5x-100 (additional) for flattening plus a separate percentage penalty up to -800/-400. Reconcile the two scales."
+        }
+      },
+      "entries": [
+        {
+          "ref": "NAV-NAVIGATE-02",
+          "count": 1,
+          "section": "Main Goal",
+          "assistance": {
+            "permitted": false
+          }
+        },
+        {
+          "ref": "MAN-PICK-03",
+          "count": 1,
+          "section": "Main Goal",
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": null,
+            "blocks_dependents": false,
+            "note": "\u00a75.4 rule 6 lists 'handing clothes to the robot' as reducing the score, but no quantified line exists on the sheet; \u00a73.7.2 default applies."
+          },
+          "ambiguity": "Assistance for handing clothes is named in rule 6 but unpriced on the score sheet."
+        },
+        {
+          "ref": "MAN-PICK-03P",
+          "count": 1,
+          "section": "Main Goal",
+          "related_skill": "MAN-PICK-03"
+        },
+        {
+          "ref": "MAN-FOLD-01",
+          "count": 1,
+          "section": "Main Goal",
+          "depends_on": [
+            {
+              "ref": "MAN-PICK-03",
+              "nature": "physical",
+              "blocking": true,
+              "satisfiable_by_assistance": true,
+              "note": "Cloth must be on the table before folding (\u00a75.4 rule 2); may arrive via assisted handover."
+            },
+            {
+              "ref": "MAN-TRANSPORTWITHBASKET-01",
+              "nature": "physical",
+              "blocking": false,
+              "satisfiable_by_assistance": true,
+              "note": "Basket transport is one route to the table, not required."
+            }
+          ],
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": "GEN-HUMANASSIST-07P",
+            "blocks_dependents": false,
+            "note": "Graduated: flattening/arranging -200; during-folding help applies a percentage penalty up to -800."
+          },
+          "note": "Quality assessed holistically against Appendix A examples."
+        },
+        {
+          "ref": "MAN-FOLD-01P1",
+          "count": 1,
+          "section": "Main Goal",
+          "related_skill": "MAN-FOLD-01"
+        },
+        {
+          "ref": "GEN-HUMANASSIST-06P",
+          "count": 1,
+          "section": "Main Goal"
+        },
+        {
+          "ref": "GEN-HUMANASSIST-07P",
+          "count": 1,
+          "section": "Main Goal",
+          "related_skill": "MAN-FOLD-01"
+        },
+        {
+          "ref": "MAN-APPLIANCE-03",
+          "count": 1,
+          "section": "Extra Rewards",
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": null,
+            "blocks_dependents": false,
+            "note": "\u00a75.4 rule 6 names this as reducing score but the sheet has no line; \u00a73.7.2 default (score zero) applies. Contrast with Pick & Place, where the equivalent appliance assistance is explicitly -0."
+          },
+          "ambiguity": "Unpriced assistance. Decide whether this should mirror Pick & Place's explicit -0 treatment of appliance doors."
+        },
+        {
+          "ref": "MAN-PICK-04",
+          "count": 1,
+          "section": "Extra Rewards",
+          "depends_on": [
+            {
+              "ref": "MAN-APPLIANCE-03",
+              "nature": "physical",
+              "blocking": false,
+              "satisfiable_by_assistance": true,
+              "note": "Door may be opened with assistance; these points remain available."
+            }
+          ],
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": null,
+            "blocks_dependents": false,
+            "note": "Falls back to \u00a73.7.2 default: assisted element scores zero."
+          }
+        },
+        {
+          "ref": "MAN-PICK-04P",
+          "count": 1,
+          "section": "Extra Rewards",
+          "related_skill": "MAN-PICK-04"
+        },
+        {
+          "ref": "MAN-TRANSPORTWITHBASKET-01",
+          "count": 1,
+          "section": "Extra Rewards",
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": false,
+            "self_score": 0,
+            "extra_penalty_ref": null,
+            "blocks_dependents": false,
+            "note": "Falls back to \u00a73.7.2 default: assisted element scores zero."
+          },
+          "note": "Basket must be placed in reach of the folding surface; requires two arms to carry."
+        },
+        {
+          "ref": "MAN-TRANSPORTWITHBASKET-02P",
+          "count": 1,
+          "section": "Extra Rewards",
+          "related_skill": "MAN-TRANSPORTWITHBASKET-01"
+        },
+        {
+          "ref": "MAN-FOLD-02",
+          "count": 5,
+          "section": "Extra Rewards",
+          "depends_on": [
+            {
+              "ref": "MAN-FOLD-01",
+              "nature": "sequential",
+              "blocking": false,
+              "satisfiable_by_assistance": true,
+              "note": "Additional folds are independently scoreable."
+            }
+          ],
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": "GEN-HUMANASSIST-09P",
+            "blocks_dependents": false
+          }
+        },
+        {
+          "ref": "MAN-FOLD-02P1",
+          "count": 1,
+          "section": "Extra Rewards",
+          "related_skill": "MAN-FOLD-02"
+        },
+        {
+          "ref": "GEN-HUMANASSIST-08P",
+          "count": 5,
+          "section": "Extra Rewards"
+        },
+        {
+          "ref": "GEN-HUMANASSIST-09P",
+          "count": 5,
+          "section": "Extra Rewards",
+          "related_skill": "MAN-FOLD-02"
+        },
+        {
+          "ref": "MAN-STACK-01",
+          "count": 6,
+          "section": "Extra Rewards",
+          "depends_on": [
+            {
+              "ref": "MAN-FOLD-01",
+              "nature": "sequential",
+              "blocking": true,
+              "satisfiable_by_assistance": true,
+              "note": "Only folded items can be stacked."
+            },
+            {
+              "ref": "MAN-FOLD-02",
+              "nature": "sequential",
+              "blocking": false,
+              "satisfiable_by_assistance": true
+            }
+          ],
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": "GEN-HUMANASSIST-07P",
+            "blocks_dependents": false,
+            "note": "Major help completing the entire fold/stack carries the maximum penalty (\u00a75.4 rule 6)."
+          }
+        },
+        {
+          "ref": "GEN-HUMANASSIST-14P",
+          "count": 1,
+          "section": "Penalties"
+        },
+        {
+          "ref": "SPECIAL-01",
+          "count": 1,
+          "section": "Special Penalties & Bonuses"
+        },
+        {
+          "ref": "SPECIAL-02",
+          "count": 1,
+          "section": "Special Penalties & Bonuses"
+        },
+        {
+          "ref": "SPECIAL-03",
+          "count": 1,
+          "section": "Special Penalties & Bonuses"
+        }
+      ]
+    },
+    "gpsr": {
+      "challenge": "General Purpose Service Robot Challenge",
+      "rulebook_section": "5.3",
+      "max_time_minutes": 7,
+      "total_score": 1490,
+      "method_note": "Entries are the fixed primitives a generated command is scored against; the command generator composes them at runtime.",
+      "dictionary_ref": "../dictionary/",
+      "global_rules_ref": "../vocabulary/global_rules.yaml",
+      "challenge_rules": {
+        "autonomy_skip": {
+          "source": "\u00a75.3 rule 7",
+          "reductions_apply_to": [
+            "use of a custom operator",
+            "bypassing speech recognition",
+            "receiving human assistance to accomplish a command",
+            "instructing a human assistant to perform the whole task"
+          ],
+          "ambiguity": "The last two are declared to incur reductions but have no quantified line on the score sheet. Either add explicit entries or state that \u00a73.7.2 (score zero) governs."
+        },
+        "partial_scoring": {
+          "source": "\u00a75.3 rule 2",
+          "permitted": true
+        }
+      },
+      "entries": [
+        {
+          "ref": "NLU-UNDERSTANDCOMMAND-01",
+          "count": 3,
+          "section": "Main Goal",
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": "NLU-UNDERSTANDCOMMAND-02P",
+            "blocks_dependents": false,
+            "note": "Custom operator available only after the referee attempts three re-phrased commands."
+          }
+        },
+        {
+          "ref": "NLU-UNDERSTANDCOMMAND-02P",
+          "count": 3,
+          "section": "Main Goal",
+          "related_skill": "NLU-UNDERSTANDCOMMAND-01",
+          "ambiguity": "Fixed 3x-20 (-60, ~4% of 1490) conflicts with \u00a73.7.4, which sets custom operator at -10% of maximum attainable score (-149). Confirm which governs."
+        },
+        {
+          "ref": "NLU-UNDERSTANDCOMMAND-03P",
+          "count": 6,
+          "section": "Main Goal",
+          "related_skill": "NLU-UNDERSTANDCOMMAND-01"
+        },
+        {
+          "ref": "PLN-DEMONSTRATEPLAN-01",
+          "count": 3,
+          "section": "Main Goal",
+          "depends_on": [
+            {
+              "ref": "NLU-UNDERSTANDCOMMAND-01",
+              "nature": "informational",
+              "blocking": true,
+              "satisfiable_by_assistance": true,
+              "note": "Command may be acquired via custom operator or ASR bypass; planning remains scoreable."
+            }
+          ],
+          "assistance": {
+            "permitted": false
+          }
+        },
+        {
+          "ref": "PLN-SOLVECOMMAND-01",
+          "count": 1,
+          "section": "Main Goal",
+          "depends_on": [
+            {
+              "ref": "NLU-UNDERSTANDCOMMAND-01",
+              "nature": "informational",
+              "blocking": true,
+              "satisfiable_by_assistance": true
+            }
+          ],
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": null,
+            "blocks_dependents": false,
+            "note": "\u00a75.3 rule 7 states reductions apply for assistance but does not quantify them; \u00a73.7.2 default is score zero."
+          }
+        },
+        {
+          "ref": "PLN-SOLVECOMMAND-02",
+          "count": 1,
+          "section": "Main Goal",
+          "depends_on": [
+            {
+              "ref": "NLU-UNDERSTANDCOMMAND-01",
+              "nature": "informational",
+              "blocking": true,
+              "satisfiable_by_assistance": true
+            }
+          ],
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": null,
+            "blocks_dependents": false
+          }
+        },
+        {
+          "ref": "PLN-SOLVECOMMAND-03",
+          "count": 1,
+          "section": "Main Goal",
+          "depends_on": [
+            {
+              "ref": "NLU-UNDERSTANDCOMMAND-01",
+              "nature": "informational",
+              "blocking": true,
+              "satisfiable_by_assistance": true
+            }
+          ],
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": null,
+            "blocks_dependents": false
+          }
+        },
+        {
+          "ref": "PLN-SOLVECOMMAND-04P",
+          "count": 1,
+          "section": "Main Goal",
+          "related_skill": "PLN-SOLVECOMMAND-01",
+          "ambiguity": "No defined percentage or reference table. Strongest candidate for goal-condition predicates with explicit partial_credit fractions."
+        },
+        {
+          "ref": "PLN-INTERLEAVETASKS-01B",
+          "count": 1,
+          "section": "Extra Rewards",
+          "depends_on": [
+            {
+              "ref": "PLN-SOLVECOMMAND-01",
+              "nature": "sequential",
+              "blocking": true,
+              "satisfiable_by_assistance": true,
+              "note": "Awarded only when all three commands are received at once and execution is meaningfully interleaved."
+            }
+          ],
+          "assistance": {
+            "permitted": false
+          }
+        },
+        {
+          "ref": "NLU-UNDERSTANDCOMMAND-04P",
+          "count": 3,
+          "section": "Penalties",
+          "related_skill": "NLU-UNDERSTANDCOMMAND-01",
+          "ambiguity": "Fixed 3x-50 (-150, ~10%) vs \u00a73.7.4 gesture/alternative-HRI rates of -20% of max attainable. Confirm interaction."
+        },
+        {
+          "ref": "SPECIAL-01",
+          "count": 1,
+          "section": "Special Penalties & Bonuses"
+        },
+        {
+          "ref": "SPECIAL-02",
+          "count": 1,
+          "section": "Special Penalties & Bonuses"
+        },
+        {
+          "ref": "SPECIAL-03",
+          "count": 1,
+          "section": "Special Penalties & Bonuses"
+        }
+      ]
+    },
+    "hri": {
+      "challenge": "Human Robot Interaction Challenge",
+      "rulebook_section": "5.1",
+      "max_time_minutes": 7,
+      "total_score": 1450,
+      "dictionary_ref": "../dictionary/",
+      "global_rules_ref": "../vocabulary/global_rules.yaml",
+      "challenge_rules": {
+        "custom_operator": {
+          "permitted": false,
+          "source": "\u00a75.1 rule 4",
+          "note": "Since the main focus of the test is HRI, no custom operator can be chosen."
+        },
+        "alternative_hri": {
+          "permitted": true,
+          "penalty_ref": "GEN-ALTERNATIVEHRI-01P",
+          "note": "Score reduction per information (name or favorite drink)."
+        }
+      },
+      "entries": [
+        {
+          "ref": "OBJ-DETECTEVENT-01",
+          "count": 2,
+          "section": "Greeting",
+          "assistance": {
+            "permitted": false,
+            "note": "Waiting for the doorbell is optional; robots may bypass it and meet the guest at the door. Bypassing is an alternative strategy, not assistance."
+          },
+          "note": "Scored only if robot waits at starting position and reacts instantly."
+        },
+        {
+          "ref": "MAN-OPEN-01",
+          "count": 2,
+          "section": "Greeting",
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": null,
+            "extra_penalty": 0,
+            "blocks_dependents": false,
+            "note": "Entrance door is open by default; team leader may request it closed to make these points available. Referee opens on request (\u00a75.1 Referee Instructions)."
+          },
+          "note": "Opportunity is opt-in: points only exist if the team requests a closed door."
+        },
+        {
+          "ref": "HRI-LOOKAT-01",
+          "count": 2,
+          "section": "Greeting",
+          "assistance": {
+            "permitted": false
+          },
+          "note": "Awarded only if the robot continuously tracks the moving person."
+        },
+        {
+          "ref": "HRI-OFFERSEAT-01",
+          "count": 2,
+          "section": "Greeting",
+          "depends_on": [
+            {
+              "unresolved": true,
+              "ref": "NAV-FOLLOW-GUEST",
+              "nature": "sequential",
+              "blocking": true,
+              "satisfiable_by_assistance": false,
+              "note": "Guest must be escorted to the living room first."
+            }
+          ],
+          "assistance": {
+            "permitted": false
+          },
+          "note": "Robot must clearly indicate or point to a location or seat."
+        },
+        {
+          "ref": "NAV-GAZEDIRECTION-01",
+          "count": 2,
+          "section": "Greeting",
+          "assistance": {
+            "permitted": false
+          }
+        },
+        {
+          "ref": "PPL-DESCRIBEATTRIBUTE-01B",
+          "count": 4,
+          "section": "Greeting",
+          "depends_on": [
+            {
+              "unresolved": true,
+              "ref": "PPL-PERCEIVE-GUEST1",
+              "nature": "informational",
+              "blocking": true,
+              "satisfiable_by_assistance": false
+            }
+          ],
+          "assistance": {
+            "permitted": false
+          }
+        },
+        {
+          "ref": "PPL-DESCRIBEATTRIBUTE-02P",
+          "count": 4,
+          "section": "Greeting",
+          "related_skill": "PPL-DESCRIBEATTRIBUTE-01B"
+        },
+        {
+          "ref": "NLU-AVOIDNONESSENTIALQUESTIONS-01B",
+          "count": 4,
+          "section": "Greeting",
+          "assistance": {
+            "permitted": false
+          },
+          "note": "Asking a guest to repeat because the robot could not hear is not a non-essential question."
+        },
+        {
+          "ref": "HRI-STATESTOREDINFO-01",
+          "count": 4,
+          "section": "Introduction",
+          "depends_on": [
+            {
+              "unresolved": true,
+              "ref": "NLU-LEARN-GUESTINFO",
+              "nature": "informational",
+              "blocking": true,
+              "satisfiable_by_assistance": true,
+              "note": "Information may be obtained via alternative HRI at -20 per item."
+            }
+          ],
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": "GEN-ALTERNATIVEHRI-01P",
+            "blocks_dependents": false,
+            "note": "Alternative HRI to understand a guest causes a reduction per information item."
+          }
+        },
+        {
+          "ref": "HRI-LOOKAT-02",
+          "count": 2,
+          "section": "Introduction",
+          "depends_on": [
+            {
+              "ref": "HRI-OFFERSEAT-01",
+              "nature": "sequential",
+              "blocking": true,
+              "satisfiable_by_assistance": false,
+              "note": "Both guests must be seated before introductions."
+            }
+          ],
+          "assistance": {
+            "permitted": false
+          }
+        },
+        {
+          "ref": "HRI-RECEIVEHANDOVER-01",
+          "count": 1,
+          "section": "Guiding",
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": "HRI-RECEIVEHANDOVER-01P1",
+            "blocks_dependents": false,
+            "note": "Two distinct assisted modes are priced separately (-25 asking for help, -50 bag placed on structure). Neither blocks the follow/drop chain."
+          },
+          "note": "Max points require: robot signals readiness, manipulator within 10 cm of operator's hand, operator completes the handover."
+        },
+        {
+          "ref": "HRI-RECEIVEHANDOVER-01P1",
+          "count": 1,
+          "section": "Guiding",
+          "related_skill": "HRI-RECEIVEHANDOVER-01"
+        },
+        {
+          "ref": "HRI-RECEIVEHANDOVER-01P2",
+          "count": 1,
+          "section": "Guiding",
+          "related_skill": "HRI-RECEIVEHANDOVER-01",
+          "ambiguity": "\u00a75.1 rule 5 says 'no points are awarded' for this route, and the sheet also applies -50. Confirm whether both forfeiture and penalty are intended, or only the penalty."
+        },
+        {
+          "ref": "NAV-FOLLOW-01",
+          "count": 1,
+          "section": "Guiding",
+          "depends_on": [
+            {
+              "ref": "HRI-RECEIVEHANDOVER-01",
+              "nature": "physical",
+              "blocking": false,
+              "satisfiable_by_assistance": true,
+              "note": "Robot may carry the bag by any assisted route; following is scoreable regardless."
+            }
+          ],
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": "NAV-FOLLOW-01P2",
+            "blocks_dependents": false,
+            "note": "Four penalized recovery forms listed in \u00a75.1 rule 4."
+          }
+        },
+        {
+          "ref": "NAV-FOLLOW-01P1",
+          "count": 1,
+          "section": "Guiding",
+          "related_skill": "NAV-FOLLOW-01"
+        },
+        {
+          "ref": "NAV-FOLLOW-01P2",
+          "count": 1,
+          "section": "Guiding",
+          "related_skill": "NAV-FOLLOW-01"
+        },
+        {
+          "ref": "NAV-FOLLOW-01P3",
+          "count": 1,
+          "section": "Guiding",
+          "related_skill": "NAV-FOLLOW-01"
+        },
+        {
+          "ref": "NAV-FOLLOW-01P4",
+          "count": 1,
+          "section": "Guiding",
+          "related_skill": "NAV-FOLLOW-01"
+        },
+        {
+          "ref": "MAN-PLACE-01",
+          "count": 1,
+          "section": "Guiding",
+          "depends_on": [
+            {
+              "ref": "NAV-FOLLOW-01",
+              "nature": "sequential",
+              "blocking": true,
+              "satisfiable_by_assistance": true
+            },
+            {
+              "ref": "HRI-RECEIVEHANDOVER-01",
+              "nature": "physical",
+              "blocking": true,
+              "satisfiable_by_assistance": true,
+              "note": "Robot must be holding the bag; assisted acquisition still permits this line."
+            }
+          ],
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": false,
+            "self_score": 0,
+            "extra_penalty_ref": null,
+            "blocks_dependents": false,
+            "note": "Falls back to \u00a73.7.2 default: assisted element scores zero."
+          }
+        },
+        {
+          "ref": "HRI-STATESTOREDINFO-02P",
+          "count": 4,
+          "section": "Penalties",
+          "related_skill": "HRI-STATESTOREDINFO-01"
+        },
+        {
+          "ref": "GEN-ALTERNATIVEHRI-01P",
+          "count": 6,
+          "section": "Penalties",
+          "ambiguity": "Fixed -20 per item here, but \u00a73.7.4 prices alternative HRI at up to -20% of max attainable score (=-290). Confirm which governs."
+        },
+        {
+          "ref": "HRI-ATTEND-01P",
+          "count": 2,
+          "section": "Penalties"
+        },
+        {
+          "ref": "SPECIAL-01",
+          "count": 1,
+          "section": "Special Penalties & Bonuses"
+        },
+        {
+          "ref": "SPECIAL-03",
+          "count": 1,
+          "section": "Special Penalties & Bonuses"
+        }
+      ]
+    },
+    "pick_and_place": {
+      "challenge": "Pick and Place Challenge",
+      "rulebook_section": "5.2",
+      "max_time_minutes": 7,
+      "total_score": 3515,
+      "dictionary_ref": "../dictionary/",
+      "global_rules_ref": "../vocabulary/global_rules.yaml",
+      "challenge_rules": {
+        "sequence": {
+          "source": "\u00a75.2 procedure 5",
+          "note": "No predefined sequence; but pouring and closing the dishwasher must occur after prerequisite steps to be scored."
+        },
+        "assistance_exemptions": {
+          "source": "\u00a75.2 scoresheet",
+          "free": [
+            "opening milk container",
+            "moving dishwasher door or rack"
+          ]
+        }
+      },
+      "entries": [
+        {
+          "ref": "NAV-NAVIGATE-01",
+          "count": 1,
+          "assistance": {
+            "permitted": false
+          }
+        },
+        {
+          "ref": "OBJ-RECOGNIZE-01",
+          "count": 12,
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": "GEN-HUMANASSIST-01P",
+            "blocks_dependents": false,
+            "note": "Pointing to objects is listed assistance in \u00a75.2 rule 15."
+          },
+          "note": "Robot must clearly communicate perception to the referee (\u00a75.2 rule 16)."
+        },
+        {
+          "ref": "OBJ-PERCEIVE-01",
+          "count": 2,
+          "assistance": {
+            "permitted": false
+          }
+        },
+        {
+          "ref": "MAN-PICK-01",
+          "count": 12,
+          "section": "Picking",
+          "depends_on": [
+            {
+              "ref": "OBJ-RECOGNIZE-01",
+              "nature": "informational",
+              "blocking": false,
+              "satisfiable_by_assistance": true
+            }
+          ],
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": "GEN-HUMANASSIST-02P",
+            "blocks_dependents": false,
+            "note": "Handover assistance forfeits this line (-0 self) and costs -100; placing remains available."
+          }
+        },
+        {
+          "ref": "MAN-PICK-02B",
+          "count": 1,
+          "section": "Picking",
+          "depends_on": [
+            {
+              "ref": "MAN-PICK-01",
+              "nature": "sequential",
+              "blocking": true,
+              "satisfiable_by_assistance": false,
+              "note": "Bonus requires an autonomous first pick."
+            }
+          ],
+          "related_skill": "MAN-PICK-01"
+        },
+        {
+          "ref": "MAN-PICK-01B2",
+          "count": 1,
+          "section": "Picking",
+          "depends_on": [
+            {
+              "ref": "MAN-PICK-01",
+              "nature": "sequential",
+              "blocking": true,
+              "satisfiable_by_assistance": false
+            }
+          ],
+          "related_skill": "MAN-PICK-01"
+        },
+        {
+          "ref": "MAN-PICK-01B3",
+          "count": 2,
+          "section": "Picking",
+          "depends_on": [
+            {
+              "ref": "MAN-PICK-01",
+              "nature": "sequential",
+              "blocking": true,
+              "satisfiable_by_assistance": false
+            }
+          ],
+          "related_skill": "MAN-PICK-01"
+        },
+        {
+          "ref": "MAN-PICK-01B4",
+          "count": 1,
+          "section": "Picking",
+          "depends_on": [
+            {
+              "ref": "MAN-PICK-01",
+              "nature": "sequential",
+              "blocking": true,
+              "satisfiable_by_assistance": false
+            }
+          ],
+          "related_skill": "MAN-PICK-01"
+        },
+        {
+          "ref": "MAN-PICK-01B5",
+          "count": 1,
+          "section": "Picking",
+          "depends_on": [
+            {
+              "ref": "MAN-PICK-01",
+              "nature": "sequential",
+              "blocking": true,
+              "satisfiable_by_assistance": false
+            }
+          ],
+          "related_skill": "MAN-PICK-01"
+        },
+        {
+          "ref": "MAN-PICK-02P",
+          "count": 2,
+          "section": "Picking",
+          "note": "Deliberate negative pricing of an easy pick; acts as an Entry-Level discount rather than a tier."
+        },
+        {
+          "ref": "MAN-PLACE-02",
+          "count": 12,
+          "section": "Placing",
+          "depends_on": [
+            {
+              "ref": "MAN-PICK-01",
+              "nature": "sequential",
+              "blocking": true,
+              "satisfiable_by_assistance": true,
+              "note": "Object must be in hand; assisted handover still permits placing."
+            }
+          ],
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": "GEN-HUMANASSIST-01P",
+            "blocks_dependents": false
+          }
+        },
+        {
+          "ref": "MAN-PLACE-02B1",
+          "count": 3,
+          "section": "Placing",
+          "depends_on": [
+            {
+              "ref": "MAN-APPLIANCE-02",
+              "nature": "physical",
+              "blocking": false,
+              "satisfiable_by_assistance": true,
+              "note": "Door may be opened by referee at no cost (-0); these points remain fully available."
+            },
+            {
+              "ref": "MAN-APPLIANCE-01",
+              "nature": "physical",
+              "blocking": false,
+              "satisfiable_by_assistance": true,
+              "note": "Rack may be pulled by referee at no cost (-0)."
+            }
+          ],
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": "GEN-HUMANASSIST-01P",
+            "blocks_dependents": false
+          },
+          "related_skill": "MAN-PLACE-02",
+          "note": "Items must be positioned as a human would and be cleanable by the machine (\u00a75.2 rule 9)."
+        },
+        {
+          "ref": "MAN-PLACE-02B2",
+          "count": 2,
+          "section": "Placing",
+          "related_skill": "MAN-PLACE-02"
+        },
+        {
+          "ref": "MAN-PLACE-02P1",
+          "count": 4,
+          "section": "Placing",
+          "related_skill": "MAN-PLACE-02"
+        },
+        {
+          "ref": "MAN-INSERT-01",
+          "count": 1,
+          "section": "Placing",
+          "depends_on": [
+            {
+              "ref": "MAN-PICK-01B5",
+              "nature": "sequential",
+              "blocking": true,
+              "satisfiable_by_assistance": true
+            },
+            {
+              "ref": "MAN-APPLIANCE-02",
+              "nature": "physical",
+              "blocking": false,
+              "satisfiable_by_assistance": true,
+              "note": "Door assistance is free (-0)."
+            }
+          ],
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": false,
+            "self_score": 0,
+            "extra_penalty_ref": null,
+            "blocks_dependents": false,
+            "note": "Falls back to \u00a73.7.2 default: assisted element scores zero."
+          }
+        },
+        {
+          "ref": "MAN-PLACE-02P2",
+          "count": 2,
+          "section": "Placing"
+        },
+        {
+          "ref": "MAN-APPLIANCE-01",
+          "count": 2,
+          "section": "Extra Rewards",
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": "GEN-HUMANASSIST-05P",
+            "extra_penalty": 0,
+            "blocks_dependents": false,
+            "note": "Explicitly free (-0). Assisted execution forfeits this line only."
+          }
+        },
+        {
+          "ref": "MAN-APPLIANCE-02",
+          "count": 2,
+          "section": "Extra Rewards",
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": "GEN-HUMANASSIST-05P",
+            "extra_penalty": 0,
+            "blocks_dependents": false,
+            "note": "Explicitly free (-0). Reward is defined as autonomous ('without assistance')."
+          },
+          "ambiguity": "Single entry bundles opening and closing, which have different preconditions: \u00a75.2 rule 8 awards closing points only after at least one item has been placed inside. Consider splitting into MAN-APPLIANCE-02a (open) and 02b (close, depends_on MAN-PLACE-02B1)."
+        },
+        {
+          "ref": "MAN-OPEN-02",
+          "count": 1,
+          "section": "Extra Rewards",
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": "GEN-HUMANASSIST-04P",
+            "extra_penalty": 0,
+            "blocks_dependents": false,
+            "note": "Explicitly free (-0); robot must clearly ask for help (\u00a75.2 rule 13)."
+          }
+        },
+        {
+          "ref": "MAN-POUR-01",
+          "count": 2,
+          "section": "Extra Rewards",
+          "depends_on": [
+            {
+              "ref": "MAN-OPEN-02",
+              "nature": "physical",
+              "blocking": false,
+              "satisfiable_by_assistance": true,
+              "note": "Milk container may be opened by referee at no cost; pouring points remain available."
+            },
+            {
+              "ref": "MAN-PLACE-02",
+              "nature": "sequential",
+              "blocking": true,
+              "satisfiable_by_assistance": true,
+              "note": "\u00a75.2 procedure 5: pouring must occur after prerequisite placing steps to be scored."
+            }
+          ],
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": "GEN-HUMANASSIST-04P",
+            "extra_penalty": 0,
+            "blocks_dependents": false
+          },
+          "note": "A significant amount must be poured; a few drops or bits is not enough."
+        },
+        {
+          "ref": "MAN-PLACE-02P3",
+          "count": 12,
+          "section": "Penalties",
+          "related_skill": "MAN-PLACE-02"
+        },
+        {
+          "ref": "GEN-BREAKFAST-01P",
+          "count": 1,
+          "section": "Penalties"
+        },
+        {
+          "ref": "MAN-PICK-01P1",
+          "count": 12,
+          "section": "Penalties",
+          "related_skill": "MAN-PICK-01"
+        },
+        {
+          "ref": "MAN-POUR-01P",
+          "count": 2,
+          "section": "Penalties",
+          "related_skill": "MAN-POUR-01"
+        },
+        {
+          "ref": "GEN-HUMANASSIST-01P",
+          "count": 12,
+          "section": "Penalties"
+        },
+        {
+          "ref": "GEN-HUMANASSIST-02P",
+          "count": 24,
+          "section": "Penalties",
+          "ambiguity": "Count is 24 (2x the 12 picks). Confirm whether this is intended as pick+place handovers counted separately."
+        },
+        {
+          "ref": "GEN-HUMANASSIST-14P",
+          "count": 1,
+          "section": "Penalties",
+          "note": "Applied per item / per group of nearby items moved (\u00a75.2 rule 15)."
+        },
+        {
+          "ref": "GEN-HUMANASSIST-04P",
+          "count": 1,
+          "section": "Penalties",
+          "note": "Explicitly zero-cost assistance."
+        },
+        {
+          "ref": "GEN-HUMANASSIST-05P",
+          "count": 1,
+          "section": "Penalties",
+          "note": "Explicitly zero-cost assistance."
+        },
+        {
+          "ref": "SPECIAL-01",
+          "count": 1,
+          "section": "Special Penalties & Bonuses"
+        },
+        {
+          "ref": "SPECIAL-02",
+          "count": 1,
+          "section": "Special Penalties & Bonuses"
+        },
+        {
+          "ref": "SPECIAL-03",
+          "count": 1,
+          "section": "Special Penalties & Bonuses"
+        }
+      ]
+    },
+    "restaurant": {
+      "challenge": "Restaurant Challenge",
+      "rulebook_section": "5.5",
+      "max_time_minutes": 15,
+      "total_score": 2360,
+      "dictionary_ref": "../dictionary/",
+      "global_rules_ref": "../vocabulary/global_rules.yaml",
+      "challenge_rules": {
+        "restart": {
+          "source": "\u00a75.5.1",
+          "allowed": 1,
+          "note": "All points earned before the restart are voided; scoring resumes from zero."
+        },
+        "barman_assistance": {
+          "source": "\u00a75.5 remarks",
+          "note": "The Professional Barman assists on request; robot may use up to two minutes to instruct the barman per order. If requested, the barman will place the order in a basket or tray."
+        },
+        "disqualifying": [
+          {
+            "id": "DQ-R-TOUCH",
+            "description": "Touching the robot after the start signal"
+          },
+          {
+            "id": "DQ-R-PREMAP",
+            "description": "Mapping the environment in advance"
+          }
+        ],
+        "emergency_stop": {
+          "source": "\u00a75.5 procedure 4",
+          "note": "A TC member follows the robot ready to press the emergency stop button; any physical contact with people or furniture results in immediate emergency stop."
+        }
+      },
+      "entries": [
+        {
+          "ref": "PPL-DETECTCALLINGORWAVING-01",
+          "count": 2,
+          "section": "Regular Rewards",
+          "assistance": {
+            "permitted": false
+          }
+        },
+        {
+          "ref": "NAV-NAVIGATE-03",
+          "count": 2,
+          "section": "Regular Rewards",
+          "depends_on": [
+            {
+              "ref": "PPL-DETECTCALLINGORWAVING-01",
+              "nature": "informational",
+              "blocking": false,
+              "satisfiable_by_assistance": true
+            }
+          ],
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": "NAV-NAVIGATE-03P",
+            "blocks_dependents": false,
+            "note": "If the robot detects a customer but does not reach the table, it must clearly identify the person to earn partial points."
+          }
+        },
+        {
+          "ref": "NAV-NAVIGATE-03P",
+          "count": 2,
+          "section": "Regular Rewards",
+          "related_skill": "NAV-NAVIGATE-03"
+        },
+        {
+          "ref": "NLU-UNDERSTANDCOMMAND-05",
+          "count": 2,
+          "section": "Regular Rewards",
+          "depends_on": [
+            {
+              "ref": "NAV-NAVIGATE-03",
+              "nature": "physical",
+              "blocking": false,
+              "satisfiable_by_assistance": true,
+              "note": "Partial credit available if the table is not reached but the customer is identified."
+            }
+          ],
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": "GEN-ALTERNATIVEHRI-02P",
+            "blocks_dependents": false
+          }
+        },
+        {
+          "ref": "GEN-ALTERNATIVEHRI-02P",
+          "count": 2,
+          "section": "Regular Rewards",
+          "related_skill": "NLU-UNDERSTANDCOMMAND-05",
+          "ambiguity": "Fixed -80 per order vs \u00a73.7.4's -20% of max attainable (-472). Confirm which governs."
+        },
+        {
+          "ref": "HRI-EYECONTACT-01P",
+          "count": 2,
+          "section": "Regular Rewards"
+        },
+        {
+          "ref": "HRI-COMMUNICATEORDER-01",
+          "count": 2,
+          "section": "Regular Rewards",
+          "depends_on": [
+            {
+              "ref": "NLU-UNDERSTANDCOMMAND-05",
+              "nature": "informational",
+              "blocking": true,
+              "satisfiable_by_assistance": true
+            }
+          ],
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": "NAV-NAVIGATE-05P",
+            "blocks_dependents": false
+          }
+        },
+        {
+          "ref": "MAN-PICK-05",
+          "count": 4,
+          "section": "Regular Rewards",
+          "depends_on": [
+            {
+              "ref": "HRI-COMMUNICATEORDER-01",
+              "nature": "sequential",
+              "blocking": true,
+              "satisfiable_by_assistance": true
+            }
+          ],
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": "GEN-HUMANASSIST-10P",
+            "blocks_dependents": false,
+            "note": "Barman handover forfeits this line and costs -100; serving remains available."
+          }
+        },
+        {
+          "ref": "MAN-PICK-02B",
+          "count": 1,
+          "section": "Regular Rewards",
+          "depends_on": [
+            {
+              "ref": "MAN-PICK-05",
+              "nature": "sequential",
+              "blocking": true,
+              "satisfiable_by_assistance": false
+            }
+          ],
+          "related_skill": "MAN-PICK-05"
+        },
+        {
+          "ref": "GEN-HUMANASSIST-10P",
+          "count": 4,
+          "section": "Regular Rewards",
+          "related_skill": "MAN-PICK-05"
+        },
+        {
+          "ref": "NAV-NAVIGATE-04",
+          "count": 2,
+          "section": "Regular Rewards",
+          "depends_on": [
+            {
+              "ref": "MAN-PICK-05",
+              "nature": "physical",
+              "blocking": true,
+              "satisfiable_by_assistance": true
+            }
+          ],
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": "GEN-HUMANASSIST-13P",
+            "blocks_dependents": false
+          }
+        },
+        {
+          "ref": "MAN-PLACE-03",
+          "count": 4,
+          "section": "Regular Rewards",
+          "depends_on": [
+            {
+              "ref": "MAN-PICK-05",
+              "nature": "sequential",
+              "blocking": true,
+              "satisfiable_by_assistance": true,
+              "note": "Items may be acquired via barman handover; serving remains scoreable."
+            },
+            {
+              "ref": "MAN-TRANSPORTWITHTRAY-01",
+              "nature": "physical",
+              "blocking": false,
+              "satisfiable_by_assistance": true,
+              "note": "Tray is one transport route, not required."
+            }
+          ],
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": "GEN-HUMANASSIST-11P",
+            "blocks_dependents": false,
+            "note": "All delivered objects must be placed on the customer's table."
+          }
+        },
+        {
+          "ref": "MAN-PLACE-03B",
+          "count": 1,
+          "section": "Regular Rewards",
+          "depends_on": [
+            {
+              "ref": "MAN-PLACE-03",
+              "nature": "sequential",
+              "blocking": true,
+              "satisfiable_by_assistance": false
+            }
+          ],
+          "related_skill": "MAN-PLACE-03"
+        },
+        {
+          "ref": "GEN-HUMANASSIST-11P",
+          "count": 4,
+          "section": "Regular Rewards",
+          "related_skill": "MAN-PLACE-03"
+        },
+        {
+          "ref": "MAN-TRANSPORTWITHTRAY-01",
+          "count": 2,
+          "section": "Extra Rewards",
+          "assistance": {
+            "permitted": true,
+            "listed_in_task_description": true,
+            "self_score": 0,
+            "extra_penalty_ref": null,
+            "blocks_dependents": false,
+            "note": "If requested, the barman will place the order in a basket or tray for the robot to deliver."
+          },
+          "note": "Requires placing items on tray, picking up and transporting the tray, then delivering."
+        },
+        {
+          "ref": "NAV-NAVIGATE-05P",
+          "count": 2,
+          "section": "Penalties"
+        },
+        {
+          "ref": "GEN-HUMANASSIST-12P",
+          "count": 2,
+          "section": "Penalties"
+        },
+        {
+          "ref": "GEN-HUMANASSIST-13P",
+          "count": 2,
+          "section": "Penalties"
+        },
+        {
+          "ref": "SPECIAL-01",
+          "count": 1,
+          "section": "Special Penalties & Bonuses"
+        },
+        {
+          "ref": "SPECIAL-02",
+          "count": 1,
+          "section": "Special Penalties & Bonuses"
+        },
+        {
+          "ref": "SPECIAL-03",
+          "count": 1,
+          "section": "Special Penalties & Bonuses"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,3 @@
+[submodule "external/RuleBook"]
+	path = external/RuleBook
+	url = https://github.com/RoboCupAtHome/RuleBook.git

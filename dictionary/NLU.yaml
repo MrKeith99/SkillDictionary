@@ -1,0 +1,89 @@
+area: NLU
+schema_version: 0.2.0
+rulebook_version: '2026.2'
+note: Canonical cross-challenge definitions. Each entry is defined and priced exactly once here; challenges reference it by id.
+skills:
+- id: NLU-AVOIDNONESSENTIALQUESTIONS-01B
+  area: NLU
+  skill: AvoidNonEssentialQuestions
+  variant_number: '01'
+  modifiers: []
+  description: Not asking non-essential questions to confirm or correct information
+  level: C
+  points: 15
+  type: bonus
+  used_by:
+  - hri
+  legacy_ids:
+  - NLU-NOQUESTION-01
+- id: NLU-UNDERSTANDCOMMAND-01
+  area: NLU
+  skill: UnderstandCommand
+  variant_number: '01'
+  modifiers:
+  - spoken
+  description: Understand the spoken command
+  level: C
+  points: 80
+  type: achievement
+  used_by:
+  - gpsr
+  legacy_ids:
+  - NLU-UNDERSTAND-01
+- id: NLU-UNDERSTANDCOMMAND-02P
+  area: NLU
+  skill: UnderstandCommand
+  variant_number: '02'
+  modifiers:
+  - custom_operator
+  description: Using a custom operator
+  level: C
+  points: -20
+  type: penalty_behavior
+  used_by:
+  - gpsr
+  legacy_ids:
+  - NLU-UNDERSTAND-01P1
+- id: NLU-UNDERSTANDCOMMAND-03P
+  area: NLU
+  skill: UnderstandCommand
+  variant_number: '03'
+  modifiers:
+  - rephrasing_requested
+  description: Request a rephrasing
+  level: C
+  points: -30
+  type: penalty_behavior
+  used_by:
+  - gpsr
+  legacy_ids:
+  - NLU-UNDERSTAND-01P2
+- id: NLU-UNDERSTANDCOMMAND-04P
+  area: NLU
+  skill: UnderstandCommand
+  variant_number: '04'
+  modifiers:
+  - bypassed_speech_rec
+  description: Bypassing speech recognition
+  level: C
+  points: -50
+  type: penalty_behavior
+  used_by:
+  - gpsr
+  legacy_ids:
+  - NLU-UNDERSTAND-01P3
+- id: NLU-UNDERSTANDCOMMAND-05
+  area: NLU
+  skill: UnderstandCommand
+  variant_number: '05'
+  modifiers:
+  - confirm
+  - order
+  description: Understand and confirm the order received to the customer
+  level: C
+  points: 160
+  type: achievement
+  used_by:
+  - restaurant
+  legacy_ids:
+  - NLU-UNDERSTAND-02

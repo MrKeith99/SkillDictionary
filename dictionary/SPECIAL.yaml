@@ -1,0 +1,56 @@
+area: SPECIAL
+schema_version: 0.2.0
+rulebook_version: '2026.2'
+note: Canonical cross-challenge definitions. Each entry is defined and priced exactly once here; challenges reference it by id.
+skills:
+- id: SPECIAL-01
+  area: SPECIAL
+  skill: null
+  variant_number: '01'
+  modifiers: []
+  description: Not attending (see sec. 3.8.1)
+  level: '-'
+  points: -500
+  type: administrative
+  used_by:
+  - doing_laundry
+  - gpsr
+  - hri
+  - pick_and_place
+  - restaurant
+  legacy_ids:
+  - SPECIAL-NOTATTEND
+- id: SPECIAL-02
+  area: SPECIAL
+  skill: null
+  variant_number: '02'
+  modifiers: []
+  description: Using alternative start signal (see sec. 3.6.8)
+  level: '-'
+  points: -100
+  type: administrative
+  used_by:
+  - doing_laundry
+  - gpsr
+  - pick_and_place
+  - restaurant
+  legacy_ids:
+  - SPECIAL-ALTSTART
+- id: SPECIAL-03
+  area: SPECIAL
+  skill: null
+  variant_number: '03'
+  modifiers: []
+  description: Outstanding performance (see sec. 3.8.3)
+  level: '-'
+  points: null
+  points_formula: floor(0.10 * total_score)
+  type: administrative
+  used_by:
+  - doing_laundry
+  - gpsr
+  - hri
+  - pick_and_place
+  - restaurant
+  legacy_ids:
+  - SPECIAL-OUTSTANDING

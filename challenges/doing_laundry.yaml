@@ -1,0 +1,178 @@
+challenge: Doing Laundry Challenge
+rulebook_section: '5.4'
+max_time_minutes: 7
+total_score: 4415
+dictionary_ref: ../dictionary/
+global_rules_ref: ../vocabulary/global_rules.yaml
+challenge_rules:
+  cloth_placement:
+    source: §5.4 rule 2
+    rule: Clothes must be placed on the table before folding; folding on the floor is not allowed.
+  folding_assistance_scale:
+    source: §5.4 rule 6
+    levels:
+    - help: minimal (smoothing wrinkles, stabilizing cloth)
+      penalty: -100
+    - help: partial (folding one half, aligning edges)
+      penalty: -200
+    - help: major (completing entire fold/stack)
+      penalty: maximum
+    ambiguity: Rule 6 lists -100/-200 for minimal/partial help, but the score sheet lists -200 (main) and 5x-100 (additional) for flattening plus a separate percentage penalty up to -800/-400. Reconcile the two scales.
+entries:
+- ref: NAV-NAVIGATE-02
+  count: 1
+  section: Main Goal
+  assistance:
+    permitted: false
+- ref: MAN-PICK-03
+  count: 1
+  section: Main Goal
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: null
+    blocks_dependents: false
+    note: §5.4 rule 6 lists 'handing clothes to the robot' as reducing the score, but no quantified line exists on the sheet; §3.7.2 default applies.
+  ambiguity: Assistance for handing clothes is named in rule 6 but unpriced on the score sheet.
+- ref: MAN-PICK-03P
+  count: 1
+  section: Main Goal
+  related_skill: MAN-PICK-03
+- ref: MAN-FOLD-01
+  count: 1
+  section: Main Goal
+  depends_on:
+  - ref: MAN-PICK-03
+    nature: physical
+    blocking: true
+    satisfiable_by_assistance: true
+    note: Cloth must be on the table before folding (§5.4 rule 2); may arrive via assisted handover.
+  - ref: MAN-TRANSPORTWITHBASKET-01
+    nature: physical
+    blocking: false
+    satisfiable_by_assistance: true
+    note: Basket transport is one route to the table, not required.
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-HUMANASSIST-07P
+    blocks_dependents: false
+    note: 'Graduated: flattening/arranging -200; during-folding help applies a percentage penalty up to -800.'
+  note: Quality assessed holistically against Appendix A examples.
+- ref: MAN-FOLD-01P1
+  count: 1
+  section: Main Goal
+  related_skill: MAN-FOLD-01
+- ref: GEN-HUMANASSIST-06P
+  count: 1
+  section: Main Goal
+- ref: GEN-HUMANASSIST-07P
+  count: 1
+  section: Main Goal
+  related_skill: MAN-FOLD-01
+- ref: MAN-APPLIANCE-03
+  count: 1
+  section: Extra Rewards
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: null
+    blocks_dependents: false
+    note: §5.4 rule 6 names this as reducing score but the sheet has no line; §3.7.2 default (score zero) applies. Contrast with Pick & Place, where the equivalent appliance assistance is explicitly -0.
+  ambiguity: Unpriced assistance. Decide whether this should mirror Pick & Place's explicit -0 treatment of appliance doors.
+- ref: MAN-PICK-04
+  count: 1
+  section: Extra Rewards
+  depends_on:
+  - ref: MAN-APPLIANCE-03
+    nature: physical
+    blocking: false
+    satisfiable_by_assistance: true
+    note: Door may be opened with assistance; these points remain available.
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: null
+    blocks_dependents: false
+    note: 'Falls back to §3.7.2 default: assisted element scores zero.'
+- ref: MAN-PICK-04P
+  count: 1
+  section: Extra Rewards
+  related_skill: MAN-PICK-04
+- ref: MAN-TRANSPORTWITHBASKET-01
+  count: 1
+  section: Extra Rewards
+  assistance:
+    permitted: true
+    listed_in_task_description: false
+    self_score: 0
+    extra_penalty_ref: null
+    blocks_dependents: false
+    note: 'Falls back to §3.7.2 default: assisted element scores zero.'
+  note: Basket must be placed in reach of the folding surface; requires two arms to carry.
+- ref: MAN-TRANSPORTWITHBASKET-02P
+  count: 1
+  section: Extra Rewards
+  related_skill: MAN-TRANSPORTWITHBASKET-01
+- ref: MAN-FOLD-02
+  count: 5
+  section: Extra Rewards
+  depends_on:
+  - ref: MAN-FOLD-01
+    nature: sequential
+    blocking: false
+    satisfiable_by_assistance: true
+    note: Additional folds are independently scoreable.
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-HUMANASSIST-09P
+    blocks_dependents: false
+- ref: MAN-FOLD-02P1
+  count: 1
+  section: Extra Rewards
+  related_skill: MAN-FOLD-02
+- ref: GEN-HUMANASSIST-08P
+  count: 5
+  section: Extra Rewards
+- ref: GEN-HUMANASSIST-09P
+  count: 5
+  section: Extra Rewards
+  related_skill: MAN-FOLD-02
+- ref: MAN-STACK-01
+  count: 6
+  section: Extra Rewards
+  depends_on:
+  - ref: MAN-FOLD-01
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: true
+    note: Only folded items can be stacked.
+  - ref: MAN-FOLD-02
+    nature: sequential
+    blocking: false
+    satisfiable_by_assistance: true
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-HUMANASSIST-07P
+    blocks_dependents: false
+    note: Major help completing the entire fold/stack carries the maximum penalty (§5.4 rule 6).
+- ref: GEN-HUMANASSIST-14P
+  count: 1
+  section: Penalties
+- ref: SPECIAL-01
+  count: 1
+  section: Special Penalties & Bonuses
+- ref: SPECIAL-02
+  count: 1
+  section: Special Penalties & Bonuses
+- ref: SPECIAL-03
+  count: 1
+  section: Special Penalties & Bonuses

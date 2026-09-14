@@ -1,0 +1,49 @@
+area: PPL
+schema_version: 0.2.0
+rulebook_version: '2026.2'
+note: Canonical cross-challenge definitions. Each entry is defined and priced exactly once here; challenges reference it by id.
+skills:
+- id: PPL-DESCRIBEATTRIBUTE-01B
+  area: PPL
+  skill: DescribeAttribute
+  variant_number: '01'
+  modifiers:
+  - correct
+  - visual
+  description: Tell a visual attribute of the first guest to the second guest (correct)
+  level: C
+  points: 20
+  type: bonus
+  used_by:
+  - hri
+  legacy_ids:
+  - PPL-DESCRIBE-01
+- id: PPL-DESCRIBEATTRIBUTE-02P
+  area: PPL
+  skill: DescribeAttribute
+  variant_number: '02'
+  modifiers:
+  - incorrect
+  - visual
+  description: Tell a visual attribute of the first guest to the second guest (incorrect)
+  level: C
+  points: -20
+  type: penalty_behavior
+  used_by:
+  - hri
+  legacy_ids:
+  - PPL-DESCRIBE-01P
+- id: PPL-DETECTCALLINGORWAVING-01
+  area: PPL
+  skill: DetectCallingOrWaving
+  variant_number: '01'
+  modifiers:
+  - customer
+  description: Detect calling or waving customer
+  level: C
+  points: 80
+  type: achievement
+  used_by:
+  - restaurant
+  legacy_ids:
+  - PPL-DETECT-01

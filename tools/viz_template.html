@@ -1,0 +1,734 @@
+<title>Skill Coverage Matrix</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,600;0,700;1,400&family=Inter+Tight:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ground: #faf9f7;
+    --surface: #ffffff;
+    --sunk: #f2efea;
+    --ink: #1c1a17;
+    --ink-2: #55504a;
+    --ink-3: #8b8379;
+    --rule: #e2dcd3;
+    --rule-2: #cfc7ba;
+    --accent: #8a5a2b;
+    --accent-soft: #f0e4d6;
+    --drift: #b03a2e;
+    --drift-soft: #f7e3e0;
+    --ok: #4a6b4a;
+    --shadow: 0 1px 2px rgba(40, 30, 18, .06);
+
+    --a-MAN: #8a5a2b;
+    --a-NAV: #4a6b7c;
+    --a-HRI: #7a5578;
+    --a-NLU: #6b6b34;
+    --a-PLN: #99612f;
+    --a-OBJ: #3f6f63;
+    --a-PPL: #96533f;
+    --a-GEN: #7a746a;
+    --a-SPECIAL: #8b8379;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #171513;
+      --surface: #201d1a;
+      --sunk: #262220;
+      --ink: #f0ebe3;
+      --ink-2: #b8b0a5;
+      --ink-3: #8a8279;
+      --rule: #332e29;
+      --rule-2: #443d36;
+      --accent: #d69a5f;
+      --accent-soft: #3a2a1a;
+      --drift: #e08b7e;
+      --drift-soft: #3d2420;
+      --ok: #8fb08f;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .35);
+
+      --a-MAN: #d69a5f;
+      --a-NAV: #8ab4c8;
+      --a-HRI: #c095bd;
+      --a-NLU: #b3b365;
+      --a-PLN: #e0a36b;
+      --a-OBJ: #7dbfae;
+      --a-PPL: #d69581;
+      --a-GEN: #a8a096;
+      --a-SPECIAL: #8a8279;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #171513;
+    --surface: #201d1a;
+    --sunk: #262220;
+    --ink: #f0ebe3;
+    --ink-2: #b8b0a5;
+    --ink-3: #8a8279;
+    --rule: #332e29;
+    --rule-2: #443d36;
+    --accent: #d69a5f;
+    --accent-soft: #3a2a1a;
+    --drift: #e08b7e;
+    --drift-soft: #3d2420;
+    --ok: #8fb08f;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .35);
+
+    --a-MAN: #d69a5f;
+    --a-NAV: #8ab4c8;
+    --a-HRI: #c095bd;
+    --a-NLU: #b3b365;
+    --a-PLN: #e0a36b;
+    --a-OBJ: #7dbfae;
+    --a-PPL: #d69581;
+    --a-GEN: #a8a096;
+    --a-SPECIAL: #8a8279;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font: 400 15px/1.55 "Inter Tight", system-ui, -apple-system, sans-serif;
+    font-variant-numeric: tabular-nums;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding-inline: 20px;
+    padding-block: 40px 72px;
+  }
+
+  /* ---- masthead ---- */
+  .mast { border-bottom: 2px solid var(--ink); padding-bottom: 18px; }
+  .eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: .13em;
+    text-transform: uppercase; color: var(--accent); margin: 0 0 10px;
+  }
+  h1 {
+    font: 700 clamp(28px, 5vw, 42px)/1.1 Bitter, Georgia, serif;
+    margin: 0 0 10px; letter-spacing: -.01em; text-wrap: balance;
+  }
+  .lede {
+    margin: 0; max-width: 62ch; color: var(--ink-2); font-size: 16px;
+  }
+  .meta {
+    display: flex; flex-wrap: wrap; gap: 8px 20px;
+    margin-top: 16px; font-size: 12.5px; color: var(--ink-3);
+  }
+  .meta b { color: var(--ink-2); font-weight: 600; }
+
+  /* ---- section ---- */
+  section { margin-top: 52px; }
+  h2 {
+    font: 600 20px/1.2 Bitter, Georgia, serif;
+    margin: 0 0 6px; letter-spacing: -.005em;
+  }
+  .sub { margin: 0 0 20px; color: var(--ink-2); font-size: 14px; max-width: 68ch; }
+
+  /* ---- matrix ---- */
+  .scroll { overflow-x: auto; }
+  table.matrix { border-collapse: collapse; width: 100%; min-width: 620px; }
+  table.matrix th, table.matrix td { padding: 0; }
+  table.matrix thead th {
+    font-size: 11px; font-weight: 600; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--ink-3);
+    text-align: right; padding: 0 10px 10px; vertical-align: bottom;
+    white-space: nowrap;
+  }
+  table.matrix thead th.corner { text-align: left; }
+  .area-cell {
+    font: 600 13px/1 "Inter Tight", sans-serif;
+    padding: 0 14px 0 0; white-space: nowrap;
+  }
+  .area-dot {
+    display: inline-block; width: 8px; height: 8px; border-radius: 2px;
+    margin-right: 8px; vertical-align: baseline;
+  }
+  .cell { position: relative; height: 40px; text-align: right; }
+  .cell .bar {
+    position: absolute; inset: 4px 4px 4px auto; border-radius: 2px;
+    background: var(--fill); opacity: .26;
+  }
+  .cell .val {
+    position: relative; padding-right: 10px; font-size: 13px;
+    font-weight: 500;
+  }
+  .cell.zero .val { color: var(--ink-3); font-weight: 400; }
+  tr.arow { border-bottom: 1px solid var(--rule); cursor: pointer; }
+  tr.arow:hover { background: var(--sunk); }
+  tr.arow.on .area-cell { color: var(--accent); font-weight: 700; }
+  /* Out-of-scope rows stay visible and clickable, just recede. */
+  tr.arow.out .val, tr.arow.out .area-cell { opacity: .34; }
+  tr.arow.out:hover .val, tr.arow.out:hover .area-cell { opacity: .7; }
+  td.cell.out .bar { display: none; }
+  table.matrix thead th.chead.out { opacity: .4; }
+  table.matrix thead th.chead.out:hover { opacity: .8; }
+  tr.arow:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  table.matrix thead th.chead { cursor: pointer; }
+  table.matrix thead th.chead:hover { color: var(--ink); }
+  table.matrix thead th.chead.on {
+    color: var(--accent); border-bottom: 2px solid var(--accent);
+  }
+  table.matrix thead th.chead:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: -2px;
+  }
+  tfoot td, tfoot th {
+    padding-top: 10px; font-size: 12px; color: var(--ink-3);
+    text-align: right; font-weight: 500;
+  }
+  tfoot th { text-align: left; }
+
+  /* ---- findings ---- */
+  .findings { display: grid; gap: 14px; }
+  .finding {
+    border: 1px solid var(--rule); border-left: 3px solid var(--drift);
+    background: var(--surface); border-radius: 3px; padding: 14px 16px;
+    box-shadow: var(--shadow);
+  }
+  .finding h3 {
+    font: 600 14px/1.3 "Inter Tight", sans-serif; margin: 0 0 2px;
+  }
+  .finding .spread { font-size: 12.5px; color: var(--drift); font-weight: 600; }
+  .variants { display: grid; gap: 5px; margin-top: 11px; }
+  .variant {
+    display: grid; grid-template-columns: 62px 1fr auto; gap: 12px;
+    align-items: baseline; font-size: 12.5px;
+  }
+  .variant .pts { text-align: right; font-weight: 600; }
+  .variant code {
+    font: 400 12px/1.4 ui-monospace, "SF Mono", Menlo, monospace;
+    color: var(--ink-2);
+  }
+  .variant .where { color: var(--ink-3); font-size: 11.5px; }
+  .fnote {
+    margin: 11px 0 0; padding-top: 9px; border-top: 1px solid var(--rule);
+    font-size: 12px; color: var(--ink-3);
+  }
+
+  /* ---- controls ---- */
+  .controls {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin-bottom: 14px;
+  }
+  .chip {
+    font: 500 12.5px/1 "Inter Tight", sans-serif;
+    padding: 7px 11px; border-radius: 999px; cursor: pointer;
+    border: 1px solid var(--rule-2); background: transparent; color: var(--ink-2);
+  }
+  .chip:hover { border-color: var(--ink-3); color: var(--ink); }
+  .chip[aria-pressed="true"] {
+    background: var(--ink); color: var(--ground); border-color: var(--ink);
+  }
+  .chip[aria-pressed="true"]:hover { background: var(--ink-2); border-color: var(--ink-2); }
+  .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .count { margin-left: auto; font-size: 12.5px; color: var(--ink-3); }
+
+  /* ---- skill table ---- */
+  table.skills { border-collapse: collapse; width: 100%; min-width: 680px; }
+  table.skills th {
+    font-size: 11px; font-weight: 600; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--ink-3); text-align: left;
+    padding: 0 10px 8px 0; border-bottom: 1px solid var(--rule-2);
+    white-space: nowrap;
+  }
+  table.skills th.num { text-align: right; }
+  table.skills td {
+    padding: 9px 10px 9px 0; border-bottom: 1px solid var(--rule);
+    vertical-align: top; font-size: 13.5px;
+  }
+  table.skills td.num { text-align: right; white-space: nowrap; }
+  table.skills tr:hover td { background: var(--sunk); }
+  .sid {
+    font: 400 12px/1.5 ui-monospace, "SF Mono", Menlo, monospace;
+    color: var(--ink-2); white-space: nowrap;
+  }
+  .tag {
+    display: inline-block; font-size: 10.5px; font-weight: 600;
+    letter-spacing: .05em; text-transform: uppercase;
+    padding: 2px 6px; border-radius: 2px; white-space: nowrap;
+  }
+  .tag.area { color: var(--surface); }
+  .desc { color: var(--ink); }
+  .mods {
+    display: block; margin-top: 2px; font-size: 11.5px; color: var(--ink-3);
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  .lvl { font-weight: 600; font-size: 12px; }
+  .lvl-E { color: var(--ok); }
+  .lvl-C { color: var(--ink-2); }
+  .lvl-X { color: var(--accent); }
+  .neg { color: var(--drift); }
+  .flag {
+    display: inline-block; margin-left: 6px; font-size: 10.5px;
+    font-weight: 600; color: var(--drift);
+  }
+  .shared-mark {
+    display: inline-block; margin-left: 6px; font-size: 10.5px;
+    font-weight: 600; color: var(--accent);
+  }
+
+  /* ---- selection ---- */
+  .selbar[hidden] { display: none; }
+  .selbar {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px;
+    margin-bottom: 14px; padding: 11px 14px;
+    background: var(--accent-soft); border: 1px solid var(--rule-2);
+    border-radius: 3px;
+  }
+  .selsum { font-size: 13.5px; font-weight: 600; }
+  .selsum .n { color: var(--accent); }
+  .selareas {
+    font-size: 12px; color: var(--ink-2);
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  .selacts { margin-left: auto; display: flex; gap: 8px; }
+  table.skills th.pick, table.skills td.pick {
+    width: 34px; padding-right: 0;
+  }
+  table.skills td.pick { padding-top: 11px; }
+  input[type="checkbox"] {
+    width: 14px; height: 14px; margin: 0; accent-color: var(--accent);
+    cursor: pointer;
+  }
+  input[type="checkbox"]:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+  tr.on td { background: var(--accent-soft) !important; }
+  tr.on td.desc-cell .desc { font-weight: 500; }
+
+  .scope {
+    margin: 12px 0 0; font-size: 12.5px; color: var(--ink-2);
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  }
+  .scope:empty { display: none; }
+  .scope b { color: var(--ink); }
+
+  .note {
+    margin-top: 14px; font-size: 12.5px; color: var(--ink-3);
+    max-width: 70ch;
+  }
+  footer {
+    margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule);
+    font-size: 12.5px; color: var(--ink-3);
+  }
+  code.inl {
+    font: 400 12px/1.4 ui-monospace, Menlo, monospace;
+    background: var(--sunk); padding: 1px 5px; border-radius: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  @media (max-width: 560px) {
+    .variant { grid-template-columns: 54px 1fr; }
+    .variant .where { grid-column: 2; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <p class="eyebrow">RoboCup@Home &middot; Skill Dictionary</p>
+    <h1>Which skills each challenge actually tests</h1>
+    <p class="lede">
+      Every scored line in the 2026.2 rulebook, resolved through the canonical
+      dictionary. Each skill is defined and priced once; challenges reference it
+      by id. That makes two things visible for the first time: what capability
+      areas a challenge really rewards, and where the same skill carries
+      different prices in different tests.
+    </p>
+    <div class="meta" id="meta"></div>
+  </header>
+
+  <section>
+    <h2>Points by capability area</h2>
+    <p class="sub">
+      Reward and bonus points only; penalties and administrative lines excluded.
+      Bar length is relative to the largest cell in the table. Click an area row
+      or a challenge column to filter the table below; click again to clear.
+    </p>
+    <div class="scroll">
+      <table class="matrix" id="matrix"></table>
+    </div>
+    <p class="scope" id="matrix-scope"></p>
+    <p class="note" id="matrix-note"></p>
+  </section>
+
+  <section>
+    <h2>Cross-challenge price drift</h2>
+    <p class="sub">
+      Skill families where variants used by different challenges carry different
+      prices. These are not errors in the dictionary &mdash; they are what the
+      rulebook says. The dictionary&rsquo;s job is to make them visible so the TC
+      can decide whether each spread is intended.
+    </p>
+    <div class="findings" id="drift"></div>
+  </section>
+
+  <section>
+    <h2>Every scored line</h2>
+    <p class="sub">
+      Filter by challenge or area &mdash; chips combine, so pick several to widen
+      the view. <span class="shared-mark">shared</span> marks a
+      skill referenced by more than one challenge &mdash; the whole point of the
+      merge. <span class="flag">TC</span> marks a line with an open question.
+    </p>
+    <div class="controls" id="f-challenge"></div>
+    <div class="controls" id="f-area"></div>
+
+    <div class="selbar" id="selbar" hidden>
+      <span class="selsum" id="selsum"></span>
+      <span class="selareas" id="selareas"></span>
+      <span class="selacts">
+        <button class="chip" type="button" id="only-sel" aria-pressed="false">Show only selected</button>
+        <button class="chip" type="button" id="clear-sel">Clear</button>
+      </span>
+    </div>
+
+    <div class="scroll">
+      <table class="skills">
+        <thead>
+          <tr>
+            <th class="pick"><input type="checkbox" id="sel-all" aria-label="Select all visible lines"></th>
+            <th>ID</th><th>Area</th><th>Description</th>
+            <th>Lvl</th><th class="num">Pts</th>
+            <th class="num">&times;</th><th class="num">Total</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <p class="count" id="count" style="margin-top:12px"></p>
+  </section>
+
+  <footer>
+    Generated from <code class="inl">dist/viz_data.json</code> by
+    <code class="inl">tools/build_viz_data.py</code>. Rulebook
+    <span id="ver"></span>. Regenerate with <code class="inl">tools/ci.sh</code>.
+  </footer>
+</div>
+
+<script id="payload" type="application/json">__DATA__</script>
+<script>
+  const D = JSON.parse(document.getElementById("payload").textContent);
+  const SLUGS = Object.keys(D.challenges).sort();
+  const short = { doing_laundry: "Laundry", gpsr: "GPSR", hri: "HRI",
+                  pick_and_place: "Pick &amp; Place", restaurant: "Restaurant" };
+  const nm = s => short[s] || s;
+  const esc = s => String(s).replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+
+  /* masthead meta */
+  const nSkills = new Set(D.rows.map(r => r.id)).size;
+  document.getElementById("meta").innerHTML = [
+    `<span><b>${nSkills}</b> canonical skills</span>`,
+    `<span><b>${D.rows.length}</b> scored lines</span>`,
+    `<span><b>${SLUGS.length}</b> challenges</span>`,
+    `<span><b>${D.drift.length}</b> drifting families</span>`,
+    `<span>rulebook <b>${esc(D.rulebook_version)}</b></span>`,
+  ].join("");
+  document.getElementById("ver").textContent = D.rulebook_version;
+
+  /* ---- matrix ---- */
+  /* The matrix is recomputed from whatever passes the current filters, so
+     deselecting an area or challenge drops it from the table and rescales the
+     remaining bars and totals. Checkbox selection is deliberately NOT applied
+     here: it is a working subset of lines, not a change of scope. */
+  /* Every area row and challenge column stays in the table so it remains
+     clickable -- hiding the unselected ones would destroy the control you use to
+     add a second area. Selection instead drives emphasis and which cells count
+     toward the totals. */
+  function matrixView() {
+    const inA = a => !selAr.size || selAr.has(a);
+    const inC = s => !selCh.size || selCh.has(s);
+    const m = {};
+    D.areas.forEach(a => { m[a] = {}; SLUGS.forEach(s => { m[a][s] = 0; }); });
+    D.rows.forEach(r => {
+      if (!(r.type === "achievement" || r.type === "bonus")) return;
+      if (!r.points) return;
+      m[r.area][r.challenge] += r.total;
+    });
+    return { areas: D.areas, slugs: SLUGS, m, inA, inC };
+  }
+
+  /* The matrix doubles as a filter control: an area row toggles that area, a
+     challenge column header toggles that challenge. Both drive the same sets the
+     chips below use, so the two stay in lockstep. */
+  function drawMatrix() {
+    const { areas, slugs, m, inA, inC } = matrixView();
+    // Scale bars to the largest cell that is actually in scope, so a narrowed
+    // view still uses the full width.
+    const scoped = areas.filter(inA).flatMap(a => slugs.filter(inC).map(s => m[a][s]));
+    const maxCell = Math.max(1, ...scoped);
+    // Totals count only in-scope cells.
+    const colTot = s => (inC(s) ? areas.filter(inA).reduce((n, a) => n + m[a][s], 0) : 0);
+    const grand = slugs.reduce((n, s) => n + colTot(s), 0);
+
+    document.getElementById("matrix").innerHTML = `
+    <thead><tr>
+      <th class="corner">Area</th>
+      ${slugs.map(s => `<th class="chead${selCh.has(s) ? " on" : ""}${inC(s) ? "" : " out"}"
+        data-ch="${s}" role="button" tabindex="0" aria-pressed="${selCh.has(s)}"
+        title="Toggle ${nm(s)}">${nm(s)}</th>`).join("")}
+      <th>Total</th>
+    </tr></thead>
+    <tbody>
+      ${areas.map(a => {
+        const on = selAr.has(a);
+        const live = inA(a);
+        // Row total counts only the columns in scope.
+        const rowTot = slugs.filter(inC).reduce((n, s) => n + m[a][s], 0);
+        return `<tr class="arow${on ? " on" : ""}${live ? "" : " out"}" data-ar="${a}"
+          role="button" tabindex="0" aria-pressed="${on}" title="Toggle ${a}">
+          <td class="area-cell"><span class="area-dot" style="background:var(--a-${a})"></span>${a}</td>
+          ${slugs.map(s => {
+            const v = m[a][s];
+            const cellLive = live && inC(s);
+            const w = cellLive ? v / maxCell * 100 : 0;
+            return `<td class="cell${v ? "" : " zero"}${cellLive ? "" : " out"}"
+              style="--fill:var(--a-${a})">
+              ${v && cellLive ? `<span class="bar" style="width:${w}%"></span>` : ""}
+              <span class="val">${v ? v.toLocaleString() : "&middot;"}</span></td>`;
+          }).join("")}
+          <td class="cell${live ? "" : " out"}"><span class="val">${rowTot.toLocaleString()}</span></td>
+        </tr>`;
+      }).join("")}
+    </tbody>
+    <tfoot><tr>
+      <th>Reward total</th>
+      ${slugs.map(s => `<td>${colTot(s).toLocaleString()}</td>`).join("")}
+      <td>${grand.toLocaleString()}</td>
+    </tr></tfoot>`;
+
+    /* When the view is narrowed, say what it now covers. */
+    const nA = areas.filter(inA).length, nC = slugs.filter(inC).length;
+    document.getElementById("matrix-scope").innerHTML = (selAr.size || selCh.size)
+      ? `In scope: ${nA} of ${D.areas.length} areas &times; ${nC} of ${SLUGS.length}
+         challenges &middot; <b>${grand.toLocaleString()}</b> reward pts
+         &middot; <button class="chip" type="button" id="mx-reset">Reset</button>`
+      : "";
+  }
+
+  /* One honest observation drawn from the full dataset. It describes the whole
+     competition, so it is computed from D.matrix and never from the filtered
+     view -- otherwise narrowing the table would silently rewrite the finding. */
+  const fullColTot = s => D.areas.reduce((n, a) => n + (D.matrix[a][s] || 0), 0);
+  const lau = D.areas.map(a => [a, D.matrix[a].doing_laundry || 0]).sort((x, y) => y[1] - x[1])[0];
+  const lauPct = Math.floor(lau[1] / fullColTot("doing_laundry") * 100);
+  const solo = D.areas.filter(a => SLUGS.filter(s => D.matrix[a][s]).length === 1);
+  document.getElementById("matrix-note").innerHTML =
+    `Doing Laundry is the highest-scoring challenge in the competition and
+     <b>${lauPct}%</b> of its reward points sit in a single area (${lau[0]}).
+     ${solo.length} area${solo.length === 1 ? " is" : "s are"} tested by exactly one
+     challenge: ${solo.join(", ")}.`;
+
+  /* ---- drift ---- */
+  document.getElementById("drift").innerHTML = D.drift.map(f => {
+    const pts = f.variants.map(v => v.points).filter(p => p !== null);
+    const lo = Math.min(...pts), hi = Math.max(...pts);
+    return `<article class="finding">
+      <h3>${esc(f.family)} <span class="spread">${lo}&ndash;${hi} pts</span></h3>
+      <div class="variants">
+        ${f.variants.map(v => `<div class="variant">
+          <span class="pts">${v.points}</span>
+          <span><code>${esc(v.id)}</code><br>
+            <span class="where">${v.modifiers.map(esc).join(" &middot; ") || "&mdash;"}</span></span>
+          <span class="where">${v.used_by.map(nm).join(", ")}</span>
+        </div>`).join("")}
+      </div>
+      <p class="fnote">${(() => {
+        const chs = new Set(f.variants.flatMap(v => v.used_by));
+        const per = {};
+        f.variants.forEach(v => v.used_by.forEach(c => (per[c] ||= new Set()).add(v.points)));
+        const spread = Object.entries(per).filter(([, s]) => s.size > 1).map(([c]) => nm(c));
+        return spread.length
+          ? `Spans ${chs.size} challenges; ${spread.join(" and ")} price${spread.length === 1 ? "s" : ""} this family at more than one level internally.`
+          : `Spans ${chs.size} challenges, each pricing its own variant.`;
+      })()}</p>
+    </article>`;
+  }).join("");
+
+  /* ---- filters + table ---- */
+  /* Multi-select: an empty set means "no restriction on this axis", which is
+     what the All chip represents. Picking any specific value clears All. */
+  const selCh = new Set();
+  const selAr = new Set();
+
+  /* Selection is keyed by a row's identity, not its DOM node, so ticks survive
+     filter changes. A line is (challenge, id): the same skill referenced by two
+     challenges is two independently selectable lines. */
+  // Separator must survive a round-trip through an HTML data- attribute, so no
+  // control characters. "::" cannot occur in a slug or a canonical id.
+  const key = r => r.challenge + "::" + r.id;
+  const sel = new Set();
+  let onlySel = false;
+
+  function visible() {
+    return D.rows.filter(r =>
+      (!selCh.size || selCh.has(r.challenge)) &&
+      (!selAr.size || selAr.has(r.area)) &&
+      (!onlySel || sel.has(key(r))));
+  }
+
+  function drawSelBar() {
+    const bar = document.getElementById("selbar");
+    if (!sel.size) {
+      bar.hidden = true;
+      onlySel = false;
+      document.getElementById("only-sel").setAttribute("aria-pressed", "false");
+      return;
+    }
+    bar.hidden = false;
+    const picked = D.rows.filter(r => sel.has(key(r)));
+    const net = picked.reduce((n, r) => n + r.total, 0);
+    const pos = picked.filter(r => r.total > 0).reduce((n, r) => n + r.total, 0);
+    document.getElementById("selsum").innerHTML =
+      `<span class="n">${picked.length}</span> selected · ` +
+      `${pos.toLocaleString()} pts available · net ${net.toLocaleString()}`;
+    const byArea = {};
+    picked.forEach(r => { byArea[r.area] = (byArea[r.area] || 0) + r.total; });
+    document.getElementById("selareas").textContent =
+      Object.entries(byArea).sort((a, b) => b[1] - a[1])
+        .map(([a, v]) => `${a} ${v.toLocaleString()}`).join("  ");
+  }
+
+  function syncAllBox() {
+    const vis = visible();
+    const box = document.getElementById("sel-all");
+    const n = vis.filter(r => sel.has(key(r))).length;
+    box.checked = n > 0 && n === vis.length;
+    box.indeterminate = n > 0 && n < vis.length;
+  }
+
+  function draw() {
+    const rows = visible();
+    document.getElementById("rows").innerHTML = rows.map(r => `
+      <tr class="${sel.has(key(r)) ? "on" : ""}" data-k="${esc(key(r))}">
+        <td class="pick"><input type="checkbox" ${sel.has(key(r)) ? "checked" : ""}
+          aria-label="Select ${esc(r.id)}"></td>
+        <td><span class="sid">${esc(r.id)}</span></td>
+        <td><span class="tag area" style="background:var(--a-${r.area})">${r.area}</span></td>
+        <td class="desc-cell">
+          <span class="desc">${esc(r.description)}</span>
+          ${r.shared ? '<span class="shared-mark">shared</span>' : ""}
+          ${r.ambiguity ? '<span class="flag">TC</span>' : ""}
+          ${r.modifiers.length ? `<span class="mods">${r.modifiers.map(esc).join(" · ")}</span>` : ""}
+        </td>
+        <td><span class="lvl lvl-${r.level === "-" ? "C" : r.level}">${r.level}</span></td>
+        <td class="num${r.points < 0 ? " neg" : ""}">${r.points === null ? "&mdash;" : r.points}</td>
+        <td class="num">${r.count}</td>
+        <td class="num${r.total < 0 ? " neg" : ""}">${r.total.toLocaleString()}</td>
+      </tr>`).join("");
+    const sum = rows.reduce((n, r) => n + r.total, 0);
+    const bits = [];
+    if (selCh.size) bits.push([...selCh].map(nm).join(" + "));
+    if (selAr.size) bits.push([...selAr].join(" + "));
+    if (onlySel) bits.push("selected only");
+    document.getElementById("count").textContent =
+      `${rows.length} of ${D.rows.length} lines · net ${sum.toLocaleString()} pts` +
+      (bits.length ? ` · ${bits.join(" · ")}` : "");
+    drawSelBar();
+    syncAllBox();
+  }
+
+  const chalEl = document.getElementById("f-challenge");
+  const areaEl = document.getElementById("f-area");
+  const chalItems = [["all", "All challenges"], ...SLUGS.map(s => [s, nm(s)])];
+  const areaItems = [["all", "All areas"],
+    ...[...new Set(D.rows.map(r => r.area))].sort().map(a => [a, a])];
+
+  function paint(el, items, set) {
+    el.innerHTML = items.map(([v, l]) => {
+      const on = v === "all" ? !set.size : set.has(v);
+      return `<button class="chip" type="button" data-v="${v}" aria-pressed="${on}">${l}</button>`;
+    }).join("");
+  }
+
+  function redrawChips() {
+    paint(chalEl, chalItems, selCh);
+    paint(areaEl, areaItems, selAr);
+    drawMatrix();
+  }
+
+  /* Toggling a chip adds or removes it. The All chip clears the axis. Removing
+     the last specific chip falls back to All rather than showing nothing. */
+  function wire(el, items, set) {
+    el.addEventListener("click", e => {
+      const b = e.target.closest(".chip");
+      if (!b) return;
+      const v = b.dataset.v;
+      if (v === "all") set.clear();
+      else if (set.has(v)) set.delete(v);
+      else set.add(v);
+      redrawChips();
+      draw();
+    });
+  }
+
+  function toggle(set, v) {
+    if (set.has(v)) set.delete(v); else set.add(v);
+    redrawChips();
+    draw();
+  }
+
+  document.getElementById("matrix-scope").addEventListener("click", e => {
+    if (!e.target.closest("#mx-reset")) return;
+    selAr.clear();
+    selCh.clear();
+    redrawChips();
+    draw();
+  });
+
+  const mx = document.getElementById("matrix");
+  mx.addEventListener("click", e => {
+    const head = e.target.closest(".chead");
+    if (head) return toggle(selCh, head.dataset.ch);
+    const row = e.target.closest(".arow");
+    if (row) toggle(selAr, row.dataset.ar);
+  });
+  mx.addEventListener("keydown", e => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const t = e.target.closest(".chead, .arow");
+    if (!t) return;
+    e.preventDefault();
+    if (t.classList.contains("chead")) toggle(selCh, t.dataset.ch);
+    else toggle(selAr, t.dataset.ar);
+  });
+
+  drawMatrix();
+  redrawChips();
+  wire(chalEl, chalItems, selCh);
+  wire(areaEl, areaItems, selAr);
+
+  /* row ticks */
+  document.getElementById("rows").addEventListener("change", e => {
+    const box = e.target.closest('input[type="checkbox"]');
+    if (!box) return;
+    const tr = box.closest("tr");
+    const k = tr.dataset.k;
+    if (box.checked) { sel.add(k); tr.classList.add("on"); }
+    else { sel.delete(k); tr.classList.remove("on"); }
+    if (onlySel && !box.checked) draw();   // row leaves the filtered view
+    else { drawSelBar(); syncAllBox(); }
+  });
+
+  /* select-all applies to what is currently visible, not the whole dictionary */
+  document.getElementById("sel-all").addEventListener("change", e => {
+    const vis = visible();
+    if (e.target.checked) vis.forEach(r => sel.add(key(r)));
+    else vis.forEach(r => sel.delete(key(r)));
+    draw();
+  });
+
+  document.getElementById("only-sel").addEventListener("click", e => {
+    onlySel = !onlySel;
+    e.currentTarget.setAttribute("aria-pressed", String(onlySel));
+    draw();
+  });
+
+  document.getElementById("clear-sel").addEventListener("click", () => {
+    sel.clear();
+    onlySel = false;
+    document.getElementById("only-sel").setAttribute("aria-pressed", "false");
+    draw();
+  });
+
+  draw();
+</script>

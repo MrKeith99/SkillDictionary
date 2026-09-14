@@ -1,0 +1,3034 @@
+{
+ "rulebook_version": "2026.2",
+ "challenges": {
+  "doing_laundry": {
+   "name": "Doing Laundry Challenge",
+   "section": "5.4",
+   "minutes": 7,
+   "total": 4415
+  },
+  "gpsr": {
+   "name": "General Purpose Service Robot Challenge",
+   "section": "5.3",
+   "minutes": 7,
+   "total": 1490
+  },
+  "hri": {
+   "name": "Human Robot Interaction Challenge",
+   "section": "5.1",
+   "minutes": 7,
+   "total": 1450
+  },
+  "pick_and_place": {
+   "name": "Pick and Place Challenge",
+   "section": "5.2",
+   "minutes": 7,
+   "total": 3515
+  },
+  "restaurant": {
+   "name": "Restaurant Challenge",
+   "section": "5.5",
+   "minutes": 15,
+   "total": 2360
+  }
+ },
+ "areas": [
+  "HRI",
+  "MAN",
+  "NAV",
+  "NLU",
+  "OBJ",
+  "PLN",
+  "PPL"
+ ],
+ "matrix": {
+  "NAV": {
+   "doing_laundry": 15,
+   "hri": 230,
+   "pick_and_place": 15,
+   "restaurant": 320
+  },
+  "MAN": {
+   "doing_laundry": 4400,
+   "hri": 450,
+   "pick_and_place": 3320,
+   "restaurant": 1400
+  },
+  "NLU": {
+   "gpsr": 240,
+   "hri": 60,
+   "restaurant": 320
+  },
+  "PLN": {
+   "gpsr": 1250
+  },
+  "OBJ": {
+   "hri": 60,
+   "pick_and_place": 180
+  },
+  "HRI": {
+   "hri": 570,
+   "restaurant": 160
+  },
+  "PPL": {
+   "hri": 80,
+   "restaurant": 160
+  }
+ },
+ "rows": [
+  {
+   "challenge": "doing_laundry",
+   "id": "NAV-NAVIGATE-02",
+   "area": "NAV",
+   "skill": "Navigate",
+   "modifiers": [
+    "laundry_area"
+   ],
+   "description": "Navigating to the laundry area",
+   "level": "E",
+   "type": "achievement",
+   "points": 15,
+   "count": 1,
+   "total": 15,
+   "section": "Main Goal",
+   "shared": false,
+   "used_by": [
+    "doing_laundry"
+   ],
+   "deps": [],
+   "assistance": false,
+   "ambiguity": null
+  },
+  {
+   "challenge": "doing_laundry",
+   "id": "MAN-PICK-03",
+   "area": "MAN",
+   "skill": "Pick",
+   "modifiers": [
+    "basket",
+    "clothing"
+   ],
+   "description": "Picking up a piece of clothing from the basket",
+   "level": "C",
+   "type": "achievement",
+   "points": 100,
+   "count": 1,
+   "total": 100,
+   "section": "Main Goal",
+   "shared": false,
+   "used_by": [
+    "doing_laundry"
+   ],
+   "deps": [],
+   "assistance": true,
+   "ambiguity": "Assistance for handing clothes is named in rule 6 but unpriced on the score sheet."
+  },
+  {
+   "challenge": "doing_laundry",
+   "id": "MAN-PICK-03P",
+   "area": "MAN",
+   "skill": "Pick",
+   "modifiers": [
+    "multiple_at_once"
+   ],
+   "description": "Picking up multiple at once",
+   "level": "C",
+   "type": "penalty_behavior",
+   "points": -100,
+   "count": 1,
+   "total": -100,
+   "section": "Main Goal",
+   "shared": false,
+   "used_by": [
+    "doing_laundry"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "doing_laundry",
+   "id": "MAN-FOLD-01",
+   "area": "MAN",
+   "skill": "Fold",
+   "modifiers": [
+    "loose",
+    "single"
+   ],
+   "description": "Folding a piece of clothing",
+   "level": "X",
+   "type": "achievement",
+   "points": 800,
+   "count": 1,
+   "total": 800,
+   "section": "Main Goal",
+   "shared": false,
+   "used_by": [
+    "doing_laundry"
+   ],
+   "deps": [
+    "MAN-PICK-03",
+    "MAN-TRANSPORTWITHBASKET-01"
+   ],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "doing_laundry",
+   "id": "MAN-FOLD-01P1",
+   "area": "MAN",
+   "skill": "Fold",
+   "modifiers": [
+    "quality_penalty"
+   ],
+   "description": "Quality penalties",
+   "level": "X",
+   "type": "penalty_behavior",
+   "points": -800,
+   "count": 1,
+   "total": -800,
+   "section": "Main Goal",
+   "shared": false,
+   "used_by": [
+    "doing_laundry"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "doing_laundry",
+   "id": "GEN-HUMANASSIST-06P",
+   "area": "GEN",
+   "skill": null,
+   "modifiers": [
+    "flatten_arrange_before_folding"
+   ],
+   "description": "Human assistance: Flattening/Arranging clothing before folding",
+   "level": "-",
+   "type": "penalty_behavior",
+   "points": -200,
+   "count": 1,
+   "total": -200,
+   "section": "Main Goal",
+   "shared": false,
+   "used_by": [
+    "doing_laundry"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "doing_laundry",
+   "id": "GEN-HUMANASSIST-07P",
+   "area": "GEN",
+   "skill": null,
+   "modifiers": [
+    "folding_assistance_pct"
+   ],
+   "description": "Human assistance during folding (percentage penalty per amount of help)",
+   "level": "-",
+   "type": "penalty_behavior",
+   "points": -800,
+   "count": 1,
+   "total": -800,
+   "section": "Main Goal",
+   "shared": false,
+   "used_by": [
+    "doing_laundry"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "doing_laundry",
+   "id": "MAN-APPLIANCE-03",
+   "area": "MAN",
+   "skill": "Appliance",
+   "modifiers": [
+    "open",
+    "washing_machine_door"
+   ],
+   "description": "Opening the washing machine door",
+   "level": "X",
+   "type": "achievement",
+   "points": 300,
+   "count": 1,
+   "total": 300,
+   "section": "Extra Rewards",
+   "shared": false,
+   "used_by": [
+    "doing_laundry"
+   ],
+   "deps": [],
+   "assistance": true,
+   "ambiguity": "Unpriced assistance. Decide whether this should mirror Pick & Place's explicit -0 treatment of appliance doors."
+  },
+  {
+   "challenge": "doing_laundry",
+   "id": "MAN-PICK-04",
+   "area": "MAN",
+   "skill": "Pick",
+   "modifiers": [
+    "clothing",
+    "washing_machine"
+   ],
+   "description": "Removing one or more pieces of clothing from the washing machine",
+   "level": "X",
+   "type": "achievement",
+   "points": 300,
+   "count": 1,
+   "total": 300,
+   "section": "Extra Rewards",
+   "shared": false,
+   "used_by": [
+    "doing_laundry"
+   ],
+   "deps": [
+    "MAN-APPLIANCE-03"
+   ],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "doing_laundry",
+   "id": "MAN-PICK-04P",
+   "area": "MAN",
+   "skill": "Pick",
+   "modifiers": [
+    "touches_floor"
+   ],
+   "description": "The clothing touches the floor",
+   "level": "X",
+   "type": "penalty_behavior",
+   "points": -200,
+   "count": 1,
+   "total": -200,
+   "section": "Extra Rewards",
+   "shared": false,
+   "used_by": [
+    "doing_laundry"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "doing_laundry",
+   "id": "MAN-TRANSPORTWITHBASKET-01",
+   "area": "MAN",
+   "skill": "TransportWithBasket",
+   "modifiers": [],
+   "description": "Using the basket for transportation",
+   "level": "X",
+   "type": "achievement",
+   "points": 300,
+   "count": 1,
+   "total": 300,
+   "section": "Extra Rewards",
+   "shared": false,
+   "used_by": [
+    "doing_laundry"
+   ],
+   "deps": [],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "doing_laundry",
+   "id": "MAN-TRANSPORTWITHBASKET-02P",
+   "area": "MAN",
+   "skill": "TransportWithBasket",
+   "modifiers": [
+    "dropped_or_lost"
+   ],
+   "description": "Laundry is dropped or otherwise lost during transportation",
+   "level": "X",
+   "type": "penalty_behavior",
+   "points": -200,
+   "count": 1,
+   "total": -200,
+   "section": "Extra Rewards",
+   "shared": false,
+   "used_by": [
+    "doing_laundry"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "doing_laundry",
+   "id": "MAN-FOLD-02",
+   "area": "MAN",
+   "skill": "Fold",
+   "modifiers": [
+    "additional_item"
+   ],
+   "description": "Folding additional clothes (per item)",
+   "level": "X",
+   "type": "achievement",
+   "points": 400,
+   "count": 5,
+   "total": 2000,
+   "section": "Extra Rewards",
+   "shared": false,
+   "used_by": [
+    "doing_laundry"
+   ],
+   "deps": [
+    "MAN-FOLD-01"
+   ],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "doing_laundry",
+   "id": "MAN-FOLD-02P1",
+   "area": "MAN",
+   "skill": "Fold",
+   "modifiers": [
+    "additional",
+    "quality_penalty"
+   ],
+   "description": "Quality penalties (additional clothes)",
+   "level": "X",
+   "type": "penalty_behavior",
+   "points": -400,
+   "count": 1,
+   "total": -400,
+   "section": "Extra Rewards",
+   "shared": false,
+   "used_by": [
+    "doing_laundry"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "doing_laundry",
+   "id": "GEN-HUMANASSIST-08P",
+   "area": "GEN",
+   "skill": null,
+   "modifiers": [
+    "additional",
+    "flatten_arrange_before_folding"
+   ],
+   "description": "Human assistance: Flattening/Arranging before folding (additional)",
+   "level": "-",
+   "type": "penalty_behavior",
+   "points": -100,
+   "count": 5,
+   "total": -500,
+   "section": "Extra Rewards",
+   "shared": false,
+   "used_by": [
+    "doing_laundry"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "doing_laundry",
+   "id": "GEN-HUMANASSIST-09P",
+   "area": "GEN",
+   "skill": null,
+   "modifiers": [
+    "additional",
+    "folding_assistance_pct"
+   ],
+   "description": "Human assistance during folding, additional clothes (percentage penalty)",
+   "level": "-",
+   "type": "penalty_behavior",
+   "points": -400,
+   "count": 5,
+   "total": -2000,
+   "section": "Extra Rewards",
+   "shared": false,
+   "used_by": [
+    "doing_laundry"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "doing_laundry",
+   "id": "MAN-STACK-01",
+   "area": "MAN",
+   "skill": "Stack",
+   "modifiers": [
+    "folded_clothes"
+   ],
+   "description": "Stacking folded clothes neatly (per item)",
+   "level": "C",
+   "type": "achievement",
+   "points": 100,
+   "count": 6,
+   "total": 600,
+   "section": "Extra Rewards",
+   "shared": false,
+   "used_by": [
+    "doing_laundry"
+   ],
+   "deps": [
+    "MAN-FOLD-01",
+    "MAN-FOLD-02"
+   ],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "doing_laundry",
+   "id": "GEN-HUMANASSIST-14P",
+   "area": "GEN",
+   "skill": null,
+   "modifiers": [
+    "environment_change"
+   ],
+   "description": "Human assistance: environment changes (per item)",
+   "level": "-",
+   "type": "penalty_behavior",
+   "points": -40,
+   "count": 1,
+   "total": -40,
+   "section": "Penalties",
+   "shared": true,
+   "used_by": [
+    "doing_laundry",
+    "pick_and_place"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "doing_laundry",
+   "id": "SPECIAL-01",
+   "area": "SPECIAL",
+   "skill": null,
+   "modifiers": [],
+   "description": "Not attending (see sec. 3.8.1)",
+   "level": "-",
+   "type": "administrative",
+   "points": -500,
+   "count": 1,
+   "total": -500,
+   "section": "Special Penalties & Bonuses",
+   "shared": true,
+   "used_by": [
+    "doing_laundry",
+    "gpsr",
+    "hri",
+    "pick_and_place",
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "doing_laundry",
+   "id": "SPECIAL-02",
+   "area": "SPECIAL",
+   "skill": null,
+   "modifiers": [],
+   "description": "Using alternative start signal (see sec. 3.6.8)",
+   "level": "-",
+   "type": "administrative",
+   "points": -100,
+   "count": 1,
+   "total": -100,
+   "section": "Special Penalties & Bonuses",
+   "shared": true,
+   "used_by": [
+    "doing_laundry",
+    "gpsr",
+    "pick_and_place",
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "doing_laundry",
+   "id": "SPECIAL-03",
+   "area": "SPECIAL",
+   "skill": null,
+   "modifiers": [],
+   "description": "Outstanding performance (see sec. 3.8.3)",
+   "level": "-",
+   "type": "administrative",
+   "points": 441,
+   "count": 1,
+   "total": 441,
+   "section": "Special Penalties & Bonuses",
+   "shared": true,
+   "used_by": [
+    "doing_laundry",
+    "gpsr",
+    "hri",
+    "pick_and_place",
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "NLU-UNDERSTANDCOMMAND-01",
+   "area": "NLU",
+   "skill": "UnderstandCommand",
+   "modifiers": [
+    "spoken"
+   ],
+   "description": "Understand the spoken command",
+   "level": "C",
+   "type": "achievement",
+   "points": 80,
+   "count": 3,
+   "total": 240,
+   "section": "Main Goal",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "NLU-UNDERSTANDCOMMAND-02P",
+   "area": "NLU",
+   "skill": "UnderstandCommand",
+   "modifiers": [
+    "custom_operator"
+   ],
+   "description": "Using a custom operator",
+   "level": "C",
+   "type": "penalty_behavior",
+   "points": -20,
+   "count": 3,
+   "total": -60,
+   "section": "Main Goal",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": "Fixed 3x-20 (-60, ~4% of 1490) conflicts with \u00a73.7.4, which sets custom operator at -10% of maximum attainable score (-149). Confirm which governs."
+  },
+  {
+   "challenge": "gpsr",
+   "id": "NLU-UNDERSTANDCOMMAND-03P",
+   "area": "NLU",
+   "skill": "UnderstandCommand",
+   "modifiers": [
+    "rephrasing_requested"
+   ],
+   "description": "Request a rephrasing",
+   "level": "C",
+   "type": "penalty_behavior",
+   "points": -30,
+   "count": 6,
+   "total": -180,
+   "section": "Main Goal",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "PLN-DEMONSTRATEPLAN-01",
+   "area": "PLN",
+   "skill": "DemonstratePlan",
+   "modifiers": [],
+   "description": "Demonstrate a plan has been generated",
+   "level": "C",
+   "type": "achievement",
+   "points": 100,
+   "count": 3,
+   "total": 300,
+   "section": "Main Goal",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [
+    "NLU-UNDERSTANDCOMMAND-01"
+   ],
+   "assistance": false,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "PLN-SOLVECOMMAND-01",
+   "area": "PLN",
+   "skill": "SolveCommand",
+   "modifiers": [
+    "command_1"
+   ],
+   "description": "Solving the first command",
+   "level": "X",
+   "type": "achievement",
+   "points": 250,
+   "count": 1,
+   "total": 250,
+   "section": "Main Goal",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [
+    "NLU-UNDERSTANDCOMMAND-01"
+   ],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "PLN-SOLVECOMMAND-02",
+   "area": "PLN",
+   "skill": "SolveCommand",
+   "modifiers": [
+    "command_2"
+   ],
+   "description": "Solving the second command",
+   "level": "X",
+   "type": "achievement",
+   "points": 250,
+   "count": 1,
+   "total": 250,
+   "section": "Main Goal",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [
+    "NLU-UNDERSTANDCOMMAND-01"
+   ],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "PLN-SOLVECOMMAND-03",
+   "area": "PLN",
+   "skill": "SolveCommand",
+   "modifiers": [
+    "command_3"
+   ],
+   "description": "Solving the third command",
+   "level": "X",
+   "type": "achievement",
+   "points": 250,
+   "count": 1,
+   "total": 250,
+   "section": "Main Goal",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [
+    "NLU-UNDERSTANDCOMMAND-01"
+   ],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "PLN-SOLVECOMMAND-04P",
+   "area": "PLN",
+   "skill": "SolveCommand",
+   "modifiers": [
+    "partial"
+   ],
+   "description": "Solving part of a command (percentage penalty)",
+   "level": "X",
+   "type": "penalty_behavior",
+   "points": null,
+   "count": 1,
+   "total": 0,
+   "section": "Main Goal",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": "No defined percentage or reference table. Strongest candidate for goal-condition predicates with explicit partial_credit fractions."
+  },
+  {
+   "challenge": "gpsr",
+   "id": "PLN-INTERLEAVETASKS-01B",
+   "area": "PLN",
+   "skill": "InterleaveTasks",
+   "modifiers": [],
+   "description": "Interleaved Task Bonus",
+   "level": "X",
+   "type": "bonus",
+   "points": 200,
+   "count": 1,
+   "total": 200,
+   "section": "Extra Rewards",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [
+    "PLN-SOLVECOMMAND-01"
+   ],
+   "assistance": false,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "NLU-UNDERSTANDCOMMAND-04P",
+   "area": "NLU",
+   "skill": "UnderstandCommand",
+   "modifiers": [
+    "bypassed_speech_rec"
+   ],
+   "description": "Bypassing speech recognition",
+   "level": "C",
+   "type": "penalty_behavior",
+   "points": -50,
+   "count": 3,
+   "total": -150,
+   "section": "Penalties",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": "Fixed 3x-50 (-150, ~10%) vs \u00a73.7.4 gesture/alternative-HRI rates of -20% of max attainable. Confirm interaction."
+  },
+  {
+   "challenge": "gpsr",
+   "id": "SPECIAL-01",
+   "area": "SPECIAL",
+   "skill": null,
+   "modifiers": [],
+   "description": "Not attending (see sec. 3.8.1)",
+   "level": "-",
+   "type": "administrative",
+   "points": -500,
+   "count": 1,
+   "total": -500,
+   "section": "Special Penalties & Bonuses",
+   "shared": true,
+   "used_by": [
+    "doing_laundry",
+    "gpsr",
+    "hri",
+    "pick_and_place",
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "SPECIAL-02",
+   "area": "SPECIAL",
+   "skill": null,
+   "modifiers": [],
+   "description": "Using alternative start signal (see sec. 3.6.8)",
+   "level": "-",
+   "type": "administrative",
+   "points": -100,
+   "count": 1,
+   "total": -100,
+   "section": "Special Penalties & Bonuses",
+   "shared": true,
+   "used_by": [
+    "doing_laundry",
+    "gpsr",
+    "pick_and_place",
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "SPECIAL-03",
+   "area": "SPECIAL",
+   "skill": null,
+   "modifiers": [],
+   "description": "Outstanding performance (see sec. 3.8.3)",
+   "level": "-",
+   "type": "administrative",
+   "points": 149,
+   "count": 1,
+   "total": 149,
+   "section": "Special Penalties & Bonuses",
+   "shared": true,
+   "used_by": [
+    "doing_laundry",
+    "gpsr",
+    "hri",
+    "pick_and_place",
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "hri",
+   "id": "OBJ-DETECTEVENT-01",
+   "area": "OBJ",
+   "skill": "DetectEvent",
+   "modifiers": [
+    "audio",
+    "doorbell"
+   ],
+   "description": "Detect the doorbell sound as a signal that a guest has arrived",
+   "level": "E",
+   "type": "achievement",
+   "points": 30,
+   "count": 2,
+   "total": 60,
+   "section": "Greeting",
+   "shared": false,
+   "used_by": [
+    "hri"
+   ],
+   "deps": [],
+   "assistance": false,
+   "ambiguity": null
+  },
+  {
+   "challenge": "hri",
+   "id": "MAN-OPEN-01",
+   "area": "MAN",
+   "skill": "Open",
+   "modifiers": [
+    "entrance_door"
+   ],
+   "description": "Open the entrance door for a guest",
+   "level": "X",
+   "type": "achievement",
+   "points": 200,
+   "count": 2,
+   "total": 400,
+   "section": "Greeting",
+   "shared": false,
+   "used_by": [
+    "hri"
+   ],
+   "deps": [],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "hri",
+   "id": "HRI-LOOKAT-01",
+   "area": "HRI",
+   "skill": "LookAt",
+   "modifiers": [
+    "receiving_guest",
+    "talking_person"
+   ],
+   "description": "Look at the person talking, when receiving a guest",
+   "level": "C",
+   "type": "achievement",
+   "points": 50,
+   "count": 2,
+   "total": 100,
+   "section": "Greeting",
+   "shared": false,
+   "used_by": [
+    "hri"
+   ],
+   "deps": [],
+   "assistance": false,
+   "ambiguity": null
+  },
+  {
+   "challenge": "hri",
+   "id": "HRI-OFFERSEAT-01",
+   "area": "HRI",
+   "skill": "OfferSeat",
+   "modifiers": [
+    "new_guest"
+   ],
+   "description": "Offer a free seat to the new guest",
+   "level": "C",
+   "type": "achievement",
+   "points": 100,
+   "count": 2,
+   "total": 200,
+   "section": "Greeting",
+   "shared": false,
+   "used_by": [
+    "hri"
+   ],
+   "deps": [
+    "NAV-FOLLOW-GUEST"
+   ],
+   "assistance": false,
+   "ambiguity": null
+  },
+  {
+   "challenge": "hri",
+   "id": "NAV-GAZEDIRECTION-01",
+   "area": "NAV",
+   "skill": "GazeDirection",
+   "modifiers": [
+    "navigation_goal"
+   ],
+   "description": "Look in the direction of navigation or at the navigation goal",
+   "level": "E",
+   "type": "achievement",
+   "points": 15,
+   "count": 2,
+   "total": 30,
+   "section": "Greeting",
+   "shared": false,
+   "used_by": [
+    "hri"
+   ],
+   "deps": [],
+   "assistance": false,
+   "ambiguity": null
+  },
+  {
+   "challenge": "hri",
+   "id": "PPL-DESCRIBEATTRIBUTE-01B",
+   "area": "PPL",
+   "skill": "DescribeAttribute",
+   "modifiers": [
+    "correct",
+    "visual"
+   ],
+   "description": "Tell a visual attribute of the first guest to the second guest (correct)",
+   "level": "C",
+   "type": "bonus",
+   "points": 20,
+   "count": 4,
+   "total": 80,
+   "section": "Greeting",
+   "shared": false,
+   "used_by": [
+    "hri"
+   ],
+   "deps": [
+    "PPL-PERCEIVE-GUEST1"
+   ],
+   "assistance": false,
+   "ambiguity": null
+  },
+  {
+   "challenge": "hri",
+   "id": "PPL-DESCRIBEATTRIBUTE-02P",
+   "area": "PPL",
+   "skill": "DescribeAttribute",
+   "modifiers": [
+    "incorrect",
+    "visual"
+   ],
+   "description": "Tell a visual attribute of the first guest to the second guest (incorrect)",
+   "level": "C",
+   "type": "penalty_behavior",
+   "points": -20,
+   "count": 4,
+   "total": -80,
+   "section": "Greeting",
+   "shared": false,
+   "used_by": [
+    "hri"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "hri",
+   "id": "NLU-AVOIDNONESSENTIALQUESTIONS-01B",
+   "area": "NLU",
+   "skill": "AvoidNonEssentialQuestions",
+   "modifiers": [],
+   "description": "Not asking non-essential questions to confirm or correct information",
+   "level": "C",
+   "type": "bonus",
+   "points": 15,
+   "count": 4,
+   "total": 60,
+   "section": "Greeting",
+   "shared": false,
+   "used_by": [
+    "hri"
+   ],
+   "deps": [],
+   "assistance": false,
+   "ambiguity": null
+  },
+  {
+   "challenge": "hri",
+   "id": "HRI-STATESTOREDINFO-01",
+   "area": "HRI",
+   "skill": "StateStoredInfo",
+   "modifiers": [
+    "favorite_drink",
+    "name"
+   ],
+   "description": "Say name and favorite drink of each guest (during introduction)",
+   "level": "C",
+   "type": "achievement",
+   "points": 30,
+   "count": 4,
+   "total": 120,
+   "section": "Introduction",
+   "shared": false,
+   "used_by": [
+    "hri"
+   ],
+   "deps": [
+    "NLU-LEARN-GUESTINFO"
+   ],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "hri",
+   "id": "HRI-LOOKAT-02",
+   "area": "HRI",
+   "skill": "LookAt",
+   "modifiers": [
+    "correct_guest",
+    "introduction"
+   ],
+   "description": "While introducing guests, look to the correct guest while talking about the other guest",
+   "level": "C",
+   "type": "achievement",
+   "points": 50,
+   "count": 2,
+   "total": 100,
+   "section": "Introduction",
+   "shared": false,
+   "used_by": [
+    "hri"
+   ],
+   "deps": [
+    "HRI-OFFERSEAT-01"
+   ],
+   "assistance": false,
+   "ambiguity": null
+  },
+  {
+   "challenge": "hri",
+   "id": "HRI-RECEIVEHANDOVER-01",
+   "area": "HRI",
+   "skill": "ReceiveHandover",
+   "modifiers": [
+    "bag"
+   ],
+   "description": "Receive the bag from the guest via handover",
+   "level": "C",
+   "type": "achievement",
+   "points": 50,
+   "count": 1,
+   "total": 50,
+   "section": "Guiding",
+   "shared": false,
+   "used_by": [
+    "hri"
+   ],
+   "deps": [],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "hri",
+   "id": "HRI-RECEIVEHANDOVER-01P1",
+   "area": "HRI",
+   "skill": "ReceiveHandover",
+   "modifiers": [
+    "assistance_requested"
+   ],
+   "description": "Requesting handover assistance from the guest",
+   "level": "C",
+   "type": "penalty_behavior",
+   "points": -25,
+   "count": 1,
+   "total": -25,
+   "section": "Guiding",
+   "shared": false,
+   "used_by": [
+    "hri"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "hri",
+   "id": "HRI-RECEIVEHANDOVER-01P2",
+   "area": "HRI",
+   "skill": "ReceiveHandover",
+   "modifiers": [
+    "bag_on_structure"
+   ],
+   "description": "Bag placed on the robot structure instead of being handed over",
+   "level": "C",
+   "type": "penalty_behavior",
+   "points": -50,
+   "count": 1,
+   "total": -50,
+   "section": "Guiding",
+   "shared": false,
+   "used_by": [
+    "hri"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": "\u00a75.1 rule 5 says 'no points are awarded' for this route, and the sheet also applies -50. Confirm whether both forfeiture and penalty are intended, or only the penalty."
+  },
+  {
+   "challenge": "hri",
+   "id": "NAV-FOLLOW-01",
+   "area": "NAV",
+   "skill": "Follow",
+   "modifiers": [
+    "bag_drop_area",
+    "host"
+   ],
+   "description": "Following the host to the bag drop area",
+   "level": "C",
+   "type": "achievement",
+   "points": 200,
+   "count": 1,
+   "total": 200,
+   "section": "Guiding",
+   "shared": false,
+   "used_by": [
+    "hri"
+   ],
+   "deps": [
+    "HRI-RECEIVEHANDOVER-01"
+   ],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "hri",
+   "id": "NAV-FOLLOW-01P1",
+   "area": "NAV",
+   "skill": "Follow",
+   "modifiers": [
+    "dropped_bag"
+   ],
+   "description": "Drop the bag while following the host",
+   "level": "C",
+   "type": "penalty_behavior",
+   "points": -50,
+   "count": 1,
+   "total": -50,
+   "section": "Guiding",
+   "shared": false,
+   "used_by": [
+    "hri"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "hri",
+   "id": "NAV-FOLLOW-01P2",
+   "area": "NAV",
+   "skill": "Follow",
+   "modifiers": [
+    "natural",
+    "rediscover_operator"
+   ],
+   "description": "Rediscovering the operator by natural interaction",
+   "level": "C",
+   "type": "penalty_behavior",
+   "points": -50,
+   "count": 1,
+   "total": -50,
+   "section": "Guiding",
+   "shared": false,
+   "used_by": [
+    "hri"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "hri",
+   "id": "NAV-FOLLOW-01P3",
+   "area": "NAV",
+   "skill": "Follow",
+   "modifiers": [
+    "asking_operator_to_wait"
+   ],
+   "description": "Asking the operator to wait",
+   "level": "C",
+   "type": "penalty_behavior",
+   "points": -50,
+   "count": 1,
+   "total": -50,
+   "section": "Guiding",
+   "shared": false,
+   "used_by": [
+    "hri"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "hri",
+   "id": "NAV-FOLLOW-01P4",
+   "area": "NAV",
+   "skill": "Follow",
+   "modifiers": [
+    "physical_contact"
+   ],
+   "description": "Guiding the robot with physical contact (take by the hand)",
+   "level": "C",
+   "type": "penalty_behavior",
+   "points": -150,
+   "count": 1,
+   "total": -150,
+   "section": "Guiding",
+   "shared": false,
+   "used_by": [
+    "hri"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "hri",
+   "id": "MAN-PLACE-01",
+   "area": "MAN",
+   "skill": "Place",
+   "modifiers": [
+    "bag",
+    "correct_area"
+   ],
+   "description": "Drop the bag in the correct area",
+   "level": "C",
+   "type": "achievement",
+   "points": 50,
+   "count": 1,
+   "total": 50,
+   "section": "Guiding",
+   "shared": false,
+   "used_by": [
+    "hri"
+   ],
+   "deps": [
+    "NAV-FOLLOW-01",
+    "HRI-RECEIVEHANDOVER-01"
+   ],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "hri",
+   "id": "HRI-STATESTOREDINFO-02P",
+   "area": "HRI",
+   "skill": "StateStoredInfo",
+   "modifiers": [
+    "wrong_info"
+   ],
+   "description": "Wrong guest information was memorized",
+   "level": "C",
+   "type": "penalty_behavior",
+   "points": -40,
+   "count": 4,
+   "total": -160,
+   "section": "Penalties",
+   "shared": false,
+   "used_by": [
+    "hri"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "hri",
+   "id": "GEN-ALTERNATIVEHRI-01P",
+   "area": "GEN",
+   "skill": "AlternativeHRI",
+   "modifiers": [],
+   "description": "Alternative HRI",
+   "level": "C",
+   "type": "penalty_behavior",
+   "points": -20,
+   "count": 6,
+   "total": -120,
+   "section": "Penalties",
+   "shared": false,
+   "used_by": [
+    "hri"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": "Fixed -20 per item here, but \u00a73.7.4 prices alternative HRI at up to -20% of max attainable score (=-290). Confirm which governs."
+  },
+  {
+   "challenge": "hri",
+   "id": "HRI-ATTEND-01P",
+   "area": "HRI",
+   "skill": "Attend",
+   "modifiers": [
+    "not_acknowledging"
+   ],
+   "description": "Not acknowledging people",
+   "level": "C",
+   "type": "penalty_behavior",
+   "points": -200,
+   "count": 2,
+   "total": -400,
+   "section": "Penalties",
+   "shared": false,
+   "used_by": [
+    "hri"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "hri",
+   "id": "SPECIAL-01",
+   "area": "SPECIAL",
+   "skill": null,
+   "modifiers": [],
+   "description": "Not attending (see sec. 3.8.1)",
+   "level": "-",
+   "type": "administrative",
+   "points": -500,
+   "count": 1,
+   "total": -500,
+   "section": "Special Penalties & Bonuses",
+   "shared": true,
+   "used_by": [
+    "doing_laundry",
+    "gpsr",
+    "hri",
+    "pick_and_place",
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "hri",
+   "id": "SPECIAL-03",
+   "area": "SPECIAL",
+   "skill": null,
+   "modifiers": [],
+   "description": "Outstanding performance (see sec. 3.8.3)",
+   "level": "-",
+   "type": "administrative",
+   "points": 145,
+   "count": 1,
+   "total": 145,
+   "section": "Special Penalties & Bonuses",
+   "shared": true,
+   "used_by": [
+    "doing_laundry",
+    "gpsr",
+    "hri",
+    "pick_and_place",
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "NAV-NAVIGATE-01",
+   "area": "NAV",
+   "skill": "Navigate",
+   "modifiers": [
+    "table"
+   ],
+   "description": "Navigate to the table",
+   "level": "E",
+   "type": "achievement",
+   "points": 15,
+   "count": 1,
+   "total": 15,
+   "section": null,
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [],
+   "assistance": false,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "OBJ-RECOGNIZE-01",
+   "area": "OBJ",
+   "skill": "Recognize",
+   "modifiers": [
+    "known_object"
+   ],
+   "description": "Correctly recognize an object",
+   "level": "E",
+   "type": "achievement",
+   "points": 10,
+   "count": 12,
+   "total": 120,
+   "section": null,
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "OBJ-PERCEIVE-01",
+   "area": "OBJ",
+   "skill": "Perceive",
+   "modifiers": [
+    "placement",
+    "shelf"
+   ],
+   "description": "Perceive objects on a shelf and indicate the correct placement",
+   "level": "C",
+   "type": "achievement",
+   "points": 30,
+   "count": 2,
+   "total": 60,
+   "section": null,
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [],
+   "assistance": false,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "MAN-PICK-01",
+   "area": "MAN",
+   "skill": "Pick",
+   "modifiers": [
+    "known",
+    "transport"
+   ],
+   "description": "Picking up an object for transportation",
+   "level": "C",
+   "type": "achievement",
+   "points": 50,
+   "count": 12,
+   "total": 600,
+   "section": "Picking",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [
+    "OBJ-RECOGNIZE-01"
+   ],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "MAN-PICK-02B",
+   "area": "MAN",
+   "skill": "Pick",
+   "modifiers": [
+    "first_pick_bonus"
+   ],
+   "description": "First Pick Bonus",
+   "level": "C",
+   "type": "bonus",
+   "points": 100,
+   "count": 1,
+   "total": 100,
+   "section": "Picking",
+   "shared": true,
+   "used_by": [
+    "pick_and_place",
+    "restaurant"
+   ],
+   "deps": [
+    "MAN-PICK-01"
+   ],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "MAN-PICK-01B2",
+   "area": "MAN",
+   "skill": "Pick",
+   "modifiers": [
+    "from_floor"
+   ],
+   "description": "From the floor",
+   "level": "C",
+   "type": "bonus",
+   "points": 30,
+   "count": 1,
+   "total": 30,
+   "section": "Picking",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [
+    "MAN-PICK-01"
+   ],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "MAN-PICK-01B3",
+   "area": "MAN",
+   "skill": "Pick",
+   "modifiers": [
+    "cutlery"
+   ],
+   "description": "Cutlery",
+   "level": "C",
+   "type": "bonus",
+   "points": 50,
+   "count": 2,
+   "total": 100,
+   "section": "Picking",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [
+    "MAN-PICK-01"
+   ],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "MAN-PICK-01B4",
+   "area": "MAN",
+   "skill": "Pick",
+   "modifiers": [
+    "plate"
+   ],
+   "description": "Plate",
+   "level": "C",
+   "type": "bonus",
+   "points": 100,
+   "count": 1,
+   "total": 100,
+   "section": "Picking",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [
+    "MAN-PICK-01"
+   ],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "MAN-PICK-01B5",
+   "area": "MAN",
+   "skill": "Pick",
+   "modifiers": [
+    "dishwasher_tab"
+   ],
+   "description": "Dishwasher tab",
+   "level": "C",
+   "type": "bonus",
+   "points": 100,
+   "count": 1,
+   "total": 100,
+   "section": "Picking",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [
+    "MAN-PICK-01"
+   ],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "MAN-PICK-02P",
+   "area": "MAN",
+   "skill": "Pick",
+   "modifiers": [
+    "auxiliary_table",
+    "common_object"
+   ],
+   "description": "Common object from auxiliary table (picking)",
+   "level": "E",
+   "type": "penalty_behavior",
+   "points": -20,
+   "count": 2,
+   "total": -40,
+   "section": "Picking",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "MAN-PLACE-02",
+   "area": "MAN",
+   "skill": "Place",
+   "modifiers": [
+    "designated_location",
+    "known"
+   ],
+   "description": "Place an object in its designated location",
+   "level": "C",
+   "type": "achievement",
+   "points": 40,
+   "count": 12,
+   "total": 480,
+   "section": "Placing",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [
+    "MAN-PICK-01"
+   ],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "MAN-PLACE-02B1",
+   "area": "MAN",
+   "skill": "Place",
+   "modifiers": [
+    "correct",
+    "dishwasher"
+   ],
+   "description": "Correctly in the dishwasher",
+   "level": "X",
+   "type": "bonus",
+   "points": 70,
+   "count": 3,
+   "total": 210,
+   "section": "Placing",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [
+    "MAN-APPLIANCE-02",
+    "MAN-APPLIANCE-01"
+   ],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "MAN-PLACE-02B2",
+   "area": "MAN",
+   "skill": "Place",
+   "modifiers": [
+    "cabinet",
+    "similar_objects"
+   ],
+   "description": "Next to similar objects in the cabinet",
+   "level": "C",
+   "type": "bonus",
+   "points": 20,
+   "count": 2,
+   "total": 40,
+   "section": "Placing",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "MAN-PLACE-02P1",
+   "area": "MAN",
+   "skill": "Place",
+   "modifiers": [
+    "breakfast_area",
+    "not_cleaned"
+   ],
+   "description": "Area around breakfast items is not cleaned",
+   "level": "C",
+   "type": "penalty_behavior",
+   "points": -30,
+   "count": 4,
+   "total": -120,
+   "section": "Placing",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "MAN-INSERT-01",
+   "area": "MAN",
+   "skill": "Insert",
+   "modifiers": [
+    "dishwasher_tab_slot"
+   ],
+   "description": "In the dishwasher tab slot inside the dishwasher",
+   "level": "X",
+   "type": "achievement",
+   "points": 160,
+   "count": 1,
+   "total": 160,
+   "section": "Placing",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [
+    "MAN-PICK-01B5",
+    "MAN-APPLIANCE-02"
+   ],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "MAN-PLACE-02P2",
+   "area": "MAN",
+   "skill": "Place",
+   "modifiers": [
+    "auxiliary_table",
+    "common_object"
+   ],
+   "description": "Common object from auxiliary table (placing)",
+   "level": "E",
+   "type": "penalty_behavior",
+   "points": -20,
+   "count": 2,
+   "total": -40,
+   "section": "Placing",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "MAN-APPLIANCE-01",
+   "area": "MAN",
+   "skill": "Appliance",
+   "modifiers": [
+    "dishwasher_rack",
+    "pull_push"
+   ],
+   "description": "Pull or push the dishwasher rack",
+   "level": "X",
+   "type": "achievement",
+   "points": 100,
+   "count": 2,
+   "total": 200,
+   "section": "Extra Rewards",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "MAN-APPLIANCE-02",
+   "area": "MAN",
+   "skill": "Appliance",
+   "modifiers": [
+    "dishwasher_door",
+    "no_assistance",
+    "open_close"
+   ],
+   "description": "Open or close the dishwasher door without assistance",
+   "level": "X",
+   "type": "achievement",
+   "points": 200,
+   "count": 2,
+   "total": 400,
+   "section": "Extra Rewards",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [],
+   "assistance": true,
+   "ambiguity": "Single entry bundles opening and closing, which have different preconditions: \u00a75.2 rule 8 awards closing points only after at least one item has been placed inside. Consider splitting into MAN-APPLIANCE-02a (open) and 02b (close, depends_on MAN-PLACE-02B1)."
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "MAN-OPEN-02",
+   "area": "MAN",
+   "skill": "Open",
+   "modifiers": [
+    "milk_container",
+    "no_assistance"
+   ],
+   "description": "Open milk container without assistance",
+   "level": "X",
+   "type": "achievement",
+   "points": 400,
+   "count": 1,
+   "total": 400,
+   "section": "Extra Rewards",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "MAN-POUR-01",
+   "area": "MAN",
+   "skill": "Pour",
+   "modifiers": [
+    "cereal_or_milk",
+    "no_assistance"
+   ],
+   "description": "Pour cereal or milk into the bowl without assistance",
+   "level": "X",
+   "type": "achievement",
+   "points": 200,
+   "count": 2,
+   "total": 400,
+   "section": "Extra Rewards",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [
+    "MAN-OPEN-02",
+    "MAN-PLACE-02"
+   ],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "MAN-PLACE-02P3",
+   "area": "MAN",
+   "skill": "Place",
+   "modifiers": [
+    "thrown_or_dropped"
+   ],
+   "description": "Objects thrown or dropped while placing",
+   "level": "C",
+   "type": "penalty_behavior",
+   "points": -40,
+   "count": 12,
+   "total": -480,
+   "section": "Penalties",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "GEN-BREAKFAST-01P",
+   "area": "GEN",
+   "skill": null,
+   "modifiers": [
+    "typical_setting"
+   ],
+   "description": "Breakfast not served in a typical meal setting",
+   "level": "-",
+   "type": "penalty_behavior",
+   "points": -50,
+   "count": 1,
+   "total": -50,
+   "section": "Penalties",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "MAN-PICK-01P1",
+   "area": "MAN",
+   "skill": "Pick",
+   "modifiers": [
+    "dropped_on_floor"
+   ],
+   "description": "Objects dropped on the floor",
+   "level": "C",
+   "type": "penalty_behavior",
+   "points": -40,
+   "count": 12,
+   "total": -480,
+   "section": "Penalties",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "MAN-POUR-01P",
+   "area": "MAN",
+   "skill": "Pour",
+   "modifiers": [
+    "spilling"
+   ],
+   "description": "Spilling cereal and milk while pouring",
+   "level": "X",
+   "type": "penalty_behavior",
+   "points": -100,
+   "count": 2,
+   "total": -200,
+   "section": "Penalties",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "GEN-HUMANASSIST-01P",
+   "area": "GEN",
+   "skill": null,
+   "modifiers": [
+    "object_repositioned"
+   ],
+   "description": "Human assistance: object repositioned by a person",
+   "level": "-",
+   "type": "penalty_behavior",
+   "points": -30,
+   "count": 12,
+   "total": -360,
+   "section": "Penalties",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "GEN-HUMANASSIST-02P",
+   "area": "GEN",
+   "skill": null,
+   "modifiers": [
+    "handover"
+   ],
+   "description": "Human assistance: handover",
+   "level": "-",
+   "type": "penalty_behavior",
+   "points": -100,
+   "count": 24,
+   "total": -2400,
+   "section": "Penalties",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": "Count is 24 (2x the 12 picks). Confirm whether this is intended as pick+place handovers counted separately."
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "GEN-HUMANASSIST-14P",
+   "area": "GEN",
+   "skill": null,
+   "modifiers": [
+    "environment_change"
+   ],
+   "description": "Human assistance: environment changes (per item)",
+   "level": "-",
+   "type": "penalty_behavior",
+   "points": -40,
+   "count": 1,
+   "total": -40,
+   "section": "Penalties",
+   "shared": true,
+   "used_by": [
+    "doing_laundry",
+    "pick_and_place"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "GEN-HUMANASSIST-04P",
+   "area": "GEN",
+   "skill": null,
+   "modifiers": [
+    "opening_milk_container"
+   ],
+   "description": "Human assistance: opening milk container",
+   "level": "-",
+   "type": "penalty_behavior",
+   "points": 0,
+   "count": 1,
+   "total": 0,
+   "section": "Penalties",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "GEN-HUMANASSIST-05P",
+   "area": "GEN",
+   "skill": null,
+   "modifiers": [
+    "dishwasher_door_or_rack"
+   ],
+   "description": "Human assistance: moving dishwasher door or rack",
+   "level": "-",
+   "type": "penalty_behavior",
+   "points": 0,
+   "count": 1,
+   "total": 0,
+   "section": "Penalties",
+   "shared": false,
+   "used_by": [
+    "pick_and_place"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "SPECIAL-01",
+   "area": "SPECIAL",
+   "skill": null,
+   "modifiers": [],
+   "description": "Not attending (see sec. 3.8.1)",
+   "level": "-",
+   "type": "administrative",
+   "points": -500,
+   "count": 1,
+   "total": -500,
+   "section": "Special Penalties & Bonuses",
+   "shared": true,
+   "used_by": [
+    "doing_laundry",
+    "gpsr",
+    "hri",
+    "pick_and_place",
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "SPECIAL-02",
+   "area": "SPECIAL",
+   "skill": null,
+   "modifiers": [],
+   "description": "Using alternative start signal (see sec. 3.6.8)",
+   "level": "-",
+   "type": "administrative",
+   "points": -100,
+   "count": 1,
+   "total": -100,
+   "section": "Special Penalties & Bonuses",
+   "shared": true,
+   "used_by": [
+    "doing_laundry",
+    "gpsr",
+    "pick_and_place",
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
+   "id": "SPECIAL-03",
+   "area": "SPECIAL",
+   "skill": null,
+   "modifiers": [],
+   "description": "Outstanding performance (see sec. 3.8.3)",
+   "level": "-",
+   "type": "administrative",
+   "points": 351,
+   "count": 1,
+   "total": 351,
+   "section": "Special Penalties & Bonuses",
+   "shared": true,
+   "used_by": [
+    "doing_laundry",
+    "gpsr",
+    "hri",
+    "pick_and_place",
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "restaurant",
+   "id": "PPL-DETECTCALLINGORWAVING-01",
+   "area": "PPL",
+   "skill": "DetectCallingOrWaving",
+   "modifiers": [
+    "customer"
+   ],
+   "description": "Detect calling or waving customer",
+   "level": "C",
+   "type": "achievement",
+   "points": 80,
+   "count": 2,
+   "total": 160,
+   "section": "Regular Rewards",
+   "shared": false,
+   "used_by": [
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": false,
+   "ambiguity": null
+  },
+  {
+   "challenge": "restaurant",
+   "id": "NAV-NAVIGATE-03",
+   "area": "NAV",
+   "skill": "Navigate",
+   "modifiers": [
+    "customer_table"
+   ],
+   "description": "Reach a customer's table",
+   "level": "C",
+   "type": "achievement",
+   "points": 80,
+   "count": 2,
+   "total": 160,
+   "section": "Regular Rewards",
+   "shared": false,
+   "used_by": [
+    "restaurant"
+   ],
+   "deps": [
+    "PPL-DETECTCALLINGORWAVING-01"
+   ],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "restaurant",
+   "id": "NAV-NAVIGATE-03P",
+   "area": "NAV",
+   "skill": "Navigate",
+   "modifiers": [
+    "guided_to_table"
+   ],
+   "description": "Human Assistance: Being guided to a table",
+   "level": "C",
+   "type": "penalty_behavior",
+   "points": -80,
+   "count": 2,
+   "total": -160,
+   "section": "Regular Rewards",
+   "shared": false,
+   "used_by": [
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "restaurant",
+   "id": "NLU-UNDERSTANDCOMMAND-05",
+   "area": "NLU",
+   "skill": "UnderstandCommand",
+   "modifiers": [
+    "confirm",
+    "order"
+   ],
+   "description": "Understand and confirm the order received to the customer",
+   "level": "C",
+   "type": "achievement",
+   "points": 160,
+   "count": 2,
+   "total": 320,
+   "section": "Regular Rewards",
+   "shared": false,
+   "used_by": [
+    "restaurant"
+   ],
+   "deps": [
+    "NAV-NAVIGATE-03"
+   ],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "restaurant",
+   "id": "GEN-ALTERNATIVEHRI-02P",
+   "area": "GEN",
+   "skill": "AlternativeHRI",
+   "modifiers": [
+    "order"
+   ],
+   "description": "Alternative HRI",
+   "level": "C",
+   "type": "penalty_behavior",
+   "points": -80,
+   "count": 2,
+   "total": -160,
+   "section": "Regular Rewards",
+   "shared": false,
+   "used_by": [
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": "Fixed -80 per order vs \u00a73.7.4's -20% of max attainable (-472). Confirm which governs."
+  },
+  {
+   "challenge": "restaurant",
+   "id": "HRI-EYECONTACT-01P",
+   "area": "HRI",
+   "skill": "EyeContact",
+   "modifiers": [
+    "taking_order"
+   ],
+   "description": "Not making eye-contact when taking the order",
+   "level": "C",
+   "type": "penalty_behavior",
+   "points": -60,
+   "count": 2,
+   "total": -120,
+   "section": "Regular Rewards",
+   "shared": false,
+   "used_by": [
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "restaurant",
+   "id": "HRI-COMMUNICATEORDER-01",
+   "area": "HRI",
+   "skill": "CommunicateOrder",
+   "modifiers": [
+    "barman"
+   ],
+   "description": "Communicate the order to the barman",
+   "level": "C",
+   "type": "achievement",
+   "points": 80,
+   "count": 2,
+   "total": 160,
+   "section": "Regular Rewards",
+   "shared": false,
+   "used_by": [
+    "restaurant"
+   ],
+   "deps": [
+    "NLU-UNDERSTANDCOMMAND-05"
+   ],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "restaurant",
+   "id": "MAN-PICK-05",
+   "area": "MAN",
+   "skill": "Pick",
+   "modifiers": [
+    "kitchen_bar",
+    "order_item"
+   ],
+   "description": "Picking up the requested items from the Kitchen-bar",
+   "level": "C",
+   "type": "achievement",
+   "points": 100,
+   "count": 4,
+   "total": 400,
+   "section": "Regular Rewards",
+   "shared": false,
+   "used_by": [
+    "restaurant"
+   ],
+   "deps": [
+    "HRI-COMMUNICATEORDER-01"
+   ],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "restaurant",
+   "id": "MAN-PICK-02B",
+   "area": "MAN",
+   "skill": "Pick",
+   "modifiers": [
+    "first_pick_bonus"
+   ],
+   "description": "First Pick Bonus",
+   "level": "C",
+   "type": "bonus",
+   "points": 100,
+   "count": 1,
+   "total": 100,
+   "section": "Regular Rewards",
+   "shared": true,
+   "used_by": [
+    "pick_and_place",
+    "restaurant"
+   ],
+   "deps": [
+    "MAN-PICK-05"
+   ],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "restaurant",
+   "id": "GEN-HUMANASSIST-10P",
+   "area": "GEN",
+   "skill": null,
+   "modifiers": [
+    "barman_handover"
+   ],
+   "description": "Human assistance: Asking the Barman to handover object to the robot",
+   "level": "-",
+   "type": "penalty_behavior",
+   "points": -100,
+   "count": 4,
+   "total": -400,
+   "section": "Regular Rewards",
+   "shared": false,
+   "used_by": [
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "restaurant",
+   "id": "NAV-NAVIGATE-04",
+   "area": "NAV",
+   "skill": "Navigate",
+   "modifiers": [
+    "order",
+    "return_to_table"
+   ],
+   "description": "Return to the customer table with the order",
+   "level": "C",
+   "type": "achievement",
+   "points": 80,
+   "count": 2,
+   "total": 160,
+   "section": "Regular Rewards",
+   "shared": false,
+   "used_by": [
+    "restaurant"
+   ],
+   "deps": [
+    "MAN-PICK-05"
+   ],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "restaurant",
+   "id": "MAN-PLACE-03",
+   "area": "MAN",
+   "skill": "Place",
+   "modifiers": [
+    "customer_table",
+    "order_item"
+   ],
+   "description": "Serve the order to the customer",
+   "level": "C",
+   "type": "achievement",
+   "points": 100,
+   "count": 4,
+   "total": 400,
+   "section": "Regular Rewards",
+   "shared": false,
+   "used_by": [
+    "restaurant"
+   ],
+   "deps": [
+    "MAN-PICK-05",
+    "MAN-TRANSPORTWITHTRAY-01"
+   ],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "restaurant",
+   "id": "MAN-PLACE-03B",
+   "area": "MAN",
+   "skill": "Place",
+   "modifiers": [
+    "first_place_bonus"
+   ],
+   "description": "First Place Bonus",
+   "level": "C",
+   "type": "bonus",
+   "points": 100,
+   "count": 1,
+   "total": 100,
+   "section": "Regular Rewards",
+   "shared": false,
+   "used_by": [
+    "restaurant"
+   ],
+   "deps": [
+    "MAN-PLACE-03"
+   ],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "restaurant",
+   "id": "GEN-HUMANASSIST-11P",
+   "area": "GEN",
+   "skill": null,
+   "modifiers": [
+    "guest_takes_from_tray_or_hand"
+   ],
+   "description": "Human assistance: Guest needing to take the object from a tray or the robot's hand",
+   "level": "-",
+   "type": "penalty_behavior",
+   "points": -100,
+   "count": 4,
+   "total": -400,
+   "section": "Regular Rewards",
+   "shared": false,
+   "used_by": [
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "restaurant",
+   "id": "MAN-TRANSPORTWITHTRAY-01",
+   "area": "MAN",
+   "skill": "TransportWithTray",
+   "modifiers": [
+    "unattached"
+   ],
+   "description": "Use an unattached tray to transport",
+   "level": "X",
+   "type": "achievement",
+   "points": 200,
+   "count": 2,
+   "total": 400,
+   "section": "Extra Rewards",
+   "shared": false,
+   "used_by": [
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": true,
+   "ambiguity": null
+  },
+  {
+   "challenge": "restaurant",
+   "id": "NAV-NAVIGATE-05P",
+   "area": "NAV",
+   "skill": "Navigate",
+   "modifiers": [
+    "bar",
+    "not_reaching"
+   ],
+   "description": "Not reaching the bar (barman has to move from behind the bar to interact)",
+   "level": "C",
+   "type": "penalty_behavior",
+   "points": -60,
+   "count": 2,
+   "total": -120,
+   "section": "Penalties",
+   "shared": false,
+   "used_by": [
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "restaurant",
+   "id": "GEN-HUMANASSIST-12P",
+   "area": "GEN",
+   "skill": null,
+   "modifiers": [
+    "directional_confirmation"
+   ],
+   "description": "Human Assistance: Asking for directional confirmation",
+   "level": "-",
+   "type": "penalty_behavior",
+   "points": -30,
+   "count": 2,
+   "total": -60,
+   "section": "Penalties",
+   "shared": false,
+   "used_by": [
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "restaurant",
+   "id": "GEN-HUMANASSIST-13P",
+   "area": "GEN",
+   "skill": null,
+   "modifiers": [
+    "told_pointed_location"
+   ],
+   "description": "Human Assistance: Being told/pointed where a table/Kitchen-bar is located",
+   "level": "-",
+   "type": "penalty_behavior",
+   "points": -40,
+   "count": 2,
+   "total": -80,
+   "section": "Penalties",
+   "shared": false,
+   "used_by": [
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "restaurant",
+   "id": "SPECIAL-01",
+   "area": "SPECIAL",
+   "skill": null,
+   "modifiers": [],
+   "description": "Not attending (see sec. 3.8.1)",
+   "level": "-",
+   "type": "administrative",
+   "points": -500,
+   "count": 1,
+   "total": -500,
+   "section": "Special Penalties & Bonuses",
+   "shared": true,
+   "used_by": [
+    "doing_laundry",
+    "gpsr",
+    "hri",
+    "pick_and_place",
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "restaurant",
+   "id": "SPECIAL-02",
+   "area": "SPECIAL",
+   "skill": null,
+   "modifiers": [],
+   "description": "Using alternative start signal (see sec. 3.6.8)",
+   "level": "-",
+   "type": "administrative",
+   "points": -100,
+   "count": 1,
+   "total": -100,
+   "section": "Special Penalties & Bonuses",
+   "shared": true,
+   "used_by": [
+    "doing_laundry",
+    "gpsr",
+    "pick_and_place",
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "restaurant",
+   "id": "SPECIAL-03",
+   "area": "SPECIAL",
+   "skill": null,
+   "modifiers": [],
+   "description": "Outstanding performance (see sec. 3.8.3)",
+   "level": "-",
+   "type": "administrative",
+   "points": 236,
+   "count": 1,
+   "total": 236,
+   "section": "Special Penalties & Bonuses",
+   "shared": true,
+   "used_by": [
+    "doing_laundry",
+    "gpsr",
+    "hri",
+    "pick_and_place",
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  }
+ ],
+ "drift": [
+  {
+   "family": "MAN/Appliance",
+   "variants": [
+    {
+     "id": "MAN-APPLIANCE-01",
+     "points": 100,
+     "used_by": [
+      "pick_and_place"
+     ],
+     "modifiers": [
+      "dishwasher_rack",
+      "pull_push"
+     ]
+    },
+    {
+     "id": "MAN-APPLIANCE-02",
+     "points": 200,
+     "used_by": [
+      "pick_and_place"
+     ],
+     "modifiers": [
+      "dishwasher_door",
+      "no_assistance",
+      "open_close"
+     ]
+    },
+    {
+     "id": "MAN-APPLIANCE-03",
+     "points": 300,
+     "used_by": [
+      "doing_laundry"
+     ],
+     "modifiers": [
+      "open",
+      "washing_machine_door"
+     ]
+    }
+   ]
+  },
+  {
+   "family": "MAN/Open",
+   "variants": [
+    {
+     "id": "MAN-OPEN-01",
+     "points": 200,
+     "used_by": [
+      "hri"
+     ],
+     "modifiers": [
+      "entrance_door"
+     ]
+    },
+    {
+     "id": "MAN-OPEN-02",
+     "points": 400,
+     "used_by": [
+      "pick_and_place"
+     ],
+     "modifiers": [
+      "milk_container",
+      "no_assistance"
+     ]
+    }
+   ]
+  },
+  {
+   "family": "MAN/Pick",
+   "variants": [
+    {
+     "id": "MAN-PICK-01",
+     "points": 50,
+     "used_by": [
+      "pick_and_place"
+     ],
+     "modifiers": [
+      "known",
+      "transport"
+     ]
+    },
+    {
+     "id": "MAN-PICK-03",
+     "points": 100,
+     "used_by": [
+      "doing_laundry"
+     ],
+     "modifiers": [
+      "basket",
+      "clothing"
+     ]
+    },
+    {
+     "id": "MAN-PICK-05",
+     "points": 100,
+     "used_by": [
+      "restaurant"
+     ],
+     "modifiers": [
+      "kitchen_bar",
+      "order_item"
+     ]
+    },
+    {
+     "id": "MAN-PICK-04",
+     "points": 300,
+     "used_by": [
+      "doing_laundry"
+     ],
+     "modifiers": [
+      "clothing",
+      "washing_machine"
+     ]
+    }
+   ]
+  },
+  {
+   "family": "MAN/Place",
+   "variants": [
+    {
+     "id": "MAN-PLACE-02",
+     "points": 40,
+     "used_by": [
+      "pick_and_place"
+     ],
+     "modifiers": [
+      "designated_location",
+      "known"
+     ]
+    },
+    {
+     "id": "MAN-PLACE-01",
+     "points": 50,
+     "used_by": [
+      "hri"
+     ],
+     "modifiers": [
+      "bag",
+      "correct_area"
+     ]
+    },
+    {
+     "id": "MAN-PLACE-03",
+     "points": 100,
+     "used_by": [
+      "restaurant"
+     ],
+     "modifiers": [
+      "customer_table",
+      "order_item"
+     ]
+    }
+   ]
+  },
+  {
+   "family": "NAV/Navigate",
+   "variants": [
+    {
+     "id": "NAV-NAVIGATE-01",
+     "points": 15,
+     "used_by": [
+      "pick_and_place"
+     ],
+     "modifiers": [
+      "table"
+     ]
+    },
+    {
+     "id": "NAV-NAVIGATE-02",
+     "points": 15,
+     "used_by": [
+      "doing_laundry"
+     ],
+     "modifiers": [
+      "laundry_area"
+     ]
+    },
+    {
+     "id": "NAV-NAVIGATE-03",
+     "points": 80,
+     "used_by": [
+      "restaurant"
+     ],
+     "modifiers": [
+      "customer_table"
+     ]
+    },
+    {
+     "id": "NAV-NAVIGATE-04",
+     "points": 80,
+     "used_by": [
+      "restaurant"
+     ],
+     "modifiers": [
+      "order",
+      "return_to_table"
+     ]
+    }
+   ]
+  },
+  {
+   "family": "NLU/UnderstandCommand",
+   "variants": [
+    {
+     "id": "NLU-UNDERSTANDCOMMAND-01",
+     "points": 80,
+     "used_by": [
+      "gpsr"
+     ],
+     "modifiers": [
+      "spoken"
+     ]
+    },
+    {
+     "id": "NLU-UNDERSTANDCOMMAND-05",
+     "points": 160,
+     "used_by": [
+      "restaurant"
+     ],
+     "modifiers": [
+      "confirm",
+      "order"
+     ]
+    }
+   ]
+  }
+ ],
+ "shared": [
+  {
+   "id": "SPECIAL-01",
+   "description": "Not attending (see sec. 3.8.1)",
+   "used_by": [
+    "doing_laundry",
+    "gpsr",
+    "hri",
+    "pick_and_place",
+    "restaurant"
+   ]
+  },
+  {
+   "id": "SPECIAL-03",
+   "description": "Outstanding performance (see sec. 3.8.3)",
+   "used_by": [
+    "doing_laundry",
+    "gpsr",
+    "hri",
+    "pick_and_place",
+    "restaurant"
+   ]
+  },
+  {
+   "id": "SPECIAL-02",
+   "description": "Using alternative start signal (see sec. 3.6.8)",
+   "used_by": [
+    "doing_laundry",
+    "gpsr",
+    "pick_and_place",
+    "restaurant"
+   ]
+  },
+  {
+   "id": "GEN-HUMANASSIST-14P",
+   "description": "Human assistance: environment changes (per item)",
+   "used_by": [
+    "doing_laundry",
+    "pick_and_place"
+   ]
+  },
+  {
+   "id": "MAN-PICK-02B",
+   "description": "First Pick Bonus",
+   "used_by": [
+    "pick_and_place",
+    "restaurant"
+   ]
+  }
+ ]
+}

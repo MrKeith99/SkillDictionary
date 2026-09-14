@@ -1,0 +1,89 @@
+area: PLN
+schema_version: 0.2.0
+rulebook_version: '2026.2'
+note: Canonical cross-challenge definitions. Each entry is defined and priced exactly once here; challenges reference it by id.
+skills:
+- id: PLN-DEMONSTRATEPLAN-01
+  area: PLN
+  skill: DemonstratePlan
+  variant_number: '01'
+  modifiers: []
+  description: Demonstrate a plan has been generated
+  level: C
+  points: 100
+  type: achievement
+  used_by:
+  - gpsr
+  legacy_ids:
+  - PLN-PLAN-01
+- id: PLN-INTERLEAVETASKS-01B
+  area: PLN
+  skill: InterleaveTasks
+  variant_number: '01'
+  modifiers: []
+  description: Interleaved Task Bonus
+  level: X
+  points: 200
+  type: bonus
+  used_by:
+  - gpsr
+  legacy_ids:
+  - PLN-INTERLEAVE-01
+- id: PLN-SOLVECOMMAND-01
+  area: PLN
+  skill: SolveCommand
+  variant_number: '01'
+  modifiers:
+  - command_1
+  description: Solving the first command
+  level: X
+  points: 250
+  type: achievement
+  used_by:
+  - gpsr
+  legacy_ids:
+  - PLN-SOLVE-01
+- id: PLN-SOLVECOMMAND-02
+  area: PLN
+  skill: SolveCommand
+  variant_number: '02'
+  modifiers:
+  - command_2
+  description: Solving the second command
+  level: X
+  points: 250
+  type: achievement
+  used_by:
+  - gpsr
+  legacy_ids:
+  - PLN-SOLVE-02
+- id: PLN-SOLVECOMMAND-03
+  area: PLN
+  skill: SolveCommand
+  variant_number: '03'
+  modifiers:
+  - command_3
+  description: Solving the third command
+  level: X
+  points: 250
+  type: achievement
+  used_by:
+  - gpsr
+  legacy_ids:
+  - PLN-SOLVE-03
+- id: PLN-SOLVECOMMAND-04P
+  area: PLN
+  skill: SolveCommand
+  variant_number: '04'
+  modifiers:
+  - partial
+  description: Solving part of a command (percentage penalty)
+  level: X
+  points: null
+  type: penalty_behavior
+  penalty_type: percentage
+  basis: similar_scores_in_other_tests
+  used_by:
+  - gpsr
+  legacy_ids:
+  - PLN-SOLVE-PARTIAL

@@ -1,0 +1,1908 @@
+{
+  "schema_version": "0.2.0",
+  "rulebook_version": "2026.2",
+  "skills": [
+    {
+      "id": "GEN-ALTERNATIVEHRI-01P",
+      "area": "GEN",
+      "skill": "AlternativeHRI",
+      "variant_number": "01",
+      "modifiers": [],
+      "description": "Alternative HRI",
+      "level": "C",
+      "points": -20,
+      "type": "penalty_behavior",
+      "used_by": [
+        "hri"
+      ],
+      "legacy_ids": [
+        "GEN-ALTHRI-01"
+      ]
+    },
+    {
+      "id": "GEN-ALTERNATIVEHRI-02P",
+      "area": "GEN",
+      "skill": "AlternativeHRI",
+      "variant_number": "02",
+      "modifiers": [
+        "order"
+      ],
+      "description": "Alternative HRI",
+      "level": "C",
+      "points": -80,
+      "type": "penalty_behavior",
+      "used_by": [
+        "restaurant"
+      ],
+      "legacy_ids": [
+        "GEN-ALTHRI-02"
+      ]
+    },
+    {
+      "id": "GEN-BREAKFAST-01P",
+      "area": "GEN",
+      "skill": null,
+      "variant_number": "01P",
+      "modifiers": [
+        "typical_setting"
+      ],
+      "description": "Breakfast not served in a typical meal setting",
+      "level": "-",
+      "points": -50,
+      "type": "penalty_behavior",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "GEN-BREAKFAST-01P"
+      ]
+    },
+    {
+      "id": "GEN-HUMANASSIST-01P",
+      "area": "GEN",
+      "skill": null,
+      "variant_number": "01",
+      "modifiers": [
+        "object_repositioned"
+      ],
+      "description": "Human assistance: object repositioned by a person",
+      "level": "-",
+      "points": -30,
+      "type": "penalty_behavior",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "GEN-HUMANASSIST-01"
+      ]
+    },
+    {
+      "id": "GEN-HUMANASSIST-02P",
+      "area": "GEN",
+      "skill": null,
+      "variant_number": "02",
+      "modifiers": [
+        "handover"
+      ],
+      "description": "Human assistance: handover",
+      "level": "-",
+      "points": -100,
+      "type": "penalty_behavior",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "GEN-HUMANASSIST-02"
+      ]
+    },
+    {
+      "id": "GEN-HUMANASSIST-04P",
+      "area": "GEN",
+      "skill": null,
+      "variant_number": "04",
+      "modifiers": [
+        "opening_milk_container"
+      ],
+      "description": "Human assistance: opening milk container",
+      "level": "-",
+      "points": 0,
+      "type": "penalty_behavior",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "GEN-HUMANASSIST-04"
+      ]
+    },
+    {
+      "id": "GEN-HUMANASSIST-05P",
+      "area": "GEN",
+      "skill": null,
+      "variant_number": "05",
+      "modifiers": [
+        "dishwasher_door_or_rack"
+      ],
+      "description": "Human assistance: moving dishwasher door or rack",
+      "level": "-",
+      "points": 0,
+      "type": "penalty_behavior",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "GEN-HUMANASSIST-05"
+      ]
+    },
+    {
+      "id": "GEN-HUMANASSIST-06P",
+      "area": "GEN",
+      "skill": null,
+      "variant_number": "06",
+      "modifiers": [
+        "flatten_arrange_before_folding"
+      ],
+      "description": "Human assistance: Flattening/Arranging clothing before folding",
+      "level": "-",
+      "points": -200,
+      "type": "penalty_behavior",
+      "used_by": [
+        "doing_laundry"
+      ],
+      "legacy_ids": [
+        "GEN-HUMANASSIST-06"
+      ]
+    },
+    {
+      "id": "GEN-HUMANASSIST-07P",
+      "area": "GEN",
+      "skill": null,
+      "variant_number": "07",
+      "modifiers": [
+        "folding_assistance_pct"
+      ],
+      "description": "Human assistance during folding (percentage penalty per amount of help)",
+      "level": "-",
+      "points": -800,
+      "type": "penalty_behavior",
+      "penalty_type": "percentage",
+      "basis": "MAN-FOLD-01 points",
+      "used_by": [
+        "doing_laundry"
+      ],
+      "legacy_ids": [
+        "GEN-HUMANASSIST-07"
+      ]
+    },
+    {
+      "id": "GEN-HUMANASSIST-08P",
+      "area": "GEN",
+      "skill": null,
+      "variant_number": "08",
+      "modifiers": [
+        "additional",
+        "flatten_arrange_before_folding"
+      ],
+      "description": "Human assistance: Flattening/Arranging before folding (additional)",
+      "level": "-",
+      "points": -100,
+      "type": "penalty_behavior",
+      "used_by": [
+        "doing_laundry"
+      ],
+      "legacy_ids": [
+        "GEN-HUMANASSIST-08"
+      ]
+    },
+    {
+      "id": "GEN-HUMANASSIST-09P",
+      "area": "GEN",
+      "skill": null,
+      "variant_number": "09",
+      "modifiers": [
+        "additional",
+        "folding_assistance_pct"
+      ],
+      "description": "Human assistance during folding, additional clothes (percentage penalty)",
+      "level": "-",
+      "points": -400,
+      "type": "penalty_behavior",
+      "penalty_type": "percentage",
+      "basis": "MAN-FOLD-02 points",
+      "used_by": [
+        "doing_laundry"
+      ],
+      "legacy_ids": [
+        "GEN-HUMANASSIST-09"
+      ]
+    },
+    {
+      "id": "GEN-HUMANASSIST-10P",
+      "area": "GEN",
+      "skill": null,
+      "variant_number": "10",
+      "modifiers": [
+        "barman_handover"
+      ],
+      "description": "Human assistance: Asking the Barman to handover object to the robot",
+      "level": "-",
+      "points": -100,
+      "type": "penalty_behavior",
+      "used_by": [
+        "restaurant"
+      ],
+      "legacy_ids": [
+        "GEN-HUMANASSIST-10"
+      ]
+    },
+    {
+      "id": "GEN-HUMANASSIST-11P",
+      "area": "GEN",
+      "skill": null,
+      "variant_number": "11",
+      "modifiers": [
+        "guest_takes_from_tray_or_hand"
+      ],
+      "description": "Human assistance: Guest needing to take the object from a tray or the robot's hand",
+      "level": "-",
+      "points": -100,
+      "type": "penalty_behavior",
+      "used_by": [
+        "restaurant"
+      ],
+      "legacy_ids": [
+        "GEN-HUMANASSIST-11"
+      ]
+    },
+    {
+      "id": "GEN-HUMANASSIST-12P",
+      "area": "GEN",
+      "skill": null,
+      "variant_number": "12",
+      "modifiers": [
+        "directional_confirmation"
+      ],
+      "description": "Human Assistance: Asking for directional confirmation",
+      "level": "-",
+      "points": -30,
+      "type": "penalty_behavior",
+      "used_by": [
+        "restaurant"
+      ],
+      "legacy_ids": [
+        "GEN-HUMANASSIST-12"
+      ]
+    },
+    {
+      "id": "GEN-HUMANASSIST-13P",
+      "area": "GEN",
+      "skill": null,
+      "variant_number": "13",
+      "modifiers": [
+        "told_pointed_location"
+      ],
+      "description": "Human Assistance: Being told/pointed where a table/Kitchen-bar is located",
+      "level": "-",
+      "points": -40,
+      "type": "penalty_behavior",
+      "used_by": [
+        "restaurant"
+      ],
+      "legacy_ids": [
+        "GEN-HUMANASSIST-13"
+      ]
+    },
+    {
+      "id": "GEN-HUMANASSIST-14P",
+      "area": "GEN",
+      "skill": null,
+      "variant_number": "14",
+      "modifiers": [
+        "environment_change"
+      ],
+      "description": "Human assistance: environment changes (per item)",
+      "level": "-",
+      "points": -40,
+      "type": "penalty_behavior",
+      "used_by": [
+        "doing_laundry",
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "GEN-HUMANASSIST-03",
+        "GEN-HUMANASSIST-03B"
+      ]
+    },
+    {
+      "id": "HRI-ATTEND-01P",
+      "area": "HRI",
+      "skill": "Attend",
+      "variant_number": "01P",
+      "modifiers": [
+        "not_acknowledging"
+      ],
+      "description": "Not acknowledging people",
+      "level": "C",
+      "points": -200,
+      "type": "penalty_behavior",
+      "used_by": [
+        "hri"
+      ],
+      "legacy_ids": [
+        "HRI-ATTEND-01P"
+      ]
+    },
+    {
+      "id": "HRI-COMMUNICATEORDER-01",
+      "area": "HRI",
+      "skill": "CommunicateOrder",
+      "variant_number": "01",
+      "modifiers": [
+        "barman"
+      ],
+      "description": "Communicate the order to the barman",
+      "level": "C",
+      "points": 80,
+      "type": "achievement",
+      "used_by": [
+        "restaurant"
+      ],
+      "legacy_ids": [
+        "HRI-COMMUNICATE-01"
+      ]
+    },
+    {
+      "id": "HRI-EYECONTACT-01P",
+      "area": "HRI",
+      "skill": "EyeContact",
+      "variant_number": "01P",
+      "modifiers": [
+        "taking_order"
+      ],
+      "description": "Not making eye-contact when taking the order",
+      "level": "C",
+      "points": -60,
+      "type": "penalty_behavior",
+      "used_by": [
+        "restaurant"
+      ],
+      "legacy_ids": [
+        "HRI-EYECONTACT-01P"
+      ]
+    },
+    {
+      "id": "HRI-LOOKAT-01",
+      "area": "HRI",
+      "skill": "LookAt",
+      "variant_number": "01",
+      "modifiers": [
+        "receiving_guest",
+        "talking_person"
+      ],
+      "description": "Look at the person talking, when receiving a guest",
+      "level": "C",
+      "points": 50,
+      "type": "achievement",
+      "used_by": [
+        "hri"
+      ],
+      "legacy_ids": [
+        "HRI-LOOKAT-01"
+      ]
+    },
+    {
+      "id": "HRI-LOOKAT-02",
+      "area": "HRI",
+      "skill": "LookAt",
+      "variant_number": "02",
+      "modifiers": [
+        "correct_guest",
+        "introduction"
+      ],
+      "description": "While introducing guests, look to the correct guest while talking about the other guest",
+      "level": "C",
+      "points": 50,
+      "type": "achievement",
+      "used_by": [
+        "hri"
+      ],
+      "legacy_ids": [
+        "HRI-LOOKAT-02"
+      ]
+    },
+    {
+      "id": "HRI-OFFERSEAT-01",
+      "area": "HRI",
+      "skill": "OfferSeat",
+      "variant_number": "01",
+      "modifiers": [
+        "new_guest"
+      ],
+      "description": "Offer a free seat to the new guest",
+      "level": "C",
+      "points": 100,
+      "type": "achievement",
+      "used_by": [
+        "hri"
+      ],
+      "legacy_ids": [
+        "HRI-OFFERSEAT-01"
+      ]
+    },
+    {
+      "id": "HRI-RECEIVEHANDOVER-01",
+      "area": "HRI",
+      "skill": "ReceiveHandover",
+      "variant_number": "01",
+      "modifiers": [
+        "bag"
+      ],
+      "description": "Receive the bag from the guest via handover",
+      "level": "C",
+      "points": 50,
+      "type": "achievement",
+      "used_by": [
+        "hri"
+      ],
+      "legacy_ids": [
+        "HRI-RECEIVEHANDOVER-01"
+      ]
+    },
+    {
+      "id": "HRI-RECEIVEHANDOVER-01P1",
+      "area": "HRI",
+      "skill": "ReceiveHandover",
+      "variant_number": "01P1",
+      "modifiers": [
+        "assistance_requested"
+      ],
+      "description": "Requesting handover assistance from the guest",
+      "level": "C",
+      "points": -25,
+      "type": "penalty_behavior",
+      "used_by": [
+        "hri"
+      ],
+      "legacy_ids": [
+        "HRI-RECEIVEHANDOVER-01P1"
+      ]
+    },
+    {
+      "id": "HRI-RECEIVEHANDOVER-01P2",
+      "area": "HRI",
+      "skill": "ReceiveHandover",
+      "variant_number": "01P2",
+      "modifiers": [
+        "bag_on_structure"
+      ],
+      "description": "Bag placed on the robot structure instead of being handed over",
+      "level": "C",
+      "points": -50,
+      "type": "penalty_behavior",
+      "used_by": [
+        "hri"
+      ],
+      "legacy_ids": [
+        "HRI-RECEIVEHANDOVER-01P2"
+      ]
+    },
+    {
+      "id": "HRI-STATESTOREDINFO-01",
+      "area": "HRI",
+      "skill": "StateStoredInfo",
+      "variant_number": "01",
+      "modifiers": [
+        "favorite_drink",
+        "name"
+      ],
+      "description": "Say name and favorite drink of each guest (during introduction)",
+      "level": "C",
+      "points": 30,
+      "type": "achievement",
+      "used_by": [
+        "hri"
+      ],
+      "legacy_ids": [
+        "HRI-STATEINFO-01"
+      ]
+    },
+    {
+      "id": "HRI-STATESTOREDINFO-02P",
+      "area": "HRI",
+      "skill": "StateStoredInfo",
+      "variant_number": "02",
+      "modifiers": [
+        "wrong_info"
+      ],
+      "description": "Wrong guest information was memorized",
+      "level": "C",
+      "points": -40,
+      "type": "penalty_behavior",
+      "used_by": [
+        "hri"
+      ],
+      "legacy_ids": [
+        "HRI-STATEINFO-01P"
+      ]
+    },
+    {
+      "id": "MAN-APPLIANCE-01",
+      "area": "MAN",
+      "skill": "Appliance",
+      "variant_number": "01",
+      "modifiers": [
+        "dishwasher_rack",
+        "pull_push"
+      ],
+      "description": "Pull or push the dishwasher rack",
+      "level": "X",
+      "points": 100,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "MAN-APPLIANCE-01"
+      ]
+    },
+    {
+      "id": "MAN-APPLIANCE-02",
+      "area": "MAN",
+      "skill": "Appliance",
+      "variant_number": "02",
+      "modifiers": [
+        "dishwasher_door",
+        "no_assistance",
+        "open_close"
+      ],
+      "description": "Open or close the dishwasher door without assistance",
+      "level": "X",
+      "points": 200,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "MAN-APPLIANCE-02"
+      ]
+    },
+    {
+      "id": "MAN-APPLIANCE-03",
+      "area": "MAN",
+      "skill": "Appliance",
+      "variant_number": "03",
+      "modifiers": [
+        "open",
+        "washing_machine_door"
+      ],
+      "description": "Opening the washing machine door",
+      "level": "X",
+      "points": 300,
+      "type": "achievement",
+      "used_by": [
+        "doing_laundry"
+      ],
+      "legacy_ids": [
+        "MAN-APPLIANCE-03"
+      ]
+    },
+    {
+      "id": "MAN-FOLD-01",
+      "area": "MAN",
+      "skill": "Fold",
+      "variant_number": "01",
+      "modifiers": [
+        "loose",
+        "single"
+      ],
+      "description": "Folding a piece of clothing",
+      "level": "X",
+      "points": 800,
+      "type": "achievement",
+      "used_by": [
+        "doing_laundry"
+      ],
+      "legacy_ids": [
+        "MAN-FOLD-01"
+      ]
+    },
+    {
+      "id": "MAN-FOLD-01P1",
+      "area": "MAN",
+      "skill": "Fold",
+      "variant_number": "01P1",
+      "modifiers": [
+        "quality_penalty"
+      ],
+      "description": "Quality penalties",
+      "level": "X",
+      "points": -800,
+      "type": "penalty_behavior",
+      "used_by": [
+        "doing_laundry"
+      ],
+      "legacy_ids": [
+        "MAN-FOLD-01P1"
+      ]
+    },
+    {
+      "id": "MAN-FOLD-02",
+      "area": "MAN",
+      "skill": "Fold",
+      "variant_number": "02",
+      "modifiers": [
+        "additional_item"
+      ],
+      "description": "Folding additional clothes (per item)",
+      "level": "X",
+      "points": 400,
+      "type": "achievement",
+      "used_by": [
+        "doing_laundry"
+      ],
+      "legacy_ids": [
+        "MAN-FOLD-02"
+      ]
+    },
+    {
+      "id": "MAN-FOLD-02P1",
+      "area": "MAN",
+      "skill": "Fold",
+      "variant_number": "02P1",
+      "modifiers": [
+        "additional",
+        "quality_penalty"
+      ],
+      "description": "Quality penalties (additional clothes)",
+      "level": "X",
+      "points": -400,
+      "type": "penalty_behavior",
+      "used_by": [
+        "doing_laundry"
+      ],
+      "legacy_ids": [
+        "MAN-FOLD-02P1"
+      ]
+    },
+    {
+      "id": "MAN-INSERT-01",
+      "area": "MAN",
+      "skill": "Insert",
+      "variant_number": "01",
+      "modifiers": [
+        "dishwasher_tab_slot"
+      ],
+      "description": "In the dishwasher tab slot inside the dishwasher",
+      "level": "X",
+      "points": 160,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "MAN-INSERT-01"
+      ]
+    },
+    {
+      "id": "MAN-OPEN-01",
+      "area": "MAN",
+      "skill": "Open",
+      "variant_number": "01",
+      "modifiers": [
+        "entrance_door"
+      ],
+      "description": "Open the entrance door for a guest",
+      "level": "X",
+      "points": 200,
+      "type": "achievement",
+      "used_by": [
+        "hri"
+      ],
+      "legacy_ids": [
+        "MAN-OPEN-01"
+      ]
+    },
+    {
+      "id": "MAN-OPEN-02",
+      "area": "MAN",
+      "skill": "Open",
+      "variant_number": "02",
+      "modifiers": [
+        "milk_container",
+        "no_assistance"
+      ],
+      "description": "Open milk container without assistance",
+      "level": "X",
+      "points": 400,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "MAN-OPEN-02"
+      ]
+    },
+    {
+      "id": "MAN-PICK-01",
+      "area": "MAN",
+      "skill": "Pick",
+      "variant_number": "01",
+      "modifiers": [
+        "known",
+        "transport"
+      ],
+      "description": "Picking up an object for transportation",
+      "level": "C",
+      "points": 50,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "MAN-PICK-01"
+      ]
+    },
+    {
+      "id": "MAN-PICK-01B2",
+      "area": "MAN",
+      "skill": "Pick",
+      "variant_number": "01B2",
+      "modifiers": [
+        "from_floor"
+      ],
+      "description": "From the floor",
+      "level": "C",
+      "points": 30,
+      "type": "bonus",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "MAN-PICK-01B2"
+      ]
+    },
+    {
+      "id": "MAN-PICK-01B3",
+      "area": "MAN",
+      "skill": "Pick",
+      "variant_number": "01B3",
+      "modifiers": [
+        "cutlery"
+      ],
+      "description": "Cutlery",
+      "level": "C",
+      "points": 50,
+      "type": "bonus",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "MAN-PICK-01B3"
+      ]
+    },
+    {
+      "id": "MAN-PICK-01B4",
+      "area": "MAN",
+      "skill": "Pick",
+      "variant_number": "01B4",
+      "modifiers": [
+        "plate"
+      ],
+      "description": "Plate",
+      "level": "C",
+      "points": 100,
+      "type": "bonus",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "MAN-PICK-01B4"
+      ]
+    },
+    {
+      "id": "MAN-PICK-01B5",
+      "area": "MAN",
+      "skill": "Pick",
+      "variant_number": "01B5",
+      "modifiers": [
+        "dishwasher_tab"
+      ],
+      "description": "Dishwasher tab",
+      "level": "C",
+      "points": 100,
+      "type": "bonus",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "MAN-PICK-01B5"
+      ]
+    },
+    {
+      "id": "MAN-PICK-01P1",
+      "area": "MAN",
+      "skill": "Pick",
+      "variant_number": "01P1",
+      "modifiers": [
+        "dropped_on_floor"
+      ],
+      "description": "Objects dropped on the floor",
+      "level": "C",
+      "points": -40,
+      "type": "penalty_behavior",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "MAN-PICK-01P1"
+      ]
+    },
+    {
+      "id": "MAN-PICK-02B",
+      "area": "MAN",
+      "skill": "Pick",
+      "variant_number": "02",
+      "modifiers": [
+        "first_pick_bonus"
+      ],
+      "description": "First Pick Bonus",
+      "level": "C",
+      "points": 100,
+      "type": "bonus",
+      "used_by": [
+        "pick_and_place",
+        "restaurant"
+      ],
+      "legacy_ids": [
+        "MAN-PICK-01B1",
+        "MAN-PICK-05B"
+      ]
+    },
+    {
+      "id": "MAN-PICK-02P",
+      "area": "MAN",
+      "skill": "Pick",
+      "variant_number": "02P",
+      "modifiers": [
+        "auxiliary_table",
+        "common_object"
+      ],
+      "description": "Common object from auxiliary table (picking)",
+      "level": "E",
+      "points": -20,
+      "type": "penalty_behavior",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "MAN-PICK-02P"
+      ]
+    },
+    {
+      "id": "MAN-PICK-03",
+      "area": "MAN",
+      "skill": "Pick",
+      "variant_number": "03",
+      "modifiers": [
+        "basket",
+        "clothing"
+      ],
+      "description": "Picking up a piece of clothing from the basket",
+      "level": "C",
+      "points": 100,
+      "type": "achievement",
+      "used_by": [
+        "doing_laundry"
+      ],
+      "legacy_ids": [
+        "MAN-PICK-03"
+      ]
+    },
+    {
+      "id": "MAN-PICK-03P",
+      "area": "MAN",
+      "skill": "Pick",
+      "variant_number": "03P",
+      "modifiers": [
+        "multiple_at_once"
+      ],
+      "description": "Picking up multiple at once",
+      "level": "C",
+      "points": -100,
+      "type": "penalty_behavior",
+      "used_by": [
+        "doing_laundry"
+      ],
+      "legacy_ids": [
+        "MAN-PICK-03P"
+      ]
+    },
+    {
+      "id": "MAN-PICK-04",
+      "area": "MAN",
+      "skill": "Pick",
+      "variant_number": "04",
+      "modifiers": [
+        "clothing",
+        "washing_machine"
+      ],
+      "description": "Removing one or more pieces of clothing from the washing machine",
+      "level": "X",
+      "points": 300,
+      "type": "achievement",
+      "used_by": [
+        "doing_laundry"
+      ],
+      "legacy_ids": [
+        "MAN-PICK-04"
+      ]
+    },
+    {
+      "id": "MAN-PICK-04P",
+      "area": "MAN",
+      "skill": "Pick",
+      "variant_number": "04P",
+      "modifiers": [
+        "touches_floor"
+      ],
+      "description": "The clothing touches the floor",
+      "level": "X",
+      "points": -200,
+      "type": "penalty_behavior",
+      "used_by": [
+        "doing_laundry"
+      ],
+      "legacy_ids": [
+        "MAN-PICK-04P"
+      ]
+    },
+    {
+      "id": "MAN-PICK-05",
+      "area": "MAN",
+      "skill": "Pick",
+      "variant_number": "05",
+      "modifiers": [
+        "kitchen_bar",
+        "order_item"
+      ],
+      "description": "Picking up the requested items from the Kitchen-bar",
+      "level": "C",
+      "points": 100,
+      "type": "achievement",
+      "used_by": [
+        "restaurant"
+      ],
+      "legacy_ids": [
+        "MAN-PICK-05"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-01",
+      "area": "MAN",
+      "skill": "Place",
+      "variant_number": "01",
+      "modifiers": [
+        "bag",
+        "correct_area"
+      ],
+      "description": "Drop the bag in the correct area",
+      "level": "C",
+      "points": 50,
+      "type": "achievement",
+      "used_by": [
+        "hri"
+      ],
+      "legacy_ids": [
+        "MAN-PLACE-01"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-02",
+      "area": "MAN",
+      "skill": "Place",
+      "variant_number": "02",
+      "modifiers": [
+        "designated_location",
+        "known"
+      ],
+      "description": "Place an object in its designated location",
+      "level": "C",
+      "points": 40,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "MAN-PLACE-02"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-02B1",
+      "area": "MAN",
+      "skill": "Place",
+      "variant_number": "02B1",
+      "modifiers": [
+        "correct",
+        "dishwasher"
+      ],
+      "description": "Correctly in the dishwasher",
+      "level": "X",
+      "points": 70,
+      "type": "bonus",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "MAN-PLACE-02B1"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-02B2",
+      "area": "MAN",
+      "skill": "Place",
+      "variant_number": "02B2",
+      "modifiers": [
+        "cabinet",
+        "similar_objects"
+      ],
+      "description": "Next to similar objects in the cabinet",
+      "level": "C",
+      "points": 20,
+      "type": "bonus",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "MAN-PLACE-02B2"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-02P1",
+      "area": "MAN",
+      "skill": "Place",
+      "variant_number": "02P1",
+      "modifiers": [
+        "breakfast_area",
+        "not_cleaned"
+      ],
+      "description": "Area around breakfast items is not cleaned",
+      "level": "C",
+      "points": -30,
+      "type": "penalty_behavior",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "MAN-PLACE-02P1"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-02P2",
+      "area": "MAN",
+      "skill": "Place",
+      "variant_number": "02P2",
+      "modifiers": [
+        "auxiliary_table",
+        "common_object"
+      ],
+      "description": "Common object from auxiliary table (placing)",
+      "level": "E",
+      "points": -20,
+      "type": "penalty_behavior",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "MAN-PLACE-02P2"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-02P3",
+      "area": "MAN",
+      "skill": "Place",
+      "variant_number": "02P3",
+      "modifiers": [
+        "thrown_or_dropped"
+      ],
+      "description": "Objects thrown or dropped while placing",
+      "level": "C",
+      "points": -40,
+      "type": "penalty_behavior",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "MAN-PLACE-02P3"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-03",
+      "area": "MAN",
+      "skill": "Place",
+      "variant_number": "03",
+      "modifiers": [
+        "customer_table",
+        "order_item"
+      ],
+      "description": "Serve the order to the customer",
+      "level": "C",
+      "points": 100,
+      "type": "achievement",
+      "used_by": [
+        "restaurant"
+      ],
+      "legacy_ids": [
+        "MAN-PLACE-03"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-03B",
+      "area": "MAN",
+      "skill": "Place",
+      "variant_number": "03B",
+      "modifiers": [
+        "first_place_bonus"
+      ],
+      "description": "First Place Bonus",
+      "level": "C",
+      "points": 100,
+      "type": "bonus",
+      "used_by": [
+        "restaurant"
+      ],
+      "legacy_ids": [
+        "MAN-PLACE-03B"
+      ]
+    },
+    {
+      "id": "MAN-POUR-01",
+      "area": "MAN",
+      "skill": "Pour",
+      "variant_number": "01",
+      "modifiers": [
+        "cereal_or_milk",
+        "no_assistance"
+      ],
+      "description": "Pour cereal or milk into the bowl without assistance",
+      "level": "X",
+      "points": 200,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "MAN-POUR-01"
+      ]
+    },
+    {
+      "id": "MAN-POUR-01P",
+      "area": "MAN",
+      "skill": "Pour",
+      "variant_number": "01P",
+      "modifiers": [
+        "spilling"
+      ],
+      "description": "Spilling cereal and milk while pouring",
+      "level": "X",
+      "points": -100,
+      "type": "penalty_behavior",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "MAN-POUR-01P"
+      ]
+    },
+    {
+      "id": "MAN-STACK-01",
+      "area": "MAN",
+      "skill": "Stack",
+      "variant_number": "01",
+      "modifiers": [
+        "folded_clothes"
+      ],
+      "description": "Stacking folded clothes neatly (per item)",
+      "level": "C",
+      "points": 100,
+      "type": "achievement",
+      "used_by": [
+        "doing_laundry"
+      ],
+      "legacy_ids": [
+        "MAN-STACK-01"
+      ]
+    },
+    {
+      "id": "MAN-TRANSPORTWITHBASKET-01",
+      "area": "MAN",
+      "skill": "TransportWithBasket",
+      "variant_number": "01",
+      "modifiers": [],
+      "description": "Using the basket for transportation",
+      "level": "X",
+      "points": 300,
+      "type": "achievement",
+      "used_by": [
+        "doing_laundry"
+      ],
+      "legacy_ids": [
+        "MAN-TRANSPORT-01"
+      ]
+    },
+    {
+      "id": "MAN-TRANSPORTWITHBASKET-02P",
+      "area": "MAN",
+      "skill": "TransportWithBasket",
+      "variant_number": "02",
+      "modifiers": [
+        "dropped_or_lost"
+      ],
+      "description": "Laundry is dropped or otherwise lost during transportation",
+      "level": "X",
+      "points": -200,
+      "type": "penalty_behavior",
+      "used_by": [
+        "doing_laundry"
+      ],
+      "legacy_ids": [
+        "MAN-TRANSPORT-01P"
+      ]
+    },
+    {
+      "id": "MAN-TRANSPORTWITHTRAY-01",
+      "area": "MAN",
+      "skill": "TransportWithTray",
+      "variant_number": "01",
+      "modifiers": [
+        "unattached"
+      ],
+      "description": "Use an unattached tray to transport",
+      "level": "X",
+      "points": 200,
+      "type": "achievement",
+      "used_by": [
+        "restaurant"
+      ],
+      "legacy_ids": [
+        "MAN-TRANSPORT-02"
+      ]
+    },
+    {
+      "id": "NAV-FOLLOW-01",
+      "area": "NAV",
+      "skill": "Follow",
+      "variant_number": "01",
+      "modifiers": [
+        "bag_drop_area",
+        "host"
+      ],
+      "description": "Following the host to the bag drop area",
+      "level": "C",
+      "points": 200,
+      "type": "achievement",
+      "used_by": [
+        "hri"
+      ],
+      "legacy_ids": [
+        "NAV-FOLLOW-01"
+      ]
+    },
+    {
+      "id": "NAV-FOLLOW-01P1",
+      "area": "NAV",
+      "skill": "Follow",
+      "variant_number": "01P1",
+      "modifiers": [
+        "dropped_bag"
+      ],
+      "description": "Drop the bag while following the host",
+      "level": "C",
+      "points": -50,
+      "type": "penalty_behavior",
+      "used_by": [
+        "hri"
+      ],
+      "legacy_ids": [
+        "NAV-FOLLOW-01P1"
+      ]
+    },
+    {
+      "id": "NAV-FOLLOW-01P2",
+      "area": "NAV",
+      "skill": "Follow",
+      "variant_number": "01P2",
+      "modifiers": [
+        "natural",
+        "rediscover_operator"
+      ],
+      "description": "Rediscovering the operator by natural interaction",
+      "level": "C",
+      "points": -50,
+      "type": "penalty_behavior",
+      "used_by": [
+        "hri"
+      ],
+      "legacy_ids": [
+        "NAV-FOLLOW-01P2"
+      ]
+    },
+    {
+      "id": "NAV-FOLLOW-01P3",
+      "area": "NAV",
+      "skill": "Follow",
+      "variant_number": "01P3",
+      "modifiers": [
+        "asking_operator_to_wait"
+      ],
+      "description": "Asking the operator to wait",
+      "level": "C",
+      "points": -50,
+      "type": "penalty_behavior",
+      "used_by": [
+        "hri"
+      ],
+      "legacy_ids": [
+        "NAV-FOLLOW-01P3"
+      ]
+    },
+    {
+      "id": "NAV-FOLLOW-01P4",
+      "area": "NAV",
+      "skill": "Follow",
+      "variant_number": "01P4",
+      "modifiers": [
+        "physical_contact"
+      ],
+      "description": "Guiding the robot with physical contact (take by the hand)",
+      "level": "C",
+      "points": -150,
+      "type": "penalty_behavior",
+      "used_by": [
+        "hri"
+      ],
+      "legacy_ids": [
+        "NAV-FOLLOW-01P4"
+      ]
+    },
+    {
+      "id": "NAV-GAZEDIRECTION-01",
+      "area": "NAV",
+      "skill": "GazeDirection",
+      "variant_number": "01",
+      "modifiers": [
+        "navigation_goal"
+      ],
+      "description": "Look in the direction of navigation or at the navigation goal",
+      "level": "E",
+      "points": 15,
+      "type": "achievement",
+      "used_by": [
+        "hri"
+      ],
+      "legacy_ids": [
+        "NAV-GAZEDIR-01"
+      ]
+    },
+    {
+      "id": "NAV-NAVIGATE-01",
+      "area": "NAV",
+      "skill": "Navigate",
+      "variant_number": "01",
+      "modifiers": [
+        "table"
+      ],
+      "description": "Navigate to the table",
+      "level": "E",
+      "points": 15,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "NAV-NAVIGATE-01"
+      ]
+    },
+    {
+      "id": "NAV-NAVIGATE-02",
+      "area": "NAV",
+      "skill": "Navigate",
+      "variant_number": "02",
+      "modifiers": [
+        "laundry_area"
+      ],
+      "description": "Navigating to the laundry area",
+      "level": "E",
+      "points": 15,
+      "type": "achievement",
+      "used_by": [
+        "doing_laundry"
+      ],
+      "legacy_ids": [
+        "NAV-NAVIGATE-02"
+      ]
+    },
+    {
+      "id": "NAV-NAVIGATE-03",
+      "area": "NAV",
+      "skill": "Navigate",
+      "variant_number": "03",
+      "modifiers": [
+        "customer_table"
+      ],
+      "description": "Reach a customer's table",
+      "level": "C",
+      "points": 80,
+      "type": "achievement",
+      "used_by": [
+        "restaurant"
+      ],
+      "legacy_ids": [
+        "NAV-NAVIGATE-03"
+      ]
+    },
+    {
+      "id": "NAV-NAVIGATE-03P",
+      "area": "NAV",
+      "skill": "Navigate",
+      "variant_number": "03P",
+      "modifiers": [
+        "guided_to_table"
+      ],
+      "description": "Human Assistance: Being guided to a table",
+      "level": "C",
+      "points": -80,
+      "type": "penalty_behavior",
+      "used_by": [
+        "restaurant"
+      ],
+      "legacy_ids": [
+        "NAV-NAVIGATE-03P"
+      ]
+    },
+    {
+      "id": "NAV-NAVIGATE-04",
+      "area": "NAV",
+      "skill": "Navigate",
+      "variant_number": "04",
+      "modifiers": [
+        "order",
+        "return_to_table"
+      ],
+      "description": "Return to the customer table with the order",
+      "level": "C",
+      "points": 80,
+      "type": "achievement",
+      "used_by": [
+        "restaurant"
+      ],
+      "legacy_ids": [
+        "NAV-NAVIGATE-04"
+      ]
+    },
+    {
+      "id": "NAV-NAVIGATE-05P",
+      "area": "NAV",
+      "skill": "Navigate",
+      "variant_number": "05P",
+      "modifiers": [
+        "bar",
+        "not_reaching"
+      ],
+      "description": "Not reaching the bar (barman has to move from behind the bar to interact)",
+      "level": "C",
+      "points": -60,
+      "type": "penalty_behavior",
+      "used_by": [
+        "restaurant"
+      ],
+      "legacy_ids": [
+        "NAV-NAVIGATE-05P"
+      ]
+    },
+    {
+      "id": "NLU-AVOIDNONESSENTIALQUESTIONS-01B",
+      "area": "NLU",
+      "skill": "AvoidNonEssentialQuestions",
+      "variant_number": "01",
+      "modifiers": [],
+      "description": "Not asking non-essential questions to confirm or correct information",
+      "level": "C",
+      "points": 15,
+      "type": "bonus",
+      "used_by": [
+        "hri"
+      ],
+      "legacy_ids": [
+        "NLU-NOQUESTION-01"
+      ]
+    },
+    {
+      "id": "NLU-UNDERSTANDCOMMAND-01",
+      "area": "NLU",
+      "skill": "UnderstandCommand",
+      "variant_number": "01",
+      "modifiers": [
+        "spoken"
+      ],
+      "description": "Understand the spoken command",
+      "level": "C",
+      "points": 80,
+      "type": "achievement",
+      "used_by": [
+        "gpsr"
+      ],
+      "legacy_ids": [
+        "NLU-UNDERSTAND-01"
+      ]
+    },
+    {
+      "id": "NLU-UNDERSTANDCOMMAND-02P",
+      "area": "NLU",
+      "skill": "UnderstandCommand",
+      "variant_number": "02",
+      "modifiers": [
+        "custom_operator"
+      ],
+      "description": "Using a custom operator",
+      "level": "C",
+      "points": -20,
+      "type": "penalty_behavior",
+      "used_by": [
+        "gpsr"
+      ],
+      "legacy_ids": [
+        "NLU-UNDERSTAND-01P1"
+      ]
+    },
+    {
+      "id": "NLU-UNDERSTANDCOMMAND-03P",
+      "area": "NLU",
+      "skill": "UnderstandCommand",
+      "variant_number": "03",
+      "modifiers": [
+        "rephrasing_requested"
+      ],
+      "description": "Request a rephrasing",
+      "level": "C",
+      "points": -30,
+      "type": "penalty_behavior",
+      "used_by": [
+        "gpsr"
+      ],
+      "legacy_ids": [
+        "NLU-UNDERSTAND-01P2"
+      ]
+    },
+    {
+      "id": "NLU-UNDERSTANDCOMMAND-04P",
+      "area": "NLU",
+      "skill": "UnderstandCommand",
+      "variant_number": "04",
+      "modifiers": [
+        "bypassed_speech_rec"
+      ],
+      "description": "Bypassing speech recognition",
+      "level": "C",
+      "points": -50,
+      "type": "penalty_behavior",
+      "used_by": [
+        "gpsr"
+      ],
+      "legacy_ids": [
+        "NLU-UNDERSTAND-01P3"
+      ]
+    },
+    {
+      "id": "NLU-UNDERSTANDCOMMAND-05",
+      "area": "NLU",
+      "skill": "UnderstandCommand",
+      "variant_number": "05",
+      "modifiers": [
+        "confirm",
+        "order"
+      ],
+      "description": "Understand and confirm the order received to the customer",
+      "level": "C",
+      "points": 160,
+      "type": "achievement",
+      "used_by": [
+        "restaurant"
+      ],
+      "legacy_ids": [
+        "NLU-UNDERSTAND-02"
+      ]
+    },
+    {
+      "id": "OBJ-DETECTEVENT-01",
+      "area": "OBJ",
+      "skill": "DetectEvent",
+      "variant_number": "01",
+      "modifiers": [
+        "audio",
+        "doorbell"
+      ],
+      "description": "Detect the doorbell sound as a signal that a guest has arrived",
+      "level": "E",
+      "points": 30,
+      "type": "achievement",
+      "used_by": [
+        "hri"
+      ],
+      "legacy_ids": [
+        "OBJ-DETECTEVENT-01"
+      ]
+    },
+    {
+      "id": "OBJ-PERCEIVE-01",
+      "area": "OBJ",
+      "skill": "Perceive",
+      "variant_number": "01",
+      "modifiers": [
+        "placement",
+        "shelf"
+      ],
+      "description": "Perceive objects on a shelf and indicate the correct placement",
+      "level": "C",
+      "points": 30,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "OBJ-PERCEIVE-01"
+      ]
+    },
+    {
+      "id": "OBJ-RECOGNIZE-01",
+      "area": "OBJ",
+      "skill": "Recognize",
+      "variant_number": "01",
+      "modifiers": [
+        "known_object"
+      ],
+      "description": "Correctly recognize an object",
+      "level": "E",
+      "points": 10,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ],
+      "legacy_ids": [
+        "OBJ-RECOGNIZE-01"
+      ]
+    },
+    {
+      "id": "PLN-DEMONSTRATEPLAN-01",
+      "area": "PLN",
+      "skill": "DemonstratePlan",
+      "variant_number": "01",
+      "modifiers": [],
+      "description": "Demonstrate a plan has been generated",
+      "level": "C",
+      "points": 100,
+      "type": "achievement",
+      "used_by": [
+        "gpsr"
+      ],
+      "legacy_ids": [
+        "PLN-PLAN-01"
+      ]
+    },
+    {
+      "id": "PLN-INTERLEAVETASKS-01B",
+      "area": "PLN",
+      "skill": "InterleaveTasks",
+      "variant_number": "01",
+      "modifiers": [],
+      "description": "Interleaved Task Bonus",
+      "level": "X",
+      "points": 200,
+      "type": "bonus",
+      "used_by": [
+        "gpsr"
+      ],
+      "legacy_ids": [
+        "PLN-INTERLEAVE-01"
+      ]
+    },
+    {
+      "id": "PLN-SOLVECOMMAND-01",
+      "area": "PLN",
+      "skill": "SolveCommand",
+      "variant_number": "01",
+      "modifiers": [
+        "command_1"
+      ],
+      "description": "Solving the first command",
+      "level": "X",
+      "points": 250,
+      "type": "achievement",
+      "used_by": [
+        "gpsr"
+      ],
+      "legacy_ids": [
+        "PLN-SOLVE-01"
+      ]
+    },
+    {
+      "id": "PLN-SOLVECOMMAND-02",
+      "area": "PLN",
+      "skill": "SolveCommand",
+      "variant_number": "02",
+      "modifiers": [
+        "command_2"
+      ],
+      "description": "Solving the second command",
+      "level": "X",
+      "points": 250,
+      "type": "achievement",
+      "used_by": [
+        "gpsr"
+      ],
+      "legacy_ids": [
+        "PLN-SOLVE-02"
+      ]
+    },
+    {
+      "id": "PLN-SOLVECOMMAND-03",
+      "area": "PLN",
+      "skill": "SolveCommand",
+      "variant_number": "03",
+      "modifiers": [
+        "command_3"
+      ],
+      "description": "Solving the third command",
+      "level": "X",
+      "points": 250,
+      "type": "achievement",
+      "used_by": [
+        "gpsr"
+      ],
+      "legacy_ids": [
+        "PLN-SOLVE-03"
+      ]
+    },
+    {
+      "id": "PLN-SOLVECOMMAND-04P",
+      "area": "PLN",
+      "skill": "SolveCommand",
+      "variant_number": "04",
+      "modifiers": [
+        "partial"
+      ],
+      "description": "Solving part of a command (percentage penalty)",
+      "level": "X",
+      "points": null,
+      "type": "penalty_behavior",
+      "penalty_type": "percentage",
+      "basis": "similar_scores_in_other_tests",
+      "used_by": [
+        "gpsr"
+      ],
+      "legacy_ids": [
+        "PLN-SOLVE-PARTIAL"
+      ]
+    },
+    {
+      "id": "PPL-DESCRIBEATTRIBUTE-01B",
+      "area": "PPL",
+      "skill": "DescribeAttribute",
+      "variant_number": "01",
+      "modifiers": [
+        "correct",
+        "visual"
+      ],
+      "description": "Tell a visual attribute of the first guest to the second guest (correct)",
+      "level": "C",
+      "points": 20,
+      "type": "bonus",
+      "used_by": [
+        "hri"
+      ],
+      "legacy_ids": [
+        "PPL-DESCRIBE-01"
+      ]
+    },
+    {
+      "id": "PPL-DESCRIBEATTRIBUTE-02P",
+      "area": "PPL",
+      "skill": "DescribeAttribute",
+      "variant_number": "02",
+      "modifiers": [
+        "incorrect",
+        "visual"
+      ],
+      "description": "Tell a visual attribute of the first guest to the second guest (incorrect)",
+      "level": "C",
+      "points": -20,
+      "type": "penalty_behavior",
+      "used_by": [
+        "hri"
+      ],
+      "legacy_ids": [
+        "PPL-DESCRIBE-01P"
+      ]
+    },
+    {
+      "id": "PPL-DETECTCALLINGORWAVING-01",
+      "area": "PPL",
+      "skill": "DetectCallingOrWaving",
+      "variant_number": "01",
+      "modifiers": [
+        "customer"
+      ],
+      "description": "Detect calling or waving customer",
+      "level": "C",
+      "points": 80,
+      "type": "achievement",
+      "used_by": [
+        "restaurant"
+      ],
+      "legacy_ids": [
+        "PPL-DETECT-01"
+      ]
+    },
+    {
+      "id": "SPECIAL-01",
+      "area": "SPECIAL",
+      "skill": null,
+      "variant_number": "01",
+      "modifiers": [],
+      "description": "Not attending (see sec. 3.8.1)",
+      "level": "-",
+      "points": -500,
+      "type": "administrative",
+      "used_by": [
+        "doing_laundry",
+        "gpsr",
+        "hri",
+        "pick_and_place",
+        "restaurant"
+      ],
+      "legacy_ids": [
+        "SPECIAL-NOTATTEND"
+      ]
+    },
+    {
+      "id": "SPECIAL-02",
+      "area": "SPECIAL",
+      "skill": null,
+      "variant_number": "02",
+      "modifiers": [],
+      "description": "Using alternative start signal (see sec. 3.6.8)",
+      "level": "-",
+      "points": -100,
+      "type": "administrative",
+      "used_by": [
+        "doing_laundry",
+        "gpsr",
+        "pick_and_place",
+        "restaurant"
+      ],
+      "legacy_ids": [
+        "SPECIAL-ALTSTART"
+      ]
+    },
+    {
+      "id": "SPECIAL-03",
+      "area": "SPECIAL",
+      "skill": null,
+      "variant_number": "03",
+      "modifiers": [],
+      "description": "Outstanding performance (see sec. 3.8.3)",
+      "level": "-",
+      "points": null,
+      "points_formula": "floor(0.10 * total_score)",
+      "type": "administrative",
+      "used_by": [
+        "doing_laundry",
+        "gpsr",
+        "hri",
+        "pick_and_place",
+        "restaurant"
+      ],
+      "legacy_ids": [
+        "SPECIAL-OUTSTANDING"
+      ]
+    }
+  ]
+}

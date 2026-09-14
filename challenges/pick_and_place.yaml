@@ -1,0 +1,266 @@
+challenge: Pick and Place Challenge
+rulebook_section: '5.2'
+max_time_minutes: 7
+total_score: 3515
+dictionary_ref: ../dictionary/
+global_rules_ref: ../vocabulary/global_rules.yaml
+challenge_rules:
+  sequence:
+    source: §5.2 procedure 5
+    note: No predefined sequence; but pouring and closing the dishwasher must occur after prerequisite steps to be scored.
+  assistance_exemptions:
+    source: §5.2 scoresheet
+    free:
+    - opening milk container
+    - moving dishwasher door or rack
+entries:
+- ref: NAV-NAVIGATE-01
+  count: 1
+  assistance:
+    permitted: false
+- ref: OBJ-RECOGNIZE-01
+  count: 12
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-HUMANASSIST-01P
+    blocks_dependents: false
+    note: Pointing to objects is listed assistance in §5.2 rule 15.
+  note: Robot must clearly communicate perception to the referee (§5.2 rule 16).
+- ref: OBJ-PERCEIVE-01
+  count: 2
+  assistance:
+    permitted: false
+- ref: MAN-PICK-01
+  count: 12
+  section: Picking
+  depends_on:
+  - ref: OBJ-RECOGNIZE-01
+    nature: informational
+    blocking: false
+    satisfiable_by_assistance: true
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-HUMANASSIST-02P
+    blocks_dependents: false
+    note: Handover assistance forfeits this line (-0 self) and costs -100; placing remains available.
+- ref: MAN-PICK-02B
+  count: 1
+  section: Picking
+  depends_on:
+  - ref: MAN-PICK-01
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: false
+    note: Bonus requires an autonomous first pick.
+  related_skill: MAN-PICK-01
+- ref: MAN-PICK-01B2
+  count: 1
+  section: Picking
+  depends_on:
+  - ref: MAN-PICK-01
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: false
+  related_skill: MAN-PICK-01
+- ref: MAN-PICK-01B3
+  count: 2
+  section: Picking
+  depends_on:
+  - ref: MAN-PICK-01
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: false
+  related_skill: MAN-PICK-01
+- ref: MAN-PICK-01B4
+  count: 1
+  section: Picking
+  depends_on:
+  - ref: MAN-PICK-01
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: false
+  related_skill: MAN-PICK-01
+- ref: MAN-PICK-01B5
+  count: 1
+  section: Picking
+  depends_on:
+  - ref: MAN-PICK-01
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: false
+  related_skill: MAN-PICK-01
+- ref: MAN-PICK-02P
+  count: 2
+  section: Picking
+  note: Deliberate negative pricing of an easy pick; acts as an Entry-Level discount rather than a tier.
+- ref: MAN-PLACE-02
+  count: 12
+  section: Placing
+  depends_on:
+  - ref: MAN-PICK-01
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: true
+    note: Object must be in hand; assisted handover still permits placing.
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-HUMANASSIST-01P
+    blocks_dependents: false
+- ref: MAN-PLACE-02B1
+  count: 3
+  section: Placing
+  depends_on:
+  - ref: MAN-APPLIANCE-02
+    nature: physical
+    blocking: false
+    satisfiable_by_assistance: true
+    note: Door may be opened by referee at no cost (-0); these points remain fully available.
+  - ref: MAN-APPLIANCE-01
+    nature: physical
+    blocking: false
+    satisfiable_by_assistance: true
+    note: Rack may be pulled by referee at no cost (-0).
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-HUMANASSIST-01P
+    blocks_dependents: false
+  related_skill: MAN-PLACE-02
+  note: Items must be positioned as a human would and be cleanable by the machine (§5.2 rule 9).
+- ref: MAN-PLACE-02B2
+  count: 2
+  section: Placing
+  related_skill: MAN-PLACE-02
+- ref: MAN-PLACE-02P1
+  count: 4
+  section: Placing
+  related_skill: MAN-PLACE-02
+- ref: MAN-INSERT-01
+  count: 1
+  section: Placing
+  depends_on:
+  - ref: MAN-PICK-01B5
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: true
+  - ref: MAN-APPLIANCE-02
+    nature: physical
+    blocking: false
+    satisfiable_by_assistance: true
+    note: Door assistance is free (-0).
+  assistance:
+    permitted: true
+    listed_in_task_description: false
+    self_score: 0
+    extra_penalty_ref: null
+    blocks_dependents: false
+    note: 'Falls back to §3.7.2 default: assisted element scores zero.'
+- ref: MAN-PLACE-02P2
+  count: 2
+  section: Placing
+- ref: MAN-APPLIANCE-01
+  count: 2
+  section: Extra Rewards
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-HUMANASSIST-05P
+    extra_penalty: 0
+    blocks_dependents: false
+    note: Explicitly free (-0). Assisted execution forfeits this line only.
+- ref: MAN-APPLIANCE-02
+  count: 2
+  section: Extra Rewards
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-HUMANASSIST-05P
+    extra_penalty: 0
+    blocks_dependents: false
+    note: Explicitly free (-0). Reward is defined as autonomous ('without assistance').
+  ambiguity: 'Single entry bundles opening and closing, which have different preconditions: §5.2 rule 8 awards closing points only after at least one item has been placed inside. Consider splitting into MAN-APPLIANCE-02a (open) and 02b (close, depends_on MAN-PLACE-02B1).'
+- ref: MAN-OPEN-02
+  count: 1
+  section: Extra Rewards
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-HUMANASSIST-04P
+    extra_penalty: 0
+    blocks_dependents: false
+    note: Explicitly free (-0); robot must clearly ask for help (§5.2 rule 13).
+- ref: MAN-POUR-01
+  count: 2
+  section: Extra Rewards
+  depends_on:
+  - ref: MAN-OPEN-02
+    nature: physical
+    blocking: false
+    satisfiable_by_assistance: true
+    note: Milk container may be opened by referee at no cost; pouring points remain available.
+  - ref: MAN-PLACE-02
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: true
+    note: '§5.2 procedure 5: pouring must occur after prerequisite placing steps to be scored.'
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: GEN-HUMANASSIST-04P
+    extra_penalty: 0
+    blocks_dependents: false
+  note: A significant amount must be poured; a few drops or bits is not enough.
+- ref: MAN-PLACE-02P3
+  count: 12
+  section: Penalties
+  related_skill: MAN-PLACE-02
+- ref: GEN-BREAKFAST-01P
+  count: 1
+  section: Penalties
+- ref: MAN-PICK-01P1
+  count: 12
+  section: Penalties
+  related_skill: MAN-PICK-01
+- ref: MAN-POUR-01P
+  count: 2
+  section: Penalties
+  related_skill: MAN-POUR-01
+- ref: GEN-HUMANASSIST-01P
+  count: 12
+  section: Penalties
+- ref: GEN-HUMANASSIST-02P
+  count: 24
+  section: Penalties
+  ambiguity: Count is 24 (2x the 12 picks). Confirm whether this is intended as pick+place handovers counted separately.
+- ref: GEN-HUMANASSIST-14P
+  count: 1
+  section: Penalties
+  note: Applied per item / per group of nearby items moved (§5.2 rule 15).
+- ref: GEN-HUMANASSIST-04P
+  count: 1
+  section: Penalties
+  note: Explicitly zero-cost assistance.
+- ref: GEN-HUMANASSIST-05P
+  count: 1
+  section: Penalties
+  note: Explicitly zero-cost assistance.
+- ref: SPECIAL-01
+  count: 1
+  section: Special Penalties & Bonuses
+- ref: SPECIAL-02
+  count: 1
+  section: Special Penalties & Bonuses
+- ref: SPECIAL-03
+  count: 1
+  section: Special Penalties & Bonuses

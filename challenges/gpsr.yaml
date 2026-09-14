@@ -1,0 +1,123 @@
+challenge: General Purpose Service Robot Challenge
+rulebook_section: '5.3'
+max_time_minutes: 7
+total_score: 1490
+method_note: Entries are the fixed primitives a generated command is scored against; the command generator composes them at runtime.
+dictionary_ref: ../dictionary/
+global_rules_ref: ../vocabulary/global_rules.yaml
+challenge_rules:
+  autonomy_skip:
+    source: §5.3 rule 7
+    reductions_apply_to:
+    - use of a custom operator
+    - bypassing speech recognition
+    - receiving human assistance to accomplish a command
+    - instructing a human assistant to perform the whole task
+    ambiguity: The last two are declared to incur reductions but have no quantified line on the score sheet. Either add explicit entries or state that §3.7.2 (score zero) governs.
+  partial_scoring:
+    source: §5.3 rule 2
+    permitted: true
+entries:
+- ref: NLU-UNDERSTANDCOMMAND-01
+  count: 3
+  section: Main Goal
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: NLU-UNDERSTANDCOMMAND-02P
+    blocks_dependents: false
+    note: Custom operator available only after the referee attempts three re-phrased commands.
+- ref: NLU-UNDERSTANDCOMMAND-02P
+  count: 3
+  section: Main Goal
+  related_skill: NLU-UNDERSTANDCOMMAND-01
+  ambiguity: Fixed 3x-20 (-60, ~4% of 1490) conflicts with §3.7.4, which sets custom operator at -10% of maximum attainable score (-149). Confirm which governs.
+- ref: NLU-UNDERSTANDCOMMAND-03P
+  count: 6
+  section: Main Goal
+  related_skill: NLU-UNDERSTANDCOMMAND-01
+- ref: PLN-DEMONSTRATEPLAN-01
+  count: 3
+  section: Main Goal
+  depends_on:
+  - ref: NLU-UNDERSTANDCOMMAND-01
+    nature: informational
+    blocking: true
+    satisfiable_by_assistance: true
+    note: Command may be acquired via custom operator or ASR bypass; planning remains scoreable.
+  assistance:
+    permitted: false
+- ref: PLN-SOLVECOMMAND-01
+  count: 1
+  section: Main Goal
+  depends_on:
+  - ref: NLU-UNDERSTANDCOMMAND-01
+    nature: informational
+    blocking: true
+    satisfiable_by_assistance: true
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: null
+    blocks_dependents: false
+    note: §5.3 rule 7 states reductions apply for assistance but does not quantify them; §3.7.2 default is score zero.
+- ref: PLN-SOLVECOMMAND-02
+  count: 1
+  section: Main Goal
+  depends_on:
+  - ref: NLU-UNDERSTANDCOMMAND-01
+    nature: informational
+    blocking: true
+    satisfiable_by_assistance: true
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: null
+    blocks_dependents: false
+- ref: PLN-SOLVECOMMAND-03
+  count: 1
+  section: Main Goal
+  depends_on:
+  - ref: NLU-UNDERSTANDCOMMAND-01
+    nature: informational
+    blocking: true
+    satisfiable_by_assistance: true
+  assistance:
+    permitted: true
+    listed_in_task_description: true
+    self_score: 0
+    extra_penalty_ref: null
+    blocks_dependents: false
+- ref: PLN-SOLVECOMMAND-04P
+  count: 1
+  section: Main Goal
+  related_skill: PLN-SOLVECOMMAND-01
+  ambiguity: No defined percentage or reference table. Strongest candidate for goal-condition predicates with explicit partial_credit fractions.
+- ref: PLN-INTERLEAVETASKS-01B
+  count: 1
+  section: Extra Rewards
+  depends_on:
+  - ref: PLN-SOLVECOMMAND-01
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: true
+    note: Awarded only when all three commands are received at once and execution is meaningfully interleaved.
+  assistance:
+    permitted: false
+- ref: NLU-UNDERSTANDCOMMAND-04P
+  count: 3
+  section: Penalties
+  related_skill: NLU-UNDERSTANDCOMMAND-01
+  ambiguity: Fixed 3x-50 (-150, ~10%) vs §3.7.4 gesture/alternative-HRI rates of -20% of max attainable. Confirm interaction.
+- ref: SPECIAL-01
+  count: 1
+  section: Special Penalties & Bonuses
+- ref: SPECIAL-02
+  count: 1
+  section: Special Penalties & Bonuses
+- ref: SPECIAL-03
+  count: 1
+  section: Special Penalties & Bonuses

@@ -1,0 +1,177 @@
+area: NAV
+schema_version: 0.2.0
+rulebook_version: '2026.2'
+note: Canonical cross-challenge definitions. Each entry is defined and priced exactly once here; challenges reference it by id.
+skills:
+- id: NAV-FOLLOW-01
+  area: NAV
+  skill: Follow
+  variant_number: '01'
+  modifiers:
+  - bag_drop_area
+  - host
+  description: Following the host to the bag drop area
+  level: C
+  points: 200
+  type: achievement
+  used_by:
+  - hri
+  legacy_ids:
+  - NAV-FOLLOW-01
+- id: NAV-FOLLOW-01P1
+  area: NAV
+  skill: Follow
+  variant_number: 01P1
+  modifiers:
+  - dropped_bag
+  description: Drop the bag while following the host
+  level: C
+  points: -50
+  type: penalty_behavior
+  used_by:
+  - hri
+  legacy_ids:
+  - NAV-FOLLOW-01P1
+- id: NAV-FOLLOW-01P2
+  area: NAV
+  skill: Follow
+  variant_number: 01P2
+  modifiers:
+  - natural
+  - rediscover_operator
+  description: Rediscovering the operator by natural interaction
+  level: C
+  points: -50
+  type: penalty_behavior
+  used_by:
+  - hri
+  legacy_ids:
+  - NAV-FOLLOW-01P2
+- id: NAV-FOLLOW-01P3
+  area: NAV
+  skill: Follow
+  variant_number: 01P3
+  modifiers:
+  - asking_operator_to_wait
+  description: Asking the operator to wait
+  level: C
+  points: -50
+  type: penalty_behavior
+  used_by:
+  - hri
+  legacy_ids:
+  - NAV-FOLLOW-01P3
+- id: NAV-FOLLOW-01P4
+  area: NAV
+  skill: Follow
+  variant_number: 01P4
+  modifiers:
+  - physical_contact
+  description: Guiding the robot with physical contact (take by the hand)
+  level: C
+  points: -150
+  type: penalty_behavior
+  used_by:
+  - hri
+  legacy_ids:
+  - NAV-FOLLOW-01P4
+- id: NAV-GAZEDIRECTION-01
+  area: NAV
+  skill: GazeDirection
+  variant_number: '01'
+  modifiers:
+  - navigation_goal
+  description: Look in the direction of navigation or at the navigation goal
+  level: E
+  points: 15
+  type: achievement
+  used_by:
+  - hri
+  legacy_ids:
+  - NAV-GAZEDIR-01
+- id: NAV-NAVIGATE-01
+  area: NAV
+  skill: Navigate
+  variant_number: '01'
+  modifiers:
+  - table
+  description: Navigate to the table
+  level: E
+  points: 15
+  type: achievement
+  used_by:
+  - pick_and_place
+  legacy_ids:
+  - NAV-NAVIGATE-01
+- id: NAV-NAVIGATE-02
+  area: NAV
+  skill: Navigate
+  variant_number: '02'
+  modifiers:
+  - laundry_area
+  description: Navigating to the laundry area
+  level: E
+  points: 15
+  type: achievement
+  used_by:
+  - doing_laundry
+  legacy_ids:
+  - NAV-NAVIGATE-02
+- id: NAV-NAVIGATE-03
+  area: NAV
+  skill: Navigate
+  variant_number: '03'
+  modifiers:
+  - customer_table
+  description: Reach a customer's table
+  level: C
+  points: 80
+  type: achievement
+  used_by:
+  - restaurant
+  legacy_ids:
+  - NAV-NAVIGATE-03
+- id: NAV-NAVIGATE-03P
+  area: NAV
+  skill: Navigate
+  variant_number: 03P
+  modifiers:
+  - guided_to_table
+  description: 'Human Assistance: Being guided to a table'
+  level: C
+  points: -80
+  type: penalty_behavior
+  used_by:
+  - restaurant
+  legacy_ids:
+  - NAV-NAVIGATE-03P
+- id: NAV-NAVIGATE-04
+  area: NAV
+  skill: Navigate
+  variant_number: '04'
+  modifiers:
+  - order
+  - return_to_table
+  description: Return to the customer table with the order
+  level: C
+  points: 80
+  type: achievement
+  used_by:
+  - restaurant
+  legacy_ids:
+  - NAV-NAVIGATE-04
+- id: NAV-NAVIGATE-05P
+  area: NAV
+  skill: Navigate
+  variant_number: 05P
+  modifiers:
+  - bar
+  - not_reaching
+  description: Not reaching the bar (barman has to move from behind the bar to interact)
+  level: C
+  points: -60
+  type: penalty_behavior
+  used_by:
+  - restaurant
+  legacy_ids:
+  - NAV-NAVIGATE-05P
