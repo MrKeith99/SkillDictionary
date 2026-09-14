@@ -2,7 +2,7 @@
 
 A versioned, machine-checkable skill dictionary for the RoboCup@Home rulebook.
 
-**Target version: 2026.2** (RuleBook commit `b0cbb5f`).
+**Target version: 2026.2** (RuleBook commit `b844d5a`).
 
 ---
 
