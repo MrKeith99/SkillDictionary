@@ -49,6 +49,7 @@ furniture:
         access: open
         mechanism: latched
         actuation_force: medium
+        counterpart: fixed
         note: Side-hinged porthole; latch released by pulling a handle.
   laundry_trash_bin:
     name: Laundry trash bin
@@ -123,6 +124,7 @@ furniture:
         access: open
         mechanism: latched
         actuation_force: medium
+        counterpart: fixed
         note: Lever handle, side-hinged.
 
   # ── kitchen ────────────────────────────────────────────────────────────────
@@ -145,6 +147,7 @@ furniture:
         access: open
         mechanism: guided
         actuation_force: medium
+        counterpart: fixed
         note: Magnetic seal; pull handle.
   counter:
     name: Counter
@@ -179,6 +182,7 @@ furniture:
         access: open
         mechanism: guided
         actuation_force: medium
+        counterpart: fixed
         note: Bottom-hinged, counterweighted; open position is horizontal.
       rack:
         name: Dishwasher rack
@@ -186,6 +190,7 @@ furniture:
         access: enclosed
         mechanism: guided
         actuation_force: low
+        counterpart: fixed
         note: Slides on rails; requires the door open.
   kitchen_trash_bin:
     name: Kitchen trash bin

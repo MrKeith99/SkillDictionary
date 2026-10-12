@@ -146,7 +146,7 @@
       "points": -300,
       "type": "penalty_behavior",
       "penalty_type": "percentage",
-      "basis": "MAN-FOLD-02 points",
+      "basis": "MAN-FOLD-01 points",
       "used_by": [
         "doing_laundry"
       ]
@@ -722,7 +722,7 @@
         "milk.cap"
       ],
       "level": "X",
-      "points": 200,
+      "points": 270,
       "type": "achievement",
       "used_by": [
         "pick_and_place"

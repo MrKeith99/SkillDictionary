@@ -125,9 +125,11 @@ objects:
     parts:
       cap:
         name: Milk carton cap
+        grasp_width_mm: 30
         mechanism: latched
         actuation_force: low
-        note: Screw cap ~3 cm.
+        counterpart: held
+        note: Screw cap ~3 cm; the soft carton must be steadied while twisting.
   soju:
     name: Soju glass bottle (360 ml)
     mass_g: 650

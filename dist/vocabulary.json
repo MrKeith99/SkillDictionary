@@ -178,8 +178,10 @@
         "success": "The articulated part reaches the requested state (open enough to access / fully closed / cap removed).",
         "not_judged": "Whether the robot pushes, pulls, hooks or uses its base.",
         "factors": [
+          "size",
           "mechanism",
           "actuation_force",
+          "counterpart",
           "height",
           "access"
         ],
@@ -902,6 +904,24 @@
           }
         }
       },
+      "counterpart": {
+        "source": "object",
+        "question": "What holds the part's other side while the robot operates it?",
+        "levels": {
+          "fixed": {
+            "weight": 0,
+            "guide": "built into furniture or an appliance \u2014 door, drawer, rack"
+          },
+          "loose": {
+            "weight": 1,
+            "guide": "a free-standing object resting on a surface, may slide or tip \u2014 jar on a table"
+          },
+          "held": {
+            "weight": 2,
+            "guide": "the robot must hold or steady it while operating the part \u2014 soft carton, bottle in hand"
+          }
+        }
+      },
       "mechanism": {
         "source": "object",
         "question": "(articulated objects / controls) What kind of motion does it need?",
@@ -1376,9 +1396,11 @@
         "parts": {
           "cap": {
             "name": "Milk carton cap",
+            "grasp_width_mm": 30,
             "mechanism": "latched",
             "actuation_force": "low",
-            "note": "Screw cap ~3 cm."
+            "counterpart": "held",
+            "note": "Screw cap ~3 cm; the soft carton must be steadied while twisting."
           }
         }
       },
@@ -1660,6 +1682,7 @@
               "access": "open",
               "mechanism": "latched",
               "actuation_force": "medium",
+              "counterpart": "fixed",
               "note": "Side-hinged porthole; latch released by pulling a handle."
             }
           }
@@ -1787,6 +1810,7 @@
               "access": "open",
               "mechanism": "latched",
               "actuation_force": "medium",
+              "counterpart": "fixed",
               "note": "Lever handle, side-hinged."
             }
           }
@@ -1821,6 +1845,7 @@
               "access": "open",
               "mechanism": "guided",
               "actuation_force": "medium",
+              "counterpart": "fixed",
               "note": "Magnetic seal; pull handle."
             }
           }
@@ -1885,6 +1910,7 @@
               "access": "open",
               "mechanism": "guided",
               "actuation_force": "medium",
+              "counterpart": "fixed",
               "note": "Bottom-hinged, counterweighted; open position is horizontal."
             },
             "rack": {
@@ -1893,6 +1919,7 @@
               "access": "enclosed",
               "mechanism": "guided",
               "actuation_force": "low",
+              "counterpart": "fixed",
               "note": "Slides on rails; requires the door open."
             }
           }

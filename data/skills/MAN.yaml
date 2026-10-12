@@ -98,7 +98,7 @@ skills:
   objects:
   - milk.cap
   level: X
-  points: 200
+  points: 270
   type: achievement
 - id: MAN-PICK-01
   taxonomy: MAN.Pick

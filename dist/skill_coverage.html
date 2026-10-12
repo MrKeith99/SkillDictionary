@@ -431,7 +431,7 @@
    "name": "Pick and Place Challenge",
    "section": "5.2",
    "minutes": 7,
-   "total": 3940
+   "total": 4010
   },
   "restaurant": {
    "name": "Restaurant Challenge",
@@ -461,7 +461,7 @@
    "doing_laundry": 5540,
    "gpsr": 345,
    "hri": 520,
-   "pick_and_place": 3725,
+   "pick_and_place": 3795,
    "restaurant": 1200
   },
   "NLU": {
@@ -2609,7 +2609,7 @@
    ],
    "deps": [],
    "assistance": true,
-   "ambiguity": "Single entry bundles opening and closing, which have different preconditions: \u00a75.2 rule 8 awards closing points only after at least one item has been placed inside. Consider splitting into MAN-APPLIANCE-02a (open) and 02b (close, depends_on MAN-PLACE-02B1)."
+   "ambiguity": "Single entry bundles opening and closing, which have different preconditions: \u00a75.2 rule 8 awards closing points only after at least one item has been placed inside. Consider splitting MAN-OPERATE-02 into opening and a new closing line (depends_on MAN-PLACE-02B1)."
   },
   {
    "challenge": "pick_and_place",
@@ -2623,9 +2623,9 @@
    "description": "Open milk container without assistance",
    "level": "X",
    "type": "achievement",
-   "points": 200,
+   "points": 270,
    "count": 1,
-   "total": 200,
+   "total": 270,
    "section": "Extra Rewards",
    "shared": false,
    "used_by": [
@@ -2956,9 +2956,9 @@
    "description": "Outstanding performance (see sec. 3.8.3)",
    "level": "-",
    "type": "administrative",
-   "points": 394,
+   "points": 401,
    "count": 1,
-   "total": 394,
+   "total": 401,
    "section": "Special Penalties & Bonuses",
    "shared": true,
    "used_by": [
@@ -3602,17 +3602,6 @@
      ]
     },
     {
-     "id": "MAN-OPERATE-05",
-     "points": 200,
-     "used_by": [
-      "pick_and_place"
-     ],
-     "modifiers": [
-      "milk_container",
-      "no_assistance"
-     ]
-    },
-    {
      "id": "MAN-OPERATE-04",
      "points": 230,
      "used_by": [
@@ -3631,6 +3620,17 @@
      "modifiers": [
       "open",
       "washing_machine_door"
+     ]
+    },
+    {
+     "id": "MAN-OPERATE-05",
+     "points": 270,
+     "used_by": [
+      "pick_and_place"
+     ],
+     "modifiers": [
+      "milk_container",
+      "no_assistance"
      ]
     },
     {

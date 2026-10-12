@@ -92,6 +92,14 @@ factors:
       none:    {weight: 0, guide: "solid object or closed container"}
       upright: {weight: 1, guide: "open container with liquid/granular content, must stay level"}
 
+  counterpart:
+    source: object
+    question: What holds the part's other side while the robot operates it?
+    levels:
+      fixed:  {weight: 0, guide: "built into furniture or an appliance — door, drawer, rack"}
+      loose:  {weight: 1, guide: "a free-standing object resting on a surface, may slide or tip — jar on a table"}
+      held:   {weight: 2, guide: "the robot must hold or steady it while operating the part — soft carton, bottle in hand"}
+
   mechanism:
     source: object
     question: (articulated objects / controls) What kind of motion does it need?

@@ -724,6 +724,7 @@
      "min": 5,
      "max": 5,
      "factors": {
+      "counterpart": "fixed",
       "mechanism": "guided",
       "actuation_force": "low",
       "height": "extreme",
@@ -748,6 +749,7 @@
      "min": 2,
      "max": 2,
      "factors": {
+      "counterpart": "fixed",
       "mechanism": "guided",
       "actuation_force": "medium",
       "height": "comfortable",
@@ -772,6 +774,7 @@
      "min": 4,
      "max": 4,
      "factors": {
+      "counterpart": "fixed",
       "mechanism": "latched",
       "actuation_force": "medium",
       "height": "low_high",
@@ -796,6 +799,7 @@
      "min": 3,
      "max": 3,
      "factors": {
+      "counterpart": "fixed",
       "mechanism": "latched",
       "actuation_force": "medium",
       "height": "comfortable",
@@ -812,14 +816,16 @@
    "milk.cap"
   ],
   "difficulty": {
-   "min": 2,
-   "max": 2,
-   "tier": "E",
+   "min": 4,
+   "max": 4,
+   "tier": "C",
    "per_object": {
     "milk.cap": {
-     "min": 2,
-     "max": 2,
+     "min": 4,
+     "max": 4,
      "factors": {
+      "size": "regular",
+      "counterpart": "held",
       "mechanism": "latched",
       "actuation_force": "low"
      }

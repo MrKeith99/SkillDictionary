@@ -73,7 +73,7 @@ Challenge maximums:
 | Doing Laundry | 4415 | 5575 |
 | GPSR | 1490 | 1820 |
 | HRI | 1450 | 1630 |
-| Pick & Place | 3515 | 3940 |
+| Pick & Place | 3515 | 4010 |
 | Restaurant | 2360 | 1920 |
 
 Challenges are not rescaled: scaling one would make the same skill pay
@@ -124,6 +124,19 @@ Repriced by the rule where the easiest instance got harder: dishwasher rack
 230 → 300 (bottom rack: low and enclosed), clothes from the basket 200 → 210
 and its penalty, clothes from the washing machine 210 → 220 and its penalty,
 bag drop on the floor 50 → 60.
+
+## Operating a part you must hold: the milk cap
+
+Opening the milk carton is level X in 2026 (few teams manage it), yet the
+factors rated it D2, entry tier: they only saw a latched mechanism with low
+force, as for a door. What makes it hard is that the carton is soft and must be
+steadied while the cap is twisted; a door or a rack is held by the furniture.
+
+New factor `counterpart` (what holds the part's other side): fixed — built into
+furniture (0), loose — a free-standing object that may slide (1), held — the
+robot must hold it (2). MAN.OperateArticulated also counts `size` now. The cap
+(`milk.cap`, 30 mm, held) rates D4: 270 (was 400 in 2026.2, 200 under the rule
+before this factor). Doors and racks are `fixed`: unchanged.
 
 ## GPSR scored by skill
 

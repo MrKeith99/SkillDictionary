@@ -74,7 +74,7 @@ skills:
   points: -300
   type: penalty_behavior
   penalty_type: percentage
-  basis: MAN-FOLD-02 points
+  basis: MAN-FOLD-01 points
 - id: GEN-ASSIST-07P
   taxonomy: GEN.HumanAssistance
   modifiers:
