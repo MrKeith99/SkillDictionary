@@ -207,7 +207,7 @@
           "section": "Special Penalties & Bonuses"
         }
       ],
-      "total_score": 5555
+      "total_score": 5575
     },
     "gpsr": {
       "challenge": "General Purpose Service Robot",
@@ -973,7 +973,7 @@
           "section": "Special Penalties & Bonuses"
         }
       ],
-      "total_score": 1620
+      "total_score": 1630
     },
     "pick_and_place": {
       "challenge": "Pick and Place Challenge",
@@ -1363,7 +1363,7 @@
           "section": "Special Penalties & Bonuses"
         }
       ],
-      "total_score": 3800
+      "total_score": 3940
     },
     "restaurant": {
       "challenge": "Restaurant Challenge",

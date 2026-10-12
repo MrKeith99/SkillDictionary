@@ -10,11 +10,9 @@ skills:
   - pull_push
   description: Pull or push the dishwasher rack
   objects:
-  - dishwasher_rack
-  conditions:
-    reach: enclosed
+  - dishwasher.rack
   level: X
-  points: 230
+  points: 300
   type: achievement
 - id: MAN-APPLIANCE-02
   area: MAN
@@ -27,9 +25,7 @@ skills:
   - open_close
   description: Open or close the dishwasher door without assistance
   objects:
-  - dishwasher_door
-  conditions:
-    reach: table
+  - dishwasher.door
   level: X
   points: 200
   type: achievement
@@ -43,9 +39,7 @@ skills:
   - washing_machine_door
   description: Opening the washing machine door
   objects:
-  - washing_machine_door
-  conditions:
-    reach: low_high
+  - washing_machine.door
   level: X
   points: 270
   type: achievement
@@ -99,8 +93,9 @@ skills:
   description: In the dishwasher tab slot inside the dishwasher
   objects:
   - dishwasher_tab
+  at:
+  - dishwasher.tab_slot
   conditions:
-    reach: enclosed
     placement_tolerance: constrained
   level: X
   points: 160
@@ -114,9 +109,7 @@ skills:
   - entrance_door
   description: Open the entrance door for a guest
   objects:
-  - entrance_door
-  conditions:
-    reach: table
+  - entrance.door
   level: X
   points: 230
   type: achievement
@@ -130,9 +123,7 @@ skills:
   - no_assistance
   description: Open milk container without assistance
   objects:
-  - milk_cap
-  conditions:
-    reach: table
+  - milk.cap
   level: X
   points: 200
   type: achievement
@@ -149,8 +140,10 @@ skills:
   - dishwasher_items
   - cabinet_objects
   - breakfast
+  at:
+  - dinner_table
+  - counter
   conditions:
-    reach: table
     clutter: nearby
     knowledge: known_instance
   level: C
@@ -166,8 +159,9 @@ skills:
   description: From the floor
   objects:
   - trash
+  at:
+  - floor
   conditions:
-    reach: low_high
     clutter: isolated
     knowledge: known_instance
   level: C
@@ -183,8 +177,9 @@ skills:
   description: Cutlery
   objects:
   - cutlery
+  at:
+  - dinner_table
   conditions:
-    reach: table
     clutter: nearby
     knowledge: known_instance
   level: C
@@ -200,8 +195,9 @@ skills:
   description: Plate
   objects:
   - plate
+  at:
+  - dinner_table
   conditions:
-    reach: table
     clutter: nearby
     knowledge: known_instance
   level: C
@@ -217,8 +213,9 @@ skills:
   description: Dishwasher tab
   objects:
   - dishwasher_tab
+  at:
+  - counter
   conditions:
-    reach: table
     clutter: isolated
     knowledge: known_instance
   level: C
@@ -258,8 +255,9 @@ skills:
   description: Common object from auxiliary table (picking)
   objects:
   - common_objects
+  at:
+  - counter
   conditions:
-    reach: table
     clutter: isolated
     knowledge: known_instance
   level: E
@@ -276,12 +274,13 @@ skills:
   description: Picking up a piece of clothing from the basket
   objects:
   - clothing
+  at:
+  - laundry_basket
   conditions:
-    reach: low_high
     clutter: piled
     knowledge: known_class
   level: C
-  points: 200
+  points: 210
   type: achievement
 - id: MAN-PICK-03P
   area: MAN
@@ -293,7 +292,7 @@ skills:
   description: Picking up multiple at once
   failure_mode: multiple_at_once
   level: C
-  points: -200
+  points: -210
   type: penalty_behavior
 - id: MAN-PICK-04
   area: MAN
@@ -306,12 +305,13 @@ skills:
   description: Removing one or more pieces of clothing from the washing machine
   objects:
   - clothing
+  at:
+  - washing_machine.drum
   conditions:
-    reach: enclosed
     clutter: piled
     knowledge: known_class
   level: X
-  points: 210
+  points: 220
   type: achievement
 - id: MAN-PICK-04P
   area: MAN
@@ -323,7 +323,7 @@ skills:
   description: The clothing touches the floor
   failure_mode: quality
   level: X
-  points: -210
+  points: -220
   type: penalty_behavior
 - id: MAN-PICK-05
   area: MAN
@@ -336,8 +336,9 @@ skills:
   description: Picking up the requested items from the Kitchen-bar
   objects:
   - restaurant_orders
+  at:
+  - kitchen_bar
   conditions:
-    reach: table
     clutter: nearby
     knowledge: known_instance
   level: C
@@ -353,10 +354,9 @@ skills:
   description: Take the requested object
   objects:
   - known_objects
+  at:
+  - placement_locations
   conditions:
-    reach:
-    - table
-    - low_high
     clutter: nearby
     knowledge: known_instance
   level: '-'
@@ -373,11 +373,12 @@ skills:
   description: Drop the bag in the correct area
   objects:
   - bag
+  at:
+  - floor
   conditions:
-    reach: low_high
     placement_tolerance: region
   level: C
-  points: 50
+  points: 60
   type: achievement
 - id: MAN-PLACE-02
   area: MAN
@@ -392,8 +393,11 @@ skills:
   - dishwasher_items
   - cabinet_objects
   - breakfast
+  at:
+  - dishwasher
+  - cabinet
+  - dinner_table
   conditions:
-    reach: table
     placement_tolerance: spot
     clutter: nearby
   level: C
@@ -410,8 +414,10 @@ skills:
   description: Correctly in the dishwasher
   objects:
   - dishwasher_items
+  at:
+  - dishwasher.rack_bottom
+  - dishwasher.rack_top
   conditions:
-    reach: enclosed
     placement_tolerance: constrained
     clutter: nearby
   level: X
@@ -428,8 +434,9 @@ skills:
   description: Next to similar objects in the cabinet
   objects:
   - cabinet_objects
+  at:
+  - cabinet
   conditions:
-    reach: low_high
     placement_tolerance: spot
     clutter: nearby
   level: C
@@ -459,8 +466,9 @@ skills:
   description: Common object from auxiliary table (placing)
   objects:
   - common_objects
+  at:
+  - cabinet
   conditions:
-    reach: low_high
     placement_tolerance: spot
     clutter: nearby
   level: E
@@ -489,8 +497,9 @@ skills:
   description: Serve the order to the customer
   objects:
   - restaurant_orders
+  at:
+  - customer_table
   conditions:
-    reach: table
     placement_tolerance: region
     clutter: nearby
   level: C
@@ -518,10 +527,10 @@ skills:
   description: Place the object on the named placement location, or in the trash
   objects:
   - known_objects
+  at:
+  - placement_locations
+  - trash_bins
   conditions:
-    reach:
-    - table
-    - low_high
     placement_tolerance: region
     clutter: nearby
   level: '-'

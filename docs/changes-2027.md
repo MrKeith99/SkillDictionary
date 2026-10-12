@@ -70,16 +70,43 @@ Challenge maximums:
 
 | challenge | 2026.2 | 2027 |
 |---|---|---|
-| Doing Laundry | 4415 | 5555 |
+| Doing Laundry | 4415 | 5575 |
 | GPSR | 1490 | 1820 |
-| HRI | 1450 | 1620 |
-| Pick & Place | 3515 | 3800 |
+| HRI | 1450 | 1630 |
+| Pick & Place | 3515 | 3940 |
 | Restaurant | 2360 | 1920 |
 
 Challenges are not rescaled: scaling one would make the same skill pay
 differently again. Balance between challenges is set through the skill bases.
 
 ---
+
+## Where a skill happens: furniture places
+
+2026 rates "where" with one typed level per line (`reach`: table / low-high /
+enclosed). "Place it in the cabinet" got one guessed level, although the top
+and the bottom shelf are different difficulties, and nothing tied the level to
+the real furniture.
+
+Now the arena is data ([furniture.yaml](../data/vocabulary/objects/furniture.yaml)):
+every place on every piece of furniture, with its height and access, and the
+doors and racks to operate. A line names its places in `at:`; two factors
+replace `reach`:
+
+| factor | 0 | 1 | 2 |
+|---|---|---|---|
+| `height` (from `height_mm`) | 0.6–1.1 m | 0.25–0.6 or 1.1–1.5 m | below 0.25 or above 1.5 m |
+| `access` | open | bounded (board above, walls around) | enclosed (door, drum, rack) |
+
+A line naming a whole piece of furniture (`at: [cabinet]`) or a group
+(`placement_locations`) covers all its places and gets a difficulty range. The
+arena is the 2026 Incheon one, written as the 2027 arena; heights are typical
+values (`values: estimate`) to be measured at Setup Days.
+
+Repriced by the rule where the easiest instance got harder: dishwasher rack
+230 → 300 (bottom rack: low and enclosed), clothes from the basket 200 → 210
+and its penalty, clothes from the washing machine 210 → 220 and its penalty,
+bag drop on the floor 50 → 60.
 
 ## GPSR scored by skill
 

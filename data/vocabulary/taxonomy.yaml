@@ -59,7 +59,7 @@ nodes:
       Grasp type, gripper, suction or any end-effector design. The sub-skills
       below classify the demand the OBJECT places on a grasp, not the technique
       the robot uses to meet it.
-    factors: [mass, size, surface, rigidity, shape, reach, clutter]
+    factors: [mass, size, surface, rigidity, shape, height, access, clutter]
     scored: false
     status: active
     sources: [Feix2016]
@@ -85,7 +85,7 @@ nodes:
       Feix "lateral" family (plate rim, tray edge, card-like items).
     success: As MAN.Grasp.
     not_judged: Technique, including sliding the object to a table edge first.
-    factors: [size, shape, surface, reach]
+    factors: [size, shape, surface, height, access]
     scored: false
     status: active
     sources: [Feix2016]
@@ -111,7 +111,7 @@ nodes:
     success: Object is removed from its support and held by the robot.
     not_judged: Grasp technique, number of attempts within the time limit.
     composed_of: [OBJ.Recognize, MAN.Grasp]
-    factors: [mass, size, surface, rigidity, shape, reach, clutter, knowledge]
+    factors: [mass, size, surface, rigidity, shape, height, access, clutter, knowledge]
     status: active
 
   MAN.Place:
@@ -124,7 +124,7 @@ nodes:
       was released (not thrown or dropped).
     not_judged: Trajectory, speed, whether the object was regrasped.
     composed_of: [OBJ.DetectPlacement]
-    factors: [mass, size, rigidity, reach, placement_tolerance, clutter, knowledge]
+    factors: [mass, size, rigidity, height, access, placement_tolerance, clutter, knowledge]
     status: active
 
   MAN.Insert:
@@ -135,7 +135,7 @@ nodes:
     success: Object is fully seated in the receptacle.
     not_judged: Technique, number of corrective motions.
     parent: MAN.Place
-    factors: [size, reach, placement_tolerance]
+    factors: [size, height, access, placement_tolerance]
     status: active
 
   MAN.Pour:
@@ -161,7 +161,7 @@ nodes:
       The articulated part reaches the requested state (open enough to access
       / fully closed / cap removed).
     not_judged: Whether the robot pushes, pulls, hooks or uses its base.
-    factors: [mechanism, actuation_force, reach]
+    factors: [mechanism, actuation_force, height, access]
     status: active
 
   MAN.OperateControl:
@@ -171,7 +171,7 @@ nodes:
       (start a washing machine, switch a light, boil a kettle).
     success: The device changes state as intended.
     not_judged: Technique.
-    factors: [size, mechanism, reach]
+    factors: [size, mechanism, height, access]
     status: proposed
     sources: [SkillDictionaryPDF]
 
@@ -209,7 +209,7 @@ nodes:
     intent: Clean a surface (table, counter) by moving a tool or cloth over it.
     success: Target area is visibly cleared of the defined dirt.
     not_judged: Tool, pattern of motion.
-    factors: [reach, clutter]
+    factors: [height, access, clutter]
     status: proposed
     sources: [SkillDictionaryPDF]
 

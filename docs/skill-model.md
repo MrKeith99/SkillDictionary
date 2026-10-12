@@ -29,7 +29,7 @@ grows as *verbs × properties* and still cannot say "heavy **and** slippery
       ▼
  data/skills/*.yaml     ONE scored line            MAN-PICK-01B4  "Plate"  +100
       │   objects: [plate]
-      │   conditions: {reach: table, clutter: nearby, knowledge: known_instance}
+      │   at: [dinner_table]   conditions: {clutter: nearby, knowledge: known_instance}
       ▼
  objects/ +             HOW HARD that line is      D = 6  (thin, flat-lying,
  difficulty_factors.yaml                                    smooth …)
@@ -40,7 +40,7 @@ grows as *verbs × properties* and still cannot say "heavy **and** slippery
 | `data/vocabulary/taxonomy.yaml` | What is this skill for? What does success look like? What must the referee *not* judge? | a new kind of capability appears |
 | `data/vocabulary/difficulty_factors.yaml` | Which properties make an instance harder, and by how much? | rarely — TC decision |
 | `data/vocabulary/objects/catalog.yaml` | What is each real object: mass, grasp width, surface, rigidity, shape? | a new object enters the league |
-| `data/vocabulary/objects/fixtures.yaml` | Doors, racks, caps: mechanism and force | a new appliance |
+| `data/vocabulary/objects/furniture.yaml` | Where skills happen: each place's height and access, and the doors and racks to operate | a new arena, a new appliance |
 | `data/vocabulary/objects/set.yaml` | Which objects are in play this year, in which classes and rulebook categories? | every year, from the published object list |
 | `data/skills/<AREA>.yaml` | What does this particular line score, on which objects, in which situation, for how many points? | the rulebook changes |
 
@@ -65,7 +65,7 @@ MAN.Place:
     was released (not thrown or dropped).
   not_judged: Trajectory, speed, whether the object was regrasped.
   composed_of: [OBJ.DetectPlacement]
-  factors: [mass, size, rigidity, reach, placement_tolerance, clutter]
+  factors: [mass, size, rigidity, height, access, placement_tolerance, clutter]
   status: active
 ```
 
@@ -125,7 +125,8 @@ Twenty-five factors, each with at most three levels weighted 0 / 1 / 2. Two kind
 
   | factor | used mainly by | levels (0 / 1 / 2) |
   |---|---|---|
-  | `reach`, `clutter`, `placement_tolerance`, `carrier` | MAN | see file |
+  | `height`, `access` (from the place, `at:`) | MAN | furniture.yaml |
+  | `clutter`, `placement_tolerance`, `carrier` | MAN | see file |
   | `knowledge` | MAN, OBJ, NLU — objects, sounds, names | known instance / known class / unknown |
   | `map_knowledge`, `route_extent`, `obstacle_visibility` | NAV | mapped→unknown; room→building; large→hard to see |
   | `crowd` | NAV, PPL, HRI | none / few / crowd |

@@ -39,18 +39,14 @@ def esc(s):
     return _html.escape(str(s), quote=True)
 
 
-def pretty(name, catalog, fixtures):
-    if name in catalog:
-        return catalog[name]["name"]
-    if name in fixtures:
-        return fixtures[name]["name"]
-    return name.replace("_", " ")
+def pretty(name, names):
+    return names.get(name) or name.replace("_", " ")
 
 
 def html(b, slug):
     D, ch, R = b.skills, b.challenges[slug], b.ratings
     nodes = b.vocab["taxonomy"]["nodes"]
-    catalog, fixtures = b.vocab["objects"]["catalog"], b.vocab["objects"]["fixtures"]
+    names = b.rater.names
 
     # Group lines by section; bonus/discount lines sit under their parent.
     sections, children = OrderedDict(), {}
@@ -68,7 +64,8 @@ def html(b, slug):
         pts = e.get("points")
         node = e["taxonomy"]
         r = (R.get(e["id"]) or {}).get("difficulty")
-        objs = [pretty(o, catalog, fixtures) for o in e.get("objects", [])]
+        objs = [pretty(o, names) for o in e.get("objects", [])]
+        at = [pretty(a, names) for a in e.get("at", [])]
         cond_txt = "; ".join(f"{k.replace('_', ' ')}: {', '.join(v) if isinstance(v, list) else v}"
                              for k, v in e.get("conditions", {}).items())
         neg = pts is not None and pts < 0
@@ -78,6 +75,8 @@ def html(b, slug):
                 f'<span class="node" title="{esc(nodes[node]["intent"].strip())}">{esc(node)}</span>']
         if objs:
             meta.append(f'<span class="objs">{esc(" · ".join(objs))}</span>')
+        if at:
+            meta.append(f'<span class="objs">at {esc(" · ".join(at))}</span>')
         if e.get("failure_mode"):
             meta.append(f'<span class="fm">{esc(e["failure_mode"].replace("_", " "))}</span>')
         if r:

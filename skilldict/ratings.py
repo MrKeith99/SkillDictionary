@@ -1,9 +1,10 @@
 """Vocabulary integrity and intrinsic difficulty.
 
 rate(build) checks that every line can be interpreted (known taxonomy node,
-objects, factors and levels; penalties name a failure mode) and rates each line:
-D = sum of the factor weights of its objects and conditions. A condition given
-as a list of levels is drawn at test time, so the line gets a D range.
+objects, places, factors and levels; penalties name a failure mode) and rates
+each line: D = sum of the factor weights of its objects, its places (`at:`)
+and its conditions. A line covering several objects or places, or a condition
+given as a list of levels (drawn at test time), gets a D range.
 
 Errors go to build.errors; build.ratings is the per-line result, written to
 dist/skill_ratings.json. build.rater keeps the intermediate tables for the
@@ -15,21 +16,27 @@ class Rater:
     def __init__(self, build):
         V = build.vocab
         self.tax, self.fac = V["taxonomy"], V["difficulty_factors"]
-        self.catalog, self.fixtures = V["objects"]["catalog"], V["objects"]["fixtures"]
+        self.catalog, self.furniture = V["objects"]["catalog"], V["objects"]["furniture"]
         self.oset = V["objects"]["set"]
         self.nodes, self.fmodes = self.tax["nodes"], self.tax["failure_modes"]
         self.factors = self.fac["factors"]
         # Names a dictionary entry may use in `objects:`: a year-set class,
-        # test-object group or category, a catalog object, or a fixture.
+        # test-object group or category, a catalog object, or a part (x.part).
         self.groups = {**self.oset.get("classes", {}), **self.oset.get("test_objects", {}),
                        **{k: v["members"] for k, v in self.oset.get("categories", {}).items()}}
         self.errors = []
-        self.obj = {}                     # physical object id -> {factor: level}
-        self.rated = {}                   # id -> (Dmin, Dmax, per-object) or None
+        self.obj = {}                     # object or part id -> {factor: level}
+        self.place = {}                   # place id (furniture.place) -> {factor: level}
+        self.place_groups = {}            # furniture id or group -> member names
+        self.names = {}                   # object, part or place id -> human name
+        self.rated = {}                   # id -> (Dmin, Dmax, per-instance) or None
         self._check_vocabulary()
         self._object_levels()
+        self._places()
         for g in self.groups:
             self.expand(g)
+        for g in self.place_groups:
+            self.expand_at(g)
         for eid, e in build.skills.items():
             self._check_entry(e)
         self.rated = {eid: self.rate(e) for eid, e in build.skills.items()}
@@ -58,20 +65,90 @@ class Rater:
                 if not n.get(k):
                     self.err(f"taxonomy {nid}: missing {k}")
         for fid, f in self.factors.items():
-            if f["source"] not in ("object", "condition"):
+            if f["source"] not in ("object", "place", "condition"):
                 self.err(f"factor {fid}: bad source {f['source']}")
             for lv, spec in f["levels"].items():
                 if spec["weight"] not in (0, 1, 2):
                     self.err(f"factor {fid}.{lv}: weight must be 0, 1 or 2")
 
     def _level_from_measure(self, fid, value):
-        """Map a number onto the factor's levels using their `below` cut-offs."""
-        for lv, spec in self.factors[fid]["levels"].items():
+        """Map a number onto the factor's levels: `below` cut-offs in ascending
+        order, or `within` ranges; a level with neither takes the rest."""
+        levels = self.factors[fid]["levels"]
+        if any("within" in s for s in levels.values()):
+            for lv, spec in levels.items():
+                if any(lo <= value < hi for lo, hi in spec.get("within", [])):
+                    return lv
+            return next(lv for lv, spec in levels.items() if "within" not in spec)
+        for lv, spec in levels.items():
             if spec.get("below") is None or value < spec["below"]:
                 return lv
 
+    def _rate_thing(self, what, spec, sources):
+        """Factor levels of an object, part or place, from its measured numbers
+        and judged levels. `sources`: which factor sources apply."""
+        fac = {}
+        for fid, f in self.factors.items():
+            if f["source"] not in sources:
+                continue
+            if f.get("measure"):
+                if f["measure"] in spec:
+                    if not isinstance(spec[f["measure"]], (int, float)):
+                        self.err(f"{what}: {f['measure']} must be a number")
+                        continue
+                    fac[fid] = self._level_from_measure(fid, spec[f["measure"]])
+            elif fid in spec:
+                fac[fid] = spec[fid]
+        for fid, lv in fac.items():
+            if lv not in self.factors[fid]["levels"]:
+                self.err(f"{what}: {fid}={lv} not a level")
+        return fac
+
+    def _places(self):
+        F = self.furniture
+        if F.get("values") not in ("measured", "estimate"):
+            self.err("furniture: values must be measured or estimate")
+        for fid, f in F["furniture"].items():
+            if "." in fid:
+                self.err(f"furniture {fid}: no dots in ids")
+            self.names[fid] = f["name"]
+            members = []
+            for pid, p in (f.get("places") or {}).items():
+                key = f"{fid}.{pid}"
+                if not isinstance(p.get("height_mm"), (int, float)) or "access" not in p:
+                    self.err(f"place {key}: needs height_mm and access")
+                self.place[key] = self._rate_thing(f"place {key}", p, ("place",))
+                self.names[key] = f"{f['name']}, {pid.replace('_', ' ')}"
+                members.append(key)
+            if members:
+                self.place_groups[fid] = members
+            for part, p in (f.get("parts") or {}).items():
+                key = f"{fid}.{part}"
+                self.obj[key] = self._rate_thing(f"part {key}", p, ("object", "place"))
+                self.names[key] = p.get("name", key)
+        for g, members in (F.get("groups") or {}).items():
+            if g in self.place_groups:
+                self.err(f"furniture group {g} collides with a furniture id")
+            self.place_groups[g] = members
+
+    def expand_at(self, name, seen=()):
+        """Resolve an at: name to the set of place ids it covers."""
+        if name in self.place:
+            return {name}
+        if name not in self.place_groups:
+            self.err(f"unknown place, furniture or furniture group {name}")
+            return set()
+        if name in seen:
+            self.err(f"furniture groups: cycle through {name}")
+            return set()
+        out = set()
+        for m in self.place_groups[name]:
+            out |= self.expand_at(m, seen + (name,))
+        return out
+
     def _object_levels(self):
-        measured = {f["measure"]: fid for fid, f in self.factors.items() if f.get("measure")}
+        measured = {f["measure"]: fid for fid, f in self.factors.items()
+                    if f.get("measure") and f["source"] == "object"}
         judged = [fid for fid, f in self.factors.items() if f["source"] == "object" and not f.get("measure")]
         for oid, o in self.catalog.items():
             fac = {}
@@ -84,8 +161,11 @@ class Rater:
                 if fid in o:
                     fac[fid] = o[fid]
             self.obj[oid] = fac
-        for oid, o in self.fixtures.items():
-            self.obj[oid] = {fid: o[fid] for fid in judged if fid in o}
+        for oid, o in self.catalog.items():
+            self.names[oid] = o["name"]
+            for part, p in (o.get("parts") or {}).items():
+                self.obj[f"{oid}.{part}"] = self._rate_thing(f"part {oid}.{part}", p, ("object",))
+                self.names[f"{oid}.{part}"] = p.get("name", f"{oid}.{part}")
         for oid, fac in self.obj.items():
             for fid, lv in fac.items():
                 if lv not in self.factors[fid]["levels"]:
@@ -99,10 +179,8 @@ class Rater:
             for oid, o in self.catalog.items():
                 if k not in o:
                     self.err(f"catalog {oid}: missing judged factor {k}")
-        for name in set(self.groups) & (set(self.catalog) | set(self.fixtures)):
+        for name in set(self.groups) & set(self.catalog):
             self.err(f"object set: group name {name} collides with an object id")
-        if set(self.catalog) & set(self.fixtures):
-            self.err(f"catalog and fixtures share ids: {sorted(set(self.catalog) & set(self.fixtures))}")
 
     def expand(self, name, seen=()):
         """Resolve an objects: name to the set of physical object ids it covers."""
@@ -139,11 +217,18 @@ class Rater:
         applies = self.node_factors(e)
         for o in e.get("objects", []):
             if o not in self.obj and o not in self.groups:
-                self.err(f"{e['id']}: unknown object or group {o}")
+                self.err(f"{e['id']}: unknown object, part or group {o}")
+        for a in e.get("at", []):
+            if a not in self.place and a not in self.place_groups:
+                self.err(f"{e['id']}: unknown place {a} (furniture.yaml)")
+        if e.get("at") and not {"height", "access"} & applies:
+            self.err(f"{e['id']}: at: on {nid}, which has no place factors")
         for fid, lv in e.get("conditions", {}).items():
             lvs = lv if isinstance(lv, list) else [lv]
             if fid not in self.factors:
                 self.err(f"{e['id']}: unknown factor {fid}")
+            elif self.factors[fid]["source"] == "place":
+                self.err(f"{e['id']}: {fid} is a property of the place, name it in at: (furniture.yaml)")
             elif self.factors[fid]["source"] != "condition":
                 self.err(f"{e['id']}: {fid} is an object property, set it in vocabulary/objects/catalog.yaml")
             elif not lvs or any(x not in self.factors[fid]["levels"] for x in lvs):
@@ -168,14 +253,15 @@ class Rater:
                 return t
 
     def rate(self, e):
-        """(Dmin, Dmax, per-object breakdown) or None if the entry has no factors.
+        """(Dmin, Dmax, per-instance breakdown) or None if the entry has no factors.
 
-        Per-object values are (dmin, dmax, factors); they differ only when a
+        An instance is one object at one place ("plate@dishwasher.rack_top");
+        its values are (dmin, dmax, factors), which differ only when a
         condition is a list of levels."""
         if e["taxonomy"] not in self.nodes:
             return None
         applies = self.node_factors(e)
-        if not applies or not (e.get("objects") or e.get("conditions")):
+        if not applies or not (e.get("objects") or e.get("conditions") or e.get("at")):
             return None
         cond = {f: lv for f, lv in e.get("conditions", {}).items() if f in applies}
         try:
@@ -186,15 +272,16 @@ class Rater:
         lo = sum(min(w) for w in span.values())
         hi = sum(max(w) for w in span.values())
         per = {}
-        insts = sorted(set().union(*[self.expand(o) for o in e.get("objects", [])])) or [None]
-        for o in insts:
-            fac = dict(cond)
-            od = 0
-            if o:
-                ofac = {f: lv for f, lv in self.obj[o].items() if f in applies}
-                fac.update(ofac)
-                od = sum(self.weight(f, lv) for f, lv in ofac.items())
-            per[o or "-"] = (lo + od, hi + od, fac)
+        objs = sorted(set().union(*[self.expand(o) for o in e.get("objects", [])])) or [None]
+        places = sorted(set().union(*[self.expand_at(a) for a in e.get("at", [])])) or [None]
+        for o in objs:
+            for p in places:
+                fac = dict(cond)
+                for src in (self.obj.get(o) if o else None, self.place.get(p) if p else None):
+                    fac.update({f: lv for f, lv in (src or {}).items() if f in applies})
+                d = sum(self.weight(f, lv) for f, lv in fac.items() if f not in cond)
+                key = "@".join(x for x in (o, p) if x) or "-"
+                per[key] = (lo + d, hi + d, fac)
         return min(p[0] for p in per.values()), max(p[1] for p in per.values()), per
 
     def as_json(self, build):

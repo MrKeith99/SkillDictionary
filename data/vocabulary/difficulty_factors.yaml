@@ -5,17 +5,23 @@
 # PickLargeUnknown, ..." multiplies verbs by every property and still cannot
 # express "heavy AND slippery AND inside the dishwasher". One Pick skill plus a
 # handful of factors covers every combination, and new objects need a profile in
-# objects/catalog.yaml, not a new skill.
+# objects/catalog.yaml (new furniture: objects/furniture.yaml), not a new skill.
 #
 # Rules
 #   * Every factor has at most three levels, weighted 0 / 1 / 2. Coarse on
 #     purpose: a referee must be able to assign a level by looking, and finer
 #     scales would imply precision nobody can measure consistently.
 #   * `source: object` factors are properties of the thing being handled and
-#     live in objects/catalog.yaml. Factors with a `measure` are computed from a
-#     number in the catalog using the `below` cut-offs (levels in ascending
-#     order; the last level has no cut-off). The rest are judged once per object. `source: condition` factors describe the situation
-#     and are set on the dictionary entry (`conditions:`).
+#     live in objects/catalog.yaml (parts: furniture.yaml). `source: place`
+#     factors are properties of where the skill happens and live in
+#     objects/furniture.yaml; a line names its places in `at:`.
+#     `source: condition` factors describe the situation and are set on the
+#     dictionary entry (`conditions:`).
+#   * Factors with a `measure` are computed from a number: with `below`
+#     cut-offs (levels in ascending order, the last without one), or with
+#     `within` ranges (the first level whose ranges hold the value; a level
+#     without ranges takes the rest). The others are judged once per object or
+#     place.
 #   * A factor only counts for a skill if the skill's taxonomy node lists it.
 #     Mass matters to Pick; it does not matter to Recognize.
 #
@@ -103,13 +109,22 @@ factors:
       high:   {weight: 2, guide: "> 30 N — sprung or weighted doors"}
 
   # ── situation / conditions ──────────────────────────────────────────────────
-  reach:
-    source: condition
-    question: Where is the object or the target?
+  height:
+    source: place
+    question: How high is the surface the robot works on?
+    measure: height_mm       # computed from furniture.yaml, never typed by hand
     levels:
-      table:    {weight: 0, guide: "open surface, 0.6–1.0 m high"}
-      low_high: {weight: 1, guide: "floor, bottom or top shelf"}
-      enclosed: {weight: 2, guide: "inside an appliance, drum, cabinet or rack"}
+      comfortable: {weight: 0, within: [[600, 1100]], guide: "0.6–1.1 m — table, counter, middle shelf"}
+      low_high:    {weight: 1, within: [[250, 600], [1100, 1500]], guide: "0.25–0.6 m or 1.1–1.5 m — sofa, coffee table, low or upper shelf"}
+      extreme:     {weight: 2, guide: "below 0.25 m or above 1.5 m — floor, bottom shelf, top of a tall cabinet"}
+
+  access:
+    source: place
+    question: How much does the furniture around the place get in the way?
+    levels:
+      open:     {weight: 0, guide: "open surface, free from above and the sides — table top, bed, floor"}
+      bounded:  {weight: 1, guide: "a board above or walls around — shelf, basket, bin, sink"}
+      enclosed: {weight: 2, guide: "behind a door or inside a machine — dishwasher rack, washing machine drum"}
 
   clutter:
     source: condition

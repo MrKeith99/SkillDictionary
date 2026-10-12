@@ -413,7 +413,7 @@
    "name": "Doing Laundry",
    "section": "5.5",
    "minutes": 7,
-   "total": 5555
+   "total": 5575
   },
   "gpsr": {
    "name": "General Purpose Service Robot",
@@ -425,13 +425,13 @@
    "name": "Human Robot Interaction Challenge",
    "section": "5.1",
    "minutes": 7,
-   "total": 1620
+   "total": 1630
   },
   "pick_and_place": {
    "name": "Pick and Place Challenge",
    "section": "5.2",
    "minutes": 7,
-   "total": 3800
+   "total": 3940
   },
   "restaurant": {
    "name": "Restaurant Challenge",
@@ -458,10 +458,10 @@
    "restaurant": 200
   },
   "MAN": {
-   "doing_laundry": 5520,
+   "doing_laundry": 5540,
    "gpsr": 345,
-   "hri": 510,
-   "pick_and_place": 3585,
+   "hri": 520,
+   "pick_and_place": 3725,
    "restaurant": 1200
   },
   "NLU": {
@@ -525,9 +525,9 @@
    "description": "Picking up a piece of clothing from the basket",
    "level": "C",
    "type": "achievement",
-   "points": 200,
+   "points": 210,
    "count": 1,
-   "total": 200,
+   "total": 210,
    "section": "Main Goal",
    "shared": false,
    "used_by": [
@@ -548,9 +548,9 @@
    "description": "Picking up multiple at once",
    "level": "C",
    "type": "penalty_behavior",
-   "points": -200,
+   "points": -210,
    "count": 1,
-   "total": -200,
+   "total": -210,
    "section": "Main Goal",
    "shared": false,
    "used_by": [
@@ -715,9 +715,9 @@
    "description": "Removing one or more pieces of clothing from the washing machine",
    "level": "X",
    "type": "achievement",
-   "points": 210,
+   "points": 220,
    "count": 1,
-   "total": 210,
+   "total": 220,
    "section": "Extra Rewards",
    "shared": false,
    "used_by": [
@@ -740,9 +740,9 @@
    "description": "The clothing touches the floor",
    "level": "X",
    "type": "penalty_behavior",
-   "points": -210,
+   "points": -220,
    "count": 1,
-   "total": -210,
+   "total": -220,
    "section": "Extra Rewards",
    "shared": false,
    "used_by": [
@@ -930,9 +930,9 @@
    "description": "Outstanding performance (see sec. 3.8.3)",
    "level": "-",
    "type": "administrative",
-   "points": 555,
+   "points": 557,
    "count": 1,
-   "total": 555,
+   "total": 557,
    "section": "Special Penalties & Bonuses",
    "shared": true,
    "used_by": [
@@ -2004,9 +2004,9 @@
    "description": "Drop the bag in the correct area",
    "level": "C",
    "type": "achievement",
-   "points": 50,
+   "points": 60,
    "count": 1,
-   "total": 50,
+   "total": 60,
    "section": "Guiding",
    "shared": false,
    "used_by": [
@@ -2148,9 +2148,9 @@
    "description": "Outstanding performance (see sec. 3.8.3)",
    "level": "-",
    "type": "administrative",
-   "points": 162,
+   "points": 163,
    "count": 1,
-   "total": 162,
+   "total": 163,
    "section": "Special Penalties & Bonuses",
    "shared": true,
    "used_by": [
@@ -2574,9 +2574,9 @@
    "description": "Pull or push the dishwasher rack",
    "level": "X",
    "type": "achievement",
-   "points": 230,
+   "points": 300,
    "count": 2,
-   "total": 460,
+   "total": 600,
    "section": "Extra Rewards",
    "shared": false,
    "used_by": [
@@ -2956,9 +2956,9 @@
    "description": "Outstanding performance (see sec. 3.8.3)",
    "level": "-",
    "type": "administrative",
-   "points": 380,
+   "points": 394,
    "count": 1,
-   "total": 380,
+   "total": 394,
    "section": "Special Penalties & Bonuses",
    "shared": true,
    "used_by": [
@@ -3529,17 +3529,6 @@
      ]
     },
     {
-     "id": "MAN-APPLIANCE-01",
-     "points": 230,
-     "used_by": [
-      "pick_and_place"
-     ],
-     "modifiers": [
-      "dishwasher_rack",
-      "pull_push"
-     ]
-    },
-    {
      "id": "MAN-APPLIANCE-03",
      "points": 270,
      "used_by": [
@@ -3548,6 +3537,17 @@
      "modifiers": [
       "open",
       "washing_machine_door"
+     ]
+    },
+    {
+     "id": "MAN-APPLIANCE-01",
+     "points": 300,
+     "used_by": [
+      "pick_and_place"
+     ],
+     "modifiers": [
+      "dishwasher_rack",
+      "pull_push"
      ]
     }
    ]
@@ -3615,7 +3615,7 @@
     },
     {
      "id": "MAN-PICK-03",
-     "points": 200,
+     "points": 210,
      "used_by": [
       "doing_laundry"
      ],
@@ -3626,7 +3626,7 @@
     },
     {
      "id": "MAN-PICK-04",
-     "points": 210,
+     "points": 220,
      "used_by": [
       "doing_laundry"
      ],
@@ -3675,7 +3675,7 @@
     },
     {
      "id": "MAN-PLACE-01",
-     "points": 50,
+     "points": 60,
      "used_by": [
       "hri"
      ],

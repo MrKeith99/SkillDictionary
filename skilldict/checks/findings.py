@@ -129,8 +129,15 @@ def taxonomy(b):
         print(f"  {msg}: {len(xs)}")
         if xs and src != "measured":
             print("    " + ", ".join(xs))
+    F = rt.furniture
+    used_p = set()
+    for e in D.values():
+        for a in e.get("at", []):
+            used_p |= rt.expand_at(a)
+    print(f"  furniture: {len(rt.place)} places, {len(used_p)} used by a scored line; heights are "
+          f"{F.get('values')}" + (" — measure during Setup Days" if F.get("values") != "measured" else ""))
     print("-" * 78)
-    print("     Widest difficulty ranges (one line, very different objects)")
+    print("     Widest difficulty ranges (one line, very different objects or places)")
     wide = sorted(((r[1] - r[0], i) for i, r in rt.rated.items() if r), reverse=True)[:5]
     for spread, i in wide:
         lo, hi, per = rt.rated[i]

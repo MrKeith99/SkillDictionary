@@ -549,13 +549,10 @@
       ],
       "description": "Pull or push the dishwasher rack",
       "objects": [
-        "dishwasher_rack"
+        "dishwasher.rack"
       ],
-      "conditions": {
-        "reach": "enclosed"
-      },
       "level": "X",
-      "points": 230,
+      "points": 300,
       "type": "achievement",
       "used_by": [
         "pick_and_place"
@@ -574,11 +571,8 @@
       ],
       "description": "Open or close the dishwasher door without assistance",
       "objects": [
-        "dishwasher_door"
+        "dishwasher.door"
       ],
-      "conditions": {
-        "reach": "table"
-      },
       "level": "X",
       "points": 200,
       "type": "achievement",
@@ -598,11 +592,8 @@
       ],
       "description": "Opening the washing machine door",
       "objects": [
-        "washing_machine_door"
+        "washing_machine.door"
       ],
-      "conditions": {
-        "reach": "low_high"
-      },
       "level": "X",
       "points": 270,
       "type": "achievement",
@@ -683,8 +674,10 @@
       "objects": [
         "dishwasher_tab"
       ],
+      "at": [
+        "dishwasher.tab_slot"
+      ],
       "conditions": {
-        "reach": "enclosed",
         "placement_tolerance": "constrained"
       },
       "level": "X",
@@ -705,11 +698,8 @@
       ],
       "description": "Open the entrance door for a guest",
       "objects": [
-        "entrance_door"
+        "entrance.door"
       ],
-      "conditions": {
-        "reach": "table"
-      },
       "level": "X",
       "points": 230,
       "type": "achievement",
@@ -729,11 +719,8 @@
       ],
       "description": "Open milk container without assistance",
       "objects": [
-        "milk_cap"
+        "milk.cap"
       ],
-      "conditions": {
-        "reach": "table"
-      },
       "level": "X",
       "points": 200,
       "type": "achievement",
@@ -757,8 +744,11 @@
         "cabinet_objects",
         "breakfast"
       ],
+      "at": [
+        "dinner_table",
+        "counter"
+      ],
       "conditions": {
-        "reach": "table",
         "clutter": "nearby",
         "knowledge": "known_instance"
       },
@@ -782,8 +772,10 @@
       "objects": [
         "trash"
       ],
+      "at": [
+        "floor"
+      ],
       "conditions": {
-        "reach": "low_high",
         "clutter": "isolated",
         "knowledge": "known_instance"
       },
@@ -807,8 +799,10 @@
       "objects": [
         "cutlery"
       ],
+      "at": [
+        "dinner_table"
+      ],
       "conditions": {
-        "reach": "table",
         "clutter": "nearby",
         "knowledge": "known_instance"
       },
@@ -832,8 +826,10 @@
       "objects": [
         "plate"
       ],
+      "at": [
+        "dinner_table"
+      ],
       "conditions": {
-        "reach": "table",
         "clutter": "nearby",
         "knowledge": "known_instance"
       },
@@ -857,8 +853,10 @@
       "objects": [
         "dishwasher_tab"
       ],
+      "at": [
+        "counter"
+      ],
       "conditions": {
-        "reach": "table",
         "clutter": "isolated",
         "knowledge": "known_instance"
       },
@@ -919,8 +917,10 @@
       "objects": [
         "common_objects"
       ],
+      "at": [
+        "counter"
+      ],
       "conditions": {
-        "reach": "table",
         "clutter": "isolated",
         "knowledge": "known_instance"
       },
@@ -945,13 +945,15 @@
       "objects": [
         "clothing"
       ],
+      "at": [
+        "laundry_basket"
+      ],
       "conditions": {
-        "reach": "low_high",
         "clutter": "piled",
         "knowledge": "known_class"
       },
       "level": "C",
-      "points": 200,
+      "points": 210,
       "type": "achievement",
       "used_by": [
         "doing_laundry"
@@ -969,7 +971,7 @@
       "description": "Picking up multiple at once",
       "failure_mode": "multiple_at_once",
       "level": "C",
-      "points": -200,
+      "points": -210,
       "type": "penalty_behavior",
       "used_by": [
         "doing_laundry"
@@ -989,13 +991,15 @@
       "objects": [
         "clothing"
       ],
+      "at": [
+        "washing_machine.drum"
+      ],
       "conditions": {
-        "reach": "enclosed",
         "clutter": "piled",
         "knowledge": "known_class"
       },
       "level": "X",
-      "points": 210,
+      "points": 220,
       "type": "achievement",
       "used_by": [
         "doing_laundry"
@@ -1013,7 +1017,7 @@
       "description": "The clothing touches the floor",
       "failure_mode": "quality",
       "level": "X",
-      "points": -210,
+      "points": -220,
       "type": "penalty_behavior",
       "used_by": [
         "doing_laundry"
@@ -1033,8 +1037,10 @@
       "objects": [
         "restaurant_orders"
       ],
+      "at": [
+        "kitchen_bar"
+      ],
       "conditions": {
-        "reach": "table",
         "clutter": "nearby",
         "knowledge": "known_instance"
       },
@@ -1058,11 +1064,10 @@
       "objects": [
         "known_objects"
       ],
+      "at": [
+        "placement_locations"
+      ],
       "conditions": {
-        "reach": [
-          "table",
-          "low_high"
-        ],
         "clutter": "nearby",
         "knowledge": "known_instance"
       },
@@ -1087,12 +1092,14 @@
       "objects": [
         "bag"
       ],
+      "at": [
+        "floor"
+      ],
       "conditions": {
-        "reach": "low_high",
         "placement_tolerance": "region"
       },
       "level": "C",
-      "points": 50,
+      "points": 60,
       "type": "achievement",
       "used_by": [
         "hri"
@@ -1114,8 +1121,12 @@
         "cabinet_objects",
         "breakfast"
       ],
+      "at": [
+        "dishwasher",
+        "cabinet",
+        "dinner_table"
+      ],
       "conditions": {
-        "reach": "table",
         "placement_tolerance": "spot",
         "clutter": "nearby"
       },
@@ -1140,8 +1151,11 @@
       "objects": [
         "dishwasher_items"
       ],
+      "at": [
+        "dishwasher.rack_bottom",
+        "dishwasher.rack_top"
+      ],
       "conditions": {
-        "reach": "enclosed",
         "placement_tolerance": "constrained",
         "clutter": "nearby"
       },
@@ -1166,8 +1180,10 @@
       "objects": [
         "cabinet_objects"
       ],
+      "at": [
+        "cabinet"
+      ],
       "conditions": {
-        "reach": "low_high",
         "placement_tolerance": "spot",
         "clutter": "nearby"
       },
@@ -1211,8 +1227,10 @@
       "objects": [
         "common_objects"
       ],
+      "at": [
+        "cabinet"
+      ],
       "conditions": {
-        "reach": "low_high",
         "placement_tolerance": "spot",
         "clutter": "nearby"
       },
@@ -1255,8 +1273,10 @@
       "objects": [
         "restaurant_orders"
       ],
+      "at": [
+        "customer_table"
+      ],
       "conditions": {
-        "reach": "table",
         "placement_tolerance": "region",
         "clutter": "nearby"
       },
@@ -1298,11 +1318,11 @@
       "objects": [
         "known_objects"
       ],
+      "at": [
+        "placement_locations",
+        "trash_bins"
+      ],
       "conditions": {
-        "reach": [
-          "table",
-          "low_high"
-        ],
         "placement_tolerance": "region",
         "clutter": "nearby"
       },

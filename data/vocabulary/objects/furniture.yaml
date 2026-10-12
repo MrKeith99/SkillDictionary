@@ -1,0 +1,229 @@
+# Furniture — WHERE a skill happens: the places on each piece of furniture, and
+# the articulated parts (doors, racks) a robot operates but never carries.
+#
+# A place is rated by two factors (difficulty_factors.yaml):
+#   height   computed from height_mm, the height of the surface the robot
+#            works on (shelf board, rack, table top, drum floor)
+#   access   judged once: open surface / bounded (a board above, walls around:
+#            shelf, basket, bin) / enclosed (behind a door, inside a drum or rack)
+# A part is rated by mechanism and actuation_force, plus height and access of
+# where its handle is.
+#
+# A dictionary line names its places in `at:` — `cabinet.shelf_top` (one place),
+# `cabinet` (all its places), or a group below — and its parts in `objects:`
+# (`dishwasher.door`). A line covering several places gets a difficulty range,
+# like an object category: the place is decided on the day.
+#
+# 2027 ARENA, written from the 2026 Incheon arena (RoboCupAtHome/Incheon2026
+# maps/location_names.md @ 993bb70). Heights are typical values for the
+# furniture type, NOT measured: `values: estimate` everywhere. Measure them at
+# Setup Days and set `values: measured`; replace the arena when the 2027 one is
+# published. `placeable` follows the rulebook's "(p)": objects may be placed there.
+
+version: 1
+values: estimate
+source:
+  repo: https://github.com/RoboCupAtHome/Incheon2026
+  path: maps/location_names.md, maps/room_names.md
+  commit: 993bb7015566b8c943cd379db781257cbd6ff81b
+
+furniture:
+  # ── laundry ────────────────────────────────────────────────────────────────
+  laundry_table:
+    name: Laundry table
+    room: laundry
+    placeable: true
+    places:
+      top: {height_mm: 750, access: open}
+  washing_machine:
+    name: Washing machine
+    room: laundry
+    placeable: true
+    places:
+      top:  {height_mm: 850, access: open}
+      drum: {height_mm: 450, access: enclosed}
+    parts:
+      door:
+        name: Washing machine door
+        height_mm: 500
+        access: open
+        mechanism: latched
+        actuation_force: medium
+        note: Side-hinged porthole; latch released by pulling a handle.
+  laundry_trash_bin:
+    name: Laundry trash bin
+    room: laundry
+    placeable: true
+    places:
+      inside: {height_mm: 600, access: bounded}
+  laundry_basket:
+    name: Laundry basket
+    room: laundry
+    placeable: false
+    note: Task object of Doing Laundry, stands on the floor.
+    places:
+      inside: {height_mm: 250, access: bounded}
+
+  # ── bedroom ────────────────────────────────────────────────────────────────
+  shelf:
+    name: Shelf
+    room: bedroom
+    placeable: true
+    places:
+      shelf_bottom: {height_mm: 150,  access: bounded}
+      shelf_low:    {height_mm: 500,  access: bounded}
+      shelf_middle: {height_mm: 850,  access: bounded}
+      shelf_top:    {height_mm: 1200, access: bounded}
+  bed:
+    name: Bed
+    room: bedroom
+    placeable: true
+    places:
+      top: {height_mm: 450, access: open}
+  bedside_table:
+    name: Bedside table
+    room: bedroom
+    placeable: true
+    places:
+      top: {height_mm: 550, access: open}
+
+  # ── living room ────────────────────────────────────────────────────────────
+  tv_stand:
+    name: TV stand
+    room: living room
+    placeable: true
+    places:
+      top: {height_mm: 500, access: open}
+  sofa:
+    name: Sofa
+    room: living room
+    placeable: true
+    places:
+      seat: {height_mm: 420, access: open}
+  coffee_table:
+    name: Coffee table
+    room: living room
+    placeable: true
+    places:
+      top: {height_mm: 450, access: open}
+  coat_rack:
+    name: Coat rack
+    room: living room
+    placeable: false
+    places:
+      hook: {height_mm: 1600, access: open}
+  entrance:
+    name: Entrance
+    room: living room
+    placeable: false
+    parts:
+      door:
+        name: Entrance door
+        height_mm: 1000
+        access: open
+        mechanism: latched
+        actuation_force: medium
+        note: Lever handle, side-hinged.
+
+  # ── kitchen ────────────────────────────────────────────────────────────────
+  cabinet:
+    name: Cabinet
+    room: kitchen
+    placeable: true
+    places:
+      shelf_bottom: {height_mm: 150,  access: bounded}
+      shelf_middle: {height_mm: 750,  access: bounded}
+      shelf_top:    {height_mm: 1350, access: bounded}
+  refrigerator:
+    name: Refrigerator
+    room: kitchen
+    placeable: false
+    parts:
+      door:
+        name: Refrigerator door
+        height_mm: 1100
+        access: open
+        mechanism: guided
+        actuation_force: medium
+        note: Magnetic seal; pull handle.
+  counter:
+    name: Counter
+    room: kitchen
+    placeable: true
+    places:
+      top: {height_mm: 900, access: open}
+  sink:
+    name: Sink
+    room: kitchen
+    placeable: false
+    places:
+      basin: {height_mm: 750, access: bounded}
+  cooking_table:
+    name: Cooking table
+    room: kitchen
+    placeable: true
+    places:
+      top: {height_mm: 750, access: open}
+  dishwasher:
+    name: Dishwasher
+    room: kitchen
+    placeable: true
+    places:
+      rack_bottom: {height_mm: 200, access: enclosed}
+      rack_top:    {height_mm: 500, access: enclosed}
+      tab_slot:    {height_mm: 250, access: bounded, note: inside of the open door, lying horizontal}
+    parts:
+      door:
+        name: Dishwasher door
+        height_mm: 800
+        access: open
+        mechanism: guided
+        actuation_force: medium
+        note: Bottom-hinged, counterweighted; open position is horizontal.
+      rack:
+        name: Dishwasher rack
+        height_mm: 200
+        access: enclosed
+        mechanism: guided
+        actuation_force: low
+        note: Slides on rails; requires the door open.
+  kitchen_trash_bin:
+    name: Kitchen trash bin
+    room: kitchen
+    placeable: false
+    places:
+      inside: {height_mm: 600, access: bounded}
+  dinner_table:
+    name: Dinner table
+    room: kitchen
+    placeable: true
+    places:
+      top: {height_mm: 750, access: open}
+
+  # ── anywhere ───────────────────────────────────────────────────────────────
+  floor:
+    name: Floor
+    placeable: true
+    places:
+      floor: {height_mm: 0, access: open}
+
+  # ── Restaurant venue (not the house arena) ─────────────────────────────────
+  kitchen_bar:
+    name: Kitchen-bar
+    room: restaurant
+    placeable: true
+    places:
+      top: {height_mm: 1050, access: open}
+  customer_table:
+    name: Customer table
+    room: restaurant
+    placeable: true
+    places:
+      top: {height_mm: 750, access: open}
+
+groups:
+  # Every place the GPSR generator may name as a placement location ("(p)").
+  placement_locations: [laundry_table, washing_machine.top, laundry_trash_bin, shelf, bed,
+                        bedside_table, tv_stand, sofa, coffee_table, cabinet, counter,
+                        cooking_table, dishwasher.rack_bottom, dishwasher.rack_top, dinner_table]
+  trash_bins: [laundry_trash_bin, kitchen_trash_bin]

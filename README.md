@@ -50,7 +50,7 @@ data/                       SOURCE — the only place you edit
     difficulty_factors.yaml     what makes an instance harder, and by how much
     global_rules.yaml           rulebook §3 rules the challenges refer to
     objects/catalog.yaml        every real object: mass, size, surface, ...
-    objects/fixtures.yaml       doors, racks, caps
+    objects/furniture.yaml      the arena: every place's height and access, doors and racks
     objects/set.yaml            the year's object set
 
 skilldict/                  the Python package — one CLI for everything
@@ -147,15 +147,17 @@ challenge:
   taxonomy: MAN.Pick          # data/vocabulary/taxonomy.yaml: intent, success criterion,
                               #   what the referee must not judge, factors
   description: Plate
-  objects: [plate]            # data/vocabulary/objects/
+  objects: [plate]            # data/vocabulary/objects/catalog.yaml + set.yaml
+  at: [dinner_table]          # data/vocabulary/objects/furniture.yaml: height, access
   conditions:                 # data/vocabulary/difficulty_factors.yaml
-    reach: table
     clutter: nearby
     knowledge: known_instance
 ```
 
-A harder object is a different *difficulty*, not a different skill, so the
-dictionary does not grow as verbs × properties. A condition may be a list of
+A harder object or a harder place is a different *difficulty*, not a different
+skill, so the dictionary does not grow as verbs × properties. A line naming a
+piece of furniture (`at: [cabinet]`) covers all its places — bottom to top
+shelf — and gets a difficulty range, like an object category. A condition may be a list of
 levels when it is drawn at test time (GPSR commands, restaurant orders); the
 line then has a difficulty range. Full explanation:
 **[docs/skill-model.md](docs/skill-model.md)**.

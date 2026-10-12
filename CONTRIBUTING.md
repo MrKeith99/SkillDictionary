@@ -133,7 +133,8 @@ Add the entry to the area file in `data/skills/`, keeping entries sorted by id:
   modifiers: [deformable, from_floor]
   description: Picking up a deformable object from the floor
   objects: [clothing]
-  conditions: {reach: low_high, clutter: isolated, knowledge: known_class}
+  at: [floor]
+  conditions: {clutter: isolated, knowledge: known_class}
   level: C
   points: 80
   type: achievement

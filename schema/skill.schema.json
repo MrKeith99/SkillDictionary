@@ -67,6 +67,8 @@
     "penalty_type": {"enum": ["percentage", "fixed"]},
     "basis": {"type": "string"},
     "process_spec": {"type": "string"},
+    "at": {"type": "array", "items": {"type": "string"}, "minItems": 1,
+           "description": "Where the skill happens: places, furniture or furniture groups (vocabulary/objects/furniture.yaml)."},
     "used_by": {"type": "array", "items": {"type": "string"},
                 "description": "Derived by the build (dist/ only); never authored."}
   },

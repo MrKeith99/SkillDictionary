@@ -32,7 +32,8 @@
           "surface",
           "rigidity",
           "shape",
-          "reach",
+          "height",
+          "access",
           "clutter"
         ],
         "scored": false,
@@ -68,7 +69,8 @@
           "size",
           "shape",
           "surface",
-          "reach"
+          "height",
+          "access"
         ],
         "scored": false,
         "status": "active",
@@ -109,7 +111,8 @@
           "surface",
           "rigidity",
           "shape",
-          "reach",
+          "height",
+          "access",
           "clutter",
           "knowledge"
         ],
@@ -127,7 +130,8 @@
           "mass",
           "size",
           "rigidity",
-          "reach",
+          "height",
+          "access",
           "placement_tolerance",
           "clutter",
           "knowledge"
@@ -142,7 +146,8 @@
         "parent": "MAN.Place",
         "factors": [
           "size",
-          "reach",
+          "height",
+          "access",
           "placement_tolerance"
         ],
         "status": "active"
@@ -170,7 +175,8 @@
         "factors": [
           "mechanism",
           "actuation_force",
-          "reach"
+          "height",
+          "access"
         ],
         "status": "active"
       },
@@ -182,7 +188,8 @@
         "factors": [
           "size",
           "mechanism",
-          "reach"
+          "height",
+          "access"
         ],
         "status": "proposed",
         "sources": [
@@ -240,7 +247,8 @@
         "success": "Target area is visibly cleared of the defined dirt.",
         "not_judged": "Tool, pattern of motion.",
         "factors": [
-          "reach",
+          "height",
+          "access",
           "clutter"
         ],
         "status": "proposed",
@@ -886,21 +894,56 @@
           }
         }
       },
-      "reach": {
-        "source": "condition",
-        "question": "Where is the object or the target?",
+      "height": {
+        "source": "place",
+        "question": "How high is the surface the robot works on?",
+        "measure": "height_mm",
         "levels": {
-          "table": {
+          "comfortable": {
             "weight": 0,
-            "guide": "open surface, 0.6\u20131.0 m high"
+            "within": [
+              [
+                600,
+                1100
+              ]
+            ],
+            "guide": "0.6\u20131.1 m \u2014 table, counter, middle shelf"
           },
           "low_high": {
             "weight": 1,
-            "guide": "floor, bottom or top shelf"
+            "within": [
+              [
+                250,
+                600
+              ],
+              [
+                1100,
+                1500
+              ]
+            ],
+            "guide": "0.25\u20130.6 m or 1.1\u20131.5 m \u2014 sofa, coffee table, low or upper shelf"
+          },
+          "extreme": {
+            "weight": 2,
+            "guide": "below 0.25 m or above 1.5 m \u2014 floor, bottom shelf, top of a tall cabinet"
+          }
+        }
+      },
+      "access": {
+        "source": "place",
+        "question": "How much does the furniture around the place get in the way?",
+        "levels": {
+          "open": {
+            "weight": 0,
+            "guide": "open surface, free from above and the sides \u2014 table top, bed, floor"
+          },
+          "bounded": {
+            "weight": 1,
+            "guide": "a board above or walls around \u2014 shelf, basket, bin, sink"
           },
           "enclosed": {
             "weight": 2,
-            "guide": "inside an appliance, drum, cabinet or rack"
+            "guide": "behind a door or inside a machine \u2014 dishwasher rack, washing machine drum"
           }
         }
       },
@@ -1285,7 +1328,15 @@
         "surface": "grippy",
         "rigidity": "compliant",
         "shape": "regular",
-        "note": "Paper carton with screw cap; squeezes if gripped hard."
+        "note": "Paper carton with screw cap; squeezes if gripped hard.",
+        "parts": {
+          "cap": {
+            "name": "Milk carton cap",
+            "mechanism": "latched",
+            "actuation_force": "low",
+            "note": "Screw cap ~3 cm."
+          }
+        }
       },
       "soju": {
         "name": "Soju glass bottle (360 ml)",
@@ -1524,36 +1575,361 @@
         "note": "Rulebook says it needs two arms to carry."
       }
     },
-    "fixtures": {
-      "dishwasher_door": {
-        "name": "Dishwasher door",
-        "mechanism": "guided",
-        "actuation_force": "medium",
-        "note": "Bottom-hinged, counterweighted; open position is horizontal."
+    "furniture": {
+      "version": 1,
+      "values": "estimate",
+      "source": {
+        "repo": "https://github.com/RoboCupAtHome/Incheon2026",
+        "path": "maps/location_names.md, maps/room_names.md",
+        "commit": "993bb7015566b8c943cd379db781257cbd6ff81b"
       },
-      "dishwasher_rack": {
-        "name": "Dishwasher rack",
-        "mechanism": "guided",
-        "actuation_force": "low",
-        "note": "Slides on rails; requires the door open."
+      "furniture": {
+        "laundry_table": {
+          "name": "Laundry table",
+          "room": "laundry",
+          "placeable": true,
+          "places": {
+            "top": {
+              "height_mm": 750,
+              "access": "open"
+            }
+          }
+        },
+        "washing_machine": {
+          "name": "Washing machine",
+          "room": "laundry",
+          "placeable": true,
+          "places": {
+            "top": {
+              "height_mm": 850,
+              "access": "open"
+            },
+            "drum": {
+              "height_mm": 450,
+              "access": "enclosed"
+            }
+          },
+          "parts": {
+            "door": {
+              "name": "Washing machine door",
+              "height_mm": 500,
+              "access": "open",
+              "mechanism": "latched",
+              "actuation_force": "medium",
+              "note": "Side-hinged porthole; latch released by pulling a handle."
+            }
+          }
+        },
+        "laundry_trash_bin": {
+          "name": "Laundry trash bin",
+          "room": "laundry",
+          "placeable": true,
+          "places": {
+            "inside": {
+              "height_mm": 600,
+              "access": "bounded"
+            }
+          }
+        },
+        "laundry_basket": {
+          "name": "Laundry basket",
+          "room": "laundry",
+          "placeable": false,
+          "note": "Task object of Doing Laundry, stands on the floor.",
+          "places": {
+            "inside": {
+              "height_mm": 250,
+              "access": "bounded"
+            }
+          }
+        },
+        "shelf": {
+          "name": "Shelf",
+          "room": "bedroom",
+          "placeable": true,
+          "places": {
+            "shelf_bottom": {
+              "height_mm": 150,
+              "access": "bounded"
+            },
+            "shelf_low": {
+              "height_mm": 500,
+              "access": "bounded"
+            },
+            "shelf_middle": {
+              "height_mm": 850,
+              "access": "bounded"
+            },
+            "shelf_top": {
+              "height_mm": 1200,
+              "access": "bounded"
+            }
+          }
+        },
+        "bed": {
+          "name": "Bed",
+          "room": "bedroom",
+          "placeable": true,
+          "places": {
+            "top": {
+              "height_mm": 450,
+              "access": "open"
+            }
+          }
+        },
+        "bedside_table": {
+          "name": "Bedside table",
+          "room": "bedroom",
+          "placeable": true,
+          "places": {
+            "top": {
+              "height_mm": 550,
+              "access": "open"
+            }
+          }
+        },
+        "tv_stand": {
+          "name": "TV stand",
+          "room": "living room",
+          "placeable": true,
+          "places": {
+            "top": {
+              "height_mm": 500,
+              "access": "open"
+            }
+          }
+        },
+        "sofa": {
+          "name": "Sofa",
+          "room": "living room",
+          "placeable": true,
+          "places": {
+            "seat": {
+              "height_mm": 420,
+              "access": "open"
+            }
+          }
+        },
+        "coffee_table": {
+          "name": "Coffee table",
+          "room": "living room",
+          "placeable": true,
+          "places": {
+            "top": {
+              "height_mm": 450,
+              "access": "open"
+            }
+          }
+        },
+        "coat_rack": {
+          "name": "Coat rack",
+          "room": "living room",
+          "placeable": false,
+          "places": {
+            "hook": {
+              "height_mm": 1600,
+              "access": "open"
+            }
+          }
+        },
+        "entrance": {
+          "name": "Entrance",
+          "room": "living room",
+          "placeable": false,
+          "parts": {
+            "door": {
+              "name": "Entrance door",
+              "height_mm": 1000,
+              "access": "open",
+              "mechanism": "latched",
+              "actuation_force": "medium",
+              "note": "Lever handle, side-hinged."
+            }
+          }
+        },
+        "cabinet": {
+          "name": "Cabinet",
+          "room": "kitchen",
+          "placeable": true,
+          "places": {
+            "shelf_bottom": {
+              "height_mm": 150,
+              "access": "bounded"
+            },
+            "shelf_middle": {
+              "height_mm": 750,
+              "access": "bounded"
+            },
+            "shelf_top": {
+              "height_mm": 1350,
+              "access": "bounded"
+            }
+          }
+        },
+        "refrigerator": {
+          "name": "Refrigerator",
+          "room": "kitchen",
+          "placeable": false,
+          "parts": {
+            "door": {
+              "name": "Refrigerator door",
+              "height_mm": 1100,
+              "access": "open",
+              "mechanism": "guided",
+              "actuation_force": "medium",
+              "note": "Magnetic seal; pull handle."
+            }
+          }
+        },
+        "counter": {
+          "name": "Counter",
+          "room": "kitchen",
+          "placeable": true,
+          "places": {
+            "top": {
+              "height_mm": 900,
+              "access": "open"
+            }
+          }
+        },
+        "sink": {
+          "name": "Sink",
+          "room": "kitchen",
+          "placeable": false,
+          "places": {
+            "basin": {
+              "height_mm": 750,
+              "access": "bounded"
+            }
+          }
+        },
+        "cooking_table": {
+          "name": "Cooking table",
+          "room": "kitchen",
+          "placeable": true,
+          "places": {
+            "top": {
+              "height_mm": 750,
+              "access": "open"
+            }
+          }
+        },
+        "dishwasher": {
+          "name": "Dishwasher",
+          "room": "kitchen",
+          "placeable": true,
+          "places": {
+            "rack_bottom": {
+              "height_mm": 200,
+              "access": "enclosed"
+            },
+            "rack_top": {
+              "height_mm": 500,
+              "access": "enclosed"
+            },
+            "tab_slot": {
+              "height_mm": 250,
+              "access": "bounded",
+              "note": "inside of the open door",
+              "lying horizontal": null
+            }
+          },
+          "parts": {
+            "door": {
+              "name": "Dishwasher door",
+              "height_mm": 800,
+              "access": "open",
+              "mechanism": "guided",
+              "actuation_force": "medium",
+              "note": "Bottom-hinged, counterweighted; open position is horizontal."
+            },
+            "rack": {
+              "name": "Dishwasher rack",
+              "height_mm": 200,
+              "access": "enclosed",
+              "mechanism": "guided",
+              "actuation_force": "low",
+              "note": "Slides on rails; requires the door open."
+            }
+          }
+        },
+        "kitchen_trash_bin": {
+          "name": "Kitchen trash bin",
+          "room": "kitchen",
+          "placeable": false,
+          "places": {
+            "inside": {
+              "height_mm": 600,
+              "access": "bounded"
+            }
+          }
+        },
+        "dinner_table": {
+          "name": "Dinner table",
+          "room": "kitchen",
+          "placeable": true,
+          "places": {
+            "top": {
+              "height_mm": 750,
+              "access": "open"
+            }
+          }
+        },
+        "floor": {
+          "name": "Floor",
+          "placeable": true,
+          "places": {
+            "floor": {
+              "height_mm": 0,
+              "access": "open"
+            }
+          }
+        },
+        "kitchen_bar": {
+          "name": "Kitchen-bar",
+          "room": "restaurant",
+          "placeable": true,
+          "places": {
+            "top": {
+              "height_mm": 1050,
+              "access": "open"
+            }
+          }
+        },
+        "customer_table": {
+          "name": "Customer table",
+          "room": "restaurant",
+          "placeable": true,
+          "places": {
+            "top": {
+              "height_mm": 750,
+              "access": "open"
+            }
+          }
+        }
       },
-      "washing_machine_door": {
-        "name": "Washing machine door",
-        "mechanism": "latched",
-        "actuation_force": "medium",
-        "note": "Side-hinged porthole; latch released by pulling a handle."
-      },
-      "entrance_door": {
-        "name": "Entrance door",
-        "mechanism": "latched",
-        "actuation_force": "medium",
-        "note": "Lever handle, side-hinged."
-      },
-      "milk_cap": {
-        "name": "Milk carton cap",
-        "mechanism": "latched",
-        "actuation_force": "low",
-        "note": "Screw cap ~3 cm."
+      "groups": {
+        "placement_locations": [
+          "laundry_table",
+          "washing_machine.top",
+          "laundry_trash_bin",
+          "shelf",
+          "bed",
+          "bedside_table",
+          "tv_stand",
+          "sofa",
+          "coffee_table",
+          "cabinet",
+          "counter",
+          "cooking_table",
+          "dishwasher.rack_bottom",
+          "dishwasher.rack_top",
+          "dinner_table"
+        ],
+        "trash_bins": [
+          "laundry_trash_bin",
+          "kitchen_trash_bin"
+        ]
       }
     },
     "set": {

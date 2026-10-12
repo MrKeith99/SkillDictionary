@@ -1,6 +1,6 @@
 # Object catalog — one entry per REAL object, reused across years.
 #
-# The year's object set (sets/<year>.yaml) says which of these are in play and
+# The year's object set (set.yaml) says which of these are in play and
 # how they are grouped; dictionary entries name those groups. This file only
 # says what each object physically is.
 #
@@ -22,6 +22,9 @@
 #                   judged levels from difficulty_factors.yaml. mass and size
 #                   levels are NOT written here: they are computed from the
 #                   numbers above, so two people cannot rate them differently.
+#   parts           articulated parts the robot operates (a cap), named
+#                   `<object>.<part>` in a line's objects; rated by mechanism
+#                   and actuation_force, like furniture parts (furniture.yaml)
 #   note            anything that explains a judgement
 #
 # Ids are the names the league uses in its object list, so a year set can be
@@ -119,6 +122,12 @@ objects:
     rigidity: compliant
     shape: regular
     note: Paper carton with screw cap; squeezes if gripped hard.
+    parts:
+      cap:
+        name: Milk carton cap
+        mechanism: latched
+        actuation_force: low
+        note: Screw cap ~3 cm.
   soju:
     name: Soju glass bottle (360 ml)
     mass_g: 650

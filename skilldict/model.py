@@ -146,7 +146,7 @@ def _vocab():
     od = os.path.join(paths.VOCAB, "objects")
     vocab["objects"] = {
         "catalog": paths.load_yaml(os.path.join(od, "catalog.yaml"))["objects"],
-        "fixtures": paths.load_yaml(os.path.join(od, "fixtures.yaml"))["fixtures"],
+        "furniture": paths.load_yaml(os.path.join(od, "furniture.yaml")),
         "set": paths.load_yaml(os.path.join(od, "set.yaml")),
     }
     return vocab
