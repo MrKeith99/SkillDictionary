@@ -2,8 +2,10 @@
 
 A versioned, machine-checkable skill dictionary for the RoboCup@Home rulebook.
 
-**In force: season 2026** (RuleBook 2026.2, commit `b844d5a`).
-**Proposed: season 2027** (built as 2026 + a set of reviewed changes).
+**This tree: 2027 draft** — the rulebook 2026.2 (RuleBook commit `b844d5a`)
+plus the changes proposed for 2027 ([docs/changes-2027.md](docs/changes-2027.md)).
+Earlier releases are git tags: `2026.2` is the dictionary exactly as that
+rulebook was published.
 
 ---
 
@@ -40,37 +42,33 @@ coupling; the faceted schema follows Johannsmeier et al. (Nature MI, 2025).
 
 ```
 data/                       SOURCE — the only place you edit
+  release.yaml                which year this is, draft | in_force, the rulebook it is checked against
   skills/<AREA>.yaml          every scored line: definition + price, once
-  vocabulary/                 shared by all seasons
+  challenges/<slug>.yaml      how each test uses the skills (references, counts; no points)
+  pricing.yaml                the pricing rule: skill bases, difficulty scale, penalty shares
+  vocabulary/
     taxonomy.yaml               what each skill is for, its success criterion, its factors
     difficulty_factors.yaml     what makes an instance harder, and by how much
     global_rules.yaml           rulebook §3 rules the challenges refer to
     objects/catalog.yaml        every real object: mass, size, surface, ...
     objects/fixtures.yaml       doors, racks, caps
-  seasons/<year>/
-    season.yaml                 status (in_force | proposal), rulebook pin, sheet names
-    challenges/<slug>.yaml      in force: how each test uses the skills (no points)
-    objects.yaml                the year's object set
-    changes/*.yaml              proposal: what it changes on its base season
-    pricing.yaml                proposal: the pricing rule for new lines
+    objects/set.yaml            the year's object set
 
 skilldict/                  the Python package — one CLI for everything
-  model.py                    seasons, loading, derived fields (used_by, total_score)
+  model.py                    loading, derived fields (used_by, total_score)
+  commands.py                 GPSR: value every generator command, fill step counts
   ratings.py                  vocabulary integrity, intrinsic difficulty D
-  overlay.py                  proposal season = base + changes
-  pricing.py                  the pricing rule and the repricing of a season
+  pricing.py                  the pricing rule, and every line under it
   checks/                     schema, integrity, rulebook, findings
   render/                     score sheets (HTML, LaTeX), pricing page, coverage page, PDF
   cli.py
 
-templates/                  page and LaTeX templates the renderers fill in
+templates/                  page templates the renderers fill in
 schema/                     JSON Schema for a skill and a challenge (as written to dist/)
-docs/skill-model.md         how skills, objects and difficulty fit together
-external/RuleBook           the RuleBook, git submodule pinned to the in-force version
+docs/                       skill-model.md (how it fits together), changes-<year>.md (why)
+external/RuleBook           the RuleBook, git submodule pinned to the rulebook in release.yaml
 
 dist/                       GENERATED, committed: JSON for consumers (CommandGenerator)
-  *.json, skill_coverage.html   the season in force
-  <year>/                       each proposal season, plus its pricing.json
 build/                      GENERATED, not committed: sheets, pricing review, PDFs
 ```
 
@@ -91,27 +89,28 @@ make check       # the CI gate: must end with ALL CHECKS PASSED
 
 | command | does |
 |---|---|
-| `make check` | build every season, run every check, write `dist/` |
-| `make findings` | the TC findings report for the season in force |
-| `make sheets` | score sheets, HTML + rulebook LaTeX → `build/<year>/sheets/` |
-| `make prices` | reprice the base season with the proposal's rule → `build/<year>/pricing.html` |
-| `make pdf` | official sheet next to the generated one, per challenge → `build/<year>/*.pdf` |
+| `make check` | build, run every check, write `dist/` |
+| `make findings` | the TC findings report |
+| `make sheets` | score sheets, HTML + rulebook LaTeX → `build/sheets/` |
+| `make prices` | every line under the pricing rule, next to what it pays now → `build/pricing.html` |
+| `make pdf` | rulebook sheet next to the generated one, per challenge → `build/*.pdf` |
 | `make all` | all of the above |
 
-Each target is `python3 -m skilldict <command> [YEAR]`; `python3 -m skilldict
---help` lists the options (one season, one challenge).
+Each target is `python3 -m skilldict <command>`; `python3 -m skilldict --help`
+lists the options.
 
 ### Consuming the data
 
 | file | use |
 |---|---|
-| `dist/dictionary.json` | every line of the season in force: definition, price, `used_by` |
+| `dist/dictionary.json` | every line: definition, price, `used_by` |
 | `dist/challenges.json` | per challenge: references, counts, dependencies, `total_score` |
 | `dist/vocabulary.json` | taxonomy, difficulty factors and object profiles |
 | `dist/skill_ratings.json` | per line: taxonomy node, objects, factors, intrinsic difficulty |
 | `dist/global_rules.json` | rulebook §3 rules |
 | `dist/viz_data.json` | flattened rows + area matrix + drift, for the visualizer |
-| `dist/2027/…` | the same files for the 2027 proposal, plus `gpsr_commands.json` (value of every generator command) and `pricing.json` (every 2026 line under the 2027 rule) |
+| `dist/gpsr_commands.json` | the value of every command the GPSR generator can produce |
+| `dist/pricing.json` | every line under the pricing rule |
 
 `used_by` and `total_score` are **derived** by the build; the sources never
 carry them, so they cannot go stale.
@@ -152,7 +151,7 @@ challenge:
   taxonomy: MAN.Pick          # data/vocabulary/taxonomy.yaml: intent, success criterion,
                               #   what the referee must not judge, factors
   description: Plate
-  objects: [plate]            # data/vocabulary/objects/ + the season's objects.yaml
+  objects: [plate]            # data/vocabulary/objects/
   conditions:                 # data/vocabulary/difficulty_factors.yaml
     reach: table
     clutter: nearby
@@ -206,7 +205,7 @@ A **skill** is specification — what it is and what it is worth:
 A **challenge** is usage — how one test employs that skill:
 
 ```yaml
-# data/seasons/2026/challenges/pick_and_place.yaml
+# data/challenges/pick_and_place.yaml
 - ref: MAN-PICK-01      # reference, never a redefinition
   count: 12             # how many times this test scores it
   section: Picking
@@ -229,38 +228,32 @@ dishwasher" (3×70) stays fully available. Hence `blocking` and
 
 ---
 
-## Seasons and proposals
+## Releases
 
-A **season in force** describes the rulebook exactly as published; the
-RULEBOOK check proves it line by line against the pinned `.tex` sheets.
+The tree describes one release, set in `data/release.yaml`. Earlier releases
+are git tags (`2026.2`), so `git diff 2026.2 -- data/` shows every change and
+`git checkout 2026.2` brings back any earlier dictionary.
 
-A **proposal season** is never a copy. It names its `base` season and lists
-its changes in `changes/*.yaml` — edit a line, add lines, replace a whole
-challenge, swap a line in a challenge, add a line to challenges. Each change
-file starts with the reasoning, so the TC reviews the change and its reason
-together. New lines without explicit points are priced by the season's
-`pricing.yaml`, whose skill bases are calibrated on the base season, so a
-proposal can never shift the price of an existing skill by accident.
-See the docstring of [skilldict/overlay.py](skilldict/overlay.py) for the keys.
-
-When the rulebook adopts a proposal, the season becomes `in_force`: its
-challenges are materialised into `seasons/<year>/challenges/`, the skills in
-`data/skills/` are updated, and the submodule pin moves.
+While `status: draft`, the tree proposes the next rulebook: the rulebook stage
+of `make check` lists every difference from the pinned rulebook's sheets — that
+list *is* the proposal — and [docs/changes-2027.md](docs/changes-2027.md) says
+why each one is there. Once the rulebook is published and pinned, the release
+goes `status: in_force` and any difference fails CI.
 
 ---
 
 ## Checks
 
-`make check` runs, for every season:
+`make check` runs:
 
 | stage | fails on |
 |---|---|
 | **data** | unknown taxonomy node, object, factor or level; a factor that does not apply to the skill; a penalty without a failure mode |
-| **integrity** | a challenge naming an unknown line or carrying a price; a stale `*_ref`; a reused `variant_number`; an unused line in the season in force (a proposal reports its retired lines instead) |
+| **integrity** | a challenge naming an unknown line or carrying a price; a stale `*_ref`; a reused `variant_number`; a line no challenge uses |
 | **schema** | a skill or challenge, as written to `dist/`, violating the JSON Schema |
-| **rulebook** | (season in force) any scored line or total that differs from the rulebook's `.tex` sheet |
+| **rulebook** | when `in_force`: any scored line or total that differs from the rulebook's `.tex` sheet (when `draft`, the differences are listed, not failed) |
 
-then writes `dist/`. For the season in force it also prints the **findings**:
+then writes `dist/` and prints the **findings**:
 questions for the TC, never failures.
 
 | finding | asks |

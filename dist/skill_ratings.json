@@ -41,18 +41,6 @@
   "difficulty": null,
   "level": "-"
  },
- "GEN-HUMANASSIST-06P": {
-  "taxonomy": "GEN.HumanAssistance",
-  "objects": [],
-  "difficulty": null,
-  "level": "-"
- },
- "GEN-HUMANASSIST-07P": {
-  "taxonomy": "GEN.HumanAssistance",
-  "objects": [],
-  "difficulty": null,
-  "level": "-"
- },
  "GEN-HUMANASSIST-08P": {
   "taxonomy": "GEN.HumanAssistance",
   "objects": [],
@@ -89,6 +77,12 @@
   "difficulty": null,
   "level": "-"
  },
+ "GEN-UNSAFECONTACT-01P": {
+  "taxonomy": "GEN.UnsafeConduct",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
  "HRI-ATTEND-01P": {
   "taxonomy": "HRI.Attend",
   "objects": [],
@@ -116,11 +110,289 @@
   },
   "level": "C"
  },
- "HRI-EYECONTACT-01P": {
-  "taxonomy": "HRI.Gaze",
-  "objects": [],
-  "difficulty": null,
-  "level": "C"
+ "HRI-HANDOVER-02": {
+  "taxonomy": "HRI.Handover",
+  "objects": [
+   "known_objects"
+  ],
+  "difficulty": {
+   "min": 0,
+   "max": 4,
+   "tier": "C",
+   "per_object": {
+    "apple": {
+     "min": 0,
+     "max": 0,
+     "factors": {
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "black_shirt": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "deformable"
+     }
+    },
+    "blue_shirt": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "deformable"
+     }
+    },
+    "bowl": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    },
+    "coke": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "mass": "medium",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "cornflakes": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "mass": "light",
+      "size": "bulky",
+      "rigidity": "compliant"
+     }
+    },
+    "cup": {
+     "min": 0,
+     "max": 0,
+     "factors": {
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "dishwasher_tab": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    },
+    "fork": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    },
+    "grey_shirt": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "deformable"
+     }
+    },
+    "hand_towel": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "deformable"
+     }
+    },
+    "instant_noodles": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "knife": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    },
+    "lemon": {
+     "min": 0,
+     "max": 0,
+     "factors": {
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "mangostane": {
+     "min": 0,
+     "max": 0,
+     "factors": {
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "milk": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "mass": "medium",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "peach": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "pepsi": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "mass": "heavy",
+      "size": "bulky",
+      "rigidity": "rigid"
+     }
+    },
+    "plate": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "mass": "medium",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    },
+    "pringles": {
+     "min": 0,
+     "max": 0,
+     "factors": {
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "red_bellpepper": {
+     "min": 0,
+     "max": 0,
+     "factors": {
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "red_bull": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "mass": "medium",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "rubiks_cube": {
+     "min": 0,
+     "max": 0,
+     "factors": {
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "seaweed": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "compliant"
+     }
+    },
+    "soju": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "mass": "medium",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "sponge": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "spoon": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    },
+    "toothpaste": {
+     "min": 0,
+     "max": 0,
+     "factors": {
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "white_shirt": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "deformable"
+     }
+    },
+    "yellow_bellpepper": {
+     "min": 0,
+     "max": 0,
+     "factors": {
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    }
+   }
+  },
+  "level": "-"
  },
  "HRI-LOOKAT-01": {
   "taxonomy": "HRI.Gaze",
@@ -248,6 +520,48 @@
   "difficulty": null,
   "level": "C"
  },
+ "HRI-TELLINFO-01": {
+  "taxonomy": "HRI.ConveyInfo",
+  "objects": [],
+  "difficulty": {
+   "min": 0,
+   "max": 0,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 0,
+     "max": 0,
+     "factors": {
+      "info_load": "single",
+      "retention": "immediate",
+      "distractors": "none"
+     }
+    }
+   }
+  },
+  "level": "-"
+ },
+ "HRI-TELLINFO-02": {
+  "taxonomy": "HRI.ConveyInfo",
+  "objects": [],
+  "difficulty": {
+   "min": 2,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "info_load": "single",
+      "retention": "task",
+      "distractors": "few"
+     }
+    }
+   }
+  },
+  "level": "-"
+ },
  "MAN-APPLIANCE-01": {
   "taxonomy": "MAN.OperateArticulated",
   "objects": [
@@ -317,71 +631,6 @@
   },
   "level": "X"
  },
- "MAN-FOLD-01": {
-  "taxonomy": "MAN.Fold",
-  "objects": [
-   "clothing"
-  ],
-  "difficulty": {
-   "min": 4,
-   "max": 4,
-   "tier": "C",
-   "per_object": {
-    "black_shirt": {
-     "min": 4,
-     "max": 4,
-     "factors": {
-      "size": "thin",
-      "surface": "grippy",
-      "rigidity": "deformable"
-     }
-    },
-    "blue_shirt": {
-     "min": 4,
-     "max": 4,
-     "factors": {
-      "size": "thin",
-      "surface": "grippy",
-      "rigidity": "deformable"
-     }
-    },
-    "grey_shirt": {
-     "min": 4,
-     "max": 4,
-     "factors": {
-      "size": "thin",
-      "surface": "grippy",
-      "rigidity": "deformable"
-     }
-    },
-    "hand_towel": {
-     "min": 4,
-     "max": 4,
-     "factors": {
-      "size": "thin",
-      "surface": "grippy",
-      "rigidity": "deformable"
-     }
-    },
-    "white_shirt": {
-     "min": 4,
-     "max": 4,
-     "factors": {
-      "size": "thin",
-      "surface": "grippy",
-      "rigidity": "deformable"
-     }
-    }
-   }
-  },
-  "level": "X"
- },
- "MAN-FOLD-01P1": {
-  "taxonomy": "MAN.Fold",
-  "objects": [],
-  "difficulty": null,
-  "level": "X"
- },
  "MAN-FOLD-02": {
   "taxonomy": "MAN.Fold",
   "objects": [
@@ -440,6 +689,65 @@
    }
   },
   "level": "X"
+ },
+ "MAN-FOLD-02B": {
+  "taxonomy": "MAN.Fold",
+  "objects": [
+   "clothing"
+  ],
+  "difficulty": {
+   "min": 4,
+   "max": 4,
+   "tier": "C",
+   "per_object": {
+    "black_shirt": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable"
+     }
+    },
+    "blue_shirt": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable"
+     }
+    },
+    "grey_shirt": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable"
+     }
+    },
+    "hand_towel": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable"
+     }
+    },
+    "white_shirt": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable"
+     }
+    }
+   }
+  },
+  "level": "-"
  },
  "MAN-FOLD-02P1": {
   "taxonomy": "MAN.Fold",
@@ -1760,6 +2068,530 @@
   },
   "level": "C"
  },
+ "MAN-PICK-06": {
+  "taxonomy": "MAN.Pick",
+  "objects": [
+   "known_objects"
+  ],
+  "difficulty": {
+   "min": 1,
+   "max": 9,
+   "tier": "X",
+   "per_object": {
+    "apple": {
+     "min": 2,
+     "max": 3,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "black_shirt": {
+     "min": 7,
+     "max": 8,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable",
+      "shape": "flat_lying"
+     }
+    },
+    "blue_shirt": {
+     "min": 7,
+     "max": 8,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable",
+      "shape": "flat_lying"
+     }
+    },
+    "bowl": {
+     "min": 5,
+     "max": 6,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "irregular"
+     }
+    },
+    "coke": {
+     "min": 3,
+     "max": 4,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "medium",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "cornflakes": {
+     "min": 3,
+     "max": 4,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "bulky",
+      "surface": "grippy",
+      "rigidity": "compliant",
+      "shape": "regular"
+     }
+    },
+    "cup": {
+     "min": 2,
+     "max": 3,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "dishwasher_tab": {
+     "min": 6,
+     "max": 7,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "flat_lying"
+     }
+    },
+    "fork": {
+     "min": 6,
+     "max": 7,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "flat_lying"
+     }
+    },
+    "grey_shirt": {
+     "min": 7,
+     "max": 8,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable",
+      "shape": "flat_lying"
+     }
+    },
+    "hand_towel": {
+     "min": 6,
+     "max": 7,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable",
+      "shape": "irregular"
+     }
+    },
+    "instant_noodles": {
+     "min": 5,
+     "max": 6,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "slippery",
+      "rigidity": "compliant",
+      "shape": "irregular"
+     }
+    },
+    "knife": {
+     "min": 6,
+     "max": 7,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "flat_lying"
+     }
+    },
+    "lemon": {
+     "min": 2,
+     "max": 3,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "mangostane": {
+     "min": 1,
+     "max": 2,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "grippy",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "milk": {
+     "min": 3,
+     "max": 4,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "medium",
+      "size": "regular",
+      "surface": "grippy",
+      "rigidity": "compliant",
+      "shape": "regular"
+     }
+    },
+    "peach": {
+     "min": 2,
+     "max": 3,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "grippy",
+      "rigidity": "compliant",
+      "shape": "regular"
+     }
+    },
+    "pepsi": {
+     "min": 5,
+     "max": 6,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "heavy",
+      "size": "bulky",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "plate": {
+     "min": 7,
+     "max": 8,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "medium",
+      "size": "thin",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "flat_lying"
+     }
+    },
+    "pringles": {
+     "min": 2,
+     "max": 3,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "red_bellpepper": {
+     "min": 3,
+     "max": 4,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "irregular"
+     }
+    },
+    "red_bull": {
+     "min": 3,
+     "max": 4,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "medium",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "rubiks_cube": {
+     "min": 2,
+     "max": 3,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "seaweed": {
+     "min": 8,
+     "max": 9,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "slippery",
+      "rigidity": "compliant",
+      "shape": "flat_lying"
+     }
+    },
+    "soju": {
+     "min": 4,
+     "max": 5,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "medium",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "compliant",
+      "shape": "regular"
+     }
+    },
+    "sponge": {
+     "min": 2,
+     "max": 3,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "grippy",
+      "rigidity": "compliant",
+      "shape": "regular"
+     }
+    },
+    "spoon": {
+     "min": 6,
+     "max": 7,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "flat_lying"
+     }
+    },
+    "toothpaste": {
+     "min": 1,
+     "max": 2,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "grippy",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "white_shirt": {
+     "min": 7,
+     "max": 8,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable",
+      "shape": "flat_lying"
+     }
+    },
+    "yellow_bellpepper": {
+     "min": 3,
+     "max": 4,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "irregular"
+     }
+    }
+   }
+  },
+  "level": "-"
+ },
  "MAN-PLACE-01": {
   "taxonomy": "MAN.Place",
   "objects": [
@@ -2703,6 +3535,470 @@
   "difficulty": null,
   "level": "C"
  },
+ "MAN-PLACE-04": {
+  "taxonomy": "MAN.Place",
+  "objects": [
+   "known_objects"
+  ],
+  "difficulty": {
+   "min": 1,
+   "max": 6,
+   "tier": "X",
+   "per_object": {
+    "apple": {
+     "min": 1,
+     "max": 2,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "black_shirt": {
+     "min": 5,
+     "max": 6,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "deformable"
+     }
+    },
+    "blue_shirt": {
+     "min": 5,
+     "max": 6,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "deformable"
+     }
+    },
+    "bowl": {
+     "min": 3,
+     "max": 4,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    },
+    "coke": {
+     "min": 2,
+     "max": 3,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "medium",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "cornflakes": {
+     "min": 3,
+     "max": 4,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "bulky",
+      "rigidity": "compliant"
+     }
+    },
+    "cup": {
+     "min": 1,
+     "max": 2,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "dishwasher_tab": {
+     "min": 3,
+     "max": 4,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    },
+    "fork": {
+     "min": 3,
+     "max": 4,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    },
+    "grey_shirt": {
+     "min": 5,
+     "max": 6,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "deformable"
+     }
+    },
+    "hand_towel": {
+     "min": 5,
+     "max": 6,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "deformable"
+     }
+    },
+    "instant_noodles": {
+     "min": 2,
+     "max": 3,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "knife": {
+     "min": 3,
+     "max": 4,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    },
+    "lemon": {
+     "min": 1,
+     "max": 2,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "mangostane": {
+     "min": 1,
+     "max": 2,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "milk": {
+     "min": 3,
+     "max": 4,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "medium",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "peach": {
+     "min": 2,
+     "max": 3,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "pepsi": {
+     "min": 4,
+     "max": 5,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "heavy",
+      "size": "bulky",
+      "rigidity": "rigid"
+     }
+    },
+    "plate": {
+     "min": 4,
+     "max": 5,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "medium",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    },
+    "pringles": {
+     "min": 1,
+     "max": 2,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "red_bellpepper": {
+     "min": 1,
+     "max": 2,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "red_bull": {
+     "min": 2,
+     "max": 3,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "medium",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "rubiks_cube": {
+     "min": 1,
+     "max": 2,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "seaweed": {
+     "min": 4,
+     "max": 5,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "compliant"
+     }
+    },
+    "soju": {
+     "min": 3,
+     "max": 4,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "medium",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "sponge": {
+     "min": 2,
+     "max": 3,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "spoon": {
+     "min": 3,
+     "max": 4,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    },
+    "toothpaste": {
+     "min": 1,
+     "max": 2,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "white_shirt": {
+     "min": 5,
+     "max": 6,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "deformable"
+     }
+    },
+    "yellow_bellpepper": {
+     "min": 1,
+     "max": 2,
+     "factors": {
+      "reach": [
+       "table",
+       "low_high"
+      ],
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    }
+   }
+  },
+  "level": "-"
+ },
  "MAN-POUR-01": {
   "taxonomy": "MAN.Pour",
   "objects": [
@@ -2892,6 +4188,27 @@
   "difficulty": null,
   "level": "C"
  },
+ "NAV-FOLLOW-02": {
+  "taxonomy": "NAV.Follow",
+  "objects": [],
+  "difficulty": {
+   "min": 2,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "map_knowledge": "mapped",
+      "route_extent": "rooms",
+      "crowd": "few"
+     }
+    }
+   }
+  },
+  "level": "-"
+ },
  "NAV-GAZEDIRECTION-01": {
   "taxonomy": "NAV.SignalIntent",
   "objects": [],
@@ -2910,6 +4227,27 @@
    }
   },
   "level": "E"
+ },
+ "NAV-GUIDE-01": {
+  "taxonomy": "NAV.Guide",
+  "objects": [],
+  "difficulty": {
+   "min": 2,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "map_knowledge": "mapped",
+      "route_extent": "rooms",
+      "crowd": "few"
+     }
+    }
+   }
+  },
+  "level": "-"
  },
  "NAV-NAVIGATE-01": {
   "taxonomy": "NAV.Navigate",
@@ -2966,6 +4304,28 @@
   "objects": [],
   "difficulty": null,
   "level": "C"
+ },
+ "NAV-NAVIGATE-06": {
+  "taxonomy": "NAV.Navigate",
+  "objects": [],
+  "difficulty": {
+   "min": 2,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "map_knowledge": "mapped",
+      "route_extent": "rooms",
+      "crowd": "few",
+      "obstacle_visibility": "large"
+     }
+    }
+   }
+  },
+  "level": "-"
  },
  "NLU-AVOIDNONESSENTIALQUESTIONS-01B": {
   "taxonomy": "NLU.Clarify",
@@ -3110,6 +4470,716 @@
   },
   "level": "E"
  },
+ "OBJ-RECOGNIZE-02": {
+  "taxonomy": "OBJ.Recognize",
+  "objects": [
+   "known_objects"
+  ],
+  "difficulty": {
+   "min": 4,
+   "max": 6,
+   "tier": "X",
+   "per_object": {
+    "apple": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "regular"
+     }
+    },
+    "black_shirt": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "thin"
+     }
+    },
+    "blue_shirt": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "thin"
+     }
+    },
+    "bowl": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "thin"
+     }
+    },
+    "coke": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "regular"
+     }
+    },
+    "cornflakes": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "bulky"
+     }
+    },
+    "cup": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "regular"
+     }
+    },
+    "dishwasher_tab": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "thin"
+     }
+    },
+    "fork": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "thin"
+     }
+    },
+    "grey_shirt": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "thin"
+     }
+    },
+    "hand_towel": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "thin"
+     }
+    },
+    "instant_noodles": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "regular"
+     }
+    },
+    "knife": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "thin"
+     }
+    },
+    "lemon": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "regular"
+     }
+    },
+    "mangostane": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "regular"
+     }
+    },
+    "milk": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "regular"
+     }
+    },
+    "peach": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "regular"
+     }
+    },
+    "pepsi": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "bulky"
+     }
+    },
+    "plate": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "thin"
+     }
+    },
+    "pringles": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "regular"
+     }
+    },
+    "red_bellpepper": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "regular"
+     }
+    },
+    "red_bull": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "regular"
+     }
+    },
+    "rubiks_cube": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "regular"
+     }
+    },
+    "seaweed": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "thin"
+     }
+    },
+    "soju": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "regular"
+     }
+    },
+    "sponge": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "regular"
+     }
+    },
+    "spoon": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "thin"
+     }
+    },
+    "toothpaste": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "regular"
+     }
+    },
+    "white_shirt": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "thin"
+     }
+    },
+    "yellow_bellpepper": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "far",
+      "size": "regular"
+     }
+    }
+   }
+  },
+  "level": "-"
+ },
+ "OBJ-RECOGNIZE-03": {
+  "taxonomy": "OBJ.Recognize",
+  "objects": [
+   "known_objects"
+  ],
+  "difficulty": {
+   "min": 4,
+   "max": 6,
+   "tier": "X",
+   "per_object": {
+    "apple": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "regular"
+     }
+    },
+    "black_shirt": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "thin"
+     }
+    },
+    "blue_shirt": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "thin"
+     }
+    },
+    "bowl": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "thin"
+     }
+    },
+    "coke": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "regular"
+     }
+    },
+    "cornflakes": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "bulky"
+     }
+    },
+    "cup": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "regular"
+     }
+    },
+    "dishwasher_tab": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "thin"
+     }
+    },
+    "fork": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "thin"
+     }
+    },
+    "grey_shirt": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "thin"
+     }
+    },
+    "hand_towel": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "thin"
+     }
+    },
+    "instant_noodles": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "regular"
+     }
+    },
+    "knife": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "thin"
+     }
+    },
+    "lemon": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "regular"
+     }
+    },
+    "mangostane": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "regular"
+     }
+    },
+    "milk": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "regular"
+     }
+    },
+    "peach": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "regular"
+     }
+    },
+    "pepsi": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "bulky"
+     }
+    },
+    "plate": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "thin"
+     }
+    },
+    "pringles": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "regular"
+     }
+    },
+    "red_bellpepper": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "regular"
+     }
+    },
+    "red_bull": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "regular"
+     }
+    },
+    "rubiks_cube": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "regular"
+     }
+    },
+    "seaweed": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "thin"
+     }
+    },
+    "soju": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "regular"
+     }
+    },
+    "sponge": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "regular"
+     }
+    },
+    "spoon": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "thin"
+     }
+    },
+    "toothpaste": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "regular"
+     }
+    },
+    "white_shirt": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "thin"
+     }
+    },
+    "yellow_bellpepper": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar",
+      "perception_range": "near",
+      "size": "regular"
+     }
+    }
+   }
+  },
+  "level": "-"
+ },
+ "PLN-COMPLETECOMMAND-01B": {
+  "taxonomy": "PLN.Execute",
+  "objects": [],
+  "difficulty": {
+   "min": 1,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 1,
+     "max": 2,
+     "factors": {
+      "plan_length": [
+       "medium",
+       "long"
+      ]
+     }
+    }
+   }
+  },
+  "level": "-"
+ },
  "PLN-DEMONSTRATEPLAN-01": {
   "taxonomy": "PLN.Plan",
   "objects": [],
@@ -3152,34 +5222,6 @@
   },
   "level": "X"
  },
- "PLN-SOLVECOMMAND-01": {
-  "taxonomy": "PLN.Execute",
-  "objects": [],
-  "difficulty": {
-   "min": 1,
-   "max": 2,
-   "tier": "E",
-   "per_object": {
-    "-": {
-     "min": 1,
-     "max": 2,
-     "factors": {
-      "plan_length": [
-       "medium",
-       "long"
-      ]
-     }
-    }
-   }
-  },
-  "level": "X"
- },
- "PLN-SOLVECOMMAND-04P": {
-  "taxonomy": "PLN.Execute",
-  "objects": [],
-  "difficulty": null,
-  "level": "X"
- },
  "PPL-DESCRIBEATTRIBUTE-01B": {
   "taxonomy": "PPL.DescribeAttribute",
   "objects": [],
@@ -3207,6 +5249,88 @@
   "difficulty": null,
   "level": "C"
  },
+ "PPL-DESCRIBEATTRIBUTE-03": {
+  "taxonomy": "PPL.DescribeAttribute",
+  "objects": [],
+  "difficulty": {
+   "min": 1,
+   "max": 1,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "info_load": "few",
+      "target_motion": "static",
+      "retention": "immediate"
+     }
+    }
+   }
+  },
+  "level": "-"
+ },
+ "PPL-DESCRIBEATTRIBUTE-04": {
+  "taxonomy": "PPL.DescribeAttribute",
+  "objects": [],
+  "difficulty": {
+   "min": 1,
+   "max": 1,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "info_load": "single",
+      "target_motion": "static",
+      "retention": "task"
+     }
+    }
+   }
+  },
+  "level": "-"
+ },
+ "PPL-DETECT-01": {
+  "taxonomy": "PPL.Detect",
+  "objects": [],
+  "difficulty": {
+   "min": 3,
+   "max": 3,
+   "tier": "C",
+   "per_object": {
+    "-": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "crowd": "few",
+      "perception_range": "far"
+     }
+    }
+   }
+  },
+  "level": "-"
+ },
+ "PPL-DETECT-02": {
+  "taxonomy": "PPL.Detect",
+  "objects": [],
+  "difficulty": {
+   "min": 2,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "crowd": "few",
+      "perception_range": "room"
+     }
+    }
+   }
+  },
+  "level": "-"
+ },
  "PPL-DETECTCALLINGORWAVING-01": {
   "taxonomy": "PPL.DetectGesture",
   "objects": [],
@@ -3226,6 +5350,29 @@
    }
   },
   "level": "C"
+ },
+ "PPL-REIDENTIFY-01": {
+  "taxonomy": "PPL.Reidentify",
+  "objects": [],
+  "difficulty": {
+   "min": 4,
+   "max": 4,
+   "tier": "C",
+   "per_object": {
+    "-": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "crowd": "few",
+      "distractors": "few",
+      "retention": "task",
+      "target_motion": "static",
+      "ambient_noise": "background"
+     }
+    }
+   }
+  },
+  "level": "-"
  },
  "SPECIAL-01": {
   "taxonomy": "SPECIAL.Administrative",

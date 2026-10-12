@@ -47,3 +47,41 @@ skills:
   level: E
   points: 10
   type: achievement
+- id: OBJ-RECOGNIZE-02
+  area: OBJ
+  skill: Recognize
+  variant_number: '02'
+  taxonomy: OBJ.Recognize
+  modifiers:
+  - search
+  - room
+  description: Find the requested object in a room or on a placement location
+  objects:
+  - known_objects
+  conditions:
+    knowledge: known_instance
+    clutter: nearby
+    distractors: few
+    perception_range: far
+  level: '-'
+  type: achievement
+  points: 15
+- id: OBJ-RECOGNIZE-03
+  area: OBJ
+  skill: Recognize
+  variant_number: '03'
+  taxonomy: OBJ.Recognize
+  modifiers:
+  - count
+  - compare
+  description: Count the objects of a category, or name the biggest/lightest/... one, on a placement location
+  objects:
+  - known_objects
+  conditions:
+    knowledge: known_class
+    clutter: nearby
+    distractors: similar
+    perception_range: near
+  level: '-'
+  type: achievement
+  points: 15

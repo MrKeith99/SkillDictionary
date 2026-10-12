@@ -83,32 +83,6 @@ skills:
   level: '-'
   points: 0
   type: penalty_behavior
-- id: GEN-HUMANASSIST-06P
-  area: GEN
-  skill: null
-  variant_number: '06'
-  taxonomy: GEN.HumanAssistance
-  modifiers:
-  - flatten_arrange_before_folding
-  description: 'Human assistance: Flattening/Arranging clothing before folding'
-  failure_mode: assistance
-  level: '-'
-  points: -200
-  type: penalty_behavior
-- id: GEN-HUMANASSIST-07P
-  area: GEN
-  skill: null
-  variant_number: '07'
-  taxonomy: GEN.HumanAssistance
-  modifiers:
-  - folding_assistance_pct
-  description: Human assistance during folding (percentage penalty per amount of help)
-  failure_mode: assistance
-  level: '-'
-  points: -800
-  type: penalty_behavior
-  penalty_type: percentage
-  basis: MAN-FOLD-01 points
 - id: GEN-HUMANASSIST-08P
   area: GEN
   skill: null
@@ -117,7 +91,7 @@ skills:
   modifiers:
   - additional
   - flatten_arrange_before_folding
-  description: 'Human assistance: Flattening/Arranging before folding (additional)'
+  description: 'Human assistance: flattening/arranging clothing before folding (per item)'
   failure_mode: assistance
   level: '-'
   points: -100
@@ -130,7 +104,7 @@ skills:
   modifiers:
   - additional
   - folding_assistance_pct
-  description: Human assistance during folding, additional clothes (percentage penalty)
+  description: Human assistance during folding (percentage penalty per amount of help, per item)
   failure_mode: assistance
   level: '-'
   points: -400
@@ -185,3 +159,15 @@ skills:
   level: '-'
   points: -40
   type: penalty_behavior
+- id: GEN-UNSAFECONTACT-01P
+  area: GEN
+  skill: UnsafeContact
+  variant_number: 01P
+  taxonomy: GEN.UnsafeConduct
+  modifiers:
+  - person
+  description: Touching a person when the task does not ask for it (run also stopped)
+  failure_mode: unsafe_contact
+  level: '-'
+  type: penalty_behavior
+  points: -200

@@ -10,7 +10,7 @@ def run(b):
     D, CH = b.skills, b.challenges
     fail = 0
     print(RULE)
-    print(f"INTEGRITY — {b.season}")
+    print("INTEGRITY")
 
     unknown = [(s, it["ref"]) for s, ch in CH.items() for it in ch["entries"] if it["ref"] not in D]
     for s, r in unknown:
@@ -56,16 +56,11 @@ def run(b):
             fail += 1
         seen[stem].add(e["variant_number"])
 
-    # Every line is used somewhere. In a proposal, a base line no challenge
-    # uses any more is retired by it: reported, not a failure.
+    # Every line is used somewhere: remove a line with its last reference.
     used = {it["ref"] for ch in CH.values() for it in ch["entries"]}
-    orphans = sorted(set(D) - used)
-    if b.season.in_force:
-        for o in orphans:
-            print(f"  orphan (defined, never referenced): {o}")
-        fail += len(orphans)
-    elif orphans:
-        print(f"  retired by this season (no challenge uses them): {', '.join(orphans)}")
+    for o in sorted(set(D) - used):
+        print(f"  orphan (defined, never referenced): {o}")
+        fail += 1
 
     print(f"  -> {fail} problems")
     return fail

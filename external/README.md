@@ -22,7 +22,7 @@ here. Use `git rev-parse <tag>^{commit}` when moving the pin.
 `skilldict check` (stage RULEBOOK) reads `external/RuleBook/scoresheets/*.tex` and
 compares every scored line against the dictionary. It prints the checkout's
 `git describe` and warns if that does not match the `rulebook_version` stamped
-in the in-force season's `season.yaml` (`rulebook.version`).
+in `data/release.yaml` (`rulebook.version`).
 
 ## Working without the submodule
 

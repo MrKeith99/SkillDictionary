@@ -60,7 +60,7 @@ def data(b):
 
 def write(b):
     out = data(b)
-    d = b.season.dist_dir
+    d = paths.DIST
     paths.write_json(out, os.path.join(d, "viz_data.json"), indent=1)
     page = paths.template("viz.html").replace("__DATA__", json.dumps(out, indent=1).replace("</", "<\\/"))
     paths.write_text(page, os.path.join(d, "skill_coverage.html"))

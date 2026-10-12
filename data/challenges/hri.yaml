@@ -186,6 +186,9 @@ entries:
 - ref: HRI-ATTEND-01P
   count: 2
   section: Penalties
+- ref: GEN-UNSAFECONTACT-01P
+  count: 1
+  section: Penalties
 - ref: SPECIAL-01
   count: 1
   section: Special Penalties & Bonuses

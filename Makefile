@@ -7,20 +7,20 @@ SD  = $(PY) -m skilldict
 help:            ## list the targets
 	@grep -E '^[a-z]+:.*##' $(MAKEFILE_LIST) | sed 's/:.*## /\t/'
 
-check:           ## CI gate: build every season, all checks, write dist/ (must end ALL CHECKS PASSED)
+check:           ## CI gate: build, all checks, write dist/ (must end ALL CHECKS PASSED)
 	$(SD) check
 
-findings:        ## TC findings report for the season in force
+findings:        ## TC findings report
 	$(SD) findings
 
-sheets:          ## score sheets for every season -> build/<year>/sheets/
-	@for y in $$($(SD) seasons | cut -d' ' -f1); do $(SD) sheets $$y; done
+sheets:          ## score sheets, HTML + rulebook LaTeX -> build/sheets/
+	$(SD) sheets
 
-prices:          ## reprice with the proposal's pricing rule -> build/<year>/pricing.*
+prices:          ## every line under the pricing rule -> build/pricing.html
 	$(SD) prices
 
-pdf:             ## official vs generated sheets, one PDF per season (needs latexmk)
-	@for y in $$($(SD) seasons | cut -d' ' -f1); do $(SD) pdf $$y; done
+pdf:             ## rulebook sheet next to the generated one, per challenge (needs latexmk)
+	$(SD) pdf
 
 all: check sheets prices pdf   ## everything
 

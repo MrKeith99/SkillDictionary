@@ -255,6 +255,9 @@ entries:
   count: 1
   section: Penalties
   note: Explicitly zero-cost assistance.
+- ref: GEN-UNSAFECONTACT-01P
+  count: 1
+  section: Penalties
 - ref: SPECIAL-01
   count: 1
   section: Special Penalties & Bonuses

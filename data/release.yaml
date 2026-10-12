@@ -1,0 +1,14 @@
+# What this tree describes. Earlier releases are git tags (e.g. 2026.2).
+
+year: 2027
+status: draft               # draft: changes against the rulebook are reported
+                            # in_force: any difference from the rulebook fails CI
+rulebook:                   # the rulebook external/RuleBook is pinned to
+  version: '2026.2'
+  commit: b844d5a
+sheets:                     # the rulebook's score sheet per challenge (external/RuleBook/scoresheets/)
+  doing_laundry: DoingLaundry
+  gpsr: GPSR
+  hri: HumanRobotInteractionChallenge
+  pick_and_place: PickAndPlaceChallenge
+  restaurant: Restaurant

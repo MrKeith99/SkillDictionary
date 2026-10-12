@@ -2,7 +2,7 @@
 
   schema     every skill and challenge satisfies the JSON Schema
   integrity  references resolve, ids are hygienic, no price in a challenge
-  rulebook   the in-force season matches the rulebook's own .tex score sheets
+  rulebook   the data vs the rulebook's own .tex score sheets (fails only when in force)
   findings   questions for the TC (never failures)
 """
 

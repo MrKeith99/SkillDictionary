@@ -29,6 +29,70 @@ skills:
   level: C
   points: -20
   type: penalty_behavior
+- id: PPL-DESCRIBEATTRIBUTE-03
+  area: PPL
+  skill: DescribeAttribute
+  variant_number: '03'
+  taxonomy: PPL.DescribeAttribute
+  modifiers:
+  - clothing
+  - identify
+  description: Find the person wearing the given colour and garment
+  conditions:
+    info_load: few
+    target_motion: static
+    retention: immediate
+  level: '-'
+  type: achievement
+  points: 20
+- id: PPL-DESCRIBEATTRIBUTE-04
+  area: PPL
+  skill: DescribeAttribute
+  variant_number: '04'
+  taxonomy: PPL.DescribeAttribute
+  modifiers:
+  - name
+  - pose
+  - gesture
+  - report
+  description: Report the name, pose or gesture of a person
+  conditions:
+    info_load: single
+    target_motion: static
+    retention: task
+  level: '-'
+  type: achievement
+  points: 20
+- id: PPL-DETECT-01
+  area: PPL
+  skill: Detect
+  variant_number: '01'
+  taxonomy: PPL.Detect
+  modifiers:
+  - gesture
+  - pose
+  - name
+  description: Find the person described by gesture, pose or name in a room
+  conditions:
+    crowd: few
+    perception_range: far
+  level: '-'
+  type: achievement
+  points: 70
+- id: PPL-DETECT-02
+  area: PPL
+  skill: Detect
+  variant_number: '02'
+  taxonomy: PPL.Detect
+  modifiers:
+  - count
+  description: Count the people in a room matching a gesture, pose or clothing
+  conditions:
+    crowd: few
+    perception_range: room
+  level: '-'
+  type: achievement
+  points: 60
 - id: PPL-DETECTCALLINGORWAVING-01
   area: PPL
   skill: DetectCallingOrWaving
@@ -43,3 +107,20 @@ skills:
   level: C
   points: 80
   type: achievement
+- id: PPL-REIDENTIFY-01
+  area: PPL
+  skill: Reidentify
+  variant_number: '01'
+  taxonomy: PPL.Reidentify
+  modifiers:
+  - met_earlier
+  description: Find again, in another room, a person met earlier in the command
+  conditions:
+    crowd: few
+    distractors: few
+    retention: task
+    target_motion: static
+    ambient_noise: background
+  level: '-'
+  type: achievement
+  points: 80

@@ -7,10 +7,10 @@ skills:
   taxonomy: HRI.Attend
   modifiers:
   - not_acknowledging
-  description: Not acknowledging people
+  description: 'Not attending to the person interacting with the robot: ignores, turns away from, or never responds to them (per interaction)'
   failure_mode: neglect
   level: C
-  points: -200
+  points: -100
   type: penalty_behavior
 - id: HRI-COMMUNICATEORDER-01
   area: HRI
@@ -27,18 +27,20 @@ skills:
   level: C
   points: 80
   type: achievement
-- id: HRI-EYECONTACT-01P
+- id: HRI-HANDOVER-02
   area: HRI
-  skill: EyeContact
-  variant_number: 01P
-  taxonomy: HRI.Gaze
+  skill: Handover
+  variant_number: '02'
+  taxonomy: HRI.Handover
   modifiers:
-  - taking_order
-  description: Not making eye-contact when taking the order
-  failure_mode: neglect
-  level: C
-  points: -60
-  type: penalty_behavior
+  - give
+  - person
+  description: Hand the object to the person
+  objects:
+  - known_objects
+  level: '-'
+  type: achievement
+  points: 35
 - id: HRI-LOOKAT-01
   area: HRI
   skill: LookAt
@@ -152,3 +154,34 @@ skills:
   level: C
   points: -40
   type: penalty_behavior
+- id: HRI-TELLINFO-01
+  area: HRI
+  skill: TellInfo
+  variant_number: '01'
+  taxonomy: HRI.ConveyInfo
+  modifiers:
+  - talk_list
+  description: Say the requested information (the time, the day, the team's name, something about itself)
+  conditions:
+    info_load: single
+    retention: immediate
+    distractors: none
+  level: '-'
+  type: achievement
+  points: 35
+- id: HRI-TELLINFO-02
+  area: HRI
+  skill: TellInfo
+  variant_number: '02'
+  taxonomy: HRI.ConveyInfo
+  modifiers:
+  - relay
+  - person
+  description: Tell one person what was learned about another
+  conditions:
+    info_load: single
+    retention: task
+    distractors: few
+  level: '-'
+  type: achievement
+  points: 50

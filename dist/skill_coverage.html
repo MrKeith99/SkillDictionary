@@ -410,16 +410,16 @@
  "rulebook_version": "2026.2",
  "challenges": {
   "doing_laundry": {
-   "name": "Doing Laundry Challenge",
-   "section": "5.4",
+   "name": "Doing Laundry",
+   "section": "5.5",
    "minutes": 7,
    "total": 4415
   },
   "gpsr": {
-   "name": "General Purpose Service Robot Challenge",
-   "section": "5.3",
+   "name": "General Purpose Service Robot",
+   "section": "5.4",
    "minutes": 7,
-   "total": 1490
+   "total": 1760
   },
   "hri": {
    "name": "Human Robot Interaction Challenge",
@@ -452,12 +452,14 @@
  "matrix": {
   "NAV": {
    "doing_laundry": 15,
+   "gpsr": 1410,
    "hri": 230,
    "pick_and_place": 15,
    "restaurant": 320
   },
   "MAN": {
    "doing_laundry": 4400,
+   "gpsr": 345,
    "hri": 450,
    "pick_and_place": 3320,
    "restaurant": 1400
@@ -468,17 +470,20 @@
    "restaurant": 320
   },
   "PLN": {
-   "gpsr": 1250
+   "gpsr": 605
   },
   "OBJ": {
+   "gpsr": 90,
    "hri": 60,
    "pick_and_place": 180
   },
   "HRI": {
+   "gpsr": 360,
    "hri": 570,
    "restaurant": 160
   },
   "PPL": {
+   "gpsr": 960,
    "hri": 80,
    "restaurant": 160
   }
@@ -557,45 +562,66 @@
   },
   {
    "challenge": "doing_laundry",
-   "id": "MAN-FOLD-01",
+   "id": "MAN-FOLD-02",
    "area": "MAN",
    "skill": "Fold",
    "modifiers": [
-    "loose",
-    "single"
+    "additional_item"
    ],
-   "description": "Folding a piece of clothing",
+   "description": "Folding a piece of clothing (per item)",
    "level": "X",
    "type": "achievement",
-   "points": 800,
-   "count": 1,
-   "total": 800,
+   "points": 400,
+   "count": 6,
+   "total": 2400,
    "section": "Main Goal",
    "shared": false,
    "used_by": [
     "doing_laundry"
    ],
-   "deps": [
-    "MAN-PICK-03",
-    "MAN-TRANSPORTWITHBASKET-01"
-   ],
+   "deps": [],
    "assistance": true,
    "ambiguity": null
   },
   {
    "challenge": "doing_laundry",
-   "id": "MAN-FOLD-01P1",
+   "id": "MAN-FOLD-02B",
    "area": "MAN",
    "skill": "Fold",
    "modifiers": [
+    "main_goal",
+    "first_garment"
+   ],
+   "description": "First garment folded (main goal), without assistance and to quality",
+   "level": "-",
+   "type": "bonus",
+   "points": 400,
+   "count": 1,
+   "total": 400,
+   "section": "Main Goal",
+   "shared": false,
+   "used_by": [
+    "doing_laundry"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "doing_laundry",
+   "id": "MAN-FOLD-02P1",
+   "area": "MAN",
+   "skill": "Fold",
+   "modifiers": [
+    "additional",
     "quality_penalty"
    ],
-   "description": "Quality penalties",
+   "description": "Quality penalties (per item)",
    "level": "X",
    "type": "penalty_behavior",
-   "points": -800,
-   "count": 1,
-   "total": -800,
+   "points": -400,
+   "count": 6,
+   "total": -2400,
    "section": "Main Goal",
    "shared": false,
    "used_by": [
@@ -607,18 +633,19 @@
   },
   {
    "challenge": "doing_laundry",
-   "id": "GEN-HUMANASSIST-06P",
+   "id": "GEN-HUMANASSIST-08P",
    "area": "GEN",
    "skill": null,
    "modifiers": [
+    "additional",
     "flatten_arrange_before_folding"
    ],
-   "description": "Human assistance: Flattening/Arranging clothing before folding",
+   "description": "Human assistance: flattening/arranging clothing before folding (per item)",
    "level": "-",
    "type": "penalty_behavior",
-   "points": -200,
-   "count": 1,
-   "total": -200,
+   "points": -100,
+   "count": 6,
+   "total": -600,
    "section": "Main Goal",
    "shared": false,
    "used_by": [
@@ -630,18 +657,19 @@
   },
   {
    "challenge": "doing_laundry",
-   "id": "GEN-HUMANASSIST-07P",
+   "id": "GEN-HUMANASSIST-09P",
    "area": "GEN",
    "skill": null,
    "modifiers": [
+    "additional",
     "folding_assistance_pct"
    ],
-   "description": "Human assistance during folding (percentage penalty per amount of help)",
+   "description": "Human assistance during folding (percentage penalty per amount of help, per item)",
    "level": "-",
    "type": "penalty_behavior",
-   "points": -800,
-   "count": 1,
-   "total": -800,
+   "points": -400,
+   "count": 6,
+   "total": -2400,
    "section": "Main Goal",
    "shared": false,
    "used_by": [
@@ -770,103 +798,6 @@
   },
   {
    "challenge": "doing_laundry",
-   "id": "MAN-FOLD-02",
-   "area": "MAN",
-   "skill": "Fold",
-   "modifiers": [
-    "additional_item"
-   ],
-   "description": "Folding additional clothes (per item)",
-   "level": "X",
-   "type": "achievement",
-   "points": 400,
-   "count": 5,
-   "total": 2000,
-   "section": "Extra Rewards",
-   "shared": false,
-   "used_by": [
-    "doing_laundry"
-   ],
-   "deps": [
-    "MAN-FOLD-01"
-   ],
-   "assistance": true,
-   "ambiguity": null
-  },
-  {
-   "challenge": "doing_laundry",
-   "id": "MAN-FOLD-02P1",
-   "area": "MAN",
-   "skill": "Fold",
-   "modifiers": [
-    "additional",
-    "quality_penalty"
-   ],
-   "description": "Quality penalties (additional clothes)",
-   "level": "X",
-   "type": "penalty_behavior",
-   "points": -400,
-   "count": 1,
-   "total": -400,
-   "section": "Extra Rewards",
-   "shared": false,
-   "used_by": [
-    "doing_laundry"
-   ],
-   "deps": [],
-   "assistance": null,
-   "ambiguity": null
-  },
-  {
-   "challenge": "doing_laundry",
-   "id": "GEN-HUMANASSIST-08P",
-   "area": "GEN",
-   "skill": null,
-   "modifiers": [
-    "additional",
-    "flatten_arrange_before_folding"
-   ],
-   "description": "Human assistance: Flattening/Arranging before folding (additional)",
-   "level": "-",
-   "type": "penalty_behavior",
-   "points": -100,
-   "count": 5,
-   "total": -500,
-   "section": "Extra Rewards",
-   "shared": false,
-   "used_by": [
-    "doing_laundry"
-   ],
-   "deps": [],
-   "assistance": null,
-   "ambiguity": null
-  },
-  {
-   "challenge": "doing_laundry",
-   "id": "GEN-HUMANASSIST-09P",
-   "area": "GEN",
-   "skill": null,
-   "modifiers": [
-    "additional",
-    "folding_assistance_pct"
-   ],
-   "description": "Human assistance during folding, additional clothes (percentage penalty)",
-   "level": "-",
-   "type": "penalty_behavior",
-   "points": -400,
-   "count": 5,
-   "total": -2000,
-   "section": "Extra Rewards",
-   "shared": false,
-   "used_by": [
-    "doing_laundry"
-   ],
-   "deps": [],
-   "assistance": null,
-   "ambiguity": null
-  },
-  {
-   "challenge": "doing_laundry",
    "id": "MAN-STACK-01",
    "area": "MAN",
    "skill": "Stack",
@@ -885,7 +816,6 @@
     "doing_laundry"
    ],
    "deps": [
-    "MAN-FOLD-01",
     "MAN-FOLD-02"
    ],
    "assistance": true,
@@ -910,6 +840,33 @@
    "used_by": [
     "doing_laundry",
     "pick_and_place"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "doing_laundry",
+   "id": "GEN-UNSAFECONTACT-01P",
+   "area": "GEN",
+   "skill": "UnsafeContact",
+   "modifiers": [
+    "person"
+   ],
+   "description": "Touching a person when the task does not ask for it (run also stopped)",
+   "level": "-",
+   "type": "penalty_behavior",
+   "points": -200,
+   "count": 1,
+   "total": -200,
+   "section": "Penalties",
+   "shared": true,
+   "used_by": [
+    "doing_laundry",
+    "gpsr",
+    "hri",
+    "pick_and_place",
+    "restaurant"
    ],
    "deps": [],
    "assistance": null,
@@ -1083,101 +1040,382 @@
   },
   {
    "challenge": "gpsr",
-   "id": "PLN-SOLVECOMMAND-01",
-   "area": "PLN",
-   "skill": "SolveCommand",
+   "id": "NAV-NAVIGATE-06",
+   "area": "NAV",
+   "skill": "Navigate",
    "modifiers": [
-    "command"
+    "named_location"
    ],
-   "description": "Solving a command (one line per command)",
-   "level": "X",
+   "description": "Reach the named room or location",
+   "level": "-",
    "type": "achievement",
-   "points": 250,
-   "count": 1,
-   "total": 250,
-   "section": "Main Goal",
-   "shared": false,
-   "used_by": [
-    "gpsr"
-   ],
-   "deps": [
-    "NLU-UNDERSTANDCOMMAND-01"
-   ],
-   "assistance": true,
-   "ambiguity": null
-  },
-  {
-   "challenge": "gpsr",
-   "id": "PLN-SOLVECOMMAND-01",
-   "area": "PLN",
-   "skill": "SolveCommand",
-   "modifiers": [
-    "command"
-   ],
-   "description": "Solving a command (one line per command)",
-   "level": "X",
-   "type": "achievement",
-   "points": 250,
-   "count": 1,
-   "total": 250,
-   "section": "Main Goal",
-   "shared": false,
-   "used_by": [
-    "gpsr"
-   ],
-   "deps": [
-    "NLU-UNDERSTANDCOMMAND-01"
-   ],
-   "assistance": true,
-   "ambiguity": null
-  },
-  {
-   "challenge": "gpsr",
-   "id": "PLN-SOLVECOMMAND-01",
-   "area": "PLN",
-   "skill": "SolveCommand",
-   "modifiers": [
-    "command"
-   ],
-   "description": "Solving a command (one line per command)",
-   "level": "X",
-   "type": "achievement",
-   "points": 250,
-   "count": 1,
-   "total": 250,
-   "section": "Main Goal",
-   "shared": false,
-   "used_by": [
-    "gpsr"
-   ],
-   "deps": [
-    "NLU-UNDERSTANDCOMMAND-01"
-   ],
-   "assistance": true,
-   "ambiguity": null
-  },
-  {
-   "challenge": "gpsr",
-   "id": "PLN-SOLVECOMMAND-04P",
-   "area": "PLN",
-   "skill": "SolveCommand",
-   "modifiers": [
-    "partial"
-   ],
-   "description": "Solving part of a command (percentage penalty)",
-   "level": "X",
-   "type": "penalty_behavior",
-   "points": null,
-   "count": 1,
-   "total": 0,
-   "section": "Main Goal",
+   "points": 35,
+   "count": 6,
+   "total": 210,
+   "section": "Command steps",
    "shared": false,
    "used_by": [
     "gpsr"
    ],
    "deps": [],
    "assistance": null,
-   "ambiguity": "No defined percentage or reference table. Strongest candidate for goal-condition predicates with explicit partial_credit fractions."
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "OBJ-RECOGNIZE-02",
+   "area": "OBJ",
+   "skill": "Recognize",
+   "modifiers": [
+    "search",
+    "room"
+   ],
+   "description": "Find the requested object in a room or on a placement location",
+   "level": "-",
+   "type": "achievement",
+   "points": 15,
+   "count": 3,
+   "total": 45,
+   "section": "Command steps",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "OBJ-RECOGNIZE-03",
+   "area": "OBJ",
+   "skill": "Recognize",
+   "modifiers": [
+    "count",
+    "compare"
+   ],
+   "description": "Count the objects of a category, or name the biggest/lightest/... one, on a placement location",
+   "level": "-",
+   "type": "achievement",
+   "points": 15,
+   "count": 3,
+   "total": 45,
+   "section": "Command steps",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "MAN-PICK-06",
+   "area": "MAN",
+   "skill": "Pick",
+   "modifiers": [
+    "requested_object"
+   ],
+   "description": "Take the requested object",
+   "level": "-",
+   "type": "achievement",
+   "points": 80,
+   "count": 3,
+   "total": 240,
+   "section": "Command steps",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "MAN-PLACE-04",
+   "area": "MAN",
+   "skill": "Place",
+   "modifiers": [
+    "placement_location",
+    "trash"
+   ],
+   "description": "Place the object on the named placement location, or in the trash",
+   "level": "-",
+   "type": "achievement",
+   "points": 35,
+   "count": 3,
+   "total": 105,
+   "section": "Command steps",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "HRI-HANDOVER-02",
+   "area": "HRI",
+   "skill": "Handover",
+   "modifiers": [
+    "give",
+    "person"
+   ],
+   "description": "Hand the object to the person",
+   "level": "-",
+   "type": "achievement",
+   "points": 35,
+   "count": 3,
+   "total": 105,
+   "section": "Command steps",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "PPL-DETECT-01",
+   "area": "PPL",
+   "skill": "Detect",
+   "modifiers": [
+    "gesture",
+    "pose",
+    "name"
+   ],
+   "description": "Find the person described by gesture, pose or name in a room",
+   "level": "-",
+   "type": "achievement",
+   "points": 70,
+   "count": 6,
+   "total": 420,
+   "section": "Command steps",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "PPL-DETECT-02",
+   "area": "PPL",
+   "skill": "Detect",
+   "modifiers": [
+    "count"
+   ],
+   "description": "Count the people in a room matching a gesture, pose or clothing",
+   "level": "-",
+   "type": "achievement",
+   "points": 60,
+   "count": 3,
+   "total": 180,
+   "section": "Command steps",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "PPL-REIDENTIFY-01",
+   "area": "PPL",
+   "skill": "Reidentify",
+   "modifiers": [
+    "met_earlier"
+   ],
+   "description": "Find again, in another room, a person met earlier in the command",
+   "level": "-",
+   "type": "achievement",
+   "points": 80,
+   "count": 3,
+   "total": 240,
+   "section": "Command steps",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "PPL-DESCRIBEATTRIBUTE-03",
+   "area": "PPL",
+   "skill": "DescribeAttribute",
+   "modifiers": [
+    "clothing",
+    "identify"
+   ],
+   "description": "Find the person wearing the given colour and garment",
+   "level": "-",
+   "type": "achievement",
+   "points": 20,
+   "count": 3,
+   "total": 60,
+   "section": "Command steps",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "PPL-DESCRIBEATTRIBUTE-04",
+   "area": "PPL",
+   "skill": "DescribeAttribute",
+   "modifiers": [
+    "name",
+    "pose",
+    "gesture",
+    "report"
+   ],
+   "description": "Report the name, pose or gesture of a person",
+   "level": "-",
+   "type": "achievement",
+   "points": 20,
+   "count": 3,
+   "total": 60,
+   "section": "Command steps",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "HRI-TELLINFO-01",
+   "area": "HRI",
+   "skill": "TellInfo",
+   "modifiers": [
+    "talk_list"
+   ],
+   "description": "Say the requested information (the time, the day, the team's name, something about itself)",
+   "level": "-",
+   "type": "achievement",
+   "points": 35,
+   "count": 3,
+   "total": 105,
+   "section": "Command steps",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "HRI-TELLINFO-02",
+   "area": "HRI",
+   "skill": "TellInfo",
+   "modifiers": [
+    "relay",
+    "person"
+   ],
+   "description": "Tell one person what was learned about another",
+   "level": "-",
+   "type": "achievement",
+   "points": 50,
+   "count": 3,
+   "total": 150,
+   "section": "Command steps",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "NAV-FOLLOW-02",
+   "area": "NAV",
+   "skill": "Follow",
+   "modifiers": [
+    "named_person"
+   ],
+   "description": "Follow the person to the named room",
+   "level": "-",
+   "type": "achievement",
+   "points": 200,
+   "count": 3,
+   "total": 600,
+   "section": "Command steps",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "NAV-GUIDE-01",
+   "area": "NAV",
+   "skill": "Guide",
+   "modifiers": [
+    "person"
+   ],
+   "description": "Guide the person to the named location",
+   "level": "-",
+   "type": "achievement",
+   "points": 200,
+   "count": 3,
+   "total": 600,
+   "section": "Command steps",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "gpsr",
+   "id": "PLN-COMPLETECOMMAND-01B",
+   "area": "PLN",
+   "skill": "CompleteCommand",
+   "modifiers": [
+    "goal_reached"
+   ],
+   "description": "Command goal reached (all its steps done, in a sensible order)",
+   "level": "-",
+   "type": "bonus",
+   "points": 35,
+   "count": 3,
+   "total": 105,
+   "section": "Command steps",
+   "shared": false,
+   "used_by": [
+    "gpsr"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
   },
   {
    "challenge": "gpsr",
@@ -1196,9 +1434,7 @@
    "used_by": [
     "gpsr"
    ],
-   "deps": [
-    "PLN-SOLVECOMMAND-01"
-   ],
+   "deps": [],
    "assistance": false,
    "ambiguity": null
   },
@@ -1224,6 +1460,33 @@
    "deps": [],
    "assistance": null,
    "ambiguity": "Fixed 3x-50 (-150, ~10%) vs \u00a73.7.4 gesture/alternative-HRI rates of -20% of max attainable. Confirm interaction."
+  },
+  {
+   "challenge": "gpsr",
+   "id": "GEN-UNSAFECONTACT-01P",
+   "area": "GEN",
+   "skill": "UnsafeContact",
+   "modifiers": [
+    "person"
+   ],
+   "description": "Touching a person when the task does not ask for it (run also stopped)",
+   "level": "-",
+   "type": "penalty_behavior",
+   "points": -200,
+   "count": 1,
+   "total": -200,
+   "section": "Penalties",
+   "shared": true,
+   "used_by": [
+    "doing_laundry",
+    "gpsr",
+    "hri",
+    "pick_and_place",
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
   },
   {
    "challenge": "gpsr",
@@ -1283,9 +1546,9 @@
    "description": "Outstanding performance (see sec. 3.8.3)",
    "level": "-",
    "type": "administrative",
-   "points": 149,
+   "points": 176,
    "count": 1,
-   "total": 149,
+   "total": 176,
    "section": "Special Penalties & Bonuses",
    "shared": true,
    "used_by": [
@@ -1808,16 +2071,44 @@
    "modifiers": [
     "not_acknowledging"
    ],
-   "description": "Not acknowledging people",
+   "description": "Not attending to the person interacting with the robot: ignores, turns away from, or never responds to them (per interaction)",
    "level": "C",
    "type": "penalty_behavior",
-   "points": -200,
+   "points": -100,
    "count": 2,
-   "total": -400,
+   "total": -200,
    "section": "Penalties",
-   "shared": false,
+   "shared": true,
    "used_by": [
-    "hri"
+    "hri",
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "hri",
+   "id": "GEN-UNSAFECONTACT-01P",
+   "area": "GEN",
+   "skill": "UnsafeContact",
+   "modifiers": [
+    "person"
+   ],
+   "description": "Touching a person when the task does not ask for it (run also stopped)",
+   "level": "-",
+   "type": "penalty_behavior",
+   "points": -200,
+   "count": 1,
+   "total": -200,
+   "section": "Penalties",
+   "shared": true,
+   "used_by": [
+    "doing_laundry",
+    "gpsr",
+    "hri",
+    "pick_and_place",
+    "restaurant"
    ],
    "deps": [],
    "assistance": null,
@@ -2582,6 +2873,33 @@
   },
   {
    "challenge": "pick_and_place",
+   "id": "GEN-UNSAFECONTACT-01P",
+   "area": "GEN",
+   "skill": "UnsafeContact",
+   "modifiers": [
+    "person"
+   ],
+   "description": "Touching a person when the task does not ask for it (run also stopped)",
+   "level": "-",
+   "type": "penalty_behavior",
+   "points": -200,
+   "count": 1,
+   "total": -200,
+   "section": "Penalties",
+   "shared": true,
+   "used_by": [
+    "doing_laundry",
+    "gpsr",
+    "hri",
+    "pick_and_place",
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "pick_and_place",
    "id": "SPECIAL-01",
    "area": "SPECIAL",
    "skill": null,
@@ -2776,21 +3094,22 @@
   },
   {
    "challenge": "restaurant",
-   "id": "HRI-EYECONTACT-01P",
+   "id": "HRI-ATTEND-01P",
    "area": "HRI",
-   "skill": "EyeContact",
+   "skill": "Attend",
    "modifiers": [
-    "taking_order"
+    "not_acknowledging"
    ],
-   "description": "Not making eye-contact when taking the order",
+   "description": "Not attending to the person interacting with the robot: ignores, turns away from, or never responds to them (per interaction)",
    "level": "C",
    "type": "penalty_behavior",
-   "points": -60,
+   "points": -100,
    "count": 2,
-   "total": -120,
+   "total": -200,
    "section": "Regular Rewards",
-   "shared": false,
+   "shared": true,
    "used_by": [
+    "hri",
     "restaurant"
    ],
    "deps": [],
@@ -3093,6 +3412,33 @@
   },
   {
    "challenge": "restaurant",
+   "id": "GEN-UNSAFECONTACT-01P",
+   "area": "GEN",
+   "skill": "UnsafeContact",
+   "modifiers": [
+    "person"
+   ],
+   "description": "Touching a person when the task does not ask for it (run also stopped)",
+   "level": "-",
+   "type": "penalty_behavior",
+   "points": -200,
+   "count": 1,
+   "total": -200,
+   "section": "Penalties",
+   "shared": true,
+   "used_by": [
+    "doing_laundry",
+    "gpsr",
+    "hri",
+    "pick_and_place",
+    "restaurant"
+   ],
+   "deps": [],
+   "assistance": null,
+   "ambiguity": null
+  },
+  {
+   "challenge": "restaurant",
    "id": "SPECIAL-01",
    "area": "SPECIAL",
    "skill": null,
@@ -3247,6 +3593,16 @@
      ]
     },
     {
+     "id": "MAN-PICK-06",
+     "points": 80,
+     "used_by": [
+      "gpsr"
+     ],
+     "modifiers": [
+      "requested_object"
+     ]
+    },
+    {
      "id": "MAN-PICK-03",
      "points": 100,
      "used_by": [
@@ -3284,6 +3640,17 @@
   {
    "family": "MAN/Place",
    "variants": [
+    {
+     "id": "MAN-PLACE-04",
+     "points": 35,
+     "used_by": [
+      "gpsr"
+     ],
+     "modifiers": [
+      "placement_location",
+      "trash"
+     ]
+    },
     {
      "id": "MAN-PLACE-02",
      "points": 40,
@@ -3334,6 +3701,16 @@
      ]
     },
     {
+     "id": "NAV-NAVIGATE-06",
+     "points": 35,
+     "used_by": [
+      "gpsr"
+     ],
+     "modifiers": [
+      "named_location"
+     ]
+    },
+    {
      "id": "NAV-NAVIGATE-03",
      "points": 80,
      "used_by": [
@@ -3370,9 +3747,57 @@
      ]
     }
    ]
+  },
+  {
+   "family": "OBJ/Recognize",
+   "variants": [
+    {
+     "id": "OBJ-RECOGNIZE-01",
+     "points": 10,
+     "used_by": [
+      "pick_and_place"
+     ],
+     "modifiers": [
+      "known_object"
+     ]
+    },
+    {
+     "id": "OBJ-RECOGNIZE-02",
+     "points": 15,
+     "used_by": [
+      "gpsr"
+     ],
+     "modifiers": [
+      "search",
+      "room"
+     ]
+    },
+    {
+     "id": "OBJ-RECOGNIZE-03",
+     "points": 15,
+     "used_by": [
+      "gpsr"
+     ],
+     "modifiers": [
+      "count",
+      "compare"
+     ]
+    }
+   ]
   }
  ],
  "shared": [
+  {
+   "id": "GEN-UNSAFECONTACT-01P",
+   "description": "Touching a person when the task does not ask for it (run also stopped)",
+   "used_by": [
+    "doing_laundry",
+    "gpsr",
+    "hri",
+    "pick_and_place",
+    "restaurant"
+   ]
+  },
   {
    "id": "SPECIAL-01",
    "description": "Not attending (see sec. 3.8.1)",
@@ -3419,6 +3844,14 @@
    "used_by": [
     "doing_laundry",
     "pick_and_place"
+   ]
+  },
+  {
+   "id": "HRI-ATTEND-01P",
+   "description": "Not attending to the person interacting with the robot: ignores, turns away from, or never responds to them (per interaction)",
+   "used_by": [
+    "hri",
+    "restaurant"
    ]
   },
   {

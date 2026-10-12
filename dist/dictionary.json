@@ -1,8 +1,8 @@
 {
   "schema_version": "0.4.0",
+  "year": 2027,
+  "status": "draft",
   "rulebook_version": "2026.2",
-  "season": 2026,
-  "status": "in_force",
   "skills": [
     {
       "id": "GEN-ALTERNATIVEHRI-01P",
@@ -130,44 +130,6 @@
       ]
     },
     {
-      "id": "GEN-HUMANASSIST-06P",
-      "area": "GEN",
-      "skill": null,
-      "variant_number": "06",
-      "taxonomy": "GEN.HumanAssistance",
-      "modifiers": [
-        "flatten_arrange_before_folding"
-      ],
-      "description": "Human assistance: Flattening/Arranging clothing before folding",
-      "failure_mode": "assistance",
-      "level": "-",
-      "points": -200,
-      "type": "penalty_behavior",
-      "used_by": [
-        "doing_laundry"
-      ]
-    },
-    {
-      "id": "GEN-HUMANASSIST-07P",
-      "area": "GEN",
-      "skill": null,
-      "variant_number": "07",
-      "taxonomy": "GEN.HumanAssistance",
-      "modifiers": [
-        "folding_assistance_pct"
-      ],
-      "description": "Human assistance during folding (percentage penalty per amount of help)",
-      "failure_mode": "assistance",
-      "level": "-",
-      "points": -800,
-      "type": "penalty_behavior",
-      "penalty_type": "percentage",
-      "basis": "MAN-FOLD-01 points",
-      "used_by": [
-        "doing_laundry"
-      ]
-    },
-    {
       "id": "GEN-HUMANASSIST-08P",
       "area": "GEN",
       "skill": null,
@@ -177,7 +139,7 @@
         "additional",
         "flatten_arrange_before_folding"
       ],
-      "description": "Human assistance: Flattening/Arranging before folding (additional)",
+      "description": "Human assistance: flattening/arranging clothing before folding (per item)",
       "failure_mode": "assistance",
       "level": "-",
       "points": -100,
@@ -196,7 +158,7 @@
         "additional",
         "folding_assistance_pct"
       ],
-      "description": "Human assistance during folding, additional clothes (percentage penalty)",
+      "description": "Human assistance during folding (percentage penalty per amount of help, per item)",
       "failure_mode": "assistance",
       "level": "-",
       "points": -400,
@@ -281,6 +243,28 @@
       ]
     },
     {
+      "id": "GEN-UNSAFECONTACT-01P",
+      "area": "GEN",
+      "skill": "UnsafeContact",
+      "variant_number": "01P",
+      "taxonomy": "GEN.UnsafeConduct",
+      "modifiers": [
+        "person"
+      ],
+      "description": "Touching a person when the task does not ask for it (run also stopped)",
+      "failure_mode": "unsafe_contact",
+      "level": "-",
+      "type": "penalty_behavior",
+      "points": -200,
+      "used_by": [
+        "doing_laundry",
+        "gpsr",
+        "hri",
+        "pick_and_place",
+        "restaurant"
+      ]
+    },
+    {
       "id": "HRI-ATTEND-01P",
       "area": "HRI",
       "skill": "Attend",
@@ -289,13 +273,14 @@
       "modifiers": [
         "not_acknowledging"
       ],
-      "description": "Not acknowledging people",
+      "description": "Not attending to the person interacting with the robot: ignores, turns away from, or never responds to them (per interaction)",
       "failure_mode": "neglect",
       "level": "C",
-      "points": -200,
+      "points": -100,
       "type": "penalty_behavior",
       "used_by": [
-        "hri"
+        "hri",
+        "restaurant"
       ]
     },
     {
@@ -321,21 +306,24 @@
       ]
     },
     {
-      "id": "HRI-EYECONTACT-01P",
+      "id": "HRI-HANDOVER-02",
       "area": "HRI",
-      "skill": "EyeContact",
-      "variant_number": "01P",
-      "taxonomy": "HRI.Gaze",
+      "skill": "Handover",
+      "variant_number": "02",
+      "taxonomy": "HRI.Handover",
       "modifiers": [
-        "taking_order"
+        "give",
+        "person"
       ],
-      "description": "Not making eye-contact when taking the order",
-      "failure_mode": "neglect",
-      "level": "C",
-      "points": -60,
-      "type": "penalty_behavior",
+      "description": "Hand the object to the person",
+      "objects": [
+        "known_objects"
+      ],
+      "level": "-",
+      "type": "achievement",
+      "points": 35,
       "used_by": [
-        "restaurant"
+        "gpsr"
       ]
     },
     {
@@ -505,6 +493,51 @@
       ]
     },
     {
+      "id": "HRI-TELLINFO-01",
+      "area": "HRI",
+      "skill": "TellInfo",
+      "variant_number": "01",
+      "taxonomy": "HRI.ConveyInfo",
+      "modifiers": [
+        "talk_list"
+      ],
+      "description": "Say the requested information (the time, the day, the team's name, something about itself)",
+      "conditions": {
+        "info_load": "single",
+        "retention": "immediate",
+        "distractors": "none"
+      },
+      "level": "-",
+      "type": "achievement",
+      "points": 35,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "HRI-TELLINFO-02",
+      "area": "HRI",
+      "skill": "TellInfo",
+      "variant_number": "02",
+      "taxonomy": "HRI.ConveyInfo",
+      "modifiers": [
+        "relay",
+        "person"
+      ],
+      "description": "Tell one person what was learned about another",
+      "conditions": {
+        "info_load": "single",
+        "retention": "task",
+        "distractors": "few"
+      },
+      "level": "-",
+      "type": "achievement",
+      "points": 50,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
       "id": "MAN-APPLIANCE-01",
       "area": "MAN",
       "skill": "Appliance",
@@ -578,45 +611,6 @@
       ]
     },
     {
-      "id": "MAN-FOLD-01",
-      "area": "MAN",
-      "skill": "Fold",
-      "variant_number": "01",
-      "taxonomy": "MAN.Fold",
-      "modifiers": [
-        "loose",
-        "single"
-      ],
-      "description": "Folding a piece of clothing",
-      "objects": [
-        "clothing"
-      ],
-      "level": "X",
-      "points": 800,
-      "type": "achievement",
-      "used_by": [
-        "doing_laundry"
-      ]
-    },
-    {
-      "id": "MAN-FOLD-01P1",
-      "area": "MAN",
-      "skill": "Fold",
-      "variant_number": "01P1",
-      "taxonomy": "MAN.Fold",
-      "modifiers": [
-        "quality_penalty"
-      ],
-      "description": "Quality penalties",
-      "failure_mode": "quality",
-      "level": "X",
-      "points": -800,
-      "type": "penalty_behavior",
-      "used_by": [
-        "doing_laundry"
-      ]
-    },
-    {
       "id": "MAN-FOLD-02",
       "area": "MAN",
       "skill": "Fold",
@@ -625,13 +619,34 @@
       "modifiers": [
         "additional_item"
       ],
-      "description": "Folding additional clothes (per item)",
+      "description": "Folding a piece of clothing (per item)",
       "objects": [
         "clothing"
       ],
       "level": "X",
       "points": 400,
       "type": "achievement",
+      "used_by": [
+        "doing_laundry"
+      ]
+    },
+    {
+      "id": "MAN-FOLD-02B",
+      "area": "MAN",
+      "skill": "Fold",
+      "variant_number": "02B",
+      "taxonomy": "MAN.Fold",
+      "modifiers": [
+        "main_goal",
+        "first_garment"
+      ],
+      "description": "First garment folded (main goal), without assistance and to quality",
+      "objects": [
+        "clothing"
+      ],
+      "level": "-",
+      "type": "bonus",
+      "points": 400,
       "used_by": [
         "doing_laundry"
       ]
@@ -646,7 +661,7 @@
         "additional",
         "quality_penalty"
       ],
-      "description": "Quality penalties (additional clothes)",
+      "description": "Quality penalties (per item)",
       "failure_mode": "quality",
       "level": "X",
       "points": -400,
@@ -1031,6 +1046,34 @@
       ]
     },
     {
+      "id": "MAN-PICK-06",
+      "area": "MAN",
+      "skill": "Pick",
+      "variant_number": "06",
+      "taxonomy": "MAN.Pick",
+      "modifiers": [
+        "requested_object"
+      ],
+      "description": "Take the requested object",
+      "objects": [
+        "known_objects"
+      ],
+      "conditions": {
+        "reach": [
+          "table",
+          "low_high"
+        ],
+        "clutter": "nearby",
+        "knowledge": "known_instance"
+      },
+      "level": "-",
+      "type": "achievement",
+      "points": 80,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
       "id": "MAN-PLACE-01",
       "area": "MAN",
       "skill": "Place",
@@ -1239,6 +1282,35 @@
       "type": "bonus",
       "used_by": [
         "restaurant"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-04",
+      "area": "MAN",
+      "skill": "Place",
+      "variant_number": "04",
+      "taxonomy": "MAN.Place",
+      "modifiers": [
+        "placement_location",
+        "trash"
+      ],
+      "description": "Place the object on the named placement location, or in the trash",
+      "objects": [
+        "known_objects"
+      ],
+      "conditions": {
+        "reach": [
+          "table",
+          "low_high"
+        ],
+        "placement_tolerance": "region",
+        "clutter": "nearby"
+      },
+      "level": "-",
+      "type": "achievement",
+      "points": 35,
+      "used_by": [
+        "gpsr"
       ]
     },
     {
@@ -1466,6 +1538,28 @@
       ]
     },
     {
+      "id": "NAV-FOLLOW-02",
+      "area": "NAV",
+      "skill": "Follow",
+      "variant_number": "02",
+      "taxonomy": "NAV.Follow",
+      "modifiers": [
+        "named_person"
+      ],
+      "description": "Follow the person to the named room",
+      "conditions": {
+        "map_knowledge": "mapped",
+        "route_extent": "rooms",
+        "crowd": "few"
+      },
+      "level": "-",
+      "type": "achievement",
+      "points": 200,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
       "id": "NAV-GAZEDIRECTION-01",
       "area": "NAV",
       "skill": "GazeDirection",
@@ -1483,6 +1577,28 @@
       "type": "achievement",
       "used_by": [
         "hri"
+      ]
+    },
+    {
+      "id": "NAV-GUIDE-01",
+      "area": "NAV",
+      "skill": "Guide",
+      "variant_number": "01",
+      "taxonomy": "NAV.Guide",
+      "modifiers": [
+        "person"
+      ],
+      "description": "Guide the person to the named location",
+      "conditions": {
+        "map_knowledge": "mapped",
+        "route_extent": "rooms",
+        "crowd": "few"
+      },
+      "level": "-",
+      "type": "achievement",
+      "points": 200,
+      "used_by": [
+        "gpsr"
       ]
     },
     {
@@ -1567,6 +1683,29 @@
       "type": "penalty_behavior",
       "used_by": [
         "restaurant"
+      ]
+    },
+    {
+      "id": "NAV-NAVIGATE-06",
+      "area": "NAV",
+      "skill": "Navigate",
+      "variant_number": "06",
+      "taxonomy": "NAV.Navigate",
+      "modifiers": [
+        "named_location"
+      ],
+      "description": "Reach the named room or location",
+      "conditions": {
+        "map_knowledge": "mapped",
+        "route_extent": "rooms",
+        "crowd": "few",
+        "obstacle_visibility": "large"
+      },
+      "level": "-",
+      "type": "achievement",
+      "points": 35,
+      "used_by": [
+        "gpsr"
       ]
     },
     {
@@ -1756,6 +1895,83 @@
       ]
     },
     {
+      "id": "OBJ-RECOGNIZE-02",
+      "area": "OBJ",
+      "skill": "Recognize",
+      "variant_number": "02",
+      "taxonomy": "OBJ.Recognize",
+      "modifiers": [
+        "search",
+        "room"
+      ],
+      "description": "Find the requested object in a room or on a placement location",
+      "objects": [
+        "known_objects"
+      ],
+      "conditions": {
+        "knowledge": "known_instance",
+        "clutter": "nearby",
+        "distractors": "few",
+        "perception_range": "far"
+      },
+      "level": "-",
+      "type": "achievement",
+      "points": 15,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "OBJ-RECOGNIZE-03",
+      "area": "OBJ",
+      "skill": "Recognize",
+      "variant_number": "03",
+      "taxonomy": "OBJ.Recognize",
+      "modifiers": [
+        "count",
+        "compare"
+      ],
+      "description": "Count the objects of a category, or name the biggest/lightest/... one, on a placement location",
+      "objects": [
+        "known_objects"
+      ],
+      "conditions": {
+        "knowledge": "known_class",
+        "clutter": "nearby",
+        "distractors": "similar",
+        "perception_range": "near"
+      },
+      "level": "-",
+      "type": "achievement",
+      "points": 15,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "PLN-COMPLETECOMMAND-01B",
+      "area": "PLN",
+      "skill": "CompleteCommand",
+      "variant_number": "01B",
+      "taxonomy": "PLN.Execute",
+      "modifiers": [
+        "goal_reached"
+      ],
+      "description": "Command goal reached (all its steps done, in a sensible order)",
+      "conditions": {
+        "plan_length": [
+          "medium",
+          "long"
+        ]
+      },
+      "level": "-",
+      "type": "bonus",
+      "points": 35,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
       "id": "PLN-DEMONSTRATEPLAN-01",
       "area": "PLN",
       "skill": "DemonstratePlan",
@@ -1791,49 +2007,6 @@
       "level": "X",
       "points": 200,
       "type": "bonus",
-      "used_by": [
-        "gpsr"
-      ]
-    },
-    {
-      "id": "PLN-SOLVECOMMAND-01",
-      "area": "PLN",
-      "skill": "SolveCommand",
-      "variant_number": "01",
-      "taxonomy": "PLN.Execute",
-      "modifiers": [
-        "command"
-      ],
-      "description": "Solving a command (one line per command)",
-      "conditions": {
-        "plan_length": [
-          "medium",
-          "long"
-        ]
-      },
-      "level": "X",
-      "points": 250,
-      "type": "achievement",
-      "used_by": [
-        "gpsr"
-      ]
-    },
-    {
-      "id": "PLN-SOLVECOMMAND-04P",
-      "area": "PLN",
-      "skill": "SolveCommand",
-      "variant_number": "04",
-      "taxonomy": "PLN.Execute",
-      "modifiers": [
-        "partial"
-      ],
-      "description": "Solving part of a command (percentage penalty)",
-      "failure_mode": "quality",
-      "level": "X",
-      "points": null,
-      "type": "penalty_behavior",
-      "penalty_type": "percentage",
-      "basis": "similar_scores_in_other_tests",
       "used_by": [
         "gpsr"
       ]
@@ -1881,6 +2054,98 @@
       ]
     },
     {
+      "id": "PPL-DESCRIBEATTRIBUTE-03",
+      "area": "PPL",
+      "skill": "DescribeAttribute",
+      "variant_number": "03",
+      "taxonomy": "PPL.DescribeAttribute",
+      "modifiers": [
+        "clothing",
+        "identify"
+      ],
+      "description": "Find the person wearing the given colour and garment",
+      "conditions": {
+        "info_load": "few",
+        "target_motion": "static",
+        "retention": "immediate"
+      },
+      "level": "-",
+      "type": "achievement",
+      "points": 20,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "PPL-DESCRIBEATTRIBUTE-04",
+      "area": "PPL",
+      "skill": "DescribeAttribute",
+      "variant_number": "04",
+      "taxonomy": "PPL.DescribeAttribute",
+      "modifiers": [
+        "name",
+        "pose",
+        "gesture",
+        "report"
+      ],
+      "description": "Report the name, pose or gesture of a person",
+      "conditions": {
+        "info_load": "single",
+        "target_motion": "static",
+        "retention": "task"
+      },
+      "level": "-",
+      "type": "achievement",
+      "points": 20,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "PPL-DETECT-01",
+      "area": "PPL",
+      "skill": "Detect",
+      "variant_number": "01",
+      "taxonomy": "PPL.Detect",
+      "modifiers": [
+        "gesture",
+        "pose",
+        "name"
+      ],
+      "description": "Find the person described by gesture, pose or name in a room",
+      "conditions": {
+        "crowd": "few",
+        "perception_range": "far"
+      },
+      "level": "-",
+      "type": "achievement",
+      "points": 70,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "PPL-DETECT-02",
+      "area": "PPL",
+      "skill": "Detect",
+      "variant_number": "02",
+      "taxonomy": "PPL.Detect",
+      "modifiers": [
+        "count"
+      ],
+      "description": "Count the people in a room matching a gesture, pose or clothing",
+      "conditions": {
+        "crowd": "few",
+        "perception_range": "room"
+      },
+      "level": "-",
+      "type": "achievement",
+      "points": 60,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
       "id": "PPL-DETECTCALLINGORWAVING-01",
       "area": "PPL",
       "skill": "DetectCallingOrWaving",
@@ -1899,6 +2164,30 @@
       "type": "achievement",
       "used_by": [
         "restaurant"
+      ]
+    },
+    {
+      "id": "PPL-REIDENTIFY-01",
+      "area": "PPL",
+      "skill": "Reidentify",
+      "variant_number": "01",
+      "taxonomy": "PPL.Reidentify",
+      "modifiers": [
+        "met_earlier"
+      ],
+      "description": "Find again, in another room, a person met earlier in the command",
+      "conditions": {
+        "crowd": "few",
+        "distractors": "few",
+        "retention": "task",
+        "target_motion": "static",
+        "ambient_noise": "background"
+      },
+      "level": "-",
+      "type": "achievement",
+      "points": 80,
+      "used_by": [
+        "gpsr"
       ]
     },
     {

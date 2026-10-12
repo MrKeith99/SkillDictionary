@@ -1,8 +1,8 @@
 {
   "schema_version": "0.4.0",
+  "year": 2027,
+  "status": "draft",
   "rulebook_version": "2026.2",
-  "season": 2026,
-  "status": "in_force",
   "taxonomy": {
     "version": 1,
     "failure_modes": {

@@ -41,7 +41,7 @@ grows as *verbs × properties* and still cannot say "heavy **and** slippery
 | `data/vocabulary/difficulty_factors.yaml` | Which properties make an instance harder, and by how much? | rarely — TC decision |
 | `data/vocabulary/objects/catalog.yaml` | What is each real object: mass, grasp width, surface, rigidity, shape? | a new object enters the league |
 | `data/vocabulary/objects/fixtures.yaml` | Doors, racks, caps: mechanism and force | a new appliance |
-| `data/seasons/<year>/objects.yaml` | Which objects are in play this year, in which classes and rulebook categories? | every year, from the published object list |
+| `data/vocabulary/objects/set.yaml` | Which objects are in play this year, in which classes and rulebook categories? | every year, from the published object list |
 | `data/skills/<AREA>.yaml` | What does this particular line score, on which objects, in which situation, for how many points? | the rulebook changes |
 
 A harder object is **a different difficulty, not a different skill.** The
@@ -217,7 +217,7 @@ Reference an existing dictionary id. Nothing else.
    `surface`, `rigidity`, `shape`, and `ycb` if it is a YCB item. Set
    `values:` to `measured` (arena object), `ycb` (YCB published values,
    same kind of item only) or `estimate`.
-2. Add it to the season's `objects.yaml` under its class.
+2. Add it to `data/vocabulary/objects/set.yaml` under its class.
 3. If an existing line's category already covers it, nothing else changes —
    the line's difficulty range updates by itself. Otherwise add a dictionary
    line under the existing node.
@@ -226,13 +226,10 @@ No new skill, no new verb.
 
 ### A new competition year
 
-1. Create `data/seasons/<year>/` with a `season.yaml` — see CONTRIBUTING,
-   *Seasons*. A proposal names its `base` season; once the rulebook is
-   published, the season goes `in_force` with its own `challenges/`.
-2. Copy `objects.yaml` from the last season, paste the new published classes,
-   update `source`.
-3. Re-check `categories` against the new rulebook wording.
-4. Add any new objects to the catalog. CI fails on an unknown or empty name.
+1. Replace `data/vocabulary/objects/set.yaml` with the new published classes;
+   update `source`. The previous year's set stays in its git tag.
+2. Re-check `categories` against the new rulebook wording.
+3. Add any new objects to the catalog. CI fails on an unknown or empty name.
 
 ### A capability the league has never scored
 

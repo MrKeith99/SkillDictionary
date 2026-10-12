@@ -62,7 +62,7 @@ entries:
   section: Regular Rewards
   related_skill: NLU-UNDERSTANDCOMMAND-05
   ambiguity: Fixed -80 per order vs §3.7.4's -20% of max attainable (-472). Confirm which governs.
-- ref: HRI-EYECONTACT-01P
+- ref: HRI-ATTEND-01P
   count: 2
   section: Regular Rewards
   related_skill: NLU-UNDERSTANDCOMMAND-05
@@ -175,6 +175,9 @@ entries:
   section: Penalties
 - ref: GEN-HUMANASSIST-13P
   count: 2
+  section: Penalties
+- ref: GEN-UNSAFECONTACT-01P
+  count: 1
   section: Penalties
 - ref: SPECIAL-01
   count: 1

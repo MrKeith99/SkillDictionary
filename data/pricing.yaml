@@ -13,13 +13,15 @@
 #               (related_skill, or the line whose assistance it prices);
 #               conduct failures (fixed_penalty) cost the same everywhere.
 #
-# base[node] is calibrated, not invented: the median over the node's 2026
-# lines of price / (1 + D / d_scale). So the level stays where the league put
-# it; only the spread inside a skill disappears. Override a base below to
-# change how much the league values a skill.
+# base[node] is calibrated, not invented: the median over the node's lines in
+# rulebook 2026.2 (git tag 2026.2) of price / (1 + D / d_scale). So the level
+# stays where the league put it; only the spread inside a skill disappears.
+# The bases are fixed here, so adding or editing a line never moves them;
+# changing one is changing how much the league values a skill (TC decision).
 #
-# Lines the rule cannot price keep their rulebook value and are listed:
-# no difficulty factors, no parent for a penalty, or an explicit 0.
+# Lines the rule cannot price keep their value and are listed by
+# `skilldict prices`: no difficulty factors, no parent for a penalty, or an
+# explicit 0.
 
 d_scale: 4            # D 0 -> x1, D 4 -> x2, D 8 -> x3
 
@@ -27,12 +29,35 @@ rounding:             # round to the nearest step for prices at or above `from`
   - {from: 50, step: 10}
   - {from: 0,  step: 5}
 
-base_overrides: {}    # node: points at D 0, e.g. {MAN.Pick: 60}
-
-base_like:            # skills with no 2026 line borrow the base of a close skill
-  NAV.Guide: NAV.Follow
-  PPL.Detect: PPL.DetectGesture
-  PPL.Reidentify: PPL.DetectGesture
+base:                 # node: points at D 0
+  HRI.ConveyInfo: 35.24
+  HRI.Gaze: 26.79
+  HRI.Handover: 33.33
+  HRI.Indicate: 66.67
+  MAN.Fold: 300
+  MAN.Insert: 64
+  MAN.OperateArticulated: 133.33
+  MAN.Pick: 60
+  MAN.Place: 28.57
+  MAN.Pour: 160
+  MAN.Stack: 50
+  MAN.Transport: 119.44
+  NAV.Follow: 133.33
+  NAV.Guide: 133.33          # no 2026 line: as NAV.Follow
+  NAV.Navigate: 22.78
+  NAV.SignalIntent: 12
+  NLU.Clarify: 8.57
+  NLU.UnderstandCommand: 58.41
+  OBJ.DetectEvent: 20
+  OBJ.DetectPlacement: 15
+  OBJ.Recognize: 6.67
+  PLN.Execute: 200
+  PLN.Interleave: 133.33
+  PLN.Plan: 66.67
+  PPL.DescribeAttribute: 16
+  PPL.Detect: 40             # no 2026 line: as PPL.DetectGesture
+  PPL.DetectGesture: 40
+  PPL.Reidentify: 40         # no 2026 line: as PPL.DetectGesture
 
 fixed_penalty:
   # Conduct failures are not tied to one action, so a share of a line makes no

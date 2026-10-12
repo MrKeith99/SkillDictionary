@@ -1,5 +1,20 @@
 area: PLN
 skills:
+- id: PLN-COMPLETECOMMAND-01B
+  area: PLN
+  skill: CompleteCommand
+  variant_number: 01B
+  taxonomy: PLN.Execute
+  modifiers:
+  - goal_reached
+  description: Command goal reached (all its steps done, in a sensible order)
+  conditions:
+    plan_length:
+    - medium
+    - long
+  level: '-'
+  type: bonus
+  points: 35
 - id: PLN-DEMONSTRATEPLAN-01
   area: PLN
   skill: DemonstratePlan
@@ -27,32 +42,3 @@ skills:
   level: X
   points: 200
   type: bonus
-- id: PLN-SOLVECOMMAND-01
-  area: PLN
-  skill: SolveCommand
-  variant_number: '01'
-  taxonomy: PLN.Execute
-  modifiers:
-  - command
-  description: Solving a command (one line per command)
-  conditions:
-    plan_length:
-    - medium
-    - long
-  level: X
-  points: 250
-  type: achievement
-- id: PLN-SOLVECOMMAND-04P
-  area: PLN
-  skill: SolveCommand
-  variant_number: '04'
-  taxonomy: PLN.Execute
-  modifiers:
-  - partial
-  description: Solving part of a command (percentage penalty)
-  failure_mode: quality
-  level: X
-  points: null
-  type: penalty_behavior
-  penalty_type: percentage
-  basis: similar_scores_in_other_tests

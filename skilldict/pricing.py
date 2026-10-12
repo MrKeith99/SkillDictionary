@@ -1,17 +1,15 @@
-"""A season's pricing rule (data/seasons/<year>/pricing.yaml), as functions.
-
-Rule prices new lines when a proposal season is built (overlay.py), and
-reprice() applies the rule to every line of a build so the TC can review what
-the rule would do (`skilldict prices`). Both use exactly the same rule.
+"""The pricing rule (data/pricing.yaml), as functions, and Repricing: what the
+rule gives every line of a build next to what the line pays now, so the TC
+can review the rule rather than individual numbers (`skilldict prices`).
 """
-import statistics
 from collections import defaultdict, OrderedDict
 from .ratings import dmin, drange
 
 
 class Rule:
-    def __init__(self, spec, year):
-        self.spec, self.year = spec, year
+    def __init__(self, spec):
+        self.spec = spec
+        self.base = spec["base"]
         self.d_scale = spec["d_scale"]
         self.fixed_penalty = spec.get("fixed_penalty") or {}
         self.penalty_share = spec["penalty_share"]
@@ -26,25 +24,9 @@ class Rule:
                 return sign * int(round(abs(x) / r["step"]) * r["step"])
         return sign * int(round(abs(x)))
 
-    def calibrate(self, lines, ratings):
-        """Skill base per node: median of price / weight(D) over the given lines,
-        then overrides, then `base_like` for nodes with no line of their own."""
-        implied = defaultdict(list)
-        for e in lines:
-            d = dmin(ratings, e["id"])
-            if e.get("points") and d is not None:
-                implied[e["taxonomy"]].append(e["points"] / self.weight(d))
-        base = {n: statistics.median(v) for n, v in implied.items()}
-        base.update(self.spec.get("base_overrides") or {})
-        for node, like in (self.spec.get("base_like") or {}).items():
-            if node not in base and like in base:
-                base[node] = base[like]
-        return base
-
-
-def rule_of(season):
-    spec = season.pricing()
-    return Rule(spec, season.year) if spec else None
+def rule_of(release):
+    spec = release.pricing()
+    return Rule(spec) if spec else None
 
 
 def children(build):
@@ -79,7 +61,7 @@ class Repricing:
         self.build, self.rule = build, rule
         D, R = build.skills, build.ratings
         standalone = {e["id"] for e in standalone_lines(build)}
-        self.base = rule.calibrate([D[i] for i in standalone], R)
+        self.base = rule.base
 
         def rule_price(eid):
             e = D[eid]
@@ -190,13 +172,11 @@ class Repricing:
                 for slug, ch in self.build.challenges.items()}
 
     def lines(self):
-        """Rows with the years in the column names (points_2026, points_2027)."""
-        y = {"points_old": f"points_{self.build.season.year}", "points_new": f"points_{self.rule.year}"}
+        """Rows for export: `points` is what the line pays now, `rule_points` the rule's price."""
+        y = {"points_old": "points", "points_new": "rule_points"}
         return [OrderedDict((y.get(k, k), v) for k, v in r.items()) for r in self.rows]
 
     def as_json(self):
-        y0, y1 = str(self.build.season.year), str(self.rule.year)
-        return {"rule": self.rule.spec, "base": {n: round(b, 1) for n, b in sorted(self.base.items())},
-                "lines": self.lines(),
-                "totals": {s: {y0: self.tot_old[s], y1: self.tot_new[s]} for s in self.build.challenges},
-                "inversions": {y0: len(self.inv_old), y1: len(self.inv_new)}}
+        return {"rule": self.rule.spec, "lines": self.lines(),
+                "totals": {s: {"now": self.tot_old[s], "rule": self.tot_new[s]} for s in self.build.challenges},
+                "inversions": {"now": len(self.inv_old), "rule": len(self.inv_new)}}

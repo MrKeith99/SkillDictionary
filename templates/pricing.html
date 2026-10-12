@@ -55,7 +55,7 @@ nav a {{ color: var(--accent); }}
   <div class="eyebrow">RoboCup@Home Skill Dictionary · PROPOSAL · not in force</div>
   <h1>Proposed {year} Prices</h1>
 </header>
-<p class="lead">Every line re-priced by one rule, so the same skill at the same difficulty pays the same in every challenge and the same failure costs the same share everywhere. The rule lives in <code>data/seasons/{year}/pricing.yaml</code>; change the rule, not the numbers.</p>
+<p class="lead">Every line re-priced by one rule, so the same skill at the same difficulty pays the same in every challenge and the same failure costs the same share everywhere. The rule lives in <code>data/pricing.yaml</code>; change the rule, not the numbers.</p>
 
 <div class="kpis">
   <div class="kpi"><span class="v">{inv_old} → {inv_new}</span><span class="l">harder line pays less than an easier one, same skill</span></div>
@@ -68,7 +68,7 @@ nav a {{ color: var(--accent); }}
   <p><b>Achievement</b> = skill base × (1 + D / {d_scale}), with D the easiest instance the line covers. Harder objects are paid by bonus lines, as the rulebook already does.</p>
   <p><b>Bonus or discount</b>: parent + line together pay the rule price at the line's own D.</p>
   <p><b>Penalty</b> = a fixed share of the line it belongs to, per failure mode.</p>
-  <p><b>Skill base</b> is calibrated from {base_year}: the median of price ÷ (1 + D / {d_scale}) over the skill's lines. The league's level per skill is kept; only the spread inside a skill goes.</p>
+  <p><b>Skill base</b> is calibrated from rulebook {base_year}: the median of price ÷ (1 + D / {d_scale}) over the skill's lines. The league's level per skill is kept; only the spread inside a skill goes. The bases are fixed in the rule, so editing lines never moves them.</p>
   <p class="lead">Challenge totals are not rescaled: scaling a challenge would make the same skill pay differently again. Balance between challenges is set through the skill bases.</p>
 </div></div>
 
@@ -77,7 +77,7 @@ nav a {{ color: var(--accent); }}
     <thead><tr><th>Skill</th><th></th><th class="num">D0</th><th class="num">D2</th><th class="num">D5</th><th class="num">D8</th></tr></thead>
     <tbody>{base_rows}</tbody></table></div></div>
   <div class="card"><h2>Penalty shares</h2><div class="tw"><table>
-    <thead><tr><th>Failure</th><th class="num">Share</th><th class="num">{base_year} prices</th><th>{base_year} values</th></tr></thead>
+    <thead><tr><th>Failure</th><th class="num">Share</th><th class="num">prices now</th><th>values now</th></tr></thead>
     <tbody>{share_rows}</tbody></table></div></div>
 </div>
 

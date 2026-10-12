@@ -112,7 +112,7 @@ def taxonomy(b):
     if unused:
         print(f"  active but unscored leaf nodes: {', '.join(unused)}")
     if proposed_used:
-        print(f"  proposed and scored in this season: {', '.join(proposed_used)}")
+        print(f"  proposed and already scored: {', '.join(proposed_used)}")
 
     print(RULE)
     print(f"T5 — Object data quality ({rt.oset['competition']})")

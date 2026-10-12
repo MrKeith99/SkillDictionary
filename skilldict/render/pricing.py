@@ -15,10 +15,10 @@ def fmt(v):
 def write(base, rule):
     """Reprice `base` with `rule`; returns (Repricing, written paths)."""
     rp = Repricing(base, rule)
-    y0, y1 = base.season.year, rule.year
-    out_json = os.path.join(paths.DIST, str(y1), "pricing.json")
-    out_csv = os.path.join(paths.BUILD, str(y1), "pricing.csv")
-    out_html = os.path.join(paths.BUILD, str(y1), "pricing.html")
+    y0, y1 = "now", "rule"
+    out_json = os.path.join(paths.DIST, "pricing.json")
+    out_csv = os.path.join(paths.BUILD, "pricing.csv")
+    out_html = os.path.join(paths.BUILD, "pricing.html")
     paths.write_json(rp.as_json(), out_json, indent=1)
     lines = rp.lines()
     os.makedirs(os.path.dirname(out_csv), exist_ok=True)
@@ -61,7 +61,7 @@ def write(base, rule):
         for m, s in rule.penalty_share.items())
     so, sn = sum(rp.tot_old.values()), sum(rp.tot_new.values())
     page = paths.template("pricing.html").format(
-        year=y1, base_year=y0, d_scale=rule.d_scale,
+        year=base.release.year, base_year=base.rulebook_version, d_scale=rule.d_scale,
         inv_old=len(rp.inv_old), inv_new=len(rp.inv_new),
         pen_mixed=sum(1 for v in rp.pen_old.values() if len(v) > 1),
         sum_old=so, sum_new=sn, sum_delta=f"{sn - so:+d}", kept=len(rp.kept),

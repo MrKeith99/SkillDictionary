@@ -49,32 +49,6 @@ skills:
   level: X
   points: 300
   type: achievement
-- id: MAN-FOLD-01
-  area: MAN
-  skill: Fold
-  variant_number: '01'
-  taxonomy: MAN.Fold
-  modifiers:
-  - loose
-  - single
-  description: Folding a piece of clothing
-  objects:
-  - clothing
-  level: X
-  points: 800
-  type: achievement
-- id: MAN-FOLD-01P1
-  area: MAN
-  skill: Fold
-  variant_number: 01P1
-  taxonomy: MAN.Fold
-  modifiers:
-  - quality_penalty
-  description: Quality penalties
-  failure_mode: quality
-  level: X
-  points: -800
-  type: penalty_behavior
 - id: MAN-FOLD-02
   area: MAN
   skill: Fold
@@ -82,12 +56,26 @@ skills:
   taxonomy: MAN.Fold
   modifiers:
   - additional_item
-  description: Folding additional clothes (per item)
+  description: Folding a piece of clothing (per item)
   objects:
   - clothing
   level: X
   points: 400
   type: achievement
+- id: MAN-FOLD-02B
+  area: MAN
+  skill: Fold
+  variant_number: 02B
+  taxonomy: MAN.Fold
+  modifiers:
+  - main_goal
+  - first_garment
+  description: First garment folded (main goal), without assistance and to quality
+  objects:
+  - clothing
+  level: '-'
+  type: bonus
+  points: 400
 - id: MAN-FOLD-02P1
   area: MAN
   skill: Fold
@@ -96,7 +84,7 @@ skills:
   modifiers:
   - additional
   - quality_penalty
-  description: Quality penalties (additional clothes)
+  description: Quality penalties (per item)
   failure_mode: quality
   level: X
   points: -400
@@ -355,6 +343,25 @@ skills:
   level: C
   points: 100
   type: achievement
+- id: MAN-PICK-06
+  area: MAN
+  skill: Pick
+  variant_number: '06'
+  taxonomy: MAN.Pick
+  modifiers:
+  - requested_object
+  description: Take the requested object
+  objects:
+  - known_objects
+  conditions:
+    reach:
+    - table
+    - low_high
+    clutter: nearby
+    knowledge: known_instance
+  level: '-'
+  type: achievement
+  points: 80
 - id: MAN-PLACE-01
   area: MAN
   skill: Place
@@ -500,6 +507,26 @@ skills:
   level: C
   points: 100
   type: bonus
+- id: MAN-PLACE-04
+  area: MAN
+  skill: Place
+  variant_number: '04'
+  taxonomy: MAN.Place
+  modifiers:
+  - placement_location
+  - trash
+  description: Place the object on the named placement location, or in the trash
+  objects:
+  - known_objects
+  conditions:
+    reach:
+    - table
+    - low_high
+    placement_tolerance: region
+    clutter: nearby
+  level: '-'
+  type: achievement
+  points: 35
 - id: MAN-POUR-01
   area: MAN
   skill: Pour

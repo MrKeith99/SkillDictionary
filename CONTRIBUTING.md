@@ -21,8 +21,8 @@ pip install pyyaml jsonschema
 make check
 ```
 
-The submodule is the RuleBook, pinned to the version the season in force
-describes; without it the rulebook check cannot run (see
+The submodule is the RuleBook, pinned to the version `data/release.yaml`
+names; without it the rulebook check cannot run (see
 [external/README.md](external/README.md)). `make check` must end with
 `ALL CHECKS PASSED` on an unmodified checkout; if it does not, open an issue
 rather than working around it.
@@ -42,9 +42,9 @@ rather than working around it.
 
 | you want to | edit |
 |---|---|
-| fix how the in-force rulebook is described | `data/skills/`, `data/seasons/<in force>/challenges/` |
-| propose a scoring change for next year | a new file in `data/seasons/<next>/changes/` |
-| change the proposed pricing rule | `data/seasons/<next>/pricing.yaml` |
+| change a skill or its price | `data/skills/` |
+| change how a test uses skills | `data/challenges/` |
+| change the pricing rule | `data/pricing.yaml` |
 | add an object, a factor, a taxonomy node | `data/vocabulary/` |
 | change a page or sheet layout | `templates/` or `skilldict/render/` |
 | add a check | `skilldict/checks/` |
@@ -65,8 +65,8 @@ Same convention as the RuleBook — lowercase, underscore-separated:
 
 ## What CI enforces
 
-`make check` builds every season and runs the data, integrity, schema and
-(season in force) rulebook stages; see README, *Checks*. All must pass before
+`make check` runs the data, integrity, schema and rulebook stages; see
+README, *Checks*. All must pass before
 review.
 
 The findings (T1–T5, A1–A7) are **not** failures. They surface questions for
@@ -106,9 +106,8 @@ instead of result.
 
 ### Every line is used
 
-In the season in force an unused line fails the integrity check: remove it in
-the same PR that removes its last reference. A proposal season lists the base
-lines it retires.
+An unused line fails the integrity check: remove it in the same PR that
+removes its last reference. Its id is retired, never reused.
 
 ### Same skill, same difficulty, same price
 
@@ -117,9 +116,8 @@ conditions. Then they must have one price and become one line. If they differ
 in difficulty, they stay separate — difficulty is a difference, so the price
 may differ too.
 
-In the season in force, merge only lines the rulebook already prices the
-same (the rulebook check proves it). Bringing differently-priced lines into
-line is a scoring change: it goes in a proposal season.
+Bringing differently-priced lines into line is a scoring change: say so in
+the PR and in `docs/changes-<year>.md`.
 
 ---
 
@@ -152,17 +150,16 @@ Then reference it from the challenge:
     permitted: false
 ```
 
-For next year, put both in a change file instead (`dictionary_additions` and
-`add_entries`, or a whole `challenge`), and leave out `points` to have the
-season's pricing rule price it.
+Price it with the rule: `make prices` shows what `data/pricing.yaml` gives
+the line at its difficulty.
 
 Before adding an entry, read [docs/skill-model.md](docs/skill-model.md). In
 short:
 
 - **Reuse a taxonomy node.** A new object or situation is new `objects` /
   `conditions` on an existing node, not a new skill. If the object has no
-  profile, add one to `data/vocabulary/objects/catalog.yaml` and list it in the
-  season's `objects.yaml`.
+  profile, add one to `data/vocabulary/objects/catalog.yaml` and list it in
+  `data/vocabulary/objects/set.yaml`.
 - **A genuinely new capability** gets a node in `data/vocabulary/taxonomy.yaml`
   first — `intent`, `success`, `not_judged`, `factors` — with `status:
   proposed`, and is reviewed on its definition before anything scores it.
@@ -203,54 +200,38 @@ reports.
 
 ---
 
-## Seasons
+## Releases
 
-### Proposing changes for next year
+The tree describes one release (`data/release.yaml`); earlier releases are git
+tags. There is no per-year copy of the data: `git diff <tag> -- data/` is the
+change set.
 
-Add a file to `data/seasons/<next>/changes/`. Start it with a comment saying
-what the rulebook does today, what is wrong with it, and what the change does —
-the TC reviews the reasoning with the data. The keys are documented in
-[skilldict/overlay.py](skilldict/overlay.py). Then:
+### While drafting (`status: draft`)
 
-```sh
-make check            # builds the proposal season too, writes dist/<next>/
-make sheets pdf       # the sheets, official next to proposed
-```
-
-### Starting a new proposal season
-
-```yaml
-# data/seasons/2028/season.yaml
-year: 2028
-status: proposal
-base: 2027
-```
-
-Add `pricing.yaml` if new lines should be priced by rule.
+Edit the data directly. Every scoring change goes in
+`docs/changes-<year>.md` with its reasoning — what the rulebook does today,
+what is wrong with it, what the change does — because the TC reviews the
+reasoning with the numbers. `make check` lists every difference from the
+pinned rulebook; `make pdf` sets each rulebook sheet next to the proposed one.
 
 ### When the rulebook is published
 
-The proposal becomes the season in force:
-
 1. Move the submodule pin: `git -C external/RuleBook checkout <tag>`, then
    `git add external/RuleBook`; update the pin note in `external/README.md`.
-2. In the season's `season.yaml`: `status: in_force`, `rulebook` (version,
-   commit), `sheets` (the rulebook's sheet file per challenge); drop `base`.
-3. Materialise it: write the challenges to `seasons/<year>/challenges/`, apply
-   the line changes to `data/skills/`, copy `objects.yaml` and replace its
-   classes with the year's published object list. Delete `changes/`.
-4. Set the previous season to `status: proposal` with no `base` — or delete
-   it; the git history keeps it.
-5. `make check` until the rulebook stage matches every sheet.
-
-Only one season is `in_force`; it is the one `dist/` describes.
+2. In `data/release.yaml`: `status: in_force`, the new `rulebook` version and
+   commit, and the sheet file per challenge.
+3. Replace `data/vocabulary/objects/set.yaml` with the year's published object
+   list.
+4. `make check` until the rulebook stage matches every sheet.
+5. Tag the commit with the rulebook version (`git tag -a 2027.1`), then start
+   the next draft: `year` + 1, `status: draft`.
 
 ---
 
-## Changing points in the season in force
+## Changing points when in force
 
-**A price change is a rulebook change, not a refactor.** It belongs in a PR
-against the RuleBook repo first. Once the `.tex` sheet is merged there, move the
+While the release is `in_force`, **a price change is a rulebook change, not a
+refactor.** It belongs in a PR against the RuleBook repo first. Once the `.tex` sheet is merged there, move the
 pin, update the line, run `make check`. The rulebook stage fails until the
 dictionary and the rulebook agree, in either direction — that is the check
 that catches the dictionary drifting from the rules it describes.
