@@ -1,9 +1,6 @@
 area: NAV
 skills:
 - id: NAV-FOLLOW-01
-  area: NAV
-  skill: Follow
-  variant_number: '01'
   taxonomy: NAV.Follow
   modifiers:
   - bag_drop_area
@@ -17,9 +14,6 @@ skills:
   points: 200
   type: achievement
 - id: NAV-FOLLOW-01P1
-  area: NAV
-  skill: Follow
-  variant_number: 01P1
   taxonomy: NAV.Follow
   modifiers:
   - dropped_bag
@@ -29,9 +23,6 @@ skills:
   points: -100
   type: penalty_behavior
 - id: NAV-FOLLOW-01P2
-  area: NAV
-  skill: Follow
-  variant_number: 01P2
   taxonomy: NAV.Follow
   modifiers:
   - natural
@@ -42,9 +33,6 @@ skills:
   points: -100
   type: penalty_behavior
 - id: NAV-FOLLOW-01P3
-  area: NAV
-  skill: Follow
-  variant_number: 01P3
   taxonomy: NAV.Follow
   modifiers:
   - asking_operator_to_wait
@@ -54,9 +42,6 @@ skills:
   points: -100
   type: penalty_behavior
 - id: NAV-FOLLOW-01P4
-  area: NAV
-  skill: Follow
-  variant_number: 01P4
   taxonomy: NAV.Follow
   modifiers:
   - physical_contact
@@ -66,9 +51,6 @@ skills:
   points: -100
   type: penalty_behavior
 - id: NAV-FOLLOW-02
-  area: NAV
-  skill: Follow
-  variant_number: '02'
   taxonomy: NAV.Follow
   modifiers:
   - named_person
@@ -80,23 +62,7 @@ skills:
   level: '-'
   type: achievement
   points: 200
-- id: NAV-GAZEDIRECTION-01
-  area: NAV
-  skill: GazeDirection
-  variant_number: '01'
-  taxonomy: NAV.SignalIntent
-  modifiers:
-  - navigation_goal
-  description: Look in the direction of navigation or at the navigation goal
-  conditions:
-    crowd: few
-  level: E
-  points: 15
-  type: achievement
 - id: NAV-GUIDE-01
-  area: NAV
-  skill: Guide
-  variant_number: '01'
   taxonomy: NAV.Guide
   modifiers:
   - person
@@ -109,9 +75,6 @@ skills:
   type: achievement
   points: 200
 - id: NAV-NAVIGATE-01
-  area: NAV
-  skill: Navigate
-  variant_number: '01'
   taxonomy: NAV.Navigate
   modifiers:
   - announced_location
@@ -124,10 +87,7 @@ skills:
   level: E
   points: 35
   type: achievement
-- id: NAV-NAVIGATE-03
-  area: NAV
-  skill: Navigate
-  variant_number: '03'
+- id: NAV-NAVIGATE-02
   taxonomy: NAV.Navigate
   modifiers:
   - customer_table
@@ -140,10 +100,7 @@ skills:
   level: C
   points: 50
   type: achievement
-- id: NAV-NAVIGATE-03P
-  area: NAV
-  skill: Navigate
-  variant_number: 03P
+- id: NAV-NAVIGATE-02P
   taxonomy: NAV.Navigate
   modifiers:
   - guided_to_table
@@ -152,10 +109,7 @@ skills:
   level: C
   points: -25
   type: penalty_behavior
-- id: NAV-NAVIGATE-05P
-  area: NAV
-  skill: Navigate
-  variant_number: 05P
+- id: NAV-NAVIGATE-03P
   taxonomy: NAV.Navigate
   modifiers:
   - bar
@@ -165,10 +119,7 @@ skills:
   level: C
   points: -25
   type: penalty_behavior
-- id: NAV-NAVIGATE-06
-  area: NAV
-  skill: Navigate
-  variant_number: '06'
+- id: NAV-NAVIGATE-04
   taxonomy: NAV.Navigate
   modifiers:
   - named_location
@@ -181,3 +132,13 @@ skills:
   level: '-'
   type: achievement
   points: 35
+- id: NAV-SIGNAL-01
+  taxonomy: NAV.SignalIntent
+  modifiers:
+  - navigation_goal
+  description: Look in the direction of navigation or at the navigation goal
+  conditions:
+    crowd: few
+  level: E
+  points: 15
+  type: achievement

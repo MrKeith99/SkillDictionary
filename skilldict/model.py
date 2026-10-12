@@ -112,7 +112,14 @@ class Build:
 
 
 # ── loading ──────────────────────────────────────────────────────────────────
-def _skills():
+DERIVED = ("area", "skill", "variant_number", "used_by")
+ID = re.compile(r"^(?P<area>[A-Z]+)(?:-(?P<code>[A-Z]+))?-(?P<variant>\d{2,}(?:[BP]\d*)?)$")
+
+
+def _skills(nodes):
+    """Lines from data/skills/<AREA>.yaml. The id is <AREA>-<code>-<NN>[B|P<n>]
+    with the code of its taxonomy node; area, skill and variant_number are
+    derived from it, never authored."""
     skills = {}
     for fn in sorted(glob.glob(os.path.join(paths.SKILLS, "*.yaml"))):
         area = os.path.splitext(os.path.basename(fn))[0]
@@ -120,13 +127,22 @@ def _skills():
         if doc.get("area") != area:
             raise DataError(f"{paths.rel(fn)}: area {doc.get('area')}, expected {area}")
         for e in doc["skills"]:
-            if e["area"] != area:
-                raise DataError(f"{paths.rel(fn)}: {e['id']} has area {e['area']}, expected {area}")
+            where = f"{paths.rel(fn)}: {e['id']}"
+            for k in DERIVED:
+                if k in e:
+                    raise DataError(f"{where}: {k} is derived from the id, do not author it")
             if e["id"] in skills:
                 raise DataError(f"{paths.rel(fn)}: duplicate id {e['id']}")
-            if "used_by" in e:
-                raise DataError(f"{paths.rel(fn)}: {e['id']}: used_by is derived, do not author it")
-            skills[e["id"]] = e
+            m = ID.match(e["id"])
+            node = nodes.get(e.get("taxonomy"))
+            if not m or m["area"] != area:
+                raise DataError(f"{where}: id must be {area}-<code>-<NN>[B|P<n>]")
+            if node is None:
+                raise DataError(f"{where}: unknown taxonomy node {e.get('taxonomy')}")
+            if (m["code"] or "") != node.get("code", None):
+                raise DataError(f"{where}: id code must be {node.get('code')!r}, the code of {e['taxonomy']}")
+            skills[e["id"]] = {"id": e["id"], "area": area, "skill": e["taxonomy"].split(".")[-1],
+                               "variant_number": m["variant"], **{k: v for k, v in e.items() if k != "id"}}
     return dict(sorted(skills.items(), key=lambda kv: (kv[1]["area"], id_sort_key(kv[0]))))
 
 
@@ -157,7 +173,8 @@ def load():
     build.errors; structural errors (duplicate ids, ...) raise DataError."""
     from . import ratings, commands
     gr = os.path.join(paths.VOCAB, "global_rules.yaml")
-    b = Build(Release(), _skills(), _challenges(), _vocab(),
+    vocab = _vocab()
+    b = Build(Release(), _skills(vocab["taxonomy"]["nodes"]), _challenges(), vocab,
               paths.load_yaml(gr) if os.path.exists(gr) else None)
     commands.apply(b)
     ratings.rate(b)

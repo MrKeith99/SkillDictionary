@@ -1,9 +1,6 @@
 area: SPECIAL
 skills:
 - id: SPECIAL-01
-  area: SPECIAL
-  skill: null
-  variant_number: '01'
   taxonomy: SPECIAL.Administrative
   modifiers: []
   description: Not attending (see sec. 3.8.1)
@@ -11,9 +8,6 @@ skills:
   points: -500
   type: administrative
 - id: SPECIAL-02
-  area: SPECIAL
-  skill: null
-  variant_number: '02'
   taxonomy: SPECIAL.Administrative
   modifiers: []
   description: Using alternative start signal (see sec. 3.6.8)
@@ -21,9 +15,6 @@ skills:
   points: -100
   type: administrative
 - id: SPECIAL-03
-  area: SPECIAL
-  skill: null
-  variant_number: '03'
   taxonomy: SPECIAL.Administrative
   modifiers: []
   description: Outstanding performance (see sec. 3.8.3)

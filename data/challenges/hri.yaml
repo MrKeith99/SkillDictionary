@@ -8,17 +8,17 @@ challenge_rules:
     note: Since the main focus of the test is HRI, no custom operator can be chosen.
   alternative_hri:
     permitted: true
-    penalty_ref: GEN-ALTERNATIVEHRI-01P
+    penalty_ref: GEN-ALTINPUT-01P
     note: Score reduction per information (name or favorite drink).
 entries:
-- ref: OBJ-DETECTEVENT-01
+- ref: OBJ-EVENT-01
   count: 2
   section: Greeting
   assistance:
     permitted: false
     note: Waiting for the doorbell is optional; robots may bypass it and meet the guest at the door. Bypassing is an alternative strategy, not assistance.
   note: Scored only if robot waits at starting position and reacts instantly.
-- ref: MAN-OPEN-01
+- ref: MAN-OPERATE-04
   count: 2
   section: Greeting
   assistance:
@@ -30,13 +30,13 @@ entries:
     blocks_dependents: false
     note: Entrance door is open by default; team leader may request it closed to make these points available. Referee opens on request (§5.1 Referee Instructions).
   note: 'Opportunity is opt-in: points only exist if the team requests a closed door.'
-- ref: HRI-LOOKAT-01
+- ref: HRI-GAZE-01
   count: 2
   section: Greeting
   assistance:
     permitted: false
   note: Awarded only if the robot continuously tracks the moving person.
-- ref: HRI-OFFERSEAT-01
+- ref: HRI-INDICATE-01
   count: 2
   section: Greeting
   depends_on:
@@ -49,12 +49,12 @@ entries:
   assistance:
     permitted: false
   note: Robot must clearly indicate or point to a location or seat.
-- ref: NAV-GAZEDIRECTION-01
+- ref: NAV-SIGNAL-01
   count: 2
   section: Greeting
   assistance:
     permitted: false
-- ref: PPL-DESCRIBEATTRIBUTE-01B
+- ref: PPL-ATTRIBUTE-01B
   count: 4
   section: Greeting
   depends_on:
@@ -65,17 +65,17 @@ entries:
     satisfiable_by_assistance: false
   assistance:
     permitted: false
-- ref: PPL-DESCRIBEATTRIBUTE-02P
+- ref: PPL-ATTRIBUTE-02P
   count: 4
   section: Greeting
-  related_skill: PPL-DESCRIBEATTRIBUTE-01B
-- ref: NLU-AVOIDNONESSENTIALQUESTIONS-01B
+  related_skill: PPL-ATTRIBUTE-01B
+- ref: NLU-CLARIFY-01B
   count: 4
   section: Greeting
   assistance:
     permitted: false
   note: Asking a guest to repeat because the robot could not hear is not a non-essential question.
-- ref: HRI-STATESTOREDINFO-01
+- ref: HRI-INFO-02
   count: 4
   section: Introduction
   depends_on:
@@ -89,45 +89,45 @@ entries:
     permitted: true
     listed_in_task_description: true
     self_score: 0
-    extra_penalty_ref: GEN-ALTERNATIVEHRI-01P
+    extra_penalty_ref: GEN-ALTINPUT-01P
     blocks_dependents: false
     note: Alternative HRI to understand a guest causes a reduction per information item.
-- ref: HRI-LOOKAT-02
+- ref: HRI-GAZE-02
   count: 2
   section: Introduction
   depends_on:
-  - ref: HRI-OFFERSEAT-01
+  - ref: HRI-INDICATE-01
     nature: sequential
     blocking: true
     satisfiable_by_assistance: false
     note: Both guests must be seated before introductions.
   assistance:
     permitted: false
-- ref: HRI-RECEIVEHANDOVER-01
+- ref: HRI-HANDOVER-02
   count: 1
   section: Guiding
   assistance:
     permitted: true
     listed_in_task_description: true
     self_score: 0
-    extra_penalty_ref: HRI-RECEIVEHANDOVER-01P1
+    extra_penalty_ref: HRI-HANDOVER-02P1
     blocks_dependents: false
     note: Two distinct assisted modes are priced separately (-25 asking for help, -50 bag placed on structure). Neither blocks the follow/drop chain.
   note: 'Max points require: robot signals readiness, manipulator within 10 cm of operator''s hand, operator completes the handover.'
-- ref: HRI-RECEIVEHANDOVER-01P1
+- ref: HRI-HANDOVER-02P1
   count: 1
   section: Guiding
-  related_skill: HRI-RECEIVEHANDOVER-01
-- ref: HRI-RECEIVEHANDOVER-01P2
+  related_skill: HRI-HANDOVER-02
+- ref: HRI-HANDOVER-02P2
   count: 1
   section: Guiding
-  related_skill: HRI-RECEIVEHANDOVER-01
+  related_skill: HRI-HANDOVER-02
   ambiguity: §5.1 rule 5 says 'no points are awarded' for this route, and the sheet also applies -50. Confirm whether both forfeiture and penalty are intended, or only the penalty.
 - ref: NAV-FOLLOW-01
   count: 1
   section: Guiding
   depends_on:
-  - ref: HRI-RECEIVEHANDOVER-01
+  - ref: HRI-HANDOVER-02
     nature: physical
     blocking: false
     satisfiable_by_assistance: true
@@ -163,7 +163,7 @@ entries:
     nature: sequential
     blocking: true
     satisfiable_by_assistance: true
-  - ref: HRI-RECEIVEHANDOVER-01
+  - ref: HRI-HANDOVER-02
     nature: physical
     blocking: true
     satisfiable_by_assistance: true
@@ -175,18 +175,18 @@ entries:
     extra_penalty_ref: null
     blocks_dependents: false
     note: 'Falls back to §3.7.2 default: assisted element scores zero.'
-- ref: HRI-STATESTOREDINFO-02P
+- ref: HRI-INFO-02P
   count: 4
   section: Penalties
-  related_skill: HRI-STATESTOREDINFO-01
-- ref: GEN-ALTERNATIVEHRI-01P
+  related_skill: HRI-INFO-02
+- ref: GEN-ALTINPUT-01P
   count: 6
   section: Penalties
   ambiguity: Fixed -20 per item here, but §3.7.4 prices alternative HRI at up to -20% of max attainable score (=-290). Confirm which governs.
 - ref: HRI-ATTEND-01P
   count: 2
   section: Penalties
-- ref: GEN-UNSAFECONTACT-01P
+- ref: GEN-UNSAFE-01P
   count: 1
   section: Penalties
 - ref: SPECIAL-01

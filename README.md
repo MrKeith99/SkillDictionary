@@ -124,14 +124,19 @@ across); tick lines to total an arbitrary subset. It is rebuilt by
 
 ## How a skill is described
 
-A skill is described by four facets rather than a flat name:
+A line's id says which skill it scores: `<AREA>-<code>-<NN>[B|P<n>]`.
 
-| facet | meaning | example |
+| part | meaning | example |
 |---|---|---|
-| `area` | capability area (Roadmap Table 1) | `MAN` |
-| `skill` | canonical verb — the extensible axis | `Pick` |
-| `modifiers` | object/environment properties | `[known, transport]` |
-| `variant_number` + `level` | permanent id + difficulty (E/C/X) | `01`, `C` |
+| `AREA` | capability area (Roadmap Table 1) | `MAN` |
+| `code` | short code of the taxonomy node — the skill | `OPERATE` = MAN.OperateArticulated |
+| `NN` | the line's number within that skill | `02` (the dishwasher door) |
+| `B` / `P` (`B1`, `P2`, …) | a bonus / penalty on line `NN` | `MAN-PICK-01B3` — the plate bonus on pick 01 |
+
+CI checks that the code matches the line's `taxonomy:`. `area`, `skill` and
+`variant_number` are derived from the id (and still written to `dist/`).
+`modifiers` add object/environment properties to the description, and `level`
+rates the line E/C/X.
 
 `modifiers` describe the *object and environment*, never grasp technique or
 hardware method. Scoring how a robot achieves something rather than whether it
@@ -143,7 +148,7 @@ instance is, so the same skill is judged and compared the same way in every
 challenge:
 
 ```yaml
-- id: MAN-PICK-01B4
+- id: MAN-PICK-01B3
   taxonomy: MAN.Pick          # data/vocabulary/taxonomy.yaml: intent, success criterion,
                               #   what the referee must not judge, factors
   description: Plate
@@ -174,7 +179,7 @@ is independent of `points`.
 | `X` | Expert — few teams manage it |
 | `-` | not a robot capability (assistance, administrative) |
 
-Unlike `variant_number`, which is permanent, **`level` is reassigned annually
+Unlike the id, which is permanent, **`level` is reassigned annually
 from empirical team performance**. A frozen id with a moving level is what makes
 year-over-year comparison possible.
 
@@ -189,9 +194,6 @@ A **skill** is specification — what it is and what it is worth:
 ```yaml
 # data/skills/MAN.yaml
 - id: MAN-PICK-01
-  area: MAN
-  skill: Pick
-  variant_number: '01'
   taxonomy: MAN.Pick
   modifiers: [known, transport]
   description: Picking up an object for transportation
@@ -209,7 +211,7 @@ A **challenge** is usage — how one test employs that skill:
   section: Picking
   assistance:
     permitted: true
-    extra_penalty_ref: GEN-HUMANASSIST-02P
+    extra_penalty_ref: GEN-ASSIST-02P
 ```
 
 There is no `points` field, and there cannot be one.
@@ -247,7 +249,7 @@ goes `status: in_force` and any difference fails CI.
 | stage | fails on |
 |---|---|
 | **data** | unknown taxonomy node, object, factor or level; a factor that does not apply to the skill; a penalty without a failure mode |
-| **integrity** | a challenge naming an unknown line or carrying a price; a stale `*_ref`; a reused `variant_number`; a line no challenge uses |
+| **integrity** | a challenge naming an unknown line or carrying a price; a stale `*_ref`; a line no challenge uses (an id whose code does not match its node fails at load) |
 | **schema** | a skill or challenge, as written to `dist/`, violating the JSON Schema |
 | **rulebook** | when `in_force`: any scored line or total that differs from the rulebook's `.tex` sheet (when `draft`, the differences are listed, not failed) |
 
@@ -280,15 +282,17 @@ Highest priority, all surfaced by finding A6:
    assistance is explicitly −0.
 3. **HRI bag-on-structure.** §5.1 rule 5 says no points awarded *and* the sheet
    applies −50. Forfeiture plus penalty, or penalty only?
-4. **`MAN-APPLIANCE-02` bundles open and close** with different preconditions.
+4. **`MAN-OPERATE-02` bundles open and close** with different preconditions.
    Should probably split.
 
 ---
 
 ## ID stability
 
-`variant_number` is permanent: the TC cites ids in writing. A merged line keeps
-the surviving id; the retired id is never reused for something else. The
+Within a release an id is permanent: the TC cites ids in writing. A merged line
+keeps the surviving id; the retired id is never reused for something else.
+Ids were renumbered once, for 2027, so that each names its skill; the 2026.2
+ids are in the `2026.2` tag. The
 pre-dictionary per-challenge extraction and its id mapping are in the git
 history (before commit `45a982e`), not in the tree.
 

@@ -60,9 +60,9 @@ To price a new line: rate it (`make check` writes its D), apply the formula.
 **Not priced by the rule**, kept at their value:
 
 - goal bonuses — they pay for reaching the goal, not for difficulty:
-  `MAN-FOLD-02B` (+400), `PLN-COMPLETECOMMAND-01B` (+35);
-- discounts the rule would zero or flip: `MAN-PICK-01B2` (+30), `MAN-PLACE-02P2` (−20);
-- `GEN-HUMANASSIST-08P` (−100): flattening help is less help than folding
+  `MAN-FOLD-01B` (+400), `PLN-EXECUTE-01B` (+35);
+- discounts the rule would zero or flip: `MAN-PICK-01B1` (+30), `MAN-PLACE-02P2` (−20);
+- `GEN-ASSIST-05P` (−100): flattening help is less help than folding
   help (−300); the share does not see the amount of help;
 - lines with no difficulty factors, lines judged on the day, explicit 0s.
 
@@ -80,6 +80,23 @@ Challenges are not rescaled: scaling one would make the same skill pay
 differently again. Balance between challenges is set through the skill bases.
 
 ---
+
+## Ids name their skill
+
+2026 ids carry a free-text verb, so 43 of 104 did not name the skill they
+score: `MAN-APPLIANCE-01` and `MAN-OPEN-02` (the milk cap) are both
+MAN.OperateArticulated, `HRI-LOOKAT` is HRI.Gaze, `PLN-COMPLETECOMMAND` is
+PLN.Execute. Numbers had gaps after merges, and penalties were numbered apart
+from the line they belong to.
+
+Every id is now `<AREA>-<code>-<NN>[B|P<n>]`, where `code` is the short code of
+its taxonomy node (`MAN.OperateArticulated` → `OPERATE`), so an id leads to its
+definition; CI enforces it. Lines are numbered 01, 02, … within their node; a
+bonus or penalty on a line carries that line's number (`MAN-PICK-01B3`, the
+plate bonus on pick 01) — `B`/`P` alone when there is one, `B1`, `B2`, … when
+there are several. `area`, `skill` and `variant_number` are derived from the
+id, not written. Ids in this document are the 2027 ones, except where marked
+as 2026.2; `git show 2026.2:data/skills/<AREA>.yaml` has the old ones.
 
 ## Where a skill happens: furniture places
 
@@ -117,7 +134,7 @@ CommandGenerator), so a flat price cannot be fair.
 
 A command now earns the skill lines it actually exercises, each at the price
 that skill has everywhere else, plus a completion bonus
-(`PLN-COMPLETECOMMAND-01B`, 35) when the command's goal holds. PLN.Execute stops
+(`PLN-EXECUTE-01B`, 35) when the command's goal holds. PLN.Execute stops
 being the score and becomes the bonus for finishing.
 
 `command_steps` in [data/challenges/gpsr.yaml](../data/challenges/gpsr.yaml)
@@ -127,7 +144,7 @@ values every command the generator can produce
 that an average command, at the generator's own weights, is worth 250 — what a
 solved command was worth in 2026: 215 in skills + 35.
 
-Retired: `PLN-SOLVECOMMAND-01`, `PLN-SOLVECOMMAND-04P`.
+Retired (2026.2 ids): `PLN-SOLVECOMMAND-01`, `PLN-SOLVECOMMAND-04P`.
 
 ## Doing Laundry: one fold line
 
@@ -136,18 +153,18 @@ additional clothes" 400, both MAN.Fold on the same garments (D4). The extra 400
 rewards reaching the main goal, not a harder fold. Same for their penalties:
 quality −800 / −400, flattening help −200 / −100, folding help up to −800 / −400.
 
-Every garment is now the same fold line (`MAN-FOLD-02` × 6) with the same
+Every garment is now the same fold line (`MAN-FOLD-01` × 6) with the same
 per-item penalties; the main-goal premium becomes an explicit bonus
-(`MAN-FOLD-02B`, +400 for the first garment folded without assistance and to
+(`MAN-FOLD-01B`, +400 for the first garment folded without assistance and to
 quality), as Pick & Place does with its First Pick Bonus. Under the pricing
 rule a fold (D4) pays 600, quality failures cost the fold (−600) and folding
 help half of it (−300).
 
-Retired: `MAN-FOLD-01`, `MAN-FOLD-01P1`, `GEN-HUMANASSIST-06P`, `GEN-HUMANASSIST-07P`.
+Retired (2026.2 ids): `MAN-FOLD-01`, `MAN-FOLD-01P1`, `GEN-HUMANASSIST-06P`, `GEN-HUMANASSIST-07P`.
 
 ## One neglect penalty
 
-2026 has the same failure twice under two names and two prices:
+2026 has the same failure twice under two names and two prices (2026.2 ids):
 `HRI-ATTEND-01P` "Not acknowledging people" −200 (HRI) and
 `HRI-EYECONTACT-01P` "Not making eye-contact when taking the order" −60
 (Restaurant). Both are the league draft's #89 "not attending to interaction
@@ -159,7 +176,7 @@ so it does not scale with the line it sits under. Gaze quality stays with the
 HRI.Gaze lines; this penalty is only for not engaging at all, so the two never
 count the same behaviour twice.
 
-Retired: `HRI-EYECONTACT-01P`.
+Retired (2026.2 id): `HRI-EYECONTACT-01P`.
 
 ## Unsafe contact with a person
 
@@ -169,7 +186,7 @@ immediate emergency stop"), plus possible disqualification. The score itself
 does not record it, so two runs that both stopped look the same whether the
 robot ran out of time or bumped into a guest.
 
-Now one line in every challenge, `GEN-UNSAFECONTACT-01P`, fixed price −200
+Now one line in every challenge, `GEN-UNSAFE-01P`, fixed price −200
 (`fixed_penalty.unsafe_contact`), on top of the stop. Counted once: the run ends
 at the first occurrence. Not unsafe: contact the task asks for (a handover the
 person completes, functional touching of furniture announced by the robot).

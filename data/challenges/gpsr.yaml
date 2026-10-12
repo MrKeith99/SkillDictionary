@@ -15,37 +15,37 @@ challenge_rules:
     source: §5.3 rule 2
     permitted: true
 entries:
-- ref: NLU-UNDERSTANDCOMMAND-01
+- ref: NLU-COMMAND-01
   count: 3
   section: Main Goal
   assistance:
     permitted: true
     listed_in_task_description: true
     self_score: 0
-    extra_penalty_ref: NLU-UNDERSTANDCOMMAND-02P
+    extra_penalty_ref: NLU-COMMAND-01P1
     blocks_dependents: false
     note: Custom operator available only after the referee attempts three re-phrased commands.
-- ref: NLU-UNDERSTANDCOMMAND-02P
+- ref: NLU-COMMAND-01P1
   count: 3
   section: Main Goal
-  related_skill: NLU-UNDERSTANDCOMMAND-01
+  related_skill: NLU-COMMAND-01
   ambiguity: Fixed 3x-20 (-60, ~4% of 1490) conflicts with §3.7.4, which sets custom operator at -10% of maximum attainable score (-149). Confirm which governs.
-- ref: NLU-UNDERSTANDCOMMAND-03P
+- ref: NLU-COMMAND-01P2
   count: 6
   section: Main Goal
-  related_skill: NLU-UNDERSTANDCOMMAND-01
-- ref: PLN-DEMONSTRATEPLAN-01
+  related_skill: NLU-COMMAND-01
+- ref: PLN-PLAN-01
   count: 3
   section: Main Goal
   depends_on:
-  - ref: NLU-UNDERSTANDCOMMAND-01
+  - ref: NLU-COMMAND-01
     nature: informational
     blocking: true
     satisfiable_by_assistance: true
     note: Command may be acquired via custom operator or ASR bypass; planning remains scoreable.
   assistance:
     permitted: false
-- ref: NAV-NAVIGATE-06
+- ref: NAV-NAVIGATE-04
   section: Command steps
 - ref: OBJ-RECOGNIZE-02
   section: Command steps
@@ -55,40 +55,40 @@ entries:
   section: Command steps
 - ref: MAN-PLACE-04
   section: Command steps
-- ref: HRI-HANDOVER-02
+- ref: HRI-HANDOVER-01
   section: Command steps
 - ref: PPL-DETECT-01
   section: Command steps
 - ref: PPL-DETECT-02
   section: Command steps
-- ref: PPL-REIDENTIFY-01
+- ref: PPL-REID-01
   section: Command steps
-- ref: PPL-DESCRIBEATTRIBUTE-03
+- ref: PPL-ATTRIBUTE-03
   section: Command steps
-- ref: PPL-DESCRIBEATTRIBUTE-04
+- ref: PPL-ATTRIBUTE-04
   section: Command steps
-- ref: HRI-TELLINFO-01
+- ref: HRI-INFO-03
   section: Command steps
-- ref: HRI-TELLINFO-02
+- ref: HRI-INFO-04
   section: Command steps
 - ref: NAV-FOLLOW-02
   section: Command steps
 - ref: NAV-GUIDE-01
   section: Command steps
-- ref: PLN-COMPLETECOMMAND-01B
+- ref: PLN-EXECUTE-01B
   count: 3
   section: Command steps
-- ref: PLN-INTERLEAVETASKS-01B
+- ref: PLN-INTERLEAVE-01B
   count: 1
   section: Extra Rewards
   assistance:
     permitted: false
-- ref: NLU-UNDERSTANDCOMMAND-04P
+- ref: NLU-COMMAND-01P3
   count: 3
   section: Penalties
-  related_skill: NLU-UNDERSTANDCOMMAND-01
+  related_skill: NLU-COMMAND-01
   ambiguity: Fixed 3x-50 (-150, ~10%) vs §3.7.4 gesture/alternative-HRI rates of -20% of max attainable. Confirm interaction.
-- ref: GEN-UNSAFECONTACT-01P
+- ref: GEN-UNSAFE-01P
   count: 1
   section: Penalties
 - ref: SPECIAL-01
@@ -105,40 +105,40 @@ entries:
 # Steps in order; `then` names the follow-up slot the generator fills.
 # Template and follow-up names are the generator's own.
 command_steps:
-  completion_bonus: PLN-COMPLETECOMMAND-01B   # paid once per command whose goal holds
+  completion_bonus: PLN-EXECUTE-01B   # paid once per command whose goal holds
   templates:
-    goToLoc:                     {steps: [NAV-NAVIGATE-06], then: atLoc}
-    takeObjFromPlcmt:            {steps: [NAV-NAVIGATE-06, OBJ-RECOGNIZE-02, MAN-PICK-06], then: hasObj}
-    findPrsInRoom:               {steps: [NAV-NAVIGATE-06, PPL-DETECT-01], then: foundPers}
-    findObjInRoom:               {steps: [NAV-NAVIGATE-06, OBJ-RECOGNIZE-02], then: foundObj}
-    meetPrsAtBeac:               {steps: [NAV-NAVIGATE-06, PPL-DETECT-01], then: foundPers}
-    countObjOnPlcmt:             {steps: [NAV-NAVIGATE-06, OBJ-RECOGNIZE-03, NAV-NAVIGATE-06]}
-    countPrsInRoom:              {steps: [NAV-NAVIGATE-06, PPL-DETECT-02, NAV-NAVIGATE-06]}
-    tellPrsInfoInLoc:            {steps: [NAV-NAVIGATE-06, PPL-DETECT-01, PPL-DESCRIBEATTRIBUTE-04, NAV-NAVIGATE-06]}
-    tellObjPropOnPlcmt:          {steps: [NAV-NAVIGATE-06, OBJ-RECOGNIZE-03, NAV-NAVIGATE-06]}
-    talkInfoToGestPrsInRoom:     {steps: [NAV-NAVIGATE-06, PPL-DETECT-01, HRI-TELLINFO-01]}
-    followNameFromBeacToRoom:    {steps: [NAV-NAVIGATE-06, PPL-DETECT-01, NAV-FOLLOW-02]}
-    guideNameFromBeacToBeac:     {steps: [NAV-NAVIGATE-06, PPL-DETECT-01, NAV-GUIDE-01]}
-    guidePrsFromBeacToBeac:      {steps: [NAV-NAVIGATE-06, PPL-DETECT-01, NAV-GUIDE-01]}
-    guideClothPrsFromBeacToBeac: {steps: [NAV-NAVIGATE-06, PPL-DESCRIBEATTRIBUTE-03, NAV-GUIDE-01]}
-    bringMeObjFromPlcmt:         {steps: [NAV-NAVIGATE-06, OBJ-RECOGNIZE-02, MAN-PICK-06, NAV-NAVIGATE-06, HRI-HANDOVER-02]}
-    tellCatPropOnPlcmt:          {steps: [NAV-NAVIGATE-06, OBJ-RECOGNIZE-03, NAV-NAVIGATE-06]}
-    greetClothDscInRm:           {steps: [NAV-NAVIGATE-06, PPL-DESCRIBEATTRIBUTE-03], then: foundPers}
-    greetNameInRm:               {steps: [NAV-NAVIGATE-06, PPL-DETECT-01], then: foundPers}
-    meetNameAtLocThenFindInRm:   {steps: [NAV-NAVIGATE-06, PPL-DETECT-01, NAV-NAVIGATE-06, PPL-REIDENTIFY-01]}
-    countClothPrsInRoom:         {steps: [NAV-NAVIGATE-06, PPL-DETECT-02, NAV-NAVIGATE-06]}
-    tellPrsInfoAtLocToPrsAtLoc:  {steps: [NAV-NAVIGATE-06, PPL-DETECT-01, PPL-DESCRIBEATTRIBUTE-04, NAV-NAVIGATE-06, PPL-DETECT-01, HRI-TELLINFO-02]}
-    followPrsAtLoc:              {steps: [NAV-NAVIGATE-06, PPL-DETECT-01, NAV-FOLLOW-02]}
+    goToLoc:                     {steps: [NAV-NAVIGATE-04], then: atLoc}
+    takeObjFromPlcmt:            {steps: [NAV-NAVIGATE-04, OBJ-RECOGNIZE-02, MAN-PICK-06], then: hasObj}
+    findPrsInRoom:               {steps: [NAV-NAVIGATE-04, PPL-DETECT-01], then: foundPers}
+    findObjInRoom:               {steps: [NAV-NAVIGATE-04, OBJ-RECOGNIZE-02], then: foundObj}
+    meetPrsAtBeac:               {steps: [NAV-NAVIGATE-04, PPL-DETECT-01], then: foundPers}
+    countObjOnPlcmt:             {steps: [NAV-NAVIGATE-04, OBJ-RECOGNIZE-03, NAV-NAVIGATE-04]}
+    countPrsInRoom:              {steps: [NAV-NAVIGATE-04, PPL-DETECT-02, NAV-NAVIGATE-04]}
+    tellPrsInfoInLoc:            {steps: [NAV-NAVIGATE-04, PPL-DETECT-01, PPL-ATTRIBUTE-04, NAV-NAVIGATE-04]}
+    tellObjPropOnPlcmt:          {steps: [NAV-NAVIGATE-04, OBJ-RECOGNIZE-03, NAV-NAVIGATE-04]}
+    talkInfoToGestPrsInRoom:     {steps: [NAV-NAVIGATE-04, PPL-DETECT-01, HRI-INFO-03]}
+    followNameFromBeacToRoom:    {steps: [NAV-NAVIGATE-04, PPL-DETECT-01, NAV-FOLLOW-02]}
+    guideNameFromBeacToBeac:     {steps: [NAV-NAVIGATE-04, PPL-DETECT-01, NAV-GUIDE-01]}
+    guidePrsFromBeacToBeac:      {steps: [NAV-NAVIGATE-04, PPL-DETECT-01, NAV-GUIDE-01]}
+    guideClothPrsFromBeacToBeac: {steps: [NAV-NAVIGATE-04, PPL-ATTRIBUTE-03, NAV-GUIDE-01]}
+    bringMeObjFromPlcmt:         {steps: [NAV-NAVIGATE-04, OBJ-RECOGNIZE-02, MAN-PICK-06, NAV-NAVIGATE-04, HRI-HANDOVER-01]}
+    tellCatPropOnPlcmt:          {steps: [NAV-NAVIGATE-04, OBJ-RECOGNIZE-03, NAV-NAVIGATE-04]}
+    greetClothDscInRm:           {steps: [NAV-NAVIGATE-04, PPL-ATTRIBUTE-03], then: foundPers}
+    greetNameInRm:               {steps: [NAV-NAVIGATE-04, PPL-DETECT-01], then: foundPers}
+    meetNameAtLocThenFindInRm:   {steps: [NAV-NAVIGATE-04, PPL-DETECT-01, NAV-NAVIGATE-04, PPL-REID-01]}
+    countClothPrsInRoom:         {steps: [NAV-NAVIGATE-04, PPL-DETECT-02, NAV-NAVIGATE-04]}
+    tellPrsInfoAtLocToPrsAtLoc:  {steps: [NAV-NAVIGATE-04, PPL-DETECT-01, PPL-ATTRIBUTE-04, NAV-NAVIGATE-04, PPL-DETECT-01, HRI-INFO-04]}
+    followPrsAtLoc:              {steps: [NAV-NAVIGATE-04, PPL-DETECT-01, NAV-FOLLOW-02]}
   followups:
     findObj:                {steps: [OBJ-RECOGNIZE-02], then: foundObj}
     findPrs:                {steps: [PPL-DETECT-01], then: foundPers}
     meetName:               {steps: [PPL-DETECT-01], then: foundPers}
-    placeObjOnPlcmt:        {steps: [NAV-NAVIGATE-06, MAN-PLACE-04]}
-    putObjInTrash:          {steps: [NAV-NAVIGATE-06, MAN-PLACE-04]}
-    deliverObjToMe:         {steps: [NAV-NAVIGATE-06, HRI-HANDOVER-02]}
-    deliverObjToPrsInRoom:  {steps: [NAV-NAVIGATE-06, PPL-DETECT-01, HRI-HANDOVER-02]}
-    deliverObjToNameAtBeac: {steps: [NAV-NAVIGATE-06, PPL-DETECT-01, HRI-HANDOVER-02]}
-    talkInfo:               {steps: [HRI-TELLINFO-01]}
+    placeObjOnPlcmt:        {steps: [NAV-NAVIGATE-04, MAN-PLACE-04]}
+    putObjInTrash:          {steps: [NAV-NAVIGATE-04, MAN-PLACE-04]}
+    deliverObjToMe:         {steps: [NAV-NAVIGATE-04, HRI-HANDOVER-01]}
+    deliverObjToPrsInRoom:  {steps: [NAV-NAVIGATE-04, PPL-DETECT-01, HRI-HANDOVER-01]}
+    deliverObjToNameAtBeac: {steps: [NAV-NAVIGATE-04, PPL-DETECT-01, HRI-HANDOVER-01]}
+    talkInfo:               {steps: [HRI-INFO-03]}
     followPrs:              {steps: [NAV-FOLLOW-02]}
     followPrsToRoom:        {steps: [NAV-FOLLOW-02]}
     guidePrsToBeacon:       {steps: [NAV-GUIDE-01]}

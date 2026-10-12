@@ -10,81 +10,81 @@
       "p": 0.27477477477477474,
       "steps": [
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
-          "HRI-TELLINFO-01"
+          "HRI-INFO-03"
         ],
         [
-          "NAV-NAVIGATE-06",
-          "PPL-DETECT-01",
-          "NAV-FOLLOW-02"
-        ],
-        [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
           "NAV-FOLLOW-02"
         ],
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
+          "PPL-DETECT-01",
+          "NAV-FOLLOW-02"
+        ],
+        [
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
           "NAV-GUIDE-01"
         ],
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
-          "HRI-TELLINFO-01"
+          "HRI-INFO-03"
         ],
         [
-          "NAV-NAVIGATE-06",
-          "PPL-DETECT-01",
-          "NAV-FOLLOW-02"
-        ],
-        [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
           "NAV-FOLLOW-02"
         ],
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
+          "PPL-DETECT-01",
+          "NAV-FOLLOW-02"
+        ],
+        [
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
           "NAV-GUIDE-01"
         ],
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "OBJ-RECOGNIZE-02",
           "MAN-PICK-06",
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "MAN-PLACE-04"
         ],
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "OBJ-RECOGNIZE-02",
           "MAN-PICK-06",
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "MAN-PLACE-04"
         ],
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "OBJ-RECOGNIZE-02",
           "MAN-PICK-06",
-          "NAV-NAVIGATE-06",
-          "HRI-HANDOVER-02"
+          "NAV-NAVIGATE-04",
+          "HRI-HANDOVER-01"
         ],
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "OBJ-RECOGNIZE-02",
           "MAN-PICK-06",
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
-          "HRI-HANDOVER-02"
+          "HRI-HANDOVER-01"
         ],
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "OBJ-RECOGNIZE-02",
           "MAN-PICK-06",
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
-          "HRI-HANDOVER-02"
+          "HRI-HANDOVER-01"
         ]
       ]
     },
@@ -95,41 +95,41 @@
       "p": 0.08333333333333333,
       "steps": [
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "OBJ-RECOGNIZE-02",
           "MAN-PICK-06",
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "MAN-PLACE-04"
         ],
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "OBJ-RECOGNIZE-02",
           "MAN-PICK-06",
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "MAN-PLACE-04"
         ],
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "OBJ-RECOGNIZE-02",
           "MAN-PICK-06",
-          "NAV-NAVIGATE-06",
-          "HRI-HANDOVER-02"
+          "NAV-NAVIGATE-04",
+          "HRI-HANDOVER-01"
         ],
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "OBJ-RECOGNIZE-02",
           "MAN-PICK-06",
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
-          "HRI-HANDOVER-02"
+          "HRI-HANDOVER-01"
         ],
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "OBJ-RECOGNIZE-02",
           "MAN-PICK-06",
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
-          "HRI-HANDOVER-02"
+          "HRI-HANDOVER-01"
         ]
       ]
     },
@@ -140,22 +140,22 @@
       "p": 0.05405405405405406,
       "steps": [
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
-          "HRI-TELLINFO-01"
+          "HRI-INFO-03"
         ],
         [
-          "NAV-NAVIGATE-06",
-          "PPL-DETECT-01",
-          "NAV-FOLLOW-02"
-        ],
-        [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
           "NAV-FOLLOW-02"
         ],
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
+          "PPL-DETECT-01",
+          "NAV-FOLLOW-02"
+        ],
+        [
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
           "NAV-GUIDE-01"
         ]
@@ -168,41 +168,41 @@
       "p": 0.08333333333333333,
       "steps": [
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "OBJ-RECOGNIZE-02",
           "MAN-PICK-06",
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "MAN-PLACE-04"
         ],
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "OBJ-RECOGNIZE-02",
           "MAN-PICK-06",
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "MAN-PLACE-04"
         ],
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "OBJ-RECOGNIZE-02",
           "MAN-PICK-06",
-          "NAV-NAVIGATE-06",
-          "HRI-HANDOVER-02"
+          "NAV-NAVIGATE-04",
+          "HRI-HANDOVER-01"
         ],
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "OBJ-RECOGNIZE-02",
           "MAN-PICK-06",
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
-          "HRI-HANDOVER-02"
+          "HRI-HANDOVER-01"
         ],
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "OBJ-RECOGNIZE-02",
           "MAN-PICK-06",
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
-          "HRI-HANDOVER-02"
+          "HRI-HANDOVER-01"
         ]
       ]
     },
@@ -213,22 +213,22 @@
       "p": 0.05405405405405406,
       "steps": [
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
-          "HRI-TELLINFO-01"
+          "HRI-INFO-03"
         ],
         [
-          "NAV-NAVIGATE-06",
-          "PPL-DETECT-01",
-          "NAV-FOLLOW-02"
-        ],
-        [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
           "NAV-FOLLOW-02"
         ],
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
+          "PPL-DETECT-01",
+          "NAV-FOLLOW-02"
+        ],
+        [
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
           "NAV-GUIDE-01"
         ]
@@ -241,9 +241,9 @@
       "p": 0.041666666666666664,
       "steps": [
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "OBJ-RECOGNIZE-03",
-          "NAV-NAVIGATE-06"
+          "NAV-NAVIGATE-04"
         ]
       ]
     },
@@ -254,9 +254,9 @@
       "p": 0.013513513513513514,
       "steps": [
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-02",
-          "NAV-NAVIGATE-06"
+          "NAV-NAVIGATE-04"
         ]
       ]
     },
@@ -267,10 +267,10 @@
       "p": 0.013513513513513514,
       "steps": [
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
-          "PPL-DESCRIBEATTRIBUTE-04",
-          "NAV-NAVIGATE-06"
+          "PPL-ATTRIBUTE-04",
+          "NAV-NAVIGATE-04"
         ]
       ]
     },
@@ -281,9 +281,9 @@
       "p": 0.041666666666666664,
       "steps": [
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "OBJ-RECOGNIZE-03",
-          "NAV-NAVIGATE-06"
+          "NAV-NAVIGATE-04"
         ]
       ]
     },
@@ -294,9 +294,9 @@
       "p": 0.08108108108108109,
       "steps": [
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
-          "HRI-TELLINFO-01"
+          "HRI-INFO-03"
         ]
       ]
     },
@@ -307,7 +307,7 @@
       "p": 0.013513513513513514,
       "steps": [
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
           "NAV-FOLLOW-02"
         ]
@@ -320,7 +320,7 @@
       "p": 0.013513513513513514,
       "steps": [
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
           "NAV-GUIDE-01"
         ]
@@ -333,7 +333,7 @@
       "p": 0.013513513513513514,
       "steps": [
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
           "NAV-GUIDE-01"
         ]
@@ -346,8 +346,8 @@
       "p": 0.013513513513513514,
       "steps": [
         [
-          "NAV-NAVIGATE-06",
-          "PPL-DESCRIBEATTRIBUTE-03",
+          "NAV-NAVIGATE-04",
+          "PPL-ATTRIBUTE-03",
           "NAV-GUIDE-01"
         ]
       ]
@@ -359,11 +359,11 @@
       "p": 0.041666666666666664,
       "steps": [
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "OBJ-RECOGNIZE-02",
           "MAN-PICK-06",
-          "NAV-NAVIGATE-06",
-          "HRI-HANDOVER-02"
+          "NAV-NAVIGATE-04",
+          "HRI-HANDOVER-01"
         ]
       ]
     },
@@ -374,9 +374,9 @@
       "p": 0.041666666666666664,
       "steps": [
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "OBJ-RECOGNIZE-03",
-          "NAV-NAVIGATE-06"
+          "NAV-NAVIGATE-04"
         ]
       ]
     },
@@ -387,23 +387,23 @@
       "p": 0.013513513513513514,
       "steps": [
         [
-          "NAV-NAVIGATE-06",
-          "PPL-DESCRIBEATTRIBUTE-03",
-          "HRI-TELLINFO-01"
+          "NAV-NAVIGATE-04",
+          "PPL-ATTRIBUTE-03",
+          "HRI-INFO-03"
         ],
         [
-          "NAV-NAVIGATE-06",
-          "PPL-DESCRIBEATTRIBUTE-03",
+          "NAV-NAVIGATE-04",
+          "PPL-ATTRIBUTE-03",
           "NAV-FOLLOW-02"
         ],
         [
-          "NAV-NAVIGATE-06",
-          "PPL-DESCRIBEATTRIBUTE-03",
+          "NAV-NAVIGATE-04",
+          "PPL-ATTRIBUTE-03",
           "NAV-FOLLOW-02"
         ],
         [
-          "NAV-NAVIGATE-06",
-          "PPL-DESCRIBEATTRIBUTE-03",
+          "NAV-NAVIGATE-04",
+          "PPL-ATTRIBUTE-03",
           "NAV-GUIDE-01"
         ]
       ]
@@ -415,22 +415,22 @@
       "p": 0.05405405405405406,
       "steps": [
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
-          "HRI-TELLINFO-01"
+          "HRI-INFO-03"
         ],
         [
-          "NAV-NAVIGATE-06",
-          "PPL-DETECT-01",
-          "NAV-FOLLOW-02"
-        ],
-        [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
           "NAV-FOLLOW-02"
         ],
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
+          "PPL-DETECT-01",
+          "NAV-FOLLOW-02"
+        ],
+        [
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
           "NAV-GUIDE-01"
         ]
@@ -443,10 +443,10 @@
       "p": 0.013513513513513514,
       "steps": [
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
-          "NAV-NAVIGATE-06",
-          "PPL-REIDENTIFY-01"
+          "NAV-NAVIGATE-04",
+          "PPL-REID-01"
         ]
       ]
     },
@@ -457,9 +457,9 @@
       "p": 0.013513513513513514,
       "steps": [
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-02",
-          "NAV-NAVIGATE-06"
+          "NAV-NAVIGATE-04"
         ]
       ]
     },
@@ -470,12 +470,12 @@
       "p": 0.013513513513513514,
       "steps": [
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
-          "PPL-DESCRIBEATTRIBUTE-04",
-          "NAV-NAVIGATE-06",
+          "PPL-ATTRIBUTE-04",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
-          "HRI-TELLINFO-02"
+          "HRI-INFO-04"
         ]
       ]
     },
@@ -486,7 +486,7 @@
       "p": 0.013513513513513514,
       "steps": [
         [
-          "NAV-NAVIGATE-06",
+          "NAV-NAVIGATE-04",
           "PPL-DETECT-01",
           "NAV-FOLLOW-02"
         ]

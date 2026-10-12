@@ -62,43 +62,43 @@
           "related_skill": "MAN-PICK-03"
         },
         {
-          "ref": "MAN-FOLD-02",
+          "ref": "MAN-FOLD-01",
           "count": 6,
           "section": "Main Goal",
           "assistance": {
             "permitted": true,
             "listed_in_task_description": true,
             "self_score": 0,
-            "extra_penalty_ref": "GEN-HUMANASSIST-09P",
+            "extra_penalty_ref": "GEN-ASSIST-06P",
             "blocks_dependents": false
           }
         },
         {
-          "ref": "MAN-FOLD-02B",
+          "ref": "MAN-FOLD-01B",
           "count": 1,
           "section": "Main Goal",
-          "related_skill": "MAN-FOLD-02"
+          "related_skill": "MAN-FOLD-01"
         },
         {
-          "ref": "MAN-FOLD-02P1",
+          "ref": "MAN-FOLD-01P",
           "count": 6,
           "section": "Main Goal",
-          "related_skill": "MAN-FOLD-02"
+          "related_skill": "MAN-FOLD-01"
         },
         {
-          "ref": "GEN-HUMANASSIST-08P",
+          "ref": "GEN-ASSIST-05P",
           "count": 6,
           "section": "Main Goal",
-          "related_skill": "MAN-FOLD-02"
+          "related_skill": "MAN-FOLD-01"
         },
         {
-          "ref": "GEN-HUMANASSIST-09P",
+          "ref": "GEN-ASSIST-06P",
           "count": 6,
           "section": "Main Goal",
-          "related_skill": "MAN-FOLD-02"
+          "related_skill": "MAN-FOLD-01"
         },
         {
-          "ref": "MAN-APPLIANCE-03",
+          "ref": "MAN-OPERATE-03",
           "count": 1,
           "section": "Extra Rewards",
           "assistance": {
@@ -117,7 +117,7 @@
           "section": "Extra Rewards",
           "depends_on": [
             {
-              "ref": "MAN-APPLIANCE-03",
+              "ref": "MAN-OPERATE-03",
               "nature": "physical",
               "blocking": false,
               "satisfiable_by_assistance": true,
@@ -140,7 +140,7 @@
           "related_skill": "MAN-PICK-04"
         },
         {
-          "ref": "MAN-TRANSPORTWITHBASKET-01",
+          "ref": "MAN-TRANSPORT-01",
           "count": 1,
           "section": "Extra Rewards",
           "assistance": {
@@ -154,10 +154,10 @@
           "note": "Basket must be placed in reach of the folding surface; requires two arms to carry."
         },
         {
-          "ref": "MAN-TRANSPORTWITHBASKET-02P",
+          "ref": "MAN-TRANSPORT-01P",
           "count": 1,
           "section": "Extra Rewards",
-          "related_skill": "MAN-TRANSPORTWITHBASKET-01"
+          "related_skill": "MAN-TRANSPORT-01"
         },
         {
           "ref": "MAN-STACK-01",
@@ -165,7 +165,7 @@
           "section": "Extra Rewards",
           "depends_on": [
             {
-              "ref": "MAN-FOLD-02",
+              "ref": "MAN-FOLD-01",
               "nature": "sequential",
               "blocking": true,
               "satisfiable_by_assistance": true,
@@ -176,18 +176,18 @@
             "permitted": true,
             "listed_in_task_description": true,
             "self_score": 0,
-            "extra_penalty_ref": "GEN-HUMANASSIST-09P",
+            "extra_penalty_ref": "GEN-ASSIST-06P",
             "blocks_dependents": false,
             "note": "Major help completing the entire fold/stack carries the maximum penalty (\u00a75.4 rule 6)."
           }
         },
         {
-          "ref": "GEN-HUMANASSIST-14P",
+          "ref": "GEN-ASSIST-10P",
           "count": 1,
           "section": "Penalties"
         },
         {
-          "ref": "GEN-UNSAFECONTACT-01P",
+          "ref": "GEN-UNSAFE-01P",
           "count": 1,
           "section": "Penalties"
         },
@@ -232,38 +232,38 @@
       },
       "entries": [
         {
-          "ref": "NLU-UNDERSTANDCOMMAND-01",
+          "ref": "NLU-COMMAND-01",
           "count": 3,
           "section": "Main Goal",
           "assistance": {
             "permitted": true,
             "listed_in_task_description": true,
             "self_score": 0,
-            "extra_penalty_ref": "NLU-UNDERSTANDCOMMAND-02P",
+            "extra_penalty_ref": "NLU-COMMAND-01P1",
             "blocks_dependents": false,
             "note": "Custom operator available only after the referee attempts three re-phrased commands."
           }
         },
         {
-          "ref": "NLU-UNDERSTANDCOMMAND-02P",
+          "ref": "NLU-COMMAND-01P1",
           "count": 3,
           "section": "Main Goal",
-          "related_skill": "NLU-UNDERSTANDCOMMAND-01",
+          "related_skill": "NLU-COMMAND-01",
           "ambiguity": "Fixed 3x-20 (-60, ~4% of 1490) conflicts with \u00a73.7.4, which sets custom operator at -10% of maximum attainable score (-149). Confirm which governs."
         },
         {
-          "ref": "NLU-UNDERSTANDCOMMAND-03P",
+          "ref": "NLU-COMMAND-01P2",
           "count": 6,
           "section": "Main Goal",
-          "related_skill": "NLU-UNDERSTANDCOMMAND-01"
+          "related_skill": "NLU-COMMAND-01"
         },
         {
-          "ref": "PLN-DEMONSTRATEPLAN-01",
+          "ref": "PLN-PLAN-01",
           "count": 3,
           "section": "Main Goal",
           "depends_on": [
             {
-              "ref": "NLU-UNDERSTANDCOMMAND-01",
+              "ref": "NLU-COMMAND-01",
               "nature": "informational",
               "blocking": true,
               "satisfiable_by_assistance": true,
@@ -275,7 +275,7 @@
           }
         },
         {
-          "ref": "NAV-NAVIGATE-06",
+          "ref": "NAV-NAVIGATE-04",
           "section": "Command steps",
           "count": 6
         },
@@ -300,7 +300,7 @@
           "count": 3
         },
         {
-          "ref": "HRI-HANDOVER-02",
+          "ref": "HRI-HANDOVER-01",
           "section": "Command steps",
           "count": 3
         },
@@ -315,27 +315,27 @@
           "count": 3
         },
         {
-          "ref": "PPL-REIDENTIFY-01",
+          "ref": "PPL-REID-01",
           "section": "Command steps",
           "count": 3
         },
         {
-          "ref": "PPL-DESCRIBEATTRIBUTE-03",
+          "ref": "PPL-ATTRIBUTE-03",
           "section": "Command steps",
           "count": 3
         },
         {
-          "ref": "PPL-DESCRIBEATTRIBUTE-04",
+          "ref": "PPL-ATTRIBUTE-04",
           "section": "Command steps",
           "count": 3
         },
         {
-          "ref": "HRI-TELLINFO-01",
+          "ref": "HRI-INFO-03",
           "section": "Command steps",
           "count": 3
         },
         {
-          "ref": "HRI-TELLINFO-02",
+          "ref": "HRI-INFO-04",
           "section": "Command steps",
           "count": 3
         },
@@ -350,12 +350,12 @@
           "count": 3
         },
         {
-          "ref": "PLN-COMPLETECOMMAND-01B",
+          "ref": "PLN-EXECUTE-01B",
           "count": 3,
           "section": "Command steps"
         },
         {
-          "ref": "PLN-INTERLEAVETASKS-01B",
+          "ref": "PLN-INTERLEAVE-01B",
           "count": 1,
           "section": "Extra Rewards",
           "assistance": {
@@ -363,14 +363,14 @@
           }
         },
         {
-          "ref": "NLU-UNDERSTANDCOMMAND-04P",
+          "ref": "NLU-COMMAND-01P3",
           "count": 3,
           "section": "Penalties",
-          "related_skill": "NLU-UNDERSTANDCOMMAND-01",
+          "related_skill": "NLU-COMMAND-01",
           "ambiguity": "Fixed 3x-50 (-150, ~10%) vs \u00a73.7.4 gesture/alternative-HRI rates of -20% of max attainable. Confirm interaction."
         },
         {
-          "ref": "GEN-UNSAFECONTACT-01P",
+          "ref": "GEN-UNSAFE-01P",
           "count": 1,
           "section": "Penalties"
         },
@@ -391,17 +391,17 @@
         }
       ],
       "command_steps": {
-        "completion_bonus": "PLN-COMPLETECOMMAND-01B",
+        "completion_bonus": "PLN-EXECUTE-01B",
         "templates": {
           "goToLoc": {
             "steps": [
-              "NAV-NAVIGATE-06"
+              "NAV-NAVIGATE-04"
             ],
             "then": "atLoc"
           },
           "takeObjFromPlcmt": {
             "steps": [
-              "NAV-NAVIGATE-06",
+              "NAV-NAVIGATE-04",
               "OBJ-RECOGNIZE-02",
               "MAN-PICK-06"
             ],
@@ -409,147 +409,147 @@
           },
           "findPrsInRoom": {
             "steps": [
-              "NAV-NAVIGATE-06",
+              "NAV-NAVIGATE-04",
               "PPL-DETECT-01"
             ],
             "then": "foundPers"
           },
           "findObjInRoom": {
             "steps": [
-              "NAV-NAVIGATE-06",
+              "NAV-NAVIGATE-04",
               "OBJ-RECOGNIZE-02"
             ],
             "then": "foundObj"
           },
           "meetPrsAtBeac": {
             "steps": [
-              "NAV-NAVIGATE-06",
+              "NAV-NAVIGATE-04",
               "PPL-DETECT-01"
             ],
             "then": "foundPers"
           },
           "countObjOnPlcmt": {
             "steps": [
-              "NAV-NAVIGATE-06",
+              "NAV-NAVIGATE-04",
               "OBJ-RECOGNIZE-03",
-              "NAV-NAVIGATE-06"
+              "NAV-NAVIGATE-04"
             ]
           },
           "countPrsInRoom": {
             "steps": [
-              "NAV-NAVIGATE-06",
+              "NAV-NAVIGATE-04",
               "PPL-DETECT-02",
-              "NAV-NAVIGATE-06"
+              "NAV-NAVIGATE-04"
             ]
           },
           "tellPrsInfoInLoc": {
             "steps": [
-              "NAV-NAVIGATE-06",
+              "NAV-NAVIGATE-04",
               "PPL-DETECT-01",
-              "PPL-DESCRIBEATTRIBUTE-04",
-              "NAV-NAVIGATE-06"
+              "PPL-ATTRIBUTE-04",
+              "NAV-NAVIGATE-04"
             ]
           },
           "tellObjPropOnPlcmt": {
             "steps": [
-              "NAV-NAVIGATE-06",
+              "NAV-NAVIGATE-04",
               "OBJ-RECOGNIZE-03",
-              "NAV-NAVIGATE-06"
+              "NAV-NAVIGATE-04"
             ]
           },
           "talkInfoToGestPrsInRoom": {
             "steps": [
-              "NAV-NAVIGATE-06",
+              "NAV-NAVIGATE-04",
               "PPL-DETECT-01",
-              "HRI-TELLINFO-01"
+              "HRI-INFO-03"
             ]
           },
           "followNameFromBeacToRoom": {
             "steps": [
-              "NAV-NAVIGATE-06",
+              "NAV-NAVIGATE-04",
               "PPL-DETECT-01",
               "NAV-FOLLOW-02"
             ]
           },
           "guideNameFromBeacToBeac": {
             "steps": [
-              "NAV-NAVIGATE-06",
+              "NAV-NAVIGATE-04",
               "PPL-DETECT-01",
               "NAV-GUIDE-01"
             ]
           },
           "guidePrsFromBeacToBeac": {
             "steps": [
-              "NAV-NAVIGATE-06",
+              "NAV-NAVIGATE-04",
               "PPL-DETECT-01",
               "NAV-GUIDE-01"
             ]
           },
           "guideClothPrsFromBeacToBeac": {
             "steps": [
-              "NAV-NAVIGATE-06",
-              "PPL-DESCRIBEATTRIBUTE-03",
+              "NAV-NAVIGATE-04",
+              "PPL-ATTRIBUTE-03",
               "NAV-GUIDE-01"
             ]
           },
           "bringMeObjFromPlcmt": {
             "steps": [
-              "NAV-NAVIGATE-06",
+              "NAV-NAVIGATE-04",
               "OBJ-RECOGNIZE-02",
               "MAN-PICK-06",
-              "NAV-NAVIGATE-06",
-              "HRI-HANDOVER-02"
+              "NAV-NAVIGATE-04",
+              "HRI-HANDOVER-01"
             ]
           },
           "tellCatPropOnPlcmt": {
             "steps": [
-              "NAV-NAVIGATE-06",
+              "NAV-NAVIGATE-04",
               "OBJ-RECOGNIZE-03",
-              "NAV-NAVIGATE-06"
+              "NAV-NAVIGATE-04"
             ]
           },
           "greetClothDscInRm": {
             "steps": [
-              "NAV-NAVIGATE-06",
-              "PPL-DESCRIBEATTRIBUTE-03"
+              "NAV-NAVIGATE-04",
+              "PPL-ATTRIBUTE-03"
             ],
             "then": "foundPers"
           },
           "greetNameInRm": {
             "steps": [
-              "NAV-NAVIGATE-06",
+              "NAV-NAVIGATE-04",
               "PPL-DETECT-01"
             ],
             "then": "foundPers"
           },
           "meetNameAtLocThenFindInRm": {
             "steps": [
-              "NAV-NAVIGATE-06",
+              "NAV-NAVIGATE-04",
               "PPL-DETECT-01",
-              "NAV-NAVIGATE-06",
-              "PPL-REIDENTIFY-01"
+              "NAV-NAVIGATE-04",
+              "PPL-REID-01"
             ]
           },
           "countClothPrsInRoom": {
             "steps": [
-              "NAV-NAVIGATE-06",
+              "NAV-NAVIGATE-04",
               "PPL-DETECT-02",
-              "NAV-NAVIGATE-06"
+              "NAV-NAVIGATE-04"
             ]
           },
           "tellPrsInfoAtLocToPrsAtLoc": {
             "steps": [
-              "NAV-NAVIGATE-06",
+              "NAV-NAVIGATE-04",
               "PPL-DETECT-01",
-              "PPL-DESCRIBEATTRIBUTE-04",
-              "NAV-NAVIGATE-06",
+              "PPL-ATTRIBUTE-04",
+              "NAV-NAVIGATE-04",
               "PPL-DETECT-01",
-              "HRI-TELLINFO-02"
+              "HRI-INFO-04"
             ]
           },
           "followPrsAtLoc": {
             "steps": [
-              "NAV-NAVIGATE-06",
+              "NAV-NAVIGATE-04",
               "PPL-DETECT-01",
               "NAV-FOLLOW-02"
             ]
@@ -576,39 +576,39 @@
           },
           "placeObjOnPlcmt": {
             "steps": [
-              "NAV-NAVIGATE-06",
+              "NAV-NAVIGATE-04",
               "MAN-PLACE-04"
             ]
           },
           "putObjInTrash": {
             "steps": [
-              "NAV-NAVIGATE-06",
+              "NAV-NAVIGATE-04",
               "MAN-PLACE-04"
             ]
           },
           "deliverObjToMe": {
             "steps": [
-              "NAV-NAVIGATE-06",
-              "HRI-HANDOVER-02"
+              "NAV-NAVIGATE-04",
+              "HRI-HANDOVER-01"
             ]
           },
           "deliverObjToPrsInRoom": {
             "steps": [
-              "NAV-NAVIGATE-06",
+              "NAV-NAVIGATE-04",
               "PPL-DETECT-01",
-              "HRI-HANDOVER-02"
+              "HRI-HANDOVER-01"
             ]
           },
           "deliverObjToNameAtBeac": {
             "steps": [
-              "NAV-NAVIGATE-06",
+              "NAV-NAVIGATE-04",
               "PPL-DETECT-01",
-              "HRI-HANDOVER-02"
+              "HRI-HANDOVER-01"
             ]
           },
           "talkInfo": {
             "steps": [
-              "HRI-TELLINFO-01"
+              "HRI-INFO-03"
             ]
           },
           "followPrs": {
@@ -701,13 +701,13 @@
         },
         "alternative_hri": {
           "permitted": true,
-          "penalty_ref": "GEN-ALTERNATIVEHRI-01P",
+          "penalty_ref": "GEN-ALTINPUT-01P",
           "note": "Score reduction per information (name or favorite drink)."
         }
       },
       "entries": [
         {
-          "ref": "OBJ-DETECTEVENT-01",
+          "ref": "OBJ-EVENT-01",
           "count": 2,
           "section": "Greeting",
           "assistance": {
@@ -717,7 +717,7 @@
           "note": "Scored only if robot waits at starting position and reacts instantly."
         },
         {
-          "ref": "MAN-OPEN-01",
+          "ref": "MAN-OPERATE-04",
           "count": 2,
           "section": "Greeting",
           "assistance": {
@@ -732,7 +732,7 @@
           "note": "Opportunity is opt-in: points only exist if the team requests a closed door."
         },
         {
-          "ref": "HRI-LOOKAT-01",
+          "ref": "HRI-GAZE-01",
           "count": 2,
           "section": "Greeting",
           "assistance": {
@@ -741,7 +741,7 @@
           "note": "Awarded only if the robot continuously tracks the moving person."
         },
         {
-          "ref": "HRI-OFFERSEAT-01",
+          "ref": "HRI-INDICATE-01",
           "count": 2,
           "section": "Greeting",
           "depends_on": [
@@ -760,7 +760,7 @@
           "note": "Robot must clearly indicate or point to a location or seat."
         },
         {
-          "ref": "NAV-GAZEDIRECTION-01",
+          "ref": "NAV-SIGNAL-01",
           "count": 2,
           "section": "Greeting",
           "assistance": {
@@ -768,7 +768,7 @@
           }
         },
         {
-          "ref": "PPL-DESCRIBEATTRIBUTE-01B",
+          "ref": "PPL-ATTRIBUTE-01B",
           "count": 4,
           "section": "Greeting",
           "depends_on": [
@@ -785,13 +785,13 @@
           }
         },
         {
-          "ref": "PPL-DESCRIBEATTRIBUTE-02P",
+          "ref": "PPL-ATTRIBUTE-02P",
           "count": 4,
           "section": "Greeting",
-          "related_skill": "PPL-DESCRIBEATTRIBUTE-01B"
+          "related_skill": "PPL-ATTRIBUTE-01B"
         },
         {
-          "ref": "NLU-AVOIDNONESSENTIALQUESTIONS-01B",
+          "ref": "NLU-CLARIFY-01B",
           "count": 4,
           "section": "Greeting",
           "assistance": {
@@ -800,7 +800,7 @@
           "note": "Asking a guest to repeat because the robot could not hear is not a non-essential question."
         },
         {
-          "ref": "HRI-STATESTOREDINFO-01",
+          "ref": "HRI-INFO-02",
           "count": 4,
           "section": "Introduction",
           "depends_on": [
@@ -817,18 +817,18 @@
             "permitted": true,
             "listed_in_task_description": true,
             "self_score": 0,
-            "extra_penalty_ref": "GEN-ALTERNATIVEHRI-01P",
+            "extra_penalty_ref": "GEN-ALTINPUT-01P",
             "blocks_dependents": false,
             "note": "Alternative HRI to understand a guest causes a reduction per information item."
           }
         },
         {
-          "ref": "HRI-LOOKAT-02",
+          "ref": "HRI-GAZE-02",
           "count": 2,
           "section": "Introduction",
           "depends_on": [
             {
-              "ref": "HRI-OFFERSEAT-01",
+              "ref": "HRI-INDICATE-01",
               "nature": "sequential",
               "blocking": true,
               "satisfiable_by_assistance": false,
@@ -840,30 +840,30 @@
           }
         },
         {
-          "ref": "HRI-RECEIVEHANDOVER-01",
+          "ref": "HRI-HANDOVER-02",
           "count": 1,
           "section": "Guiding",
           "assistance": {
             "permitted": true,
             "listed_in_task_description": true,
             "self_score": 0,
-            "extra_penalty_ref": "HRI-RECEIVEHANDOVER-01P1",
+            "extra_penalty_ref": "HRI-HANDOVER-02P1",
             "blocks_dependents": false,
             "note": "Two distinct assisted modes are priced separately (-25 asking for help, -50 bag placed on structure). Neither blocks the follow/drop chain."
           },
           "note": "Max points require: robot signals readiness, manipulator within 10 cm of operator's hand, operator completes the handover."
         },
         {
-          "ref": "HRI-RECEIVEHANDOVER-01P1",
+          "ref": "HRI-HANDOVER-02P1",
           "count": 1,
           "section": "Guiding",
-          "related_skill": "HRI-RECEIVEHANDOVER-01"
+          "related_skill": "HRI-HANDOVER-02"
         },
         {
-          "ref": "HRI-RECEIVEHANDOVER-01P2",
+          "ref": "HRI-HANDOVER-02P2",
           "count": 1,
           "section": "Guiding",
-          "related_skill": "HRI-RECEIVEHANDOVER-01",
+          "related_skill": "HRI-HANDOVER-02",
           "ambiguity": "\u00a75.1 rule 5 says 'no points are awarded' for this route, and the sheet also applies -50. Confirm whether both forfeiture and penalty are intended, or only the penalty."
         },
         {
@@ -872,7 +872,7 @@
           "section": "Guiding",
           "depends_on": [
             {
-              "ref": "HRI-RECEIVEHANDOVER-01",
+              "ref": "HRI-HANDOVER-02",
               "nature": "physical",
               "blocking": false,
               "satisfiable_by_assistance": true,
@@ -924,7 +924,7 @@
               "satisfiable_by_assistance": true
             },
             {
-              "ref": "HRI-RECEIVEHANDOVER-01",
+              "ref": "HRI-HANDOVER-02",
               "nature": "physical",
               "blocking": true,
               "satisfiable_by_assistance": true,
@@ -941,13 +941,13 @@
           }
         },
         {
-          "ref": "HRI-STATESTOREDINFO-02P",
+          "ref": "HRI-INFO-02P",
           "count": 4,
           "section": "Penalties",
-          "related_skill": "HRI-STATESTOREDINFO-01"
+          "related_skill": "HRI-INFO-02"
         },
         {
-          "ref": "GEN-ALTERNATIVEHRI-01P",
+          "ref": "GEN-ALTINPUT-01P",
           "count": 6,
           "section": "Penalties",
           "ambiguity": "Fixed -20 per item here, but \u00a73.7.4 prices alternative HRI at up to -20% of max attainable score (=-290). Confirm which governs."
@@ -958,7 +958,7 @@
           "section": "Penalties"
         },
         {
-          "ref": "GEN-UNSAFECONTACT-01P",
+          "ref": "GEN-UNSAFE-01P",
           "count": 1,
           "section": "Penalties"
         },
@@ -1007,14 +1007,14 @@
             "permitted": true,
             "listed_in_task_description": true,
             "self_score": 0,
-            "extra_penalty_ref": "GEN-HUMANASSIST-01P",
+            "extra_penalty_ref": "GEN-ASSIST-01P",
             "blocks_dependents": false,
             "note": "Pointing to objects is listed assistance in \u00a75.2 rule 15."
           },
           "note": "Robot must clearly communicate perception to the referee (\u00a75.2 rule 16)."
         },
         {
-          "ref": "OBJ-PERCEIVE-01",
+          "ref": "OBJ-PLACEMENT-01",
           "count": 2,
           "assistance": {
             "permitted": false
@@ -1036,7 +1036,7 @@
             "permitted": true,
             "listed_in_task_description": true,
             "self_score": 0,
-            "extra_penalty_ref": "GEN-HUMANASSIST-02P",
+            "extra_penalty_ref": "GEN-ASSIST-02P",
             "blocks_dependents": false,
             "note": "Handover assistance forfeits this line (-0 self) and costs -100; placing remains available."
           }
@@ -1057,7 +1057,7 @@
           "related_skill": "MAN-PICK-01"
         },
         {
-          "ref": "MAN-PICK-01B2",
+          "ref": "MAN-PICK-01B1",
           "count": 1,
           "section": "Picking",
           "depends_on": [
@@ -1071,8 +1071,22 @@
           "related_skill": "MAN-PICK-01"
         },
         {
-          "ref": "MAN-PICK-01B3",
+          "ref": "MAN-PICK-01B2",
           "count": 2,
+          "section": "Picking",
+          "depends_on": [
+            {
+              "ref": "MAN-PICK-01",
+              "nature": "sequential",
+              "blocking": true,
+              "satisfiable_by_assistance": false
+            }
+          ],
+          "related_skill": "MAN-PICK-01"
+        },
+        {
+          "ref": "MAN-PICK-01B3",
+          "count": 1,
           "section": "Picking",
           "depends_on": [
             {
@@ -1099,21 +1113,7 @@
           "related_skill": "MAN-PICK-01"
         },
         {
-          "ref": "MAN-PICK-01B5",
-          "count": 1,
-          "section": "Picking",
-          "depends_on": [
-            {
-              "ref": "MAN-PICK-01",
-              "nature": "sequential",
-              "blocking": true,
-              "satisfiable_by_assistance": false
-            }
-          ],
-          "related_skill": "MAN-PICK-01"
-        },
-        {
-          "ref": "MAN-PICK-02P",
+          "ref": "MAN-PICK-01P2",
           "count": 2,
           "section": "Picking",
           "related_skill": "MAN-PICK-01",
@@ -1136,7 +1136,7 @@
             "permitted": true,
             "listed_in_task_description": true,
             "self_score": 0,
-            "extra_penalty_ref": "GEN-HUMANASSIST-01P",
+            "extra_penalty_ref": "GEN-ASSIST-01P",
             "blocks_dependents": false
           }
         },
@@ -1146,14 +1146,14 @@
           "section": "Placing",
           "depends_on": [
             {
-              "ref": "MAN-APPLIANCE-02",
+              "ref": "MAN-OPERATE-02",
               "nature": "physical",
               "blocking": false,
               "satisfiable_by_assistance": true,
               "note": "Door may be opened by referee at no cost (-0); these points remain fully available."
             },
             {
-              "ref": "MAN-APPLIANCE-01",
+              "ref": "MAN-OPERATE-01",
               "nature": "physical",
               "blocking": false,
               "satisfiable_by_assistance": true,
@@ -1164,7 +1164,7 @@
             "permitted": true,
             "listed_in_task_description": true,
             "self_score": 0,
-            "extra_penalty_ref": "GEN-HUMANASSIST-01P",
+            "extra_penalty_ref": "GEN-ASSIST-01P",
             "blocks_dependents": false
           },
           "related_skill": "MAN-PLACE-02",
@@ -1188,13 +1188,13 @@
           "section": "Placing",
           "depends_on": [
             {
-              "ref": "MAN-PICK-01B5",
+              "ref": "MAN-PICK-01B4",
               "nature": "sequential",
               "blocking": true,
               "satisfiable_by_assistance": true
             },
             {
-              "ref": "MAN-APPLIANCE-02",
+              "ref": "MAN-OPERATE-02",
               "nature": "physical",
               "blocking": false,
               "satisfiable_by_assistance": true,
@@ -1218,28 +1218,28 @@
           "related_skill": "MAN-PLACE-02"
         },
         {
-          "ref": "MAN-APPLIANCE-01",
+          "ref": "MAN-OPERATE-01",
           "count": 2,
           "section": "Extra Rewards",
           "assistance": {
             "permitted": true,
             "listed_in_task_description": true,
             "self_score": 0,
-            "extra_penalty_ref": "GEN-HUMANASSIST-05P",
+            "extra_penalty_ref": "GEN-ASSIST-04P",
             "extra_penalty": 0,
             "blocks_dependents": false,
             "note": "Explicitly free (-0). Assisted execution forfeits this line only."
           }
         },
         {
-          "ref": "MAN-APPLIANCE-02",
+          "ref": "MAN-OPERATE-02",
           "count": 2,
           "section": "Extra Rewards",
           "assistance": {
             "permitted": true,
             "listed_in_task_description": true,
             "self_score": 0,
-            "extra_penalty_ref": "GEN-HUMANASSIST-05P",
+            "extra_penalty_ref": "GEN-ASSIST-04P",
             "extra_penalty": 0,
             "blocks_dependents": false,
             "note": "Explicitly free (-0). Reward is defined as autonomous ('without assistance')."
@@ -1247,14 +1247,14 @@
           "ambiguity": "Single entry bundles opening and closing, which have different preconditions: \u00a75.2 rule 8 awards closing points only after at least one item has been placed inside. Consider splitting into MAN-APPLIANCE-02a (open) and 02b (close, depends_on MAN-PLACE-02B1)."
         },
         {
-          "ref": "MAN-OPEN-02",
+          "ref": "MAN-OPERATE-05",
           "count": 1,
           "section": "Extra Rewards",
           "assistance": {
             "permitted": true,
             "listed_in_task_description": true,
             "self_score": 0,
-            "extra_penalty_ref": "GEN-HUMANASSIST-04P",
+            "extra_penalty_ref": "GEN-ASSIST-03P",
             "extra_penalty": 0,
             "blocks_dependents": false,
             "note": "Explicitly free (-0); robot must clearly ask for help (\u00a75.2 rule 13)."
@@ -1266,7 +1266,7 @@
           "section": "Extra Rewards",
           "depends_on": [
             {
-              "ref": "MAN-OPEN-02",
+              "ref": "MAN-OPERATE-05",
               "nature": "physical",
               "blocking": false,
               "satisfiable_by_assistance": true,
@@ -1284,7 +1284,7 @@
             "permitted": true,
             "listed_in_task_description": true,
             "self_score": 0,
-            "extra_penalty_ref": "GEN-HUMANASSIST-04P",
+            "extra_penalty_ref": "GEN-ASSIST-03P",
             "extra_penalty": 0,
             "blocks_dependents": false
           },
@@ -1297,7 +1297,7 @@
           "related_skill": "MAN-PLACE-02"
         },
         {
-          "ref": "GEN-BREAKFAST-01P",
+          "ref": "GEN-CONSTRAINT-01P",
           "count": 1,
           "section": "Penalties"
         },
@@ -1314,36 +1314,36 @@
           "related_skill": "MAN-POUR-01"
         },
         {
-          "ref": "GEN-HUMANASSIST-01P",
+          "ref": "GEN-ASSIST-01P",
           "count": 12,
           "section": "Penalties"
         },
         {
-          "ref": "GEN-HUMANASSIST-02P",
+          "ref": "GEN-ASSIST-02P",
           "count": 24,
           "section": "Penalties",
           "ambiguity": "Count is 24 (2x the 12 picks). Confirm whether this is intended as pick+place handovers counted separately."
         },
         {
-          "ref": "GEN-HUMANASSIST-14P",
+          "ref": "GEN-ASSIST-10P",
           "count": 1,
           "section": "Penalties",
           "note": "Applied per item / per group of nearby items moved (\u00a75.2 rule 15)."
         },
         {
-          "ref": "GEN-HUMANASSIST-04P",
+          "ref": "GEN-ASSIST-03P",
           "count": 1,
           "section": "Penalties",
           "note": "Explicitly zero-cost assistance."
         },
         {
-          "ref": "GEN-HUMANASSIST-05P",
+          "ref": "GEN-ASSIST-04P",
           "count": 1,
           "section": "Penalties",
           "note": "Explicitly zero-cost assistance."
         },
         {
-          "ref": "GEN-UNSAFECONTACT-01P",
+          "ref": "GEN-UNSAFE-01P",
           "count": 1,
           "section": "Penalties"
         },
@@ -1396,7 +1396,7 @@
       },
       "entries": [
         {
-          "ref": "PPL-DETECTCALLINGORWAVING-01",
+          "ref": "PPL-GESTURE-01",
           "count": 2,
           "section": "Regular Rewards",
           "assistance": {
@@ -1404,12 +1404,12 @@
           }
         },
         {
-          "ref": "NAV-NAVIGATE-03",
+          "ref": "NAV-NAVIGATE-02",
           "count": 2,
           "section": "Regular Rewards",
           "depends_on": [
             {
-              "ref": "PPL-DETECTCALLINGORWAVING-01",
+              "ref": "PPL-GESTURE-01",
               "nature": "informational",
               "blocking": false,
               "satisfiable_by_assistance": true
@@ -1419,24 +1419,24 @@
             "permitted": true,
             "listed_in_task_description": true,
             "self_score": 0,
-            "extra_penalty_ref": "NAV-NAVIGATE-03P",
+            "extra_penalty_ref": "NAV-NAVIGATE-02P",
             "blocks_dependents": false,
             "note": "If the robot detects a customer but does not reach the table, it must clearly identify the person to earn partial points."
           }
         },
         {
-          "ref": "NAV-NAVIGATE-03P",
+          "ref": "NAV-NAVIGATE-02P",
           "count": 2,
           "section": "Regular Rewards",
-          "related_skill": "NAV-NAVIGATE-03"
+          "related_skill": "NAV-NAVIGATE-02"
         },
         {
-          "ref": "NLU-UNDERSTANDCOMMAND-05",
+          "ref": "NLU-COMMAND-02",
           "count": 2,
           "section": "Regular Rewards",
           "depends_on": [
             {
-              "ref": "NAV-NAVIGATE-03",
+              "ref": "NAV-NAVIGATE-02",
               "nature": "physical",
               "blocking": false,
               "satisfiable_by_assistance": true,
@@ -1447,30 +1447,30 @@
             "permitted": true,
             "listed_in_task_description": true,
             "self_score": 0,
-            "extra_penalty_ref": "GEN-ALTERNATIVEHRI-02P",
+            "extra_penalty_ref": "GEN-ALTINPUT-02P",
             "blocks_dependents": false
           }
         },
         {
-          "ref": "GEN-ALTERNATIVEHRI-02P",
+          "ref": "GEN-ALTINPUT-02P",
           "count": 2,
           "section": "Regular Rewards",
-          "related_skill": "NLU-UNDERSTANDCOMMAND-05",
+          "related_skill": "NLU-COMMAND-02",
           "ambiguity": "Fixed -80 per order vs \u00a73.7.4's -20% of max attainable (-472). Confirm which governs."
         },
         {
           "ref": "HRI-ATTEND-01P",
           "count": 2,
           "section": "Regular Rewards",
-          "related_skill": "NLU-UNDERSTANDCOMMAND-05"
+          "related_skill": "NLU-COMMAND-02"
         },
         {
-          "ref": "HRI-COMMUNICATEORDER-01",
+          "ref": "HRI-INFO-01",
           "count": 2,
           "section": "Regular Rewards",
           "depends_on": [
             {
-              "ref": "NLU-UNDERSTANDCOMMAND-05",
+              "ref": "NLU-COMMAND-02",
               "nature": "informational",
               "blocking": true,
               "satisfiable_by_assistance": true
@@ -1480,7 +1480,7 @@
             "permitted": true,
             "listed_in_task_description": true,
             "self_score": 0,
-            "extra_penalty_ref": "NAV-NAVIGATE-05P",
+            "extra_penalty_ref": "NAV-NAVIGATE-03P",
             "blocks_dependents": false
           }
         },
@@ -1490,7 +1490,7 @@
           "section": "Regular Rewards",
           "depends_on": [
             {
-              "ref": "HRI-COMMUNICATEORDER-01",
+              "ref": "HRI-INFO-01",
               "nature": "sequential",
               "blocking": true,
               "satisfiable_by_assistance": true
@@ -1500,7 +1500,7 @@
             "permitted": true,
             "listed_in_task_description": true,
             "self_score": 0,
-            "extra_penalty_ref": "GEN-HUMANASSIST-02P",
+            "extra_penalty_ref": "GEN-ASSIST-02P",
             "blocks_dependents": false,
             "note": "Barman handover forfeits this line and costs -100; serving remains available."
           }
@@ -1520,13 +1520,13 @@
           "related_skill": "MAN-PICK-05"
         },
         {
-          "ref": "GEN-HUMANASSIST-02P",
+          "ref": "GEN-ASSIST-02P",
           "count": 4,
           "section": "Regular Rewards",
           "related_skill": "MAN-PICK-05"
         },
         {
-          "ref": "NAV-NAVIGATE-03",
+          "ref": "NAV-NAVIGATE-02",
           "count": 2,
           "section": "Regular Rewards",
           "depends_on": [
@@ -1541,7 +1541,7 @@
             "permitted": true,
             "listed_in_task_description": true,
             "self_score": 0,
-            "extra_penalty_ref": "GEN-HUMANASSIST-13P",
+            "extra_penalty_ref": "GEN-ASSIST-09P",
             "blocks_dependents": false
           }
         },
@@ -1558,7 +1558,7 @@
               "note": "Items may be acquired via barman handover; serving remains scoreable."
             },
             {
-              "ref": "MAN-TRANSPORTWITHTRAY-01",
+              "ref": "MAN-TRANSPORT-02",
               "nature": "physical",
               "blocking": false,
               "satisfiable_by_assistance": true,
@@ -1569,7 +1569,7 @@
             "permitted": true,
             "listed_in_task_description": true,
             "self_score": 0,
-            "extra_penalty_ref": "GEN-HUMANASSIST-11P",
+            "extra_penalty_ref": "GEN-ASSIST-07P",
             "blocks_dependents": false,
             "note": "All delivered objects must be placed on the customer's table."
           }
@@ -1589,13 +1589,13 @@
           "related_skill": "MAN-PLACE-03"
         },
         {
-          "ref": "GEN-HUMANASSIST-11P",
+          "ref": "GEN-ASSIST-07P",
           "count": 4,
           "section": "Regular Rewards",
           "related_skill": "MAN-PLACE-03"
         },
         {
-          "ref": "MAN-TRANSPORTWITHTRAY-01",
+          "ref": "MAN-TRANSPORT-02",
           "count": 2,
           "section": "Extra Rewards",
           "assistance": {
@@ -1609,22 +1609,22 @@
           "note": "Requires placing items on tray, picking up and transporting the tray, then delivering."
         },
         {
-          "ref": "NAV-NAVIGATE-05P",
+          "ref": "NAV-NAVIGATE-03P",
           "count": 2,
           "section": "Penalties"
         },
         {
-          "ref": "GEN-HUMANASSIST-12P",
+          "ref": "GEN-ASSIST-08P",
           "count": 2,
           "section": "Penalties"
         },
         {
-          "ref": "GEN-HUMANASSIST-13P",
+          "ref": "GEN-ASSIST-09P",
           "count": 2,
           "section": "Penalties"
         },
         {
-          "ref": "GEN-UNSAFECONTACT-01P",
+          "ref": "GEN-UNSAFE-01P",
           "count": 1,
           "section": "Penalties"
         },

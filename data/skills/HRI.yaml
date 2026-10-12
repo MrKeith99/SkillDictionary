@@ -1,9 +1,6 @@
 area: HRI
 skills:
 - id: HRI-ATTEND-01P
-  area: HRI
-  skill: Attend
-  variant_number: 01P
   taxonomy: HRI.Attend
   modifiers:
   - not_acknowledging
@@ -12,39 +9,7 @@ skills:
   level: C
   points: -100
   type: penalty_behavior
-- id: HRI-COMMUNICATEORDER-01
-  area: HRI
-  skill: CommunicateOrder
-  variant_number: '01'
-  taxonomy: HRI.ConveyInfo
-  modifiers:
-  - barman
-  description: Communicate the order to the barman
-  conditions:
-    info_load: few
-    retention: task
-    distractors: none
-  level: C
-  points: 50
-  type: achievement
-- id: HRI-HANDOVER-02
-  area: HRI
-  skill: Handover
-  variant_number: '02'
-  taxonomy: HRI.Handover
-  modifiers:
-  - give
-  - person
-  description: Hand the object to the person
-  objects:
-  - known_objects
-  level: '-'
-  type: achievement
-  points: 35
-- id: HRI-LOOKAT-01
-  area: HRI
-  skill: LookAt
-  variant_number: '01'
+- id: HRI-GAZE-01
   taxonomy: HRI.Gaze
   modifiers:
   - receiving_guest
@@ -58,10 +23,7 @@ skills:
   level: C
   points: 45
   type: achievement
-- id: HRI-LOOKAT-02
-  area: HRI
-  skill: LookAt
-  variant_number: '02'
+- id: HRI-GAZE-02
   taxonomy: HRI.Gaze
   modifiers:
   - correct_guest
@@ -75,10 +37,46 @@ skills:
   level: C
   points: 50
   type: achievement
-- id: HRI-OFFERSEAT-01
-  area: HRI
-  skill: OfferSeat
-  variant_number: '01'
+- id: HRI-HANDOVER-01
+  taxonomy: HRI.Handover
+  modifiers:
+  - give
+  - person
+  description: Hand the object to the person
+  objects:
+  - known_objects
+  level: '-'
+  type: achievement
+  points: 35
+- id: HRI-HANDOVER-02
+  taxonomy: HRI.Handover
+  modifiers:
+  - bag
+  description: Receive the bag from the guest via handover
+  objects:
+  - bag
+  level: C
+  points: 50
+  type: achievement
+- id: HRI-HANDOVER-02P1
+  taxonomy: HRI.Handover
+  modifiers:
+  - assistance_requested
+  description: Requesting handover assistance from the guest
+  failure_mode: assistance
+  level: C
+  points: -25
+  type: penalty_behavior
+- id: HRI-HANDOVER-02P2
+  taxonomy: HRI.Handover
+  modifiers:
+  - bag_on_structure
+  description: Bag placed on the robot structure instead of being handed over
+  failure_mode: quality
+  level: C
+  points: -50
+  type: penalty_behavior
+- id: HRI-INDICATE-01
   taxonomy: HRI.Indicate
   modifiers:
   - new_guest
@@ -89,47 +87,19 @@ skills:
   level: C
   points: 100
   type: achievement
-- id: HRI-RECEIVEHANDOVER-01
-  area: HRI
-  skill: ReceiveHandover
-  variant_number: '01'
-  taxonomy: HRI.Handover
+- id: HRI-INFO-01
+  taxonomy: HRI.ConveyInfo
   modifiers:
-  - bag
-  description: Receive the bag from the guest via handover
-  objects:
-  - bag
+  - barman
+  description: Communicate the order to the barman
+  conditions:
+    info_load: few
+    retention: task
+    distractors: none
   level: C
   points: 50
   type: achievement
-- id: HRI-RECEIVEHANDOVER-01P1
-  area: HRI
-  skill: ReceiveHandover
-  variant_number: 01P1
-  taxonomy: HRI.Handover
-  modifiers:
-  - assistance_requested
-  description: Requesting handover assistance from the guest
-  failure_mode: assistance
-  level: C
-  points: -25
-  type: penalty_behavior
-- id: HRI-RECEIVEHANDOVER-01P2
-  area: HRI
-  skill: ReceiveHandover
-  variant_number: 01P2
-  taxonomy: HRI.Handover
-  modifiers:
-  - bag_on_structure
-  description: Bag placed on the robot structure instead of being handed over
-  failure_mode: quality
-  level: C
-  points: -50
-  type: penalty_behavior
-- id: HRI-STATESTOREDINFO-01
-  area: HRI
-  skill: StateStoredInfo
-  variant_number: '01'
+- id: HRI-INFO-02
   taxonomy: HRI.ConveyInfo
   modifiers:
   - favorite_drink
@@ -142,10 +112,7 @@ skills:
   level: C
   points: 60
   type: achievement
-- id: HRI-STATESTOREDINFO-02P
-  area: HRI
-  skill: StateStoredInfo
-  variant_number: '02'
+- id: HRI-INFO-02P
   taxonomy: HRI.ConveyInfo
   modifiers:
   - wrong_info
@@ -154,10 +121,7 @@ skills:
   level: C
   points: -30
   type: penalty_behavior
-- id: HRI-TELLINFO-01
-  area: HRI
-  skill: TellInfo
-  variant_number: '01'
+- id: HRI-INFO-03
   taxonomy: HRI.ConveyInfo
   modifiers:
   - talk_list
@@ -169,10 +133,7 @@ skills:
   level: '-'
   type: achievement
   points: 35
-- id: HRI-TELLINFO-02
-  area: HRI
-  skill: TellInfo
-  variant_number: '02'
+- id: HRI-INFO-04
   taxonomy: HRI.ConveyInfo
   modifiers:
   - relay

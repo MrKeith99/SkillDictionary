@@ -154,7 +154,7 @@
   },
   {
    "challenge": "doing_laundry",
-   "id": "MAN-FOLD-02",
+   "id": "MAN-FOLD-01",
    "area": "MAN",
    "skill": "Fold",
    "modifiers": [
@@ -177,7 +177,7 @@
   },
   {
    "challenge": "doing_laundry",
-   "id": "MAN-FOLD-02B",
+   "id": "MAN-FOLD-01B",
    "area": "MAN",
    "skill": "Fold",
    "modifiers": [
@@ -201,7 +201,7 @@
   },
   {
    "challenge": "doing_laundry",
-   "id": "MAN-FOLD-02P1",
+   "id": "MAN-FOLD-01P",
    "area": "MAN",
    "skill": "Fold",
    "modifiers": [
@@ -225,9 +225,9 @@
   },
   {
    "challenge": "doing_laundry",
-   "id": "GEN-HUMANASSIST-08P",
+   "id": "GEN-ASSIST-05P",
    "area": "GEN",
-   "skill": null,
+   "skill": "HumanAssistance",
    "modifiers": [
     "additional",
     "flatten_arrange_before_folding"
@@ -249,9 +249,9 @@
   },
   {
    "challenge": "doing_laundry",
-   "id": "GEN-HUMANASSIST-09P",
+   "id": "GEN-ASSIST-06P",
    "area": "GEN",
-   "skill": null,
+   "skill": "HumanAssistance",
    "modifiers": [
     "additional",
     "folding_assistance_pct"
@@ -273,9 +273,9 @@
   },
   {
    "challenge": "doing_laundry",
-   "id": "MAN-APPLIANCE-03",
+   "id": "MAN-OPERATE-03",
    "area": "MAN",
-   "skill": "Appliance",
+   "skill": "OperateArticulated",
    "modifiers": [
     "open",
     "washing_machine_door"
@@ -316,7 +316,7 @@
     "doing_laundry"
    ],
    "deps": [
-    "MAN-APPLIANCE-03"
+    "MAN-OPERATE-03"
    ],
    "assistance": true,
    "ambiguity": null
@@ -346,9 +346,9 @@
   },
   {
    "challenge": "doing_laundry",
-   "id": "MAN-TRANSPORTWITHBASKET-01",
+   "id": "MAN-TRANSPORT-01",
    "area": "MAN",
-   "skill": "TransportWithBasket",
+   "skill": "Transport",
    "modifiers": [],
    "description": "Using the basket for transportation",
    "level": "X",
@@ -367,9 +367,9 @@
   },
   {
    "challenge": "doing_laundry",
-   "id": "MAN-TRANSPORTWITHBASKET-02P",
+   "id": "MAN-TRANSPORT-01P",
    "area": "MAN",
-   "skill": "TransportWithBasket",
+   "skill": "Transport",
    "modifiers": [
     "dropped_or_lost"
    ],
@@ -408,16 +408,16 @@
     "doing_laundry"
    ],
    "deps": [
-    "MAN-FOLD-02"
+    "MAN-FOLD-01"
    ],
    "assistance": true,
    "ambiguity": null
   },
   {
    "challenge": "doing_laundry",
-   "id": "GEN-HUMANASSIST-14P",
+   "id": "GEN-ASSIST-10P",
    "area": "GEN",
-   "skill": null,
+   "skill": "HumanAssistance",
    "modifiers": [
     "environment_change"
    ],
@@ -439,9 +439,9 @@
   },
   {
    "challenge": "doing_laundry",
-   "id": "GEN-UNSAFECONTACT-01P",
+   "id": "GEN-UNSAFE-01P",
    "area": "GEN",
-   "skill": "UnsafeContact",
+   "skill": "UnsafeConduct",
    "modifiers": [
     "person"
    ],
@@ -468,7 +468,7 @@
    "challenge": "doing_laundry",
    "id": "SPECIAL-01",
    "area": "SPECIAL",
-   "skill": null,
+   "skill": "Administrative",
    "modifiers": [],
    "description": "Not attending (see sec. 3.8.1)",
    "level": "-",
@@ -493,7 +493,7 @@
    "challenge": "doing_laundry",
    "id": "SPECIAL-02",
    "area": "SPECIAL",
-   "skill": null,
+   "skill": "Administrative",
    "modifiers": [],
    "description": "Using alternative start signal (see sec. 3.6.8)",
    "level": "-",
@@ -517,7 +517,7 @@
    "challenge": "doing_laundry",
    "id": "SPECIAL-03",
    "area": "SPECIAL",
-   "skill": null,
+   "skill": "Administrative",
    "modifiers": [],
    "description": "Outstanding performance (see sec. 3.8.3)",
    "level": "-",
@@ -540,7 +540,7 @@
   },
   {
    "challenge": "gpsr",
-   "id": "NLU-UNDERSTANDCOMMAND-01",
+   "id": "NLU-COMMAND-01",
    "area": "NLU",
    "skill": "UnderstandCommand",
    "modifiers": [
@@ -563,7 +563,7 @@
   },
   {
    "challenge": "gpsr",
-   "id": "NLU-UNDERSTANDCOMMAND-02P",
+   "id": "NLU-COMMAND-01P1",
    "area": "NLU",
    "skill": "UnderstandCommand",
    "modifiers": [
@@ -586,7 +586,7 @@
   },
   {
    "challenge": "gpsr",
-   "id": "NLU-UNDERSTANDCOMMAND-03P",
+   "id": "NLU-COMMAND-01P2",
    "area": "NLU",
    "skill": "UnderstandCommand",
    "modifiers": [
@@ -609,9 +609,9 @@
   },
   {
    "challenge": "gpsr",
-   "id": "PLN-DEMONSTRATEPLAN-01",
+   "id": "PLN-PLAN-01",
    "area": "PLN",
-   "skill": "DemonstratePlan",
+   "skill": "Plan",
    "modifiers": [],
    "description": "Demonstrate a plan has been generated",
    "level": "C",
@@ -625,14 +625,14 @@
     "gpsr"
    ],
    "deps": [
-    "NLU-UNDERSTANDCOMMAND-01"
+    "NLU-COMMAND-01"
    ],
    "assistance": false,
    "ambiguity": null
   },
   {
    "challenge": "gpsr",
-   "id": "NAV-NAVIGATE-06",
+   "id": "NAV-NAVIGATE-04",
    "area": "NAV",
    "skill": "Navigate",
    "modifiers": [
@@ -750,7 +750,7 @@
   },
   {
    "challenge": "gpsr",
-   "id": "HRI-HANDOVER-02",
+   "id": "HRI-HANDOVER-01",
    "area": "HRI",
    "skill": "Handover",
    "modifiers": [
@@ -822,7 +822,7 @@
   },
   {
    "challenge": "gpsr",
-   "id": "PPL-REIDENTIFY-01",
+   "id": "PPL-REID-01",
    "area": "PPL",
    "skill": "Reidentify",
    "modifiers": [
@@ -845,7 +845,7 @@
   },
   {
    "challenge": "gpsr",
-   "id": "PPL-DESCRIBEATTRIBUTE-03",
+   "id": "PPL-ATTRIBUTE-03",
    "area": "PPL",
    "skill": "DescribeAttribute",
    "modifiers": [
@@ -869,7 +869,7 @@
   },
   {
    "challenge": "gpsr",
-   "id": "PPL-DESCRIBEATTRIBUTE-04",
+   "id": "PPL-ATTRIBUTE-04",
    "area": "PPL",
    "skill": "DescribeAttribute",
    "modifiers": [
@@ -895,9 +895,9 @@
   },
   {
    "challenge": "gpsr",
-   "id": "HRI-TELLINFO-01",
+   "id": "HRI-INFO-03",
    "area": "HRI",
-   "skill": "TellInfo",
+   "skill": "ConveyInfo",
    "modifiers": [
     "talk_list"
    ],
@@ -918,9 +918,9 @@
   },
   {
    "challenge": "gpsr",
-   "id": "HRI-TELLINFO-02",
+   "id": "HRI-INFO-04",
    "area": "HRI",
-   "skill": "TellInfo",
+   "skill": "ConveyInfo",
    "modifiers": [
     "relay",
     "person"
@@ -988,9 +988,9 @@
   },
   {
    "challenge": "gpsr",
-   "id": "PLN-COMPLETECOMMAND-01B",
+   "id": "PLN-EXECUTE-01B",
    "area": "PLN",
-   "skill": "CompleteCommand",
+   "skill": "Execute",
    "modifiers": [
     "goal_reached"
    ],
@@ -1011,9 +1011,9 @@
   },
   {
    "challenge": "gpsr",
-   "id": "PLN-INTERLEAVETASKS-01B",
+   "id": "PLN-INTERLEAVE-01B",
    "area": "PLN",
-   "skill": "InterleaveTasks",
+   "skill": "Interleave",
    "modifiers": [],
    "description": "Interleaved Task Bonus",
    "level": "X",
@@ -1032,7 +1032,7 @@
   },
   {
    "challenge": "gpsr",
-   "id": "NLU-UNDERSTANDCOMMAND-04P",
+   "id": "NLU-COMMAND-01P3",
    "area": "NLU",
    "skill": "UnderstandCommand",
    "modifiers": [
@@ -1055,9 +1055,9 @@
   },
   {
    "challenge": "gpsr",
-   "id": "GEN-UNSAFECONTACT-01P",
+   "id": "GEN-UNSAFE-01P",
    "area": "GEN",
-   "skill": "UnsafeContact",
+   "skill": "UnsafeConduct",
    "modifiers": [
     "person"
    ],
@@ -1084,7 +1084,7 @@
    "challenge": "gpsr",
    "id": "SPECIAL-01",
    "area": "SPECIAL",
-   "skill": null,
+   "skill": "Administrative",
    "modifiers": [],
    "description": "Not attending (see sec. 3.8.1)",
    "level": "-",
@@ -1109,7 +1109,7 @@
    "challenge": "gpsr",
    "id": "SPECIAL-02",
    "area": "SPECIAL",
-   "skill": null,
+   "skill": "Administrative",
    "modifiers": [],
    "description": "Using alternative start signal (see sec. 3.6.8)",
    "level": "-",
@@ -1133,7 +1133,7 @@
    "challenge": "gpsr",
    "id": "SPECIAL-03",
    "area": "SPECIAL",
-   "skill": null,
+   "skill": "Administrative",
    "modifiers": [],
    "description": "Outstanding performance (see sec. 3.8.3)",
    "level": "-",
@@ -1156,7 +1156,7 @@
   },
   {
    "challenge": "hri",
-   "id": "OBJ-DETECTEVENT-01",
+   "id": "OBJ-EVENT-01",
    "area": "OBJ",
    "skill": "DetectEvent",
    "modifiers": [
@@ -1180,9 +1180,9 @@
   },
   {
    "challenge": "hri",
-   "id": "MAN-OPEN-01",
+   "id": "MAN-OPERATE-04",
    "area": "MAN",
-   "skill": "Open",
+   "skill": "OperateArticulated",
    "modifiers": [
     "entrance_door"
    ],
@@ -1203,9 +1203,9 @@
   },
   {
    "challenge": "hri",
-   "id": "HRI-LOOKAT-01",
+   "id": "HRI-GAZE-01",
    "area": "HRI",
-   "skill": "LookAt",
+   "skill": "Gaze",
    "modifiers": [
     "receiving_guest",
     "talking_person"
@@ -1227,9 +1227,9 @@
   },
   {
    "challenge": "hri",
-   "id": "HRI-OFFERSEAT-01",
+   "id": "HRI-INDICATE-01",
    "area": "HRI",
-   "skill": "OfferSeat",
+   "skill": "Indicate",
    "modifiers": [
     "new_guest"
    ],
@@ -1252,9 +1252,9 @@
   },
   {
    "challenge": "hri",
-   "id": "NAV-GAZEDIRECTION-01",
+   "id": "NAV-SIGNAL-01",
    "area": "NAV",
-   "skill": "GazeDirection",
+   "skill": "SignalIntent",
    "modifiers": [
     "navigation_goal"
    ],
@@ -1275,7 +1275,7 @@
   },
   {
    "challenge": "hri",
-   "id": "PPL-DESCRIBEATTRIBUTE-01B",
+   "id": "PPL-ATTRIBUTE-01B",
    "area": "PPL",
    "skill": "DescribeAttribute",
    "modifiers": [
@@ -1301,7 +1301,7 @@
   },
   {
    "challenge": "hri",
-   "id": "PPL-DESCRIBEATTRIBUTE-02P",
+   "id": "PPL-ATTRIBUTE-02P",
    "area": "PPL",
    "skill": "DescribeAttribute",
    "modifiers": [
@@ -1325,9 +1325,9 @@
   },
   {
    "challenge": "hri",
-   "id": "NLU-AVOIDNONESSENTIALQUESTIONS-01B",
+   "id": "NLU-CLARIFY-01B",
    "area": "NLU",
-   "skill": "AvoidNonEssentialQuestions",
+   "skill": "Clarify",
    "modifiers": [],
    "description": "Not asking non-essential questions to confirm or correct information",
    "level": "C",
@@ -1346,9 +1346,9 @@
   },
   {
    "challenge": "hri",
-   "id": "HRI-STATESTOREDINFO-01",
+   "id": "HRI-INFO-02",
    "area": "HRI",
-   "skill": "StateStoredInfo",
+   "skill": "ConveyInfo",
    "modifiers": [
     "favorite_drink",
     "name"
@@ -1372,9 +1372,9 @@
   },
   {
    "challenge": "hri",
-   "id": "HRI-LOOKAT-02",
+   "id": "HRI-GAZE-02",
    "area": "HRI",
-   "skill": "LookAt",
+   "skill": "Gaze",
    "modifiers": [
     "correct_guest",
     "introduction"
@@ -1391,16 +1391,16 @@
     "hri"
    ],
    "deps": [
-    "HRI-OFFERSEAT-01"
+    "HRI-INDICATE-01"
    ],
    "assistance": false,
    "ambiguity": null
   },
   {
    "challenge": "hri",
-   "id": "HRI-RECEIVEHANDOVER-01",
+   "id": "HRI-HANDOVER-02",
    "area": "HRI",
-   "skill": "ReceiveHandover",
+   "skill": "Handover",
    "modifiers": [
     "bag"
    ],
@@ -1421,9 +1421,9 @@
   },
   {
    "challenge": "hri",
-   "id": "HRI-RECEIVEHANDOVER-01P1",
+   "id": "HRI-HANDOVER-02P1",
    "area": "HRI",
-   "skill": "ReceiveHandover",
+   "skill": "Handover",
    "modifiers": [
     "assistance_requested"
    ],
@@ -1444,9 +1444,9 @@
   },
   {
    "challenge": "hri",
-   "id": "HRI-RECEIVEHANDOVER-01P2",
+   "id": "HRI-HANDOVER-02P2",
    "area": "HRI",
-   "skill": "ReceiveHandover",
+   "skill": "Handover",
    "modifiers": [
     "bag_on_structure"
    ],
@@ -1486,7 +1486,7 @@
     "hri"
    ],
    "deps": [
-    "HRI-RECEIVEHANDOVER-01"
+    "HRI-HANDOVER-02"
    ],
    "assistance": true,
    "ambiguity": null
@@ -1606,16 +1606,16 @@
    ],
    "deps": [
     "NAV-FOLLOW-01",
-    "HRI-RECEIVEHANDOVER-01"
+    "HRI-HANDOVER-02"
    ],
    "assistance": true,
    "ambiguity": null
   },
   {
    "challenge": "hri",
-   "id": "HRI-STATESTOREDINFO-02P",
+   "id": "HRI-INFO-02P",
    "area": "HRI",
-   "skill": "StateStoredInfo",
+   "skill": "ConveyInfo",
    "modifiers": [
     "wrong_info"
    ],
@@ -1636,9 +1636,9 @@
   },
   {
    "challenge": "hri",
-   "id": "GEN-ALTERNATIVEHRI-01P",
+   "id": "GEN-ALTINPUT-01P",
    "area": "GEN",
-   "skill": "AlternativeHRI",
+   "skill": "AlternativeInput",
    "modifiers": [],
    "description": "Alternative HRI",
    "level": "C",
@@ -1681,9 +1681,9 @@
   },
   {
    "challenge": "hri",
-   "id": "GEN-UNSAFECONTACT-01P",
+   "id": "GEN-UNSAFE-01P",
    "area": "GEN",
-   "skill": "UnsafeContact",
+   "skill": "UnsafeConduct",
    "modifiers": [
     "person"
    ],
@@ -1710,7 +1710,7 @@
    "challenge": "hri",
    "id": "SPECIAL-01",
    "area": "SPECIAL",
-   "skill": null,
+   "skill": "Administrative",
    "modifiers": [],
    "description": "Not attending (see sec. 3.8.1)",
    "level": "-",
@@ -1735,7 +1735,7 @@
    "challenge": "hri",
    "id": "SPECIAL-03",
    "area": "SPECIAL",
-   "skill": null,
+   "skill": "Administrative",
    "modifiers": [],
    "description": "Outstanding performance (see sec. 3.8.3)",
    "level": "-",
@@ -1805,9 +1805,9 @@
   },
   {
    "challenge": "pick_and_place",
-   "id": "OBJ-PERCEIVE-01",
+   "id": "OBJ-PLACEMENT-01",
    "area": "OBJ",
-   "skill": "Perceive",
+   "skill": "DetectPlacement",
    "modifiers": [
     "placement",
     "shelf"
@@ -1881,7 +1881,7 @@
   },
   {
    "challenge": "pick_and_place",
-   "id": "MAN-PICK-01B2",
+   "id": "MAN-PICK-01B1",
    "area": "MAN",
    "skill": "Pick",
    "modifiers": [
@@ -1906,7 +1906,7 @@
   },
   {
    "challenge": "pick_and_place",
-   "id": "MAN-PICK-01B3",
+   "id": "MAN-PICK-01B2",
    "area": "MAN",
    "skill": "Pick",
    "modifiers": [
@@ -1931,7 +1931,7 @@
   },
   {
    "challenge": "pick_and_place",
-   "id": "MAN-PICK-01B4",
+   "id": "MAN-PICK-01B3",
    "area": "MAN",
    "skill": "Pick",
    "modifiers": [
@@ -1956,7 +1956,7 @@
   },
   {
    "challenge": "pick_and_place",
-   "id": "MAN-PICK-01B5",
+   "id": "MAN-PICK-01B4",
    "area": "MAN",
    "skill": "Pick",
    "modifiers": [
@@ -1981,7 +1981,7 @@
   },
   {
    "challenge": "pick_and_place",
-   "id": "MAN-PICK-02P",
+   "id": "MAN-PICK-01P2",
    "area": "MAN",
    "skill": "Pick",
    "modifiers": [
@@ -2050,8 +2050,8 @@
     "pick_and_place"
    ],
    "deps": [
-    "MAN-APPLIANCE-02",
-    "MAN-APPLIANCE-01"
+    "MAN-OPERATE-02",
+    "MAN-OPERATE-01"
    ],
    "assistance": true,
    "ambiguity": null
@@ -2124,8 +2124,8 @@
     "pick_and_place"
    ],
    "deps": [
-    "MAN-PICK-01B5",
-    "MAN-APPLIANCE-02"
+    "MAN-PICK-01B4",
+    "MAN-OPERATE-02"
    ],
    "assistance": true,
    "ambiguity": null
@@ -2156,9 +2156,9 @@
   },
   {
    "challenge": "pick_and_place",
-   "id": "MAN-APPLIANCE-01",
+   "id": "MAN-OPERATE-01",
    "area": "MAN",
-   "skill": "Appliance",
+   "skill": "OperateArticulated",
    "modifiers": [
     "dishwasher_rack",
     "pull_push"
@@ -2180,9 +2180,9 @@
   },
   {
    "challenge": "pick_and_place",
-   "id": "MAN-APPLIANCE-02",
+   "id": "MAN-OPERATE-02",
    "area": "MAN",
-   "skill": "Appliance",
+   "skill": "OperateArticulated",
    "modifiers": [
     "dishwasher_door",
     "no_assistance",
@@ -2205,9 +2205,9 @@
   },
   {
    "challenge": "pick_and_place",
-   "id": "MAN-OPEN-02",
+   "id": "MAN-OPERATE-05",
    "area": "MAN",
-   "skill": "Open",
+   "skill": "OperateArticulated",
    "modifiers": [
     "milk_container",
     "no_assistance"
@@ -2248,7 +2248,7 @@
     "pick_and_place"
    ],
    "deps": [
-    "MAN-OPEN-02",
+    "MAN-OPERATE-05",
     "MAN-PLACE-02"
    ],
    "assistance": true,
@@ -2279,9 +2279,9 @@
   },
   {
    "challenge": "pick_and_place",
-   "id": "GEN-BREAKFAST-01P",
+   "id": "GEN-CONSTRAINT-01P",
    "area": "GEN",
-   "skill": null,
+   "skill": "TaskConstraint",
    "modifiers": [
     "typical_setting"
    ],
@@ -2348,9 +2348,9 @@
   },
   {
    "challenge": "pick_and_place",
-   "id": "GEN-HUMANASSIST-01P",
+   "id": "GEN-ASSIST-01P",
    "area": "GEN",
-   "skill": null,
+   "skill": "HumanAssistance",
    "modifiers": [
     "object_repositioned"
    ],
@@ -2371,9 +2371,9 @@
   },
   {
    "challenge": "pick_and_place",
-   "id": "GEN-HUMANASSIST-02P",
+   "id": "GEN-ASSIST-02P",
    "area": "GEN",
-   "skill": null,
+   "skill": "HumanAssistance",
    "modifiers": [
     "handover"
    ],
@@ -2395,9 +2395,9 @@
   },
   {
    "challenge": "pick_and_place",
-   "id": "GEN-HUMANASSIST-14P",
+   "id": "GEN-ASSIST-10P",
    "area": "GEN",
-   "skill": null,
+   "skill": "HumanAssistance",
    "modifiers": [
     "environment_change"
    ],
@@ -2419,9 +2419,9 @@
   },
   {
    "challenge": "pick_and_place",
-   "id": "GEN-HUMANASSIST-04P",
+   "id": "GEN-ASSIST-03P",
    "area": "GEN",
-   "skill": null,
+   "skill": "HumanAssistance",
    "modifiers": [
     "opening_milk_container"
    ],
@@ -2442,9 +2442,9 @@
   },
   {
    "challenge": "pick_and_place",
-   "id": "GEN-HUMANASSIST-05P",
+   "id": "GEN-ASSIST-04P",
    "area": "GEN",
-   "skill": null,
+   "skill": "HumanAssistance",
    "modifiers": [
     "dishwasher_door_or_rack"
    ],
@@ -2465,9 +2465,9 @@
   },
   {
    "challenge": "pick_and_place",
-   "id": "GEN-UNSAFECONTACT-01P",
+   "id": "GEN-UNSAFE-01P",
    "area": "GEN",
-   "skill": "UnsafeContact",
+   "skill": "UnsafeConduct",
    "modifiers": [
     "person"
    ],
@@ -2494,7 +2494,7 @@
    "challenge": "pick_and_place",
    "id": "SPECIAL-01",
    "area": "SPECIAL",
-   "skill": null,
+   "skill": "Administrative",
    "modifiers": [],
    "description": "Not attending (see sec. 3.8.1)",
    "level": "-",
@@ -2519,7 +2519,7 @@
    "challenge": "pick_and_place",
    "id": "SPECIAL-02",
    "area": "SPECIAL",
-   "skill": null,
+   "skill": "Administrative",
    "modifiers": [],
    "description": "Using alternative start signal (see sec. 3.6.8)",
    "level": "-",
@@ -2543,7 +2543,7 @@
    "challenge": "pick_and_place",
    "id": "SPECIAL-03",
    "area": "SPECIAL",
-   "skill": null,
+   "skill": "Administrative",
    "modifiers": [],
    "description": "Outstanding performance (see sec. 3.8.3)",
    "level": "-",
@@ -2566,9 +2566,9 @@
   },
   {
    "challenge": "restaurant",
-   "id": "PPL-DETECTCALLINGORWAVING-01",
+   "id": "PPL-GESTURE-01",
    "area": "PPL",
-   "skill": "DetectCallingOrWaving",
+   "skill": "DetectGesture",
    "modifiers": [
     "customer"
    ],
@@ -2589,7 +2589,7 @@
   },
   {
    "challenge": "restaurant",
-   "id": "NAV-NAVIGATE-03",
+   "id": "NAV-NAVIGATE-02",
    "area": "NAV",
    "skill": "Navigate",
    "modifiers": [
@@ -2607,14 +2607,14 @@
     "restaurant"
    ],
    "deps": [
-    "PPL-DETECTCALLINGORWAVING-01"
+    "PPL-GESTURE-01"
    ],
    "assistance": true,
    "ambiguity": null
   },
   {
    "challenge": "restaurant",
-   "id": "NAV-NAVIGATE-03P",
+   "id": "NAV-NAVIGATE-02P",
    "area": "NAV",
    "skill": "Navigate",
    "modifiers": [
@@ -2637,7 +2637,7 @@
   },
   {
    "challenge": "restaurant",
-   "id": "NLU-UNDERSTANDCOMMAND-05",
+   "id": "NLU-COMMAND-02",
    "area": "NLU",
    "skill": "UnderstandCommand",
    "modifiers": [
@@ -2656,16 +2656,16 @@
     "restaurant"
    ],
    "deps": [
-    "NAV-NAVIGATE-03"
+    "NAV-NAVIGATE-02"
    ],
    "assistance": true,
    "ambiguity": null
   },
   {
    "challenge": "restaurant",
-   "id": "GEN-ALTERNATIVEHRI-02P",
+   "id": "GEN-ALTINPUT-02P",
    "area": "GEN",
-   "skill": "AlternativeHRI",
+   "skill": "AlternativeInput",
    "modifiers": [
     "order"
    ],
@@ -2710,9 +2710,9 @@
   },
   {
    "challenge": "restaurant",
-   "id": "HRI-COMMUNICATEORDER-01",
+   "id": "HRI-INFO-01",
    "area": "HRI",
-   "skill": "CommunicateOrder",
+   "skill": "ConveyInfo",
    "modifiers": [
     "barman"
    ],
@@ -2728,7 +2728,7 @@
     "restaurant"
    ],
    "deps": [
-    "NLU-UNDERSTANDCOMMAND-05"
+    "NLU-COMMAND-02"
    ],
    "assistance": true,
    "ambiguity": null
@@ -2754,7 +2754,7 @@
     "restaurant"
    ],
    "deps": [
-    "HRI-COMMUNICATEORDER-01"
+    "HRI-INFO-01"
    ],
    "assistance": true,
    "ambiguity": null
@@ -2787,9 +2787,9 @@
   },
   {
    "challenge": "restaurant",
-   "id": "GEN-HUMANASSIST-02P",
+   "id": "GEN-ASSIST-02P",
    "area": "GEN",
-   "skill": null,
+   "skill": "HumanAssistance",
    "modifiers": [
     "handover"
    ],
@@ -2811,7 +2811,7 @@
   },
   {
    "challenge": "restaurant",
-   "id": "NAV-NAVIGATE-03",
+   "id": "NAV-NAVIGATE-02",
    "area": "NAV",
    "skill": "Navigate",
    "modifiers": [
@@ -2856,7 +2856,7 @@
    ],
    "deps": [
     "MAN-PICK-05",
-    "MAN-TRANSPORTWITHTRAY-01"
+    "MAN-TRANSPORT-02"
    ],
    "assistance": true,
    "ambiguity": null
@@ -2888,9 +2888,9 @@
   },
   {
    "challenge": "restaurant",
-   "id": "GEN-HUMANASSIST-11P",
+   "id": "GEN-ASSIST-07P",
    "area": "GEN",
-   "skill": null,
+   "skill": "HumanAssistance",
    "modifiers": [
     "guest_takes_from_tray_or_hand"
    ],
@@ -2911,9 +2911,9 @@
   },
   {
    "challenge": "restaurant",
-   "id": "MAN-TRANSPORTWITHTRAY-01",
+   "id": "MAN-TRANSPORT-02",
    "area": "MAN",
-   "skill": "TransportWithTray",
+   "skill": "Transport",
    "modifiers": [
     "unattached"
    ],
@@ -2934,7 +2934,7 @@
   },
   {
    "challenge": "restaurant",
-   "id": "NAV-NAVIGATE-05P",
+   "id": "NAV-NAVIGATE-03P",
    "area": "NAV",
    "skill": "Navigate",
    "modifiers": [
@@ -2958,9 +2958,9 @@
   },
   {
    "challenge": "restaurant",
-   "id": "GEN-HUMANASSIST-12P",
+   "id": "GEN-ASSIST-08P",
    "area": "GEN",
-   "skill": null,
+   "skill": "HumanAssistance",
    "modifiers": [
     "directional_confirmation"
    ],
@@ -2981,9 +2981,9 @@
   },
   {
    "challenge": "restaurant",
-   "id": "GEN-HUMANASSIST-13P",
+   "id": "GEN-ASSIST-09P",
    "area": "GEN",
-   "skill": null,
+   "skill": "HumanAssistance",
    "modifiers": [
     "told_pointed_location"
    ],
@@ -3004,9 +3004,9 @@
   },
   {
    "challenge": "restaurant",
-   "id": "GEN-UNSAFECONTACT-01P",
+   "id": "GEN-UNSAFE-01P",
    "area": "GEN",
-   "skill": "UnsafeContact",
+   "skill": "UnsafeConduct",
    "modifiers": [
     "person"
    ],
@@ -3033,7 +3033,7 @@
    "challenge": "restaurant",
    "id": "SPECIAL-01",
    "area": "SPECIAL",
-   "skill": null,
+   "skill": "Administrative",
    "modifiers": [],
    "description": "Not attending (see sec. 3.8.1)",
    "level": "-",
@@ -3058,7 +3058,7 @@
    "challenge": "restaurant",
    "id": "SPECIAL-02",
    "area": "SPECIAL",
-   "skill": null,
+   "skill": "Administrative",
    "modifiers": [],
    "description": "Using alternative start signal (see sec. 3.6.8)",
    "level": "-",
@@ -3082,7 +3082,7 @@
    "challenge": "restaurant",
    "id": "SPECIAL-03",
    "area": "SPECIAL",
-   "skill": null,
+   "skill": "Administrative",
    "modifiers": [],
    "description": "Outstanding performance (see sec. 3.8.3)",
    "level": "-",
@@ -3106,10 +3106,83 @@
  ],
  "drift": [
   {
-   "family": "MAN/Appliance",
+   "family": "HRI/ConveyInfo",
    "variants": [
     {
-     "id": "MAN-APPLIANCE-02",
+     "id": "HRI-INFO-03",
+     "points": 35,
+     "used_by": [
+      "gpsr"
+     ],
+     "modifiers": [
+      "talk_list"
+     ]
+    },
+    {
+     "id": "HRI-INFO-01",
+     "points": 50,
+     "used_by": [
+      "restaurant"
+     ],
+     "modifiers": [
+      "barman"
+     ]
+    },
+    {
+     "id": "HRI-INFO-04",
+     "points": 50,
+     "used_by": [
+      "gpsr"
+     ],
+     "modifiers": [
+      "relay",
+      "person"
+     ]
+    },
+    {
+     "id": "HRI-INFO-02",
+     "points": 60,
+     "used_by": [
+      "hri"
+     ],
+     "modifiers": [
+      "favorite_drink",
+      "name"
+     ]
+    }
+   ]
+  },
+  {
+   "family": "HRI/Handover",
+   "variants": [
+    {
+     "id": "HRI-HANDOVER-01",
+     "points": 35,
+     "used_by": [
+      "gpsr"
+     ],
+     "modifiers": [
+      "give",
+      "person"
+     ]
+    },
+    {
+     "id": "HRI-HANDOVER-02",
+     "points": 50,
+     "used_by": [
+      "hri"
+     ],
+     "modifiers": [
+      "bag"
+     ]
+    }
+   ]
+  },
+  {
+   "family": "MAN/OperateArticulated",
+   "variants": [
+    {
+     "id": "MAN-OPERATE-02",
      "points": 200,
      "used_by": [
       "pick_and_place"
@@ -3121,34 +3194,7 @@
      ]
     },
     {
-     "id": "MAN-APPLIANCE-03",
-     "points": 270,
-     "used_by": [
-      "doing_laundry"
-     ],
-     "modifiers": [
-      "open",
-      "washing_machine_door"
-     ]
-    },
-    {
-     "id": "MAN-APPLIANCE-01",
-     "points": 300,
-     "used_by": [
-      "pick_and_place"
-     ],
-     "modifiers": [
-      "dishwasher_rack",
-      "pull_push"
-     ]
-    }
-   ]
-  },
-  {
-   "family": "MAN/Open",
-   "variants": [
-    {
-     "id": "MAN-OPEN-02",
+     "id": "MAN-OPERATE-05",
      "points": 200,
      "used_by": [
       "pick_and_place"
@@ -3159,13 +3205,35 @@
      ]
     },
     {
-     "id": "MAN-OPEN-01",
+     "id": "MAN-OPERATE-04",
      "points": 230,
      "used_by": [
       "hri"
      ],
      "modifiers": [
       "entrance_door"
+     ]
+    },
+    {
+     "id": "MAN-OPERATE-03",
+     "points": 270,
+     "used_by": [
+      "doing_laundry"
+     ],
+     "modifiers": [
+      "open",
+      "washing_machine_door"
+     ]
+    },
+    {
+     "id": "MAN-OPERATE-01",
+     "points": 300,
+     "used_by": [
+      "pick_and_place"
+     ],
+     "modifiers": [
+      "dishwasher_rack",
+      "pull_push"
      ]
     }
    ]
@@ -3279,6 +3347,29 @@
    ]
   },
   {
+   "family": "MAN/Transport",
+   "variants": [
+    {
+     "id": "MAN-TRANSPORT-01",
+     "points": 240,
+     "used_by": [
+      "doing_laundry"
+     ],
+     "modifiers": []
+    },
+    {
+     "id": "MAN-TRANSPORT-02",
+     "points": 270,
+     "used_by": [
+      "restaurant"
+     ],
+     "modifiers": [
+      "unattached"
+     ]
+    }
+   ]
+  },
+  {
    "family": "NAV/Navigate",
    "variants": [
     {
@@ -3293,7 +3384,7 @@
      ]
     },
     {
-     "id": "NAV-NAVIGATE-06",
+     "id": "NAV-NAVIGATE-04",
      "points": 35,
      "used_by": [
       "gpsr"
@@ -3303,7 +3394,7 @@
      ]
     },
     {
-     "id": "NAV-NAVIGATE-03",
+     "id": "NAV-NAVIGATE-02",
      "points": 50,
      "used_by": [
       "restaurant"
@@ -3318,7 +3409,7 @@
    "family": "NLU/UnderstandCommand",
    "variants": [
     {
-     "id": "NLU-UNDERSTANDCOMMAND-01",
+     "id": "NLU-COMMAND-01",
      "points": 100,
      "used_by": [
       "gpsr"
@@ -3328,7 +3419,7 @@
      ]
     },
     {
-     "id": "NLU-UNDERSTANDCOMMAND-05",
+     "id": "NLU-COMMAND-02",
      "points": 130,
      "used_by": [
       "restaurant"
@@ -3380,7 +3471,7 @@
  ],
  "shared": [
   {
-   "id": "GEN-UNSAFECONTACT-01P",
+   "id": "GEN-UNSAFE-01P",
    "description": "Touching a person when the task does not ask for it (run also stopped)",
    "used_by": [
     "doing_laundry",
@@ -3423,7 +3514,7 @@
    ]
   },
   {
-   "id": "GEN-HUMANASSIST-02P",
+   "id": "GEN-ASSIST-02P",
    "description": "Human assistance: a person hands the object to the robot instead of the robot picking it",
    "used_by": [
     "pick_and_place",
@@ -3431,7 +3522,7 @@
    ]
   },
   {
-   "id": "GEN-HUMANASSIST-14P",
+   "id": "GEN-ASSIST-10P",
    "description": "Human assistance: environment changes (per item)",
    "used_by": [
     "doing_laundry",

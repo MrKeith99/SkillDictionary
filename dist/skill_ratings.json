@@ -1,83 +1,83 @@
 {
- "GEN-ALTERNATIVEHRI-01P": {
+ "GEN-ALTINPUT-01P": {
   "taxonomy": "GEN.AlternativeInput",
   "objects": [],
   "difficulty": null,
   "level": "C"
  },
- "GEN-ALTERNATIVEHRI-02P": {
+ "GEN-ALTINPUT-02P": {
   "taxonomy": "GEN.AlternativeInput",
   "objects": [],
   "difficulty": null,
   "level": "C"
  },
- "GEN-BREAKFAST-01P": {
+ "GEN-ASSIST-01P": {
+  "taxonomy": "GEN.HumanAssistance",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "GEN-ASSIST-02P": {
+  "taxonomy": "GEN.HumanAssistance",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "GEN-ASSIST-03P": {
+  "taxonomy": "GEN.HumanAssistance",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "GEN-ASSIST-04P": {
+  "taxonomy": "GEN.HumanAssistance",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "GEN-ASSIST-05P": {
+  "taxonomy": "GEN.HumanAssistance",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "GEN-ASSIST-06P": {
+  "taxonomy": "GEN.HumanAssistance",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "GEN-ASSIST-07P": {
+  "taxonomy": "GEN.HumanAssistance",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "GEN-ASSIST-08P": {
+  "taxonomy": "GEN.HumanAssistance",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "GEN-ASSIST-09P": {
+  "taxonomy": "GEN.HumanAssistance",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "GEN-ASSIST-10P": {
+  "taxonomy": "GEN.HumanAssistance",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "GEN-CONSTRAINT-01P": {
   "taxonomy": "GEN.TaskConstraint",
   "objects": [],
   "difficulty": null,
   "level": "-"
  },
- "GEN-HUMANASSIST-01P": {
-  "taxonomy": "GEN.HumanAssistance",
-  "objects": [],
-  "difficulty": null,
-  "level": "-"
- },
- "GEN-HUMANASSIST-02P": {
-  "taxonomy": "GEN.HumanAssistance",
-  "objects": [],
-  "difficulty": null,
-  "level": "-"
- },
- "GEN-HUMANASSIST-04P": {
-  "taxonomy": "GEN.HumanAssistance",
-  "objects": [],
-  "difficulty": null,
-  "level": "-"
- },
- "GEN-HUMANASSIST-05P": {
-  "taxonomy": "GEN.HumanAssistance",
-  "objects": [],
-  "difficulty": null,
-  "level": "-"
- },
- "GEN-HUMANASSIST-08P": {
-  "taxonomy": "GEN.HumanAssistance",
-  "objects": [],
-  "difficulty": null,
-  "level": "-"
- },
- "GEN-HUMANASSIST-09P": {
-  "taxonomy": "GEN.HumanAssistance",
-  "objects": [],
-  "difficulty": null,
-  "level": "-"
- },
- "GEN-HUMANASSIST-11P": {
-  "taxonomy": "GEN.HumanAssistance",
-  "objects": [],
-  "difficulty": null,
-  "level": "-"
- },
- "GEN-HUMANASSIST-12P": {
-  "taxonomy": "GEN.HumanAssistance",
-  "objects": [],
-  "difficulty": null,
-  "level": "-"
- },
- "GEN-HUMANASSIST-13P": {
-  "taxonomy": "GEN.HumanAssistance",
-  "objects": [],
-  "difficulty": null,
-  "level": "-"
- },
- "GEN-HUMANASSIST-14P": {
-  "taxonomy": "GEN.HumanAssistance",
-  "objects": [],
-  "difficulty": null,
-  "level": "-"
- },
- "GEN-UNSAFECONTACT-01P": {
+ "GEN-UNSAFE-01P": {
   "taxonomy": "GEN.UnsafeConduct",
   "objects": [],
   "difficulty": null,
@@ -89,20 +89,21 @@
   "difficulty": null,
   "level": "C"
  },
- "HRI-COMMUNICATEORDER-01": {
-  "taxonomy": "HRI.ConveyInfo",
+ "HRI-GAZE-01": {
+  "taxonomy": "HRI.Gaze",
   "objects": [],
   "difficulty": {
-   "min": 2,
-   "max": 2,
-   "tier": "E",
+   "min": 3,
+   "max": 3,
+   "tier": "C",
    "per_object": {
     "-": {
-     "min": 2,
-     "max": 2,
+     "min": 3,
+     "max": 3,
      "factors": {
-      "info_load": "few",
-      "retention": "task",
+      "crowd": "few",
+      "target_motion": "shifting",
+      "ambient_noise": "background",
       "distractors": "none"
      }
     }
@@ -110,7 +111,29 @@
   },
   "level": "C"
  },
- "HRI-HANDOVER-02": {
+ "HRI-GAZE-02": {
+  "taxonomy": "HRI.Gaze",
+  "objects": [],
+  "difficulty": {
+   "min": 4,
+   "max": 4,
+   "tier": "C",
+   "per_object": {
+    "-": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "crowd": "few",
+      "target_motion": "shifting",
+      "ambient_noise": "background",
+      "distractors": "few"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "HRI-HANDOVER-01": {
   "taxonomy": "HRI.Handover",
   "objects": [
    "known_objects"
@@ -394,71 +417,7 @@
   },
   "level": "-"
  },
- "HRI-LOOKAT-01": {
-  "taxonomy": "HRI.Gaze",
-  "objects": [],
-  "difficulty": {
-   "min": 3,
-   "max": 3,
-   "tier": "C",
-   "per_object": {
-    "-": {
-     "min": 3,
-     "max": 3,
-     "factors": {
-      "crowd": "few",
-      "target_motion": "shifting",
-      "ambient_noise": "background",
-      "distractors": "none"
-     }
-    }
-   }
-  },
-  "level": "C"
- },
- "HRI-LOOKAT-02": {
-  "taxonomy": "HRI.Gaze",
-  "objects": [],
-  "difficulty": {
-   "min": 4,
-   "max": 4,
-   "tier": "C",
-   "per_object": {
-    "-": {
-     "min": 4,
-     "max": 4,
-     "factors": {
-      "crowd": "few",
-      "target_motion": "shifting",
-      "ambient_noise": "background",
-      "distractors": "few"
-     }
-    }
-   }
-  },
-  "level": "C"
- },
- "HRI-OFFERSEAT-01": {
-  "taxonomy": "HRI.Indicate",
-  "objects": [],
-  "difficulty": {
-   "min": 2,
-   "max": 2,
-   "tier": "E",
-   "per_object": {
-    "-": {
-     "min": 2,
-     "max": 2,
-     "factors": {
-      "distractors": "few",
-      "crowd": "few"
-     }
-    }
-   }
-  },
-  "level": "C"
- },
- "HRI-RECEIVEHANDOVER-01": {
+ "HRI-HANDOVER-02": {
   "taxonomy": "HRI.Handover",
   "objects": [
    "bag"
@@ -481,19 +440,60 @@
   },
   "level": "C"
  },
- "HRI-RECEIVEHANDOVER-01P1": {
+ "HRI-HANDOVER-02P1": {
   "taxonomy": "HRI.Handover",
   "objects": [],
   "difficulty": null,
   "level": "C"
  },
- "HRI-RECEIVEHANDOVER-01P2": {
+ "HRI-HANDOVER-02P2": {
   "taxonomy": "HRI.Handover",
   "objects": [],
   "difficulty": null,
   "level": "C"
  },
- "HRI-STATESTOREDINFO-01": {
+ "HRI-INDICATE-01": {
+  "taxonomy": "HRI.Indicate",
+  "objects": [],
+  "difficulty": {
+   "min": 2,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "distractors": "few",
+      "crowd": "few"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "HRI-INFO-01": {
+  "taxonomy": "HRI.ConveyInfo",
+  "objects": [],
+  "difficulty": {
+   "min": 2,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "info_load": "few",
+      "retention": "task",
+      "distractors": "none"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "HRI-INFO-02": {
   "taxonomy": "HRI.ConveyInfo",
   "objects": [],
   "difficulty": {
@@ -514,13 +514,13 @@
   },
   "level": "C"
  },
- "HRI-STATESTOREDINFO-02P": {
+ "HRI-INFO-02P": {
   "taxonomy": "HRI.ConveyInfo",
   "objects": [],
   "difficulty": null,
   "level": "C"
  },
- "HRI-TELLINFO-01": {
+ "HRI-INFO-03": {
   "taxonomy": "HRI.ConveyInfo",
   "objects": [],
   "difficulty": {
@@ -541,7 +541,7 @@
   },
   "level": "-"
  },
- "HRI-TELLINFO-02": {
+ "HRI-INFO-04": {
   "taxonomy": "HRI.ConveyInfo",
   "objects": [],
   "difficulty": {
@@ -562,79 +562,7 @@
   },
   "level": "-"
  },
- "MAN-APPLIANCE-01": {
-  "taxonomy": "MAN.OperateArticulated",
-  "objects": [
-   "dishwasher.rack"
-  ],
-  "difficulty": {
-   "min": 5,
-   "max": 5,
-   "tier": "C",
-   "per_object": {
-    "dishwasher.rack": {
-     "min": 5,
-     "max": 5,
-     "factors": {
-      "mechanism": "guided",
-      "actuation_force": "low",
-      "height": "extreme",
-      "access": "enclosed"
-     }
-    }
-   }
-  },
-  "level": "X"
- },
- "MAN-APPLIANCE-02": {
-  "taxonomy": "MAN.OperateArticulated",
-  "objects": [
-   "dishwasher.door"
-  ],
-  "difficulty": {
-   "min": 2,
-   "max": 2,
-   "tier": "E",
-   "per_object": {
-    "dishwasher.door": {
-     "min": 2,
-     "max": 2,
-     "factors": {
-      "mechanism": "guided",
-      "actuation_force": "medium",
-      "height": "comfortable",
-      "access": "open"
-     }
-    }
-   }
-  },
-  "level": "X"
- },
- "MAN-APPLIANCE-03": {
-  "taxonomy": "MAN.OperateArticulated",
-  "objects": [
-   "washing_machine.door"
-  ],
-  "difficulty": {
-   "min": 4,
-   "max": 4,
-   "tier": "C",
-   "per_object": {
-    "washing_machine.door": {
-     "min": 4,
-     "max": 4,
-     "factors": {
-      "mechanism": "latched",
-      "actuation_force": "medium",
-      "height": "low_high",
-      "access": "open"
-     }
-    }
-   }
-  },
-  "level": "X"
- },
- "MAN-FOLD-02": {
+ "MAN-FOLD-01": {
   "taxonomy": "MAN.Fold",
   "objects": [
    "clothing"
@@ -693,7 +621,7 @@
   },
   "level": "X"
  },
- "MAN-FOLD-02B": {
+ "MAN-FOLD-01B": {
   "taxonomy": "MAN.Fold",
   "objects": [
    "clothing"
@@ -752,7 +680,7 @@
   },
   "level": "-"
  },
- "MAN-FOLD-02P1": {
+ "MAN-FOLD-01P": {
   "taxonomy": "MAN.Fold",
   "objects": [],
   "difficulty": null,
@@ -782,7 +710,79 @@
   },
   "level": "X"
  },
- "MAN-OPEN-01": {
+ "MAN-OPERATE-01": {
+  "taxonomy": "MAN.OperateArticulated",
+  "objects": [
+   "dishwasher.rack"
+  ],
+  "difficulty": {
+   "min": 5,
+   "max": 5,
+   "tier": "C",
+   "per_object": {
+    "dishwasher.rack": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "mechanism": "guided",
+      "actuation_force": "low",
+      "height": "extreme",
+      "access": "enclosed"
+     }
+    }
+   }
+  },
+  "level": "X"
+ },
+ "MAN-OPERATE-02": {
+  "taxonomy": "MAN.OperateArticulated",
+  "objects": [
+   "dishwasher.door"
+  ],
+  "difficulty": {
+   "min": 2,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "dishwasher.door": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "mechanism": "guided",
+      "actuation_force": "medium",
+      "height": "comfortable",
+      "access": "open"
+     }
+    }
+   }
+  },
+  "level": "X"
+ },
+ "MAN-OPERATE-03": {
+  "taxonomy": "MAN.OperateArticulated",
+  "objects": [
+   "washing_machine.door"
+  ],
+  "difficulty": {
+   "min": 4,
+   "max": 4,
+   "tier": "C",
+   "per_object": {
+    "washing_machine.door": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "mechanism": "latched",
+      "actuation_force": "medium",
+      "height": "low_high",
+      "access": "open"
+     }
+    }
+   }
+  },
+  "level": "X"
+ },
+ "MAN-OPERATE-04": {
   "taxonomy": "MAN.OperateArticulated",
   "objects": [
    "entrance.door"
@@ -806,7 +806,7 @@
   },
   "level": "X"
  },
- "MAN-OPEN-02": {
+ "MAN-OPERATE-05": {
   "taxonomy": "MAN.OperateArticulated",
   "objects": [
    "milk.cap"
@@ -1594,7 +1594,7 @@
   },
   "level": "C"
  },
- "MAN-PICK-01B2": {
+ "MAN-PICK-01B1": {
   "taxonomy": "MAN.Pick",
   "objects": [
    "trash"
@@ -1893,7 +1893,7 @@
   },
   "level": "C"
  },
- "MAN-PICK-01B3": {
+ "MAN-PICK-01B2": {
   "taxonomy": "MAN.Pick",
   "objects": [
    "cutlery"
@@ -1952,7 +1952,7 @@
   },
   "level": "C"
  },
- "MAN-PICK-01B4": {
+ "MAN-PICK-01B3": {
   "taxonomy": "MAN.Pick",
   "objects": [
    "plate"
@@ -1981,7 +1981,7 @@
   },
   "level": "C"
  },
- "MAN-PICK-01B5": {
+ "MAN-PICK-01B4": {
   "taxonomy": "MAN.Pick",
   "objects": [
    "dishwasher_tab"
@@ -2016,13 +2016,7 @@
   "difficulty": null,
   "level": "C"
  },
- "MAN-PICK-02B": {
-  "taxonomy": "MAN.Pick",
-  "objects": [],
-  "difficulty": null,
-  "level": "C"
- },
- "MAN-PICK-02P": {
+ "MAN-PICK-01P2": {
   "taxonomy": "MAN.Pick",
   "objects": [
    "common_objects"
@@ -2095,6 +2089,12 @@
    }
   },
   "level": "E"
+ },
+ "MAN-PICK-02B": {
+  "taxonomy": "MAN.Pick",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
  },
  "MAN-PICK-03": {
   "taxonomy": "MAN.Pick",
@@ -23474,7 +23474,7 @@
   },
   "level": "C"
  },
- "MAN-TRANSPORTWITHBASKET-01": {
+ "MAN-TRANSPORT-01": {
   "taxonomy": "MAN.Transport",
   "objects": [
    "laundry_basket"
@@ -23497,13 +23497,13 @@
   },
   "level": "X"
  },
- "MAN-TRANSPORTWITHBASKET-02P": {
+ "MAN-TRANSPORT-01P": {
   "taxonomy": "MAN.Transport",
   "objects": [],
   "difficulty": null,
   "level": "X"
  },
- "MAN-TRANSPORTWITHTRAY-01": {
+ "MAN-TRANSPORT-02": {
   "taxonomy": "MAN.Transport",
   "objects": [
    "tray"
@@ -23592,25 +23592,6 @@
   },
   "level": "-"
  },
- "NAV-GAZEDIRECTION-01": {
-  "taxonomy": "NAV.SignalIntent",
-  "objects": [],
-  "difficulty": {
-   "min": 1,
-   "max": 1,
-   "tier": "E",
-   "per_object": {
-    "-": {
-     "min": 1,
-     "max": 1,
-     "factors": {
-      "crowd": "few"
-     }
-    }
-   }
-  },
-  "level": "E"
- },
  "NAV-GUIDE-01": {
   "taxonomy": "NAV.Guide",
   "objects": [],
@@ -23654,7 +23635,7 @@
   },
   "level": "E"
  },
- "NAV-NAVIGATE-03": {
+ "NAV-NAVIGATE-02": {
   "taxonomy": "NAV.Navigate",
   "objects": [],
   "difficulty": {
@@ -23676,19 +23657,19 @@
   },
   "level": "C"
  },
+ "NAV-NAVIGATE-02P": {
+  "taxonomy": "NAV.Navigate",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
  "NAV-NAVIGATE-03P": {
   "taxonomy": "NAV.Navigate",
   "objects": [],
   "difficulty": null,
   "level": "C"
  },
- "NAV-NAVIGATE-05P": {
-  "taxonomy": "NAV.Navigate",
-  "objects": [],
-  "difficulty": null,
-  "level": "C"
- },
- "NAV-NAVIGATE-06": {
+ "NAV-NAVIGATE-04": {
   "taxonomy": "NAV.Navigate",
   "objects": [],
   "difficulty": {
@@ -23710,7 +23691,26 @@
   },
   "level": "-"
  },
- "NLU-AVOIDNONESSENTIALQUESTIONS-01B": {
+ "NAV-SIGNAL-01": {
+  "taxonomy": "NAV.SignalIntent",
+  "objects": [],
+  "difficulty": {
+   "min": 1,
+   "max": 1,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "crowd": "few"
+     }
+    }
+   }
+  },
+  "level": "E"
+ },
+ "NLU-CLARIFY-01B": {
   "taxonomy": "NLU.Clarify",
   "objects": [],
   "difficulty": {
@@ -23730,7 +23730,7 @@
   },
   "level": "C"
  },
- "NLU-UNDERSTANDCOMMAND-01": {
+ "NLU-COMMAND-01": {
   "taxonomy": "NLU.UnderstandCommand",
   "objects": [],
   "difficulty": {
@@ -23751,25 +23751,25 @@
   },
   "level": "C"
  },
- "NLU-UNDERSTANDCOMMAND-02P": {
+ "NLU-COMMAND-01P1": {
   "taxonomy": "NLU.UnderstandCommand",
   "objects": [],
   "difficulty": null,
   "level": "C"
  },
- "NLU-UNDERSTANDCOMMAND-03P": {
+ "NLU-COMMAND-01P2": {
   "taxonomy": "NLU.UnderstandCommand",
   "objects": [],
   "difficulty": null,
   "level": "C"
  },
- "NLU-UNDERSTANDCOMMAND-04P": {
+ "NLU-COMMAND-01P3": {
   "taxonomy": "NLU.UnderstandCommand",
   "objects": [],
   "difficulty": null,
   "level": "C"
  },
- "NLU-UNDERSTANDCOMMAND-05": {
+ "NLU-COMMAND-02": {
   "taxonomy": "NLU.UnderstandCommand",
   "objects": [],
   "difficulty": {
@@ -23790,7 +23790,7 @@
   },
   "level": "C"
  },
- "OBJ-DETECTEVENT-01": {
+ "OBJ-EVENT-01": {
   "taxonomy": "OBJ.DetectEvent",
   "objects": [],
   "difficulty": {
@@ -23810,7 +23810,7 @@
   },
   "level": "E"
  },
- "OBJ-PERCEIVE-01": {
+ "OBJ-PLACEMENT-01": {
   "taxonomy": "OBJ.DetectPlacement",
   "objects": [],
   "difficulty": {
@@ -24541,7 +24541,7 @@
   },
   "level": "-"
  },
- "PLN-COMPLETECOMMAND-01B": {
+ "PLN-EXECUTE-01B": {
   "taxonomy": "PLN.Execute",
   "objects": [],
   "difficulty": {
@@ -24563,7 +24563,26 @@
   },
   "level": "-"
  },
- "PLN-DEMONSTRATEPLAN-01": {
+ "PLN-INTERLEAVE-01B": {
+  "taxonomy": "PLN.Interleave",
+  "objects": [],
+  "difficulty": {
+   "min": 2,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "plan_length": "long"
+     }
+    }
+   }
+  },
+  "level": "X"
+ },
+ "PLN-PLAN-01": {
   "taxonomy": "PLN.Plan",
   "objects": [],
   "difficulty": {
@@ -24586,26 +24605,7 @@
   },
   "level": "C"
  },
- "PLN-INTERLEAVETASKS-01B": {
-  "taxonomy": "PLN.Interleave",
-  "objects": [],
-  "difficulty": {
-   "min": 2,
-   "max": 2,
-   "tier": "E",
-   "per_object": {
-    "-": {
-     "min": 2,
-     "max": 2,
-     "factors": {
-      "plan_length": "long"
-     }
-    }
-   }
-  },
-  "level": "X"
- },
- "PPL-DESCRIBEATTRIBUTE-01B": {
+ "PPL-ATTRIBUTE-01B": {
   "taxonomy": "PPL.DescribeAttribute",
   "objects": [],
   "difficulty": {
@@ -24626,13 +24626,13 @@
   },
   "level": "C"
  },
- "PPL-DESCRIBEATTRIBUTE-02P": {
+ "PPL-ATTRIBUTE-02P": {
   "taxonomy": "PPL.DescribeAttribute",
   "objects": [],
   "difficulty": null,
   "level": "C"
  },
- "PPL-DESCRIBEATTRIBUTE-03": {
+ "PPL-ATTRIBUTE-03": {
   "taxonomy": "PPL.DescribeAttribute",
   "objects": [],
   "difficulty": {
@@ -24653,7 +24653,7 @@
   },
   "level": "-"
  },
- "PPL-DESCRIBEATTRIBUTE-04": {
+ "PPL-ATTRIBUTE-04": {
   "taxonomy": "PPL.DescribeAttribute",
   "objects": [],
   "difficulty": {
@@ -24714,7 +24714,7 @@
   },
   "level": "-"
  },
- "PPL-DETECTCALLINGORWAVING-01": {
+ "PPL-GESTURE-01": {
   "taxonomy": "PPL.DetectGesture",
   "objects": [],
   "difficulty": {
@@ -24734,7 +24734,7 @@
   },
   "level": "C"
  },
- "PPL-REIDENTIFY-01": {
+ "PPL-REID-01": {
   "taxonomy": "PPL.Reidentify",
   "objects": [],
   "difficulty": {

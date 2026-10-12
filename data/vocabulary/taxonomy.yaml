@@ -1,6 +1,7 @@
 # Skill taxonomy — WHAT a capability is, independent of any challenge or price.
 #
-# Each dictionary entry points at exactly one node via `taxonomy:`. Many entries
+# Each dictionary entry points at exactly one node via `taxonomy:`, and its id
+# starts with the node's code, so an id leads to its definition. Many entries
 # may share a node (MAN-PICK-01, -03, -04, -05 are all MAN.Pick); what separates
 # them is the object and the conditions, not a new skill. That is what keeps the
 # dictionary short: a harder object is a different *difficulty*, not a different
@@ -8,6 +9,10 @@
 #
 # Node fields
 #   name         human name
+#   code         short code that names the node's lines: <AREA>-<code>-<NN>
+#                (MAN.OperateArticulated: OPERATE -> MAN-OPERATE-01). Unique
+#                within the area; empty for SPECIAL (SPECIAL-01). Not needed
+#                on scored: false nodes.
 #   parent       optional; a sub-skill refines its parent
 #   intent       why a household robot needs this — written for a human reader
 #   success      the observable end state a referee checks. Outcome only.
@@ -105,6 +110,7 @@ nodes:
 
   MAN.Pick:
     name: Pick
+    code: PICK
     intent: >-
       Take an object from where it is so it can be carried elsewhere. The
       single most common manipulation step in household tasks.
@@ -116,6 +122,7 @@ nodes:
 
   MAN.Place:
     name: Place
+    code: PLACE
     intent: >-
       Put a held object down at a target so it stays there, usable and safe —
       as a person would set it down, not drop it.
@@ -129,6 +136,7 @@ nodes:
 
   MAN.Insert:
     name: Insert
+    code: INSERT
     intent: >-
       Place an object into a receptacle that constrains its pose (slot, holder,
       socket). A Place with tight tolerance.
@@ -140,6 +148,7 @@ nodes:
 
   MAN.Pour:
     name: Pour
+    code: POUR
     intent: >-
       Transfer liquid or granular contents from one container into another —
       serving drinks, preparing food.
@@ -153,6 +162,7 @@ nodes:
 
   MAN.OperateArticulated:
     name: Operate articulated object
+    code: OPERATE
     intent: >-
       Move the part of a fixture or container that is constrained to a hinge,
       slide or thread: doors, drawers, racks, lids, caps. Needed to reach what
@@ -166,6 +176,7 @@ nodes:
 
   MAN.OperateControl:
     name: Operate control
+    code: CONTROL
     intent: >-
       Actuate a button, switch, knob or lever to make a device do something
       (start a washing machine, switch a light, boil a kettle).
@@ -177,6 +188,7 @@ nodes:
 
   MAN.Transport:
     name: Transport
+    code: TRANSPORT
     intent: >-
       Move one or more objects between places while keeping them secure,
       possibly using a carrier (tray, basket).
@@ -188,6 +200,7 @@ nodes:
 
   MAN.Fold:
     name: Fold
+    code: FOLD
     intent: Turn a loose piece of clothing into a compact, regular folded shape.
     success: Garment meets the task's fold-quality criterion.
     not_judged: Folding sequence, tools on the robot.
@@ -197,6 +210,7 @@ nodes:
 
   MAN.Stack:
     name: Stack
+    code: STACK
     intent: Arrange items on top of each other in a neat, stable pile.
     success: Stack is stable and items are aligned to the task criterion.
     not_judged: Technique.
@@ -206,6 +220,7 @@ nodes:
 
   MAN.Wipe:
     name: Wipe surface
+    code: WIPE
     intent: Clean a surface (table, counter) by moving a tool or cloth over it.
     success: Target area is visibly cleared of the defined dirt.
     not_judged: Tool, pattern of motion.
@@ -217,6 +232,7 @@ nodes:
 
   NAV.Navigate:
     name: Navigate
+    code: NAVIGATE
     intent: >-
       Move to a named or perceived place in the home safely; the glue of every
       multi-room task.
@@ -228,6 +244,7 @@ nodes:
 
   NAV.Follow:
     name: Follow person
+    code: FOLLOW
     intent: Keep up with a walking person to a destination they choose.
     success: Robot arrives with the person without losing or contacting them.
     not_judged: Tracking method.
@@ -238,6 +255,7 @@ nodes:
 
   NAV.Guide:
     name: Guide person
+    code: GUIDE
     intent: Lead a person to a destination, adapting to their pace.
     success: Person arrives at the destination together with the robot.
     not_judged: Method of signalling direction.
@@ -247,6 +265,7 @@ nodes:
 
   NAV.AvoidObstacle:
     name: Avoid obstacle
+    code: AVOID
     intent: >-
       Reach a goal despite unexpected objects, restricted zones or people in
       the way. Scored by outcome (no contact), not by detecting the obstacle.
@@ -259,6 +278,7 @@ nodes:
 
   NAV.SignalIntent:
     name: Signal motion intent
+    code: SIGNAL
     intent: >-
       Make the robot's movement legible to people around it, e.g. by looking
       where it is going.
@@ -271,6 +291,7 @@ nodes:
 
   OBJ.Recognize:
     name: Recognize object
+    code: RECOGNIZE
     intent: >-
       Tell which object (or class) is in front of the robot, so it acts on the
       right thing.
@@ -282,6 +303,7 @@ nodes:
 
   OBJ.DetectPlacement:
     name: Determine placement
+    code: PLACEMENT
     intent: >-
       Decide where an object belongs — free space on a surface, or the shelf
       holding semantically similar items.
@@ -293,6 +315,7 @@ nodes:
 
   OBJ.DetectEvent:
     name: Detect event
+    code: EVENT
     intent: Notice a non-speech signal from the home (doorbell, alarm, knock).
     success: Robot reacts to the event within the task's time window.
     not_judged: Sensor.
@@ -301,6 +324,7 @@ nodes:
 
   OBJ.EstimatePose:
     name: Estimate object pose
+    code: POSE
     intent: Find an object's 3D position and orientation to plan an action on it.
     success: Downstream action succeeds; not scored on its own.
     not_judged: Method.
@@ -310,6 +334,7 @@ nodes:
 
   OBJ.DetectAbsence:
     name: Detect absence
+    code: ABSENCE
     intent: Notice that something expected is missing (a guest without a drink).
     success: Robot correctly reports the missing item or class.
     not_judged: Method.
@@ -321,6 +346,7 @@ nodes:
 
   PPL.Detect:
     name: Detect person
+    code: DETECT
     intent: Know that a person is present and where.
     success: Robot orients to / reports each person in scope.
     not_judged: Sensor, model.
@@ -329,6 +355,7 @@ nodes:
 
   PPL.DetectGesture:
     name: Detect gesture
+    code: GESTURE
     intent: Recognise a deliberate bodily signal (waving, calling, pointing).
     success: Robot reacts to the correct person's gesture.
     not_judged: Method.
@@ -339,6 +366,7 @@ nodes:
 
   PPL.DetectActivity:
     name: Detect activity
+    code: ACTIVITY
     intent: >-
       Recognise what people are doing when they are not signalling the robot —
       a conversation has ended, a guest is wearing shoes, someone entered — so
@@ -352,6 +380,7 @@ nodes:
 
   PPL.ResolvePointing:
     name: Resolve pointing
+    code: POINTING
     intent: Work out which object or place a person is pointing at.
     success: Robot names or acts on the object/place the person meant.
     not_judged: Method.
@@ -362,6 +391,7 @@ nodes:
 
   PPL.DescribeAttribute:
     name: Describe person
+    code: ATTRIBUTE
     intent: Tell a visual attribute of a person (clothing, hair, height).
     success: Stated attribute is correct.
     not_judged: Phrasing.
@@ -371,6 +401,7 @@ nodes:
 
   PPL.Reidentify:
     name: Re-identify person
+    code: REID
     intent: Recognise a person met earlier, by face, voice or appearance.
     success: Robot addresses/locates the right person.
     not_judged: Modality used.
@@ -382,6 +413,7 @@ nodes:
 
   HRI.Attend:
     name: Attend to people
+    code: ATTEND
     intent: >-
       Show awareness of the people the robot interacts with — acknowledge them,
       face them, do not ignore them.
@@ -397,6 +429,7 @@ nodes:
 
   HRI.Gaze:
     name: Social gaze
+    code: GAZE
     parent: HRI.Attend
     intent: Look at the person speaking or being spoken about.
     success: Head/gaze is visibly directed at the correct person.
@@ -407,6 +440,7 @@ nodes:
 
   HRI.Handover:
     name: Handover
+    code: HANDOVER
     intent: >-
       Pass an object to, or take it from, a person directly — without the
       person having to adapt to the robot's mechanics.
@@ -419,6 +453,7 @@ nodes:
 
   HRI.Indicate:
     name: Indicate
+    code: INDICATE
     intent: >-
       Direct a person's attention to a place or object (offer a free seat,
       show where something is).
@@ -429,6 +464,7 @@ nodes:
 
   HRI.ConveyInfo:
     name: Convey information
+    code: INFO
     intent: >-
       Tell a person something the robot learned earlier — a guest's name, a
       customer's order, a summary of what happened — correctly and to the
@@ -442,6 +478,7 @@ nodes:
 
   HRI.Explain:
     name: Make state visible
+    code: EXPLAIN
     intent: >-
       Show people what the robot perceives, hears and intends — camera view,
       recognised objects, speech-to-text, current subtask, planned path — so
@@ -454,6 +491,7 @@ nodes:
 
   HRI.Interrupt:
     name: Stop on request
+    code: INTERRUPT
     intent: >-
       Stop the current action at once when a person says "stop" or touches the
       robot, and resume only when told to. The basic safety contract with
@@ -468,6 +506,7 @@ nodes:
 
   NLU.UnderstandCommand:
     name: Understand command
+    code: COMMAND
     intent: >-
       Turn a spoken request from a non-expert into an actionable goal, despite
       paraphrase and noise.
@@ -479,6 +518,7 @@ nodes:
 
   NLU.ExtractInfo:
     name: Extract information
+    code: EXTRACT
     intent: >-
       Pick out and store facts a person states (name, favourite drink, order,
       where something is).
@@ -490,6 +530,7 @@ nodes:
 
   NLU.Clarify:
     name: Clarify efficiently
+    code: CLARIFY
     intent: >-
       Ask only the questions needed to remove ambiguity — not burden the user
       with confirmations.
@@ -502,6 +543,7 @@ nodes:
 
   PLN.Plan:
     name: Plan
+    code: PLAN
     intent: Decompose a goal into a sequence of executable skills.
     success: Robot communicates a plan that would achieve the goal.
     not_judged: Planner.
@@ -510,6 +552,7 @@ nodes:
 
   PLN.Execute:
     name: Execute task
+    code: EXECUTE
     intent: Carry a multi-step command through to its goal state.
     success: >-
       Goal conditions of the command hold at the end. Partial completion is
@@ -521,6 +564,7 @@ nodes:
 
   PLN.Interleave:
     name: Interleave tasks
+    code: INTERLEAVE
     parent: PLN.Execute
     intent: Work on several commands at once when it saves time.
     success: Steps of different commands are interleaved and all goals hold.
@@ -532,6 +576,7 @@ nodes:
 
   GEN.HumanAssistance:
     name: Human assistance
+    code: ASSIST
     intent: >-
       Not a robot capability. Records that a human did part of the task, so the
       score reflects only what the robot did itself (§3.7).
@@ -542,6 +587,7 @@ nodes:
 
   GEN.AlternativeInput:
     name: Alternative interaction channel
+    code: ALTINPUT
     intent: >-
       Not a robot capability. Records that the robot used a less natural input
       channel than speech with the default operator (§3.7.4).
@@ -552,6 +598,7 @@ nodes:
 
   GEN.UnsafeConduct:
     name: Unsafe conduct
+    code: UNSAFE
     intent: >-
       Not a skill. Records that the robot endangered a person, so safety has a
       price in the score and not only in the stop it causes (league draft #90).
@@ -563,6 +610,7 @@ nodes:
 
   GEN.TaskConstraint:
     name: Task-specific constraint
+    code: CONSTRAINT
     intent: >-
       Not a skill. A task-level rule whose violation is penalised (e.g. the
       breakfast must look like a typical meal setting).
@@ -573,6 +621,7 @@ nodes:
 
   SPECIAL.Administrative:
     name: Administrative
+    code: ''
     intent: Rulebook §3.8 lines that are not robot capabilities.
     success: n/a
     not_judged: n/a

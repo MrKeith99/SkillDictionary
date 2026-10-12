@@ -1,9 +1,6 @@
 area: GEN
 skills:
-- id: GEN-ALTERNATIVEHRI-01P
-  area: GEN
-  skill: AlternativeHRI
-  variant_number: '01'
+- id: GEN-ALTINPUT-01P
   taxonomy: GEN.AlternativeInput
   modifiers: []
   description: Alternative HRI
@@ -11,10 +8,7 @@ skills:
   level: C
   points: -15
   type: penalty_behavior
-- id: GEN-ALTERNATIVEHRI-02P
-  area: GEN
-  skill: AlternativeHRI
-  variant_number: '02'
+- id: GEN-ALTINPUT-02P
   taxonomy: GEN.AlternativeInput
   modifiers:
   - order
@@ -23,22 +17,7 @@ skills:
   level: C
   points: -30
   type: penalty_behavior
-- id: GEN-BREAKFAST-01P
-  area: GEN
-  skill: null
-  variant_number: 01P
-  taxonomy: GEN.TaskConstraint
-  modifiers:
-  - typical_setting
-  description: Breakfast not served in a typical meal setting
-  failure_mode: quality
-  level: '-'
-  points: -50
-  type: penalty_behavior
-- id: GEN-HUMANASSIST-01P
-  area: GEN
-  skill: null
-  variant_number: '01'
+- id: GEN-ASSIST-01P
   taxonomy: GEN.HumanAssistance
   modifiers:
   - object_repositioned
@@ -47,10 +26,7 @@ skills:
   level: '-'
   points: -5
   type: penalty_behavior
-- id: GEN-HUMANASSIST-02P
-  area: GEN
-  skill: null
-  variant_number: '02'
+- id: GEN-ASSIST-02P
   taxonomy: GEN.HumanAssistance
   modifiers:
   - handover
@@ -59,10 +35,7 @@ skills:
   level: '-'
   points: -40
   type: penalty_behavior
-- id: GEN-HUMANASSIST-04P
-  area: GEN
-  skill: null
-  variant_number: '04'
+- id: GEN-ASSIST-03P
   taxonomy: GEN.HumanAssistance
   modifiers:
   - opening_milk_container
@@ -71,10 +44,7 @@ skills:
   level: '-'
   points: 0
   type: penalty_behavior
-- id: GEN-HUMANASSIST-05P
-  area: GEN
-  skill: null
-  variant_number: '05'
+- id: GEN-ASSIST-04P
   taxonomy: GEN.HumanAssistance
   modifiers:
   - dishwasher_door_or_rack
@@ -83,10 +53,7 @@ skills:
   level: '-'
   points: 0
   type: penalty_behavior
-- id: GEN-HUMANASSIST-08P
-  area: GEN
-  skill: null
-  variant_number: '08'
+- id: GEN-ASSIST-05P
   taxonomy: GEN.HumanAssistance
   modifiers:
   - additional
@@ -96,10 +63,7 @@ skills:
   level: '-'
   points: -100
   type: penalty_behavior
-- id: GEN-HUMANASSIST-09P
-  area: GEN
-  skill: null
-  variant_number: '09'
+- id: GEN-ASSIST-06P
   taxonomy: GEN.HumanAssistance
   modifiers:
   - additional
@@ -111,10 +75,7 @@ skills:
   type: penalty_behavior
   penalty_type: percentage
   basis: MAN-FOLD-02 points
-- id: GEN-HUMANASSIST-11P
-  area: GEN
-  skill: null
-  variant_number: '11'
+- id: GEN-ASSIST-07P
   taxonomy: GEN.HumanAssistance
   modifiers:
   - guest_takes_from_tray_or_hand
@@ -123,10 +84,7 @@ skills:
   level: '-'
   points: -20
   type: penalty_behavior
-- id: GEN-HUMANASSIST-12P
-  area: GEN
-  skill: null
-  variant_number: '12'
+- id: GEN-ASSIST-08P
   taxonomy: GEN.HumanAssistance
   modifiers:
   - directional_confirmation
@@ -135,10 +93,7 @@ skills:
   level: '-'
   points: -30
   type: penalty_behavior
-- id: GEN-HUMANASSIST-13P
-  area: GEN
-  skill: null
-  variant_number: '13'
+- id: GEN-ASSIST-09P
   taxonomy: GEN.HumanAssistance
   modifiers:
   - told_pointed_location
@@ -147,10 +102,7 @@ skills:
   level: '-'
   points: -25
   type: penalty_behavior
-- id: GEN-HUMANASSIST-14P
-  area: GEN
-  skill: null
-  variant_number: '14'
+- id: GEN-ASSIST-10P
   taxonomy: GEN.HumanAssistance
   modifiers:
   - environment_change
@@ -159,10 +111,16 @@ skills:
   level: '-'
   points: -40
   type: penalty_behavior
-- id: GEN-UNSAFECONTACT-01P
-  area: GEN
-  skill: UnsafeContact
-  variant_number: 01P
+- id: GEN-CONSTRAINT-01P
+  taxonomy: GEN.TaskConstraint
+  modifiers:
+  - typical_setting
+  description: Breakfast not served in a typical meal setting
+  failure_mode: quality
+  level: '-'
+  points: -50
+  type: penalty_behavior
+- id: GEN-UNSAFE-01P
   taxonomy: GEN.UnsafeConduct
   modifiers:
   - person

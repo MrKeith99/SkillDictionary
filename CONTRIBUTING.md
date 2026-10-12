@@ -88,11 +88,15 @@ different `objects` / `conditions` (and so a different difficulty).
 `used_by` and `total_score` are computed by the build. The loader refuses
 them in the sources, so they can never go stale.
 
-### Never reuse or reassign a `variant_number`
+### Ids: name the skill, never reuse
 
-Numbers are permanent. The TC cites ids in writing, so `MAN-APPLIANCE-02` must
-keep meaning the dishwasher door forever. New lines take the next free number
-for their stem; a merged line's id is retired, never reused.
+An id is `<AREA>-<code>-<NN>[B|P<n>]`, with the `code` of its taxonomy node;
+loading fails otherwise. Ids are permanent: the TC cites them in writing, so
+`MAN-OPERATE-02` must keep meaning the dishwasher door. A new line takes the
+next free number for its skill; a bonus or penalty on a line takes that line's
+number plus `B` / `P` (`B1`, `B2`, … when there are several). A retired id is
+never reused. Do not write `area`, `skill` or `variant_number`: they are
+derived from the id.
 
 ### Keep modifiers to object and environment properties
 
@@ -125,10 +129,7 @@ the PR and in `docs/changes-<year>.md`.
 Add the entry to the area file in `data/skills/`, keeping entries sorted by id:
 
 ```yaml
-- id: MAN-PICK-14
-  area: MAN
-  skill: Pick
-  variant_number: '14'
+- id: MAN-PICK-07
   taxonomy: MAN.Pick
   modifiers: [deformable, from_floor]
   description: Picking up a deformable object from the floor
@@ -143,7 +144,7 @@ Add the entry to the area file in `data/skills/`, keeping entries sorted by id:
 Then reference it from the challenge:
 
 ```yaml
-- ref: MAN-PICK-14
+- ref: MAN-PICK-07
   count: 2
   section: Main Goal
   assistance:
@@ -171,10 +172,10 @@ Controlled vocabularies:
 
 | field | allowed |
 |---|---|
-| `area` | NAV, MAN, OBJ, PPL, HRI, NLU, PLN, COM, SAF, GEN, SPECIAL |
+| file | `data/skills/<AREA>.yaml`: NAV, MAN, OBJ, PPL, HRI, NLU, PLN, GEN, SPECIAL |
 | `level` | `E`, `C`, `X`, `-` — see below |
 | `type` | `achievement`, `bonus`, `penalty_behavior`, `disqualifying`, `administrative` |
-| `id` | `^[A-Z]+(-[A-Z]+)?-[0-9]{2,}[A-Z]?[0-9]*$` |
+| `id` | `<AREA>-<code>-<NN>` + optional `B`/`P` + index; `code` from the taxonomy node |
 
 ### Choosing a `level`
 
@@ -186,13 +187,13 @@ independent — judge how many teams could actually do it, not what it pays.
 | `E` | Entry — most teams achieve it reliably |
 | `C` | Competent — typical of the mid-field |
 | `X` | Expert — few teams manage it |
-| `-` | not a robot capability; use whenever `skill` is `null` |
+| `-` | not a robot capability (assistance, administrative) |
 
 - **No quantitative threshold exists yet.** Match the level of comparable
   existing skills in the same area and say in the PR why you chose it. T1
   compares it with the intrinsic difficulty D.
 - **Levels are reassigned annually** from empirical team performance, unlike
-  `variant_number`. If last competition's results contradict a level, that is a
+  the id. If last competition's results contradict a level, that is a
   legitimate PR of its own.
 
 Use `administrative` for §3.8 lines that are not robot capabilities

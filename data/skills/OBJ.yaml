@@ -1,9 +1,6 @@
 area: OBJ
 skills:
-- id: OBJ-DETECTEVENT-01
-  area: OBJ
-  skill: DetectEvent
-  variant_number: '01'
+- id: OBJ-EVENT-01
   taxonomy: OBJ.DetectEvent
   modifiers:
   - audio
@@ -15,10 +12,7 @@ skills:
   level: E
   points: 30
   type: achievement
-- id: OBJ-PERCEIVE-01
-  area: OBJ
-  skill: Perceive
-  variant_number: '01'
+- id: OBJ-PLACEMENT-01
   taxonomy: OBJ.DetectPlacement
   modifiers:
   - placement
@@ -32,9 +26,6 @@ skills:
   points: 30
   type: achievement
 - id: OBJ-RECOGNIZE-01
-  area: OBJ
-  skill: Recognize
-  variant_number: '01'
   taxonomy: OBJ.Recognize
   modifiers:
   - known_object
@@ -48,9 +39,6 @@ skills:
   points: 10
   type: achievement
 - id: OBJ-RECOGNIZE-02
-  area: OBJ
-  skill: Recognize
-  variant_number: '02'
   taxonomy: OBJ.Recognize
   modifiers:
   - search
@@ -67,9 +55,6 @@ skills:
   type: achievement
   points: 15
 - id: OBJ-RECOGNIZE-03
-  area: OBJ
-  skill: Recognize
-  variant_number: '03'
   taxonomy: OBJ.Recognize
   modifiers:
   - count

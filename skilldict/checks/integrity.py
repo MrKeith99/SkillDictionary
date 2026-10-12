@@ -1,6 +1,5 @@
 """References resolve, ids are hygienic, and no challenge carries a price."""
 import re
-from collections import defaultdict
 from . import RULE
 
 ID = re.compile(r"^[A-Z]+-[A-Z]")
@@ -46,15 +45,6 @@ def run(b):
     for s, p, v in stale:
         print(f"  {s}: {p} -> {v} (no such line)")
     fail += len(stale)
-
-    # variant_number is permanent: never two lines with one number in a stem.
-    seen = defaultdict(set)
-    for e in D.values():
-        stem = e["id"].rsplit("-", 1)[0]
-        if e["variant_number"] in seen[stem]:
-            print(f"  variant_number {e['variant_number']} reused within {stem}")
-            fail += 1
-        seen[stem].add(e["variant_number"])
 
     # Every line is used somewhere: remove a line with its last reference.
     used = {it["ref"] for ch in CH.values() for it in ch["entries"]}

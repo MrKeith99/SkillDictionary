@@ -1,9 +1,6 @@
 area: NLU
 skills:
-- id: NLU-AVOIDNONESSENTIALQUESTIONS-01B
-  area: NLU
-  skill: AvoidNonEssentialQuestions
-  variant_number: '01'
+- id: NLU-CLARIFY-01B
   taxonomy: NLU.Clarify
   modifiers: []
   description: Not asking non-essential questions to confirm or correct information
@@ -13,10 +10,7 @@ skills:
   level: C
   points: 15
   type: bonus
-- id: NLU-UNDERSTANDCOMMAND-01
-  area: NLU
-  skill: UnderstandCommand
-  variant_number: '01'
+- id: NLU-COMMAND-01
   taxonomy: NLU.UnderstandCommand
   modifiers:
   - spoken
@@ -28,10 +22,7 @@ skills:
   level: C
   points: 100
   type: achievement
-- id: NLU-UNDERSTANDCOMMAND-02P
-  area: NLU
-  skill: UnderstandCommand
-  variant_number: '02'
+- id: NLU-COMMAND-01P1
   taxonomy: NLU.UnderstandCommand
   modifiers:
   - custom_operator
@@ -40,10 +31,7 @@ skills:
   level: C
   points: -25
   type: penalty_behavior
-- id: NLU-UNDERSTANDCOMMAND-03P
-  area: NLU
-  skill: UnderstandCommand
-  variant_number: '03'
+- id: NLU-COMMAND-01P2
   taxonomy: NLU.UnderstandCommand
   modifiers:
   - rephrasing_requested
@@ -52,10 +40,7 @@ skills:
   level: C
   points: -50
   type: penalty_behavior
-- id: NLU-UNDERSTANDCOMMAND-04P
-  area: NLU
-  skill: UnderstandCommand
-  variant_number: '04'
+- id: NLU-COMMAND-01P3
   taxonomy: NLU.UnderstandCommand
   modifiers:
   - bypassed_speech_rec
@@ -64,10 +49,7 @@ skills:
   level: C
   points: -25
   type: penalty_behavior
-- id: NLU-UNDERSTANDCOMMAND-05
-  area: NLU
-  skill: UnderstandCommand
-  variant_number: '05'
+- id: NLU-COMMAND-02
   taxonomy: NLU.UnderstandCommand
   modifiers:
   - confirm

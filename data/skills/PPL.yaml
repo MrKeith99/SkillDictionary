@@ -1,9 +1,6 @@
 area: PPL
 skills:
-- id: PPL-DESCRIBEATTRIBUTE-01B
-  area: PPL
-  skill: DescribeAttribute
-  variant_number: '01'
+- id: PPL-ATTRIBUTE-01B
   taxonomy: PPL.DescribeAttribute
   modifiers:
   - correct
@@ -16,10 +13,7 @@ skills:
   level: C
   points: 20
   type: bonus
-- id: PPL-DESCRIBEATTRIBUTE-02P
-  area: PPL
-  skill: DescribeAttribute
-  variant_number: '02'
+- id: PPL-ATTRIBUTE-02P
   taxonomy: PPL.DescribeAttribute
   modifiers:
   - incorrect
@@ -29,10 +23,7 @@ skills:
   level: C
   points: -10
   type: penalty_behavior
-- id: PPL-DESCRIBEATTRIBUTE-03
-  area: PPL
-  skill: DescribeAttribute
-  variant_number: '03'
+- id: PPL-ATTRIBUTE-03
   taxonomy: PPL.DescribeAttribute
   modifiers:
   - clothing
@@ -45,10 +36,7 @@ skills:
   level: '-'
   type: achievement
   points: 20
-- id: PPL-DESCRIBEATTRIBUTE-04
-  area: PPL
-  skill: DescribeAttribute
-  variant_number: '04'
+- id: PPL-ATTRIBUTE-04
   taxonomy: PPL.DescribeAttribute
   modifiers:
   - name
@@ -64,9 +52,6 @@ skills:
   type: achievement
   points: 20
 - id: PPL-DETECT-01
-  area: PPL
-  skill: Detect
-  variant_number: '01'
   taxonomy: PPL.Detect
   modifiers:
   - gesture
@@ -80,9 +65,6 @@ skills:
   type: achievement
   points: 70
 - id: PPL-DETECT-02
-  area: PPL
-  skill: Detect
-  variant_number: '02'
   taxonomy: PPL.Detect
   modifiers:
   - count
@@ -93,10 +75,7 @@ skills:
   level: '-'
   type: achievement
   points: 60
-- id: PPL-DETECTCALLINGORWAVING-01
-  area: PPL
-  skill: DetectCallingOrWaving
-  variant_number: '01'
+- id: PPL-GESTURE-01
   taxonomy: PPL.DetectGesture
   modifiers:
   - customer
@@ -107,10 +86,7 @@ skills:
   level: C
   points: 80
   type: achievement
-- id: PPL-REIDENTIFY-01
-  area: PPL
-  skill: Reidentify
-  variant_number: '01'
+- id: PPL-REID-01
   taxonomy: PPL.Reidentify
   modifiers:
   - met_earlier

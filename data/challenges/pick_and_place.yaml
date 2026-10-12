@@ -21,11 +21,11 @@ entries:
     permitted: true
     listed_in_task_description: true
     self_score: 0
-    extra_penalty_ref: GEN-HUMANASSIST-01P
+    extra_penalty_ref: GEN-ASSIST-01P
     blocks_dependents: false
     note: Pointing to objects is listed assistance in §5.2 rule 15.
   note: Robot must clearly communicate perception to the referee (§5.2 rule 16).
-- ref: OBJ-PERCEIVE-01
+- ref: OBJ-PLACEMENT-01
   count: 2
   assistance:
     permitted: false
@@ -41,7 +41,7 @@ entries:
     permitted: true
     listed_in_task_description: true
     self_score: 0
-    extra_penalty_ref: GEN-HUMANASSIST-02P
+    extra_penalty_ref: GEN-ASSIST-02P
     blocks_dependents: false
     note: Handover assistance forfeits this line (-0 self) and costs -100; placing remains available.
 - ref: MAN-PICK-02B
@@ -54,7 +54,7 @@ entries:
     satisfiable_by_assistance: false
     note: Bonus requires an autonomous first pick.
   related_skill: MAN-PICK-01
-- ref: MAN-PICK-01B2
+- ref: MAN-PICK-01B1
   count: 1
   section: Picking
   depends_on:
@@ -63,8 +63,17 @@ entries:
     blocking: true
     satisfiable_by_assistance: false
   related_skill: MAN-PICK-01
-- ref: MAN-PICK-01B3
+- ref: MAN-PICK-01B2
   count: 2
+  section: Picking
+  depends_on:
+  - ref: MAN-PICK-01
+    nature: sequential
+    blocking: true
+    satisfiable_by_assistance: false
+  related_skill: MAN-PICK-01
+- ref: MAN-PICK-01B3
+  count: 1
   section: Picking
   depends_on:
   - ref: MAN-PICK-01
@@ -81,16 +90,7 @@ entries:
     blocking: true
     satisfiable_by_assistance: false
   related_skill: MAN-PICK-01
-- ref: MAN-PICK-01B5
-  count: 1
-  section: Picking
-  depends_on:
-  - ref: MAN-PICK-01
-    nature: sequential
-    blocking: true
-    satisfiable_by_assistance: false
-  related_skill: MAN-PICK-01
-- ref: MAN-PICK-02P
+- ref: MAN-PICK-01P2
   count: 2
   section: Picking
   related_skill: MAN-PICK-01
@@ -108,18 +108,18 @@ entries:
     permitted: true
     listed_in_task_description: true
     self_score: 0
-    extra_penalty_ref: GEN-HUMANASSIST-01P
+    extra_penalty_ref: GEN-ASSIST-01P
     blocks_dependents: false
 - ref: MAN-PLACE-02B1
   count: 3
   section: Placing
   depends_on:
-  - ref: MAN-APPLIANCE-02
+  - ref: MAN-OPERATE-02
     nature: physical
     blocking: false
     satisfiable_by_assistance: true
     note: Door may be opened by referee at no cost (-0); these points remain fully available.
-  - ref: MAN-APPLIANCE-01
+  - ref: MAN-OPERATE-01
     nature: physical
     blocking: false
     satisfiable_by_assistance: true
@@ -128,7 +128,7 @@ entries:
     permitted: true
     listed_in_task_description: true
     self_score: 0
-    extra_penalty_ref: GEN-HUMANASSIST-01P
+    extra_penalty_ref: GEN-ASSIST-01P
     blocks_dependents: false
   related_skill: MAN-PLACE-02
   note: Items must be positioned as a human would and be cleanable by the machine (§5.2 rule 9).
@@ -144,11 +144,11 @@ entries:
   count: 1
   section: Placing
   depends_on:
-  - ref: MAN-PICK-01B5
+  - ref: MAN-PICK-01B4
     nature: sequential
     blocking: true
     satisfiable_by_assistance: true
-  - ref: MAN-APPLIANCE-02
+  - ref: MAN-OPERATE-02
     nature: physical
     blocking: false
     satisfiable_by_assistance: true
@@ -165,37 +165,37 @@ entries:
   count: 2
   section: Placing
   related_skill: MAN-PLACE-02
-- ref: MAN-APPLIANCE-01
+- ref: MAN-OPERATE-01
   count: 2
   section: Extra Rewards
   assistance:
     permitted: true
     listed_in_task_description: true
     self_score: 0
-    extra_penalty_ref: GEN-HUMANASSIST-05P
+    extra_penalty_ref: GEN-ASSIST-04P
     extra_penalty: 0
     blocks_dependents: false
     note: Explicitly free (-0). Assisted execution forfeits this line only.
-- ref: MAN-APPLIANCE-02
+- ref: MAN-OPERATE-02
   count: 2
   section: Extra Rewards
   assistance:
     permitted: true
     listed_in_task_description: true
     self_score: 0
-    extra_penalty_ref: GEN-HUMANASSIST-05P
+    extra_penalty_ref: GEN-ASSIST-04P
     extra_penalty: 0
     blocks_dependents: false
     note: Explicitly free (-0). Reward is defined as autonomous ('without assistance').
   ambiguity: 'Single entry bundles opening and closing, which have different preconditions: §5.2 rule 8 awards closing points only after at least one item has been placed inside. Consider splitting into MAN-APPLIANCE-02a (open) and 02b (close, depends_on MAN-PLACE-02B1).'
-- ref: MAN-OPEN-02
+- ref: MAN-OPERATE-05
   count: 1
   section: Extra Rewards
   assistance:
     permitted: true
     listed_in_task_description: true
     self_score: 0
-    extra_penalty_ref: GEN-HUMANASSIST-04P
+    extra_penalty_ref: GEN-ASSIST-03P
     extra_penalty: 0
     blocks_dependents: false
     note: Explicitly free (-0); robot must clearly ask for help (§5.2 rule 13).
@@ -203,7 +203,7 @@ entries:
   count: 2
   section: Extra Rewards
   depends_on:
-  - ref: MAN-OPEN-02
+  - ref: MAN-OPERATE-05
     nature: physical
     blocking: false
     satisfiable_by_assistance: true
@@ -217,7 +217,7 @@ entries:
     permitted: true
     listed_in_task_description: true
     self_score: 0
-    extra_penalty_ref: GEN-HUMANASSIST-04P
+    extra_penalty_ref: GEN-ASSIST-03P
     extra_penalty: 0
     blocks_dependents: false
   note: A significant amount must be poured; a few drops or bits is not enough.
@@ -225,7 +225,7 @@ entries:
   count: 12
   section: Penalties
   related_skill: MAN-PLACE-02
-- ref: GEN-BREAKFAST-01P
+- ref: GEN-CONSTRAINT-01P
   count: 1
   section: Penalties
 - ref: MAN-PICK-01P1
@@ -236,26 +236,26 @@ entries:
   count: 2
   section: Penalties
   related_skill: MAN-POUR-01
-- ref: GEN-HUMANASSIST-01P
+- ref: GEN-ASSIST-01P
   count: 12
   section: Penalties
-- ref: GEN-HUMANASSIST-02P
+- ref: GEN-ASSIST-02P
   count: 24
   section: Penalties
   ambiguity: Count is 24 (2x the 12 picks). Confirm whether this is intended as pick+place handovers counted separately.
-- ref: GEN-HUMANASSIST-14P
+- ref: GEN-ASSIST-10P
   count: 1
   section: Penalties
   note: Applied per item / per group of nearby items moved (§5.2 rule 15).
-- ref: GEN-HUMANASSIST-04P
+- ref: GEN-ASSIST-03P
   count: 1
   section: Penalties
   note: Explicitly zero-cost assistance.
-- ref: GEN-HUMANASSIST-05P
+- ref: GEN-ASSIST-04P
   count: 1
   section: Penalties
   note: Explicitly zero-cost assistance.
-- ref: GEN-UNSAFECONTACT-01P
+- ref: GEN-UNSAFE-01P
   count: 1
   section: Penalties
 - ref: SPECIAL-01

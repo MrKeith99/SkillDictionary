@@ -38,7 +38,7 @@ def taxonomy(b):
     print("     Not an error: either a factor is missing, or the level needs revisiting.")
 
     # A bonus or discount attached to a parent via related_skill is not a skill
-    # of its own: picking a plate in Pick & Place pays MAN-PICK-01 + MAN-PICK-01B4.
+    # of its own: picking a plate in Pick & Place pays MAN-PICK-01 + MAN-PICK-01B3.
     lines = []
     for slug, ch in CH.items():
         for it in ch["entries"]:

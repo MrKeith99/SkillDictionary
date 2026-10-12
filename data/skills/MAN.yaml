@@ -1,52 +1,6 @@
 area: MAN
 skills:
-- id: MAN-APPLIANCE-01
-  area: MAN
-  skill: Appliance
-  variant_number: '01'
-  taxonomy: MAN.OperateArticulated
-  modifiers:
-  - dishwasher_rack
-  - pull_push
-  description: Pull or push the dishwasher rack
-  objects:
-  - dishwasher.rack
-  level: X
-  points: 300
-  type: achievement
-- id: MAN-APPLIANCE-02
-  area: MAN
-  skill: Appliance
-  variant_number: '02'
-  taxonomy: MAN.OperateArticulated
-  modifiers:
-  - dishwasher_door
-  - no_assistance
-  - open_close
-  description: Open or close the dishwasher door without assistance
-  objects:
-  - dishwasher.door
-  level: X
-  points: 200
-  type: achievement
-- id: MAN-APPLIANCE-03
-  area: MAN
-  skill: Appliance
-  variant_number: '03'
-  taxonomy: MAN.OperateArticulated
-  modifiers:
-  - open
-  - washing_machine_door
-  description: Opening the washing machine door
-  objects:
-  - washing_machine.door
-  level: X
-  points: 270
-  type: achievement
-- id: MAN-FOLD-02
-  area: MAN
-  skill: Fold
-  variant_number: '02'
+- id: MAN-FOLD-01
   taxonomy: MAN.Fold
   modifiers:
   - additional_item
@@ -56,10 +10,7 @@ skills:
   level: X
   points: 600
   type: achievement
-- id: MAN-FOLD-02B
-  area: MAN
-  skill: Fold
-  variant_number: 02B
+- id: MAN-FOLD-01B
   taxonomy: MAN.Fold
   modifiers:
   - main_goal
@@ -70,10 +21,7 @@ skills:
   level: '-'
   type: bonus
   points: 400
-- id: MAN-FOLD-02P1
-  area: MAN
-  skill: Fold
-  variant_number: 02P1
+- id: MAN-FOLD-01P
   taxonomy: MAN.Fold
   modifiers:
   - additional
@@ -84,9 +32,6 @@ skills:
   points: -600
   type: penalty_behavior
 - id: MAN-INSERT-01
-  area: MAN
-  skill: Insert
-  variant_number: '01'
   taxonomy: MAN.Insert
   modifiers:
   - dishwasher_tab_slot
@@ -100,10 +45,41 @@ skills:
   level: X
   points: 160
   type: achievement
-- id: MAN-OPEN-01
-  area: MAN
-  skill: Open
-  variant_number: '01'
+- id: MAN-OPERATE-01
+  taxonomy: MAN.OperateArticulated
+  modifiers:
+  - dishwasher_rack
+  - pull_push
+  description: Pull or push the dishwasher rack
+  objects:
+  - dishwasher.rack
+  level: X
+  points: 300
+  type: achievement
+- id: MAN-OPERATE-02
+  taxonomy: MAN.OperateArticulated
+  modifiers:
+  - dishwasher_door
+  - no_assistance
+  - open_close
+  description: Open or close the dishwasher door without assistance
+  objects:
+  - dishwasher.door
+  level: X
+  points: 200
+  type: achievement
+- id: MAN-OPERATE-03
+  taxonomy: MAN.OperateArticulated
+  modifiers:
+  - open
+  - washing_machine_door
+  description: Opening the washing machine door
+  objects:
+  - washing_machine.door
+  level: X
+  points: 270
+  type: achievement
+- id: MAN-OPERATE-04
   taxonomy: MAN.OperateArticulated
   modifiers:
   - entrance_door
@@ -113,10 +89,7 @@ skills:
   level: X
   points: 230
   type: achievement
-- id: MAN-OPEN-02
-  area: MAN
-  skill: Open
-  variant_number: '02'
+- id: MAN-OPERATE-05
   taxonomy: MAN.OperateArticulated
   modifiers:
   - milk_container
@@ -128,9 +101,6 @@ skills:
   points: 200
   type: achievement
 - id: MAN-PICK-01
-  area: MAN
-  skill: Pick
-  variant_number: '01'
   taxonomy: MAN.Pick
   modifiers:
   - known
@@ -149,10 +119,7 @@ skills:
   level: C
   points: 80
   type: achievement
-- id: MAN-PICK-01B2
-  area: MAN
-  skill: Pick
-  variant_number: 01B2
+- id: MAN-PICK-01B1
   taxonomy: MAN.Pick
   modifiers:
   - from_floor
@@ -167,10 +134,7 @@ skills:
   level: C
   points: 30
   type: bonus
-- id: MAN-PICK-01B3
-  area: MAN
-  skill: Pick
-  variant_number: 01B3
+- id: MAN-PICK-01B2
   taxonomy: MAN.Pick
   modifiers:
   - cutlery
@@ -185,10 +149,7 @@ skills:
   level: C
   points: 70
   type: bonus
-- id: MAN-PICK-01B4
-  area: MAN
-  skill: Pick
-  variant_number: 01B4
+- id: MAN-PICK-01B3
   taxonomy: MAN.Pick
   modifiers:
   - plate
@@ -203,10 +164,7 @@ skills:
   level: C
   points: 80
   type: bonus
-- id: MAN-PICK-01B5
-  area: MAN
-  skill: Pick
-  variant_number: 01B5
+- id: MAN-PICK-01B4
   taxonomy: MAN.Pick
   modifiers:
   - dishwasher_tab
@@ -222,9 +180,6 @@ skills:
   points: 60
   type: bonus
 - id: MAN-PICK-01P1
-  area: MAN
-  skill: Pick
-  variant_number: 01P1
   taxonomy: MAN.Pick
   modifiers:
   - dropped_on_floor
@@ -233,21 +188,7 @@ skills:
   level: C
   points: -40
   type: penalty_behavior
-- id: MAN-PICK-02B
-  area: MAN
-  skill: Pick
-  variant_number: '02'
-  taxonomy: MAN.Pick
-  modifiers:
-  - first_pick_bonus
-  description: First Pick Bonus
-  level: C
-  points: 100
-  type: bonus
-- id: MAN-PICK-02P
-  area: MAN
-  skill: Pick
-  variant_number: 02P
+- id: MAN-PICK-01P2
   taxonomy: MAN.Pick
   modifiers:
   - auxiliary_table
@@ -263,10 +204,15 @@ skills:
   level: E
   points: -20
   type: penalty_behavior
+- id: MAN-PICK-02B
+  taxonomy: MAN.Pick
+  modifiers:
+  - first_pick_bonus
+  description: First Pick Bonus
+  level: C
+  points: 100
+  type: bonus
 - id: MAN-PICK-03
-  area: MAN
-  skill: Pick
-  variant_number: '03'
   taxonomy: MAN.Pick
   modifiers:
   - basket
@@ -283,9 +229,6 @@ skills:
   points: 210
   type: achievement
 - id: MAN-PICK-03P
-  area: MAN
-  skill: Pick
-  variant_number: 03P
   taxonomy: MAN.Pick
   modifiers:
   - multiple_at_once
@@ -295,9 +238,6 @@ skills:
   points: -210
   type: penalty_behavior
 - id: MAN-PICK-04
-  area: MAN
-  skill: Pick
-  variant_number: '04'
   taxonomy: MAN.Pick
   modifiers:
   - clothing
@@ -314,9 +254,6 @@ skills:
   points: 220
   type: achievement
 - id: MAN-PICK-04P
-  area: MAN
-  skill: Pick
-  variant_number: 04P
   taxonomy: MAN.Pick
   modifiers:
   - touches_floor
@@ -326,9 +263,6 @@ skills:
   points: -220
   type: penalty_behavior
 - id: MAN-PICK-05
-  area: MAN
-  skill: Pick
-  variant_number: '05'
   taxonomy: MAN.Pick
   modifiers:
   - kitchen_bar
@@ -345,9 +279,6 @@ skills:
   points: 80
   type: achievement
 - id: MAN-PICK-06
-  area: MAN
-  skill: Pick
-  variant_number: '06'
   taxonomy: MAN.Pick
   modifiers:
   - requested_object
@@ -363,9 +294,6 @@ skills:
   type: achievement
   points: 80
 - id: MAN-PLACE-01
-  area: MAN
-  skill: Place
-  variant_number: '01'
   taxonomy: MAN.Place
   modifiers:
   - bag
@@ -381,9 +309,6 @@ skills:
   points: 60
   type: achievement
 - id: MAN-PLACE-02
-  area: MAN
-  skill: Place
-  variant_number: '02'
   taxonomy: MAN.Place
   modifiers:
   - designated_location
@@ -404,9 +329,6 @@ skills:
   points: 45
   type: achievement
 - id: MAN-PLACE-02B1
-  area: MAN
-  skill: Place
-  variant_number: 02B1
   taxonomy: MAN.Place
   modifiers:
   - correct
@@ -424,9 +346,6 @@ skills:
   points: 15
   type: bonus
 - id: MAN-PLACE-02B2
-  area: MAN
-  skill: Place
-  variant_number: 02B2
   taxonomy: MAN.Place
   modifiers:
   - cabinet
@@ -443,9 +362,6 @@ skills:
   points: 5
   type: bonus
 - id: MAN-PLACE-02P1
-  area: MAN
-  skill: Place
-  variant_number: 02P1
   taxonomy: MAN.Place
   modifiers:
   - breakfast_area
@@ -456,9 +372,6 @@ skills:
   points: -45
   type: penalty_behavior
 - id: MAN-PLACE-02P2
-  area: MAN
-  skill: Place
-  variant_number: 02P2
   taxonomy: MAN.Place
   modifiers:
   - auxiliary_table
@@ -475,9 +388,6 @@ skills:
   points: -20
   type: penalty_behavior
 - id: MAN-PLACE-02P3
-  area: MAN
-  skill: Place
-  variant_number: 02P3
   taxonomy: MAN.Place
   modifiers:
   - thrown_or_dropped
@@ -487,9 +397,6 @@ skills:
   points: -20
   type: penalty_behavior
 - id: MAN-PLACE-03
-  area: MAN
-  skill: Place
-  variant_number: '03'
   taxonomy: MAN.Place
   modifiers:
   - customer_table
@@ -506,9 +413,6 @@ skills:
   points: 35
   type: achievement
 - id: MAN-PLACE-03B
-  area: MAN
-  skill: Place
-  variant_number: 03B
   taxonomy: MAN.Place
   modifiers:
   - first_place_bonus
@@ -517,9 +421,6 @@ skills:
   points: 100
   type: bonus
 - id: MAN-PLACE-04
-  area: MAN
-  skill: Place
-  variant_number: '04'
   taxonomy: MAN.Place
   modifiers:
   - placement_location
@@ -537,9 +438,6 @@ skills:
   type: achievement
   points: 35
 - id: MAN-POUR-01
-  area: MAN
-  skill: Pour
-  variant_number: '01'
   taxonomy: MAN.Pour
   modifiers:
   - cereal_or_milk
@@ -554,9 +452,6 @@ skills:
   points: 200
   type: achievement
 - id: MAN-POUR-01P
-  area: MAN
-  skill: Pour
-  variant_number: 01P
   taxonomy: MAN.Pour
   modifiers:
   - spilling
@@ -566,9 +461,6 @@ skills:
   points: -100
   type: penalty_behavior
 - id: MAN-STACK-01
-  area: MAN
-  skill: Stack
-  variant_number: '01'
   taxonomy: MAN.Stack
   modifiers:
   - folded_clothes
@@ -580,10 +472,7 @@ skills:
   level: C
   points: 100
   type: achievement
-- id: MAN-TRANSPORTWITHBASKET-01
-  area: MAN
-  skill: TransportWithBasket
-  variant_number: '01'
+- id: MAN-TRANSPORT-01
   taxonomy: MAN.Transport
   modifiers: []
   description: Using the basket for transportation
@@ -594,10 +483,7 @@ skills:
   level: X
   points: 240
   type: achievement
-- id: MAN-TRANSPORTWITHBASKET-02P
-  area: MAN
-  skill: TransportWithBasket
-  variant_number: '02'
+- id: MAN-TRANSPORT-01P
   taxonomy: MAN.Transport
   modifiers:
   - dropped_or_lost
@@ -606,10 +492,7 @@ skills:
   level: X
   points: -120
   type: penalty_behavior
-- id: MAN-TRANSPORTWITHTRAY-01
-  area: MAN
-  skill: TransportWithTray
-  variant_number: '01'
+- id: MAN-TRANSPORT-02
   taxonomy: MAN.Transport
   modifiers:
   - unattached

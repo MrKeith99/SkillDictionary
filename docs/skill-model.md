@@ -27,7 +27,7 @@ grows as *verbs × properties* and still cannot say "heavy **and** slippery
  taxonomy.yaml          WHAT capability            MAN.Pick
       │                 (intent, success, sub-skills)
       ▼
- data/skills/*.yaml     ONE scored line            MAN-PICK-01B4  "Plate"  +100
+ data/skills/*.yaml     ONE scored line            MAN-PICK-01B3  "Plate"  +100
       │   objects: [plate]
       │   at: [dinner_table]   conditions: {clutter: nearby, knowledge: known_instance}
       ▼
@@ -86,7 +86,8 @@ MAN.Place:
   yet (`MAN.Wipe`, `NAV.Guide`, `PPL.Reidentify`, …). New tasks pick from
   these rather than inventing ad-hoc lines.
 
-Ids are permanent, like `variant_number`. Deprecate, never rename.
+Node ids are permanent, like line ids. Deprecate, never rename; a node's
+`code` names its lines (`<AREA>-<code>-<NN>`).
 
 ### Grasping and the Feix taxonomy
 
@@ -177,7 +178,7 @@ pointing at a decomposition-only node.
 
 | | finding | example today |
 |---|---|---|
-| T1 | D vs level | `MAN-PICK-01B4` plate: D 7 (`X`) but level `C` |
+| T1 | D vs level | `MAN-PICK-01B3` plate: D 7 (`X`) but level `C` |
 | T2 | price inversion: a strictly harder line pays strictly less, within one skill | entrance door (D 3) 200 < milk cap (D 2) 400 |
 | T3 | one failure mode, many prices | "dropped object" is −40, −50 or −200 |
 | T4 | proposed skills, unscored nodes | 13 proposed nodes |
@@ -185,7 +186,7 @@ pointing at a decomposition-only node.
 
 Bonus and discount lines that name a parent (`related_skill` in the challenge)
 are compared at their **effective** price: picking a plate in Pick & Place is
-`MAN-PICK-01` + `MAN-PICK-01B4` = 50 + 100. The rulebook already prices object
+`MAN-PICK-01` + `MAN-PICK-01B3` = 50 + 100. The rulebook already prices object
 difficulty this way; the checker makes it explicit and comparable.
 
 `dist/skill_ratings.json` carries every line's node, objects, factors and D for the visualizer and the results tracker.

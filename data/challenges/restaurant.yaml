@@ -18,16 +18,16 @@ challenge_rules:
     source: §5.5 procedure 4
     note: A TC member follows the robot ready to press the emergency stop button; any physical contact with people or furniture results in immediate emergency stop.
 entries:
-- ref: PPL-DETECTCALLINGORWAVING-01
+- ref: PPL-GESTURE-01
   count: 2
   section: Regular Rewards
   assistance:
     permitted: false
-- ref: NAV-NAVIGATE-03
+- ref: NAV-NAVIGATE-02
   count: 2
   section: Regular Rewards
   depends_on:
-  - ref: PPL-DETECTCALLINGORWAVING-01
+  - ref: PPL-GESTURE-01
     nature: informational
     blocking: false
     satisfiable_by_assistance: true
@@ -35,18 +35,18 @@ entries:
     permitted: true
     listed_in_task_description: true
     self_score: 0
-    extra_penalty_ref: NAV-NAVIGATE-03P
+    extra_penalty_ref: NAV-NAVIGATE-02P
     blocks_dependents: false
     note: If the robot detects a customer but does not reach the table, it must clearly identify the person to earn partial points.
-- ref: NAV-NAVIGATE-03P
+- ref: NAV-NAVIGATE-02P
   count: 2
   section: Regular Rewards
-  related_skill: NAV-NAVIGATE-03
-- ref: NLU-UNDERSTANDCOMMAND-05
+  related_skill: NAV-NAVIGATE-02
+- ref: NLU-COMMAND-02
   count: 2
   section: Regular Rewards
   depends_on:
-  - ref: NAV-NAVIGATE-03
+  - ref: NAV-NAVIGATE-02
     nature: physical
     blocking: false
     satisfiable_by_assistance: true
@@ -55,22 +55,22 @@ entries:
     permitted: true
     listed_in_task_description: true
     self_score: 0
-    extra_penalty_ref: GEN-ALTERNATIVEHRI-02P
+    extra_penalty_ref: GEN-ALTINPUT-02P
     blocks_dependents: false
-- ref: GEN-ALTERNATIVEHRI-02P
+- ref: GEN-ALTINPUT-02P
   count: 2
   section: Regular Rewards
-  related_skill: NLU-UNDERSTANDCOMMAND-05
+  related_skill: NLU-COMMAND-02
   ambiguity: Fixed -80 per order vs §3.7.4's -20% of max attainable (-472). Confirm which governs.
 - ref: HRI-ATTEND-01P
   count: 2
   section: Regular Rewards
-  related_skill: NLU-UNDERSTANDCOMMAND-05
-- ref: HRI-COMMUNICATEORDER-01
+  related_skill: NLU-COMMAND-02
+- ref: HRI-INFO-01
   count: 2
   section: Regular Rewards
   depends_on:
-  - ref: NLU-UNDERSTANDCOMMAND-05
+  - ref: NLU-COMMAND-02
     nature: informational
     blocking: true
     satisfiable_by_assistance: true
@@ -78,13 +78,13 @@ entries:
     permitted: true
     listed_in_task_description: true
     self_score: 0
-    extra_penalty_ref: NAV-NAVIGATE-05P
+    extra_penalty_ref: NAV-NAVIGATE-03P
     blocks_dependents: false
 - ref: MAN-PICK-05
   count: 4
   section: Regular Rewards
   depends_on:
-  - ref: HRI-COMMUNICATEORDER-01
+  - ref: HRI-INFO-01
     nature: sequential
     blocking: true
     satisfiable_by_assistance: true
@@ -92,7 +92,7 @@ entries:
     permitted: true
     listed_in_task_description: true
     self_score: 0
-    extra_penalty_ref: GEN-HUMANASSIST-02P
+    extra_penalty_ref: GEN-ASSIST-02P
     blocks_dependents: false
     note: Barman handover forfeits this line and costs -100; serving remains available.
 - ref: MAN-PICK-02B
@@ -104,11 +104,11 @@ entries:
     blocking: true
     satisfiable_by_assistance: false
   related_skill: MAN-PICK-05
-- ref: GEN-HUMANASSIST-02P
+- ref: GEN-ASSIST-02P
   count: 4
   section: Regular Rewards
   related_skill: MAN-PICK-05
-- ref: NAV-NAVIGATE-03
+- ref: NAV-NAVIGATE-02
   count: 2
   section: Regular Rewards
   depends_on:
@@ -120,7 +120,7 @@ entries:
     permitted: true
     listed_in_task_description: true
     self_score: 0
-    extra_penalty_ref: GEN-HUMANASSIST-13P
+    extra_penalty_ref: GEN-ASSIST-09P
     blocks_dependents: false
 - ref: MAN-PLACE-03
   count: 4
@@ -131,7 +131,7 @@ entries:
     blocking: true
     satisfiable_by_assistance: true
     note: Items may be acquired via barman handover; serving remains scoreable.
-  - ref: MAN-TRANSPORTWITHTRAY-01
+  - ref: MAN-TRANSPORT-02
     nature: physical
     blocking: false
     satisfiable_by_assistance: true
@@ -140,7 +140,7 @@ entries:
     permitted: true
     listed_in_task_description: true
     self_score: 0
-    extra_penalty_ref: GEN-HUMANASSIST-11P
+    extra_penalty_ref: GEN-ASSIST-07P
     blocks_dependents: false
     note: All delivered objects must be placed on the customer's table.
 - ref: MAN-PLACE-03B
@@ -152,11 +152,11 @@ entries:
     blocking: true
     satisfiable_by_assistance: false
   related_skill: MAN-PLACE-03
-- ref: GEN-HUMANASSIST-11P
+- ref: GEN-ASSIST-07P
   count: 4
   section: Regular Rewards
   related_skill: MAN-PLACE-03
-- ref: MAN-TRANSPORTWITHTRAY-01
+- ref: MAN-TRANSPORT-02
   count: 2
   section: Extra Rewards
   assistance:
@@ -167,16 +167,16 @@ entries:
     blocks_dependents: false
     note: If requested, the barman will place the order in a basket or tray for the robot to deliver.
   note: Requires placing items on tray, picking up and transporting the tray, then delivering.
-- ref: NAV-NAVIGATE-05P
+- ref: NAV-NAVIGATE-03P
   count: 2
   section: Penalties
-- ref: GEN-HUMANASSIST-12P
+- ref: GEN-ASSIST-08P
   count: 2
   section: Penalties
-- ref: GEN-HUMANASSIST-13P
+- ref: GEN-ASSIST-09P
   count: 2
   section: Penalties
-- ref: GEN-UNSAFECONTACT-01P
+- ref: GEN-UNSAFE-01P
   count: 1
   section: Penalties
 - ref: SPECIAL-01
