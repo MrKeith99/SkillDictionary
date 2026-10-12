@@ -27,7 +27,7 @@ skills:
   description: Tell a visual attribute of the first guest to the second guest (incorrect)
   failure_mode: wrong_info
   level: C
-  points: -20
+  points: -10
   type: penalty_behavior
 - id: PPL-DESCRIBEATTRIBUTE-03
   area: PPL

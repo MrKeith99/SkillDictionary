@@ -45,7 +45,6 @@ data/                       SOURCE — the only place you edit
   release.yaml                which year this is, draft | in_force, the rulebook it is checked against
   skills/<AREA>.yaml          every scored line: definition + price, once
   challenges/<slug>.yaml      how each test uses the skills (references, counts; no points)
-  pricing.yaml                the pricing rule: skill bases, difficulty scale, penalty shares
   vocabulary/
     taxonomy.yaml               what each skill is for, its success criterion, its factors
     difficulty_factors.yaml     what makes an instance harder, and by how much
@@ -58,9 +57,8 @@ skilldict/                  the Python package — one CLI for everything
   model.py                    loading, derived fields (used_by, total_score)
   commands.py                 GPSR: value every generator command, fill step counts
   ratings.py                  vocabulary integrity, intrinsic difficulty D
-  pricing.py                  the pricing rule, and every line under it
   checks/                     schema, integrity, rulebook, findings
-  render/                     score sheets (HTML, LaTeX), pricing page, coverage page, PDF
+  render/                     score sheets (HTML, LaTeX), coverage page, PDF
   cli.py
 
 templates/                  page templates the renderers fill in
@@ -69,7 +67,7 @@ docs/                       skill-model.md (how it fits together), changes-<year
 external/RuleBook           the RuleBook, git submodule pinned to the rulebook in release.yaml
 
 dist/                       GENERATED, committed: JSON for consumers (CommandGenerator)
-build/                      GENERATED, not committed: sheets, pricing review, PDFs
+build/                      GENERATED, not committed: sheets, PDFs
 ```
 
 Everything under `dist/` and `build/` is regenerated; never edit it.
@@ -92,7 +90,6 @@ make check       # the CI gate: must end with ALL CHECKS PASSED
 | `make check` | build, run every check, write `dist/` |
 | `make findings` | the TC findings report |
 | `make sheets` | score sheets, HTML + rulebook LaTeX → `build/sheets/` |
-| `make prices` | every line under the pricing rule, next to what it pays now → `build/pricing.html` |
 | `make pdf` | rulebook sheet next to the generated one, per challenge → `build/*.pdf` |
 | `make all` | all of the above |
 
@@ -110,7 +107,6 @@ lists the options.
 | `dist/global_rules.json` | rulebook §3 rules |
 | `dist/viz_data.json` | flattened rows + area matrix + drift, for the visualizer |
 | `dist/gpsr_commands.json` | the value of every command the GPSR generator can produce |
-| `dist/pricing.json` | every line under the pricing rule |
 
 `used_by` and `total_score` are **derived** by the build; the sources never
 carry them, so they cannot go stale.

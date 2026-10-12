@@ -413,31 +413,31 @@
    "name": "Doing Laundry",
    "section": "5.5",
    "minutes": 7,
-   "total": 4415
+   "total": 5555
   },
   "gpsr": {
    "name": "General Purpose Service Robot",
    "section": "5.4",
    "minutes": 7,
-   "total": 1760
+   "total": 1820
   },
   "hri": {
    "name": "Human Robot Interaction Challenge",
    "section": "5.1",
    "minutes": 7,
-   "total": 1450
+   "total": 1620
   },
   "pick_and_place": {
    "name": "Pick and Place Challenge",
    "section": "5.2",
    "minutes": 7,
-   "total": 3515
+   "total": 3800
   },
   "restaurant": {
    "name": "Restaurant Challenge",
    "section": "5.5",
    "minutes": 15,
-   "total": 2360
+   "total": 1920
   }
  },
  "areas": [
@@ -451,23 +451,23 @@
  ],
  "matrix": {
   "NAV": {
-   "doing_laundry": 15,
+   "doing_laundry": 35,
    "gpsr": 1410,
    "hri": 230,
-   "pick_and_place": 15,
-   "restaurant": 320
+   "pick_and_place": 35,
+   "restaurant": 200
   },
   "MAN": {
-   "doing_laundry": 4400,
+   "doing_laundry": 5520,
    "gpsr": 345,
-   "hri": 450,
-   "pick_and_place": 3320,
-   "restaurant": 1400
+   "hri": 510,
+   "pick_and_place": 3585,
+   "restaurant": 1200
   },
   "NLU": {
-   "gpsr": 240,
+   "gpsr": 300,
    "hri": 60,
-   "restaurant": 320
+   "restaurant": 260
   },
   "PLN": {
    "gpsr": 605
@@ -479,8 +479,8 @@
   },
   "HRI": {
    "gpsr": 360,
-   "hri": 570,
-   "restaurant": 160
+   "hri": 680,
+   "restaurant": 100
   },
   "PPL": {
    "gpsr": 960,
@@ -500,9 +500,9 @@
    "description": "Navigate to the announced furniture or area (dining table, laundry area)",
    "level": "E",
    "type": "achievement",
-   "points": 15,
+   "points": 35,
    "count": 1,
-   "total": 15,
+   "total": 35,
    "section": "Main Goal",
    "shared": true,
    "used_by": [
@@ -525,9 +525,9 @@
    "description": "Picking up a piece of clothing from the basket",
    "level": "C",
    "type": "achievement",
-   "points": 100,
+   "points": 200,
    "count": 1,
-   "total": 100,
+   "total": 200,
    "section": "Main Goal",
    "shared": false,
    "used_by": [
@@ -548,9 +548,9 @@
    "description": "Picking up multiple at once",
    "level": "C",
    "type": "penalty_behavior",
-   "points": -100,
+   "points": -200,
    "count": 1,
-   "total": -100,
+   "total": -200,
    "section": "Main Goal",
    "shared": false,
    "used_by": [
@@ -571,9 +571,9 @@
    "description": "Folding a piece of clothing (per item)",
    "level": "X",
    "type": "achievement",
-   "points": 400,
+   "points": 600,
    "count": 6,
-   "total": 2400,
+   "total": 3600,
    "section": "Main Goal",
    "shared": false,
    "used_by": [
@@ -619,9 +619,9 @@
    "description": "Quality penalties (per item)",
    "level": "X",
    "type": "penalty_behavior",
-   "points": -400,
+   "points": -600,
    "count": 6,
-   "total": -2400,
+   "total": -3600,
    "section": "Main Goal",
    "shared": false,
    "used_by": [
@@ -667,9 +667,9 @@
    "description": "Human assistance during folding (percentage penalty per amount of help, per item)",
    "level": "-",
    "type": "penalty_behavior",
-   "points": -400,
+   "points": -300,
    "count": 6,
-   "total": -2400,
+   "total": -1800,
    "section": "Main Goal",
    "shared": false,
    "used_by": [
@@ -691,9 +691,9 @@
    "description": "Opening the washing machine door",
    "level": "X",
    "type": "achievement",
-   "points": 300,
+   "points": 270,
    "count": 1,
-   "total": 300,
+   "total": 270,
    "section": "Extra Rewards",
    "shared": false,
    "used_by": [
@@ -715,9 +715,9 @@
    "description": "Removing one or more pieces of clothing from the washing machine",
    "level": "X",
    "type": "achievement",
-   "points": 300,
+   "points": 210,
    "count": 1,
-   "total": 300,
+   "total": 210,
    "section": "Extra Rewards",
    "shared": false,
    "used_by": [
@@ -740,9 +740,9 @@
    "description": "The clothing touches the floor",
    "level": "X",
    "type": "penalty_behavior",
-   "points": -200,
+   "points": -210,
    "count": 1,
-   "total": -200,
+   "total": -210,
    "section": "Extra Rewards",
    "shared": false,
    "used_by": [
@@ -761,9 +761,9 @@
    "description": "Using the basket for transportation",
    "level": "X",
    "type": "achievement",
-   "points": 300,
+   "points": 240,
    "count": 1,
-   "total": 300,
+   "total": 240,
    "section": "Extra Rewards",
    "shared": false,
    "used_by": [
@@ -784,9 +784,9 @@
    "description": "Laundry is dropped or otherwise lost during transportation",
    "level": "X",
    "type": "penalty_behavior",
-   "points": -200,
+   "points": -120,
    "count": 1,
-   "total": -200,
+   "total": -120,
    "section": "Extra Rewards",
    "shared": false,
    "used_by": [
@@ -930,9 +930,9 @@
    "description": "Outstanding performance (see sec. 3.8.3)",
    "level": "-",
    "type": "administrative",
-   "points": 441,
+   "points": 555,
    "count": 1,
-   "total": 441,
+   "total": 555,
    "section": "Special Penalties & Bonuses",
    "shared": true,
    "used_by": [
@@ -957,9 +957,9 @@
    "description": "Understand the spoken command",
    "level": "C",
    "type": "achievement",
-   "points": 80,
+   "points": 100,
    "count": 3,
-   "total": 240,
+   "total": 300,
    "section": "Main Goal",
    "shared": false,
    "used_by": [
@@ -980,9 +980,9 @@
    "description": "Using a custom operator",
    "level": "C",
    "type": "penalty_behavior",
-   "points": -20,
+   "points": -25,
    "count": 3,
-   "total": -60,
+   "total": -75,
    "section": "Main Goal",
    "shared": false,
    "used_by": [
@@ -1003,9 +1003,9 @@
    "description": "Request a rephrasing",
    "level": "C",
    "type": "penalty_behavior",
-   "points": -30,
+   "points": -50,
    "count": 6,
-   "total": -180,
+   "total": -300,
    "section": "Main Goal",
    "shared": false,
    "used_by": [
@@ -1449,9 +1449,9 @@
    "description": "Bypassing speech recognition",
    "level": "C",
    "type": "penalty_behavior",
-   "points": -50,
+   "points": -25,
    "count": 3,
-   "total": -150,
+   "total": -75,
    "section": "Penalties",
    "shared": false,
    "used_by": [
@@ -1546,9 +1546,9 @@
    "description": "Outstanding performance (see sec. 3.8.3)",
    "level": "-",
    "type": "administrative",
-   "points": 176,
+   "points": 182,
    "count": 1,
-   "total": 176,
+   "total": 182,
    "section": "Special Penalties & Bonuses",
    "shared": true,
    "used_by": [
@@ -1597,9 +1597,9 @@
    "description": "Open the entrance door for a guest",
    "level": "X",
    "type": "achievement",
-   "points": 200,
+   "points": 230,
    "count": 2,
-   "total": 400,
+   "total": 460,
    "section": "Greeting",
    "shared": false,
    "used_by": [
@@ -1621,9 +1621,9 @@
    "description": "Look at the person talking, when receiving a guest",
    "level": "C",
    "type": "achievement",
-   "points": 50,
+   "points": 45,
    "count": 2,
-   "total": 100,
+   "total": 90,
    "section": "Greeting",
    "shared": false,
    "used_by": [
@@ -1719,9 +1719,9 @@
    "description": "Tell a visual attribute of the first guest to the second guest (incorrect)",
    "level": "C",
    "type": "penalty_behavior",
-   "points": -20,
+   "points": -10,
    "count": 4,
-   "total": -80,
+   "total": -40,
    "section": "Greeting",
    "shared": false,
    "used_by": [
@@ -1764,9 +1764,9 @@
    "description": "Say name and favorite drink of each guest (during introduction)",
    "level": "C",
    "type": "achievement",
-   "points": 30,
+   "points": 60,
    "count": 4,
-   "total": 120,
+   "total": 240,
    "section": "Introduction",
    "shared": false,
    "used_by": [
@@ -1910,9 +1910,9 @@
    "description": "Drop the bag while following the host",
    "level": "C",
    "type": "penalty_behavior",
-   "points": -50,
+   "points": -100,
    "count": 1,
-   "total": -50,
+   "total": -100,
    "section": "Guiding",
    "shared": false,
    "used_by": [
@@ -1934,9 +1934,9 @@
    "description": "Rediscovering the operator by natural interaction",
    "level": "C",
    "type": "penalty_behavior",
-   "points": -50,
+   "points": -100,
    "count": 1,
-   "total": -50,
+   "total": -100,
    "section": "Guiding",
    "shared": false,
    "used_by": [
@@ -1957,9 +1957,9 @@
    "description": "Asking the operator to wait",
    "level": "C",
    "type": "penalty_behavior",
-   "points": -50,
+   "points": -100,
    "count": 1,
-   "total": -50,
+   "total": -100,
    "section": "Guiding",
    "shared": false,
    "used_by": [
@@ -1980,9 +1980,9 @@
    "description": "Guiding the robot with physical contact (take by the hand)",
    "level": "C",
    "type": "penalty_behavior",
-   "points": -150,
+   "points": -100,
    "count": 1,
-   "total": -150,
+   "total": -100,
    "section": "Guiding",
    "shared": false,
    "used_by": [
@@ -2030,9 +2030,9 @@
    "description": "Wrong guest information was memorized",
    "level": "C",
    "type": "penalty_behavior",
-   "points": -40,
+   "points": -30,
    "count": 4,
-   "total": -160,
+   "total": -120,
    "section": "Penalties",
    "shared": false,
    "used_by": [
@@ -2051,9 +2051,9 @@
    "description": "Alternative HRI",
    "level": "C",
    "type": "penalty_behavior",
-   "points": -20,
+   "points": -15,
    "count": 6,
-   "total": -120,
+   "total": -90,
    "section": "Penalties",
    "shared": false,
    "used_by": [
@@ -2148,9 +2148,9 @@
    "description": "Outstanding performance (see sec. 3.8.3)",
    "level": "-",
    "type": "administrative",
-   "points": 145,
+   "points": 162,
    "count": 1,
-   "total": 145,
+   "total": 162,
    "section": "Special Penalties & Bonuses",
    "shared": true,
    "used_by": [
@@ -2175,9 +2175,9 @@
    "description": "Navigate to the announced furniture or area (dining table, laundry area)",
    "level": "E",
    "type": "achievement",
-   "points": 15,
+   "points": 35,
    "count": 1,
-   "total": 15,
+   "total": 35,
    "section": null,
    "shared": true,
    "used_by": [
@@ -2247,9 +2247,9 @@
    "description": "Picking up an object for transportation",
    "level": "C",
    "type": "achievement",
-   "points": 50,
+   "points": 80,
    "count": 12,
-   "total": 600,
+   "total": 960,
    "section": "Picking",
    "shared": false,
    "used_by": [
@@ -2323,9 +2323,9 @@
    "description": "Cutlery",
    "level": "C",
    "type": "bonus",
-   "points": 50,
+   "points": 70,
    "count": 2,
-   "total": 100,
+   "total": 140,
    "section": "Picking",
    "shared": false,
    "used_by": [
@@ -2348,9 +2348,9 @@
    "description": "Plate",
    "level": "C",
    "type": "bonus",
-   "points": 100,
+   "points": 80,
    "count": 1,
-   "total": 100,
+   "total": 80,
    "section": "Picking",
    "shared": false,
    "used_by": [
@@ -2373,9 +2373,9 @@
    "description": "Dishwasher tab",
    "level": "C",
    "type": "bonus",
-   "points": 100,
+   "points": 60,
    "count": 1,
-   "total": 100,
+   "total": 60,
    "section": "Picking",
    "shared": false,
    "used_by": [
@@ -2423,9 +2423,9 @@
    "description": "Place an object in its designated location",
    "level": "C",
    "type": "achievement",
-   "points": 40,
+   "points": 45,
    "count": 12,
-   "total": 480,
+   "total": 540,
    "section": "Placing",
    "shared": false,
    "used_by": [
@@ -2449,9 +2449,9 @@
    "description": "Correctly in the dishwasher",
    "level": "X",
    "type": "bonus",
-   "points": 70,
+   "points": 15,
    "count": 3,
-   "total": 210,
+   "total": 45,
    "section": "Placing",
    "shared": false,
    "used_by": [
@@ -2476,9 +2476,9 @@
    "description": "Next to similar objects in the cabinet",
    "level": "C",
    "type": "bonus",
-   "points": 20,
+   "points": 5,
    "count": 2,
-   "total": 40,
+   "total": 10,
    "section": "Placing",
    "shared": false,
    "used_by": [
@@ -2500,9 +2500,9 @@
    "description": "Area around breakfast items is not cleaned",
    "level": "C",
    "type": "penalty_behavior",
-   "points": -30,
+   "points": -45,
    "count": 4,
-   "total": -120,
+   "total": -180,
    "section": "Placing",
    "shared": false,
    "used_by": [
@@ -2574,9 +2574,9 @@
    "description": "Pull or push the dishwasher rack",
    "level": "X",
    "type": "achievement",
-   "points": 100,
+   "points": 230,
    "count": 2,
-   "total": 200,
+   "total": 460,
    "section": "Extra Rewards",
    "shared": false,
    "used_by": [
@@ -2623,9 +2623,9 @@
    "description": "Open milk container without assistance",
    "level": "X",
    "type": "achievement",
-   "points": 400,
+   "points": 200,
    "count": 1,
-   "total": 400,
+   "total": 200,
    "section": "Extra Rewards",
    "shared": false,
    "used_by": [
@@ -2673,9 +2673,9 @@
    "description": "Objects thrown or dropped while placing",
    "level": "C",
    "type": "penalty_behavior",
-   "points": -40,
+   "points": -20,
    "count": 12,
-   "total": -480,
+   "total": -240,
    "section": "Penalties",
    "shared": false,
    "used_by": [
@@ -2765,9 +2765,9 @@
    "description": "Human assistance: object repositioned by a person",
    "level": "-",
    "type": "penalty_behavior",
-   "points": -30,
+   "points": -5,
    "count": 12,
-   "total": -360,
+   "total": -60,
    "section": "Penalties",
    "shared": false,
    "used_by": [
@@ -2788,9 +2788,9 @@
    "description": "Human assistance: a person hands the object to the robot instead of the robot picking it",
    "level": "-",
    "type": "penalty_behavior",
-   "points": -100,
+   "points": -40,
    "count": 24,
-   "total": -2400,
+   "total": -960,
    "section": "Penalties",
    "shared": true,
    "used_by": [
@@ -2956,9 +2956,9 @@
    "description": "Outstanding performance (see sec. 3.8.3)",
    "level": "-",
    "type": "administrative",
-   "points": 351,
+   "points": 380,
    "count": 1,
-   "total": 351,
+   "total": 380,
    "section": "Special Penalties & Bonuses",
    "shared": true,
    "used_by": [
@@ -3006,9 +3006,9 @@
    "description": "Reach a customer's table (to take the order, and again to serve it)",
    "level": "C",
    "type": "achievement",
-   "points": 80,
+   "points": 50,
    "count": 2,
-   "total": 160,
+   "total": 100,
    "section": "Regular Rewards",
    "shared": false,
    "used_by": [
@@ -3031,9 +3031,9 @@
    "description": "Human Assistance: Being guided to a table",
    "level": "C",
    "type": "penalty_behavior",
-   "points": -80,
+   "points": -25,
    "count": 2,
-   "total": -160,
+   "total": -50,
    "section": "Regular Rewards",
    "shared": false,
    "used_by": [
@@ -3055,9 +3055,9 @@
    "description": "Understand and confirm the order received to the customer",
    "level": "C",
    "type": "achievement",
-   "points": 160,
+   "points": 130,
    "count": 2,
-   "total": 320,
+   "total": 260,
    "section": "Regular Rewards",
    "shared": false,
    "used_by": [
@@ -3080,9 +3080,9 @@
    "description": "Alternative HRI",
    "level": "C",
    "type": "penalty_behavior",
-   "points": -80,
+   "points": -30,
    "count": 2,
-   "total": -160,
+   "total": -60,
    "section": "Regular Rewards",
    "shared": false,
    "used_by": [
@@ -3127,9 +3127,9 @@
    "description": "Communicate the order to the barman",
    "level": "C",
    "type": "achievement",
-   "points": 80,
+   "points": 50,
    "count": 2,
-   "total": 160,
+   "total": 100,
    "section": "Regular Rewards",
    "shared": false,
    "used_by": [
@@ -3153,9 +3153,9 @@
    "description": "Picking up the requested items from the Kitchen-bar",
    "level": "C",
    "type": "achievement",
-   "points": 100,
+   "points": 80,
    "count": 4,
-   "total": 400,
+   "total": 320,
    "section": "Regular Rewards",
    "shared": false,
    "used_by": [
@@ -3204,9 +3204,9 @@
    "description": "Human assistance: a person hands the object to the robot instead of the robot picking it",
    "level": "-",
    "type": "penalty_behavior",
-   "points": -100,
+   "points": -40,
    "count": 4,
-   "total": -400,
+   "total": -160,
    "section": "Regular Rewards",
    "shared": true,
    "used_by": [
@@ -3228,9 +3228,9 @@
    "description": "Reach a customer's table (to take the order, and again to serve it)",
    "level": "C",
    "type": "achievement",
-   "points": 80,
+   "points": 50,
    "count": 2,
-   "total": 160,
+   "total": 100,
    "section": "Regular Rewards",
    "shared": false,
    "used_by": [
@@ -3254,9 +3254,9 @@
    "description": "Serve the order to the customer",
    "level": "C",
    "type": "achievement",
-   "points": 100,
+   "points": 35,
    "count": 4,
-   "total": 400,
+   "total": 140,
    "section": "Regular Rewards",
    "shared": false,
    "used_by": [
@@ -3305,9 +3305,9 @@
    "description": "Human assistance: Guest needing to take the object from a tray or the robot's hand",
    "level": "-",
    "type": "penalty_behavior",
-   "points": -100,
+   "points": -20,
    "count": 4,
-   "total": -400,
+   "total": -80,
    "section": "Regular Rewards",
    "shared": false,
    "used_by": [
@@ -3328,9 +3328,9 @@
    "description": "Use an unattached tray to transport",
    "level": "X",
    "type": "achievement",
-   "points": 200,
+   "points": 270,
    "count": 2,
-   "total": 400,
+   "total": 540,
    "section": "Extra Rewards",
    "shared": false,
    "used_by": [
@@ -3352,9 +3352,9 @@
    "description": "Not reaching the bar (barman has to move from behind the bar to interact)",
    "level": "C",
    "type": "penalty_behavior",
-   "points": -60,
+   "points": -25,
    "count": 2,
-   "total": -120,
+   "total": -50,
    "section": "Penalties",
    "shared": false,
    "used_by": [
@@ -3398,9 +3398,9 @@
    "description": "Human Assistance: Being told/pointed where a table/Kitchen-bar is located",
    "level": "-",
    "type": "penalty_behavior",
-   "points": -40,
+   "points": -25,
    "count": 2,
-   "total": -80,
+   "total": -50,
    "section": "Penalties",
    "shared": false,
    "used_by": [
@@ -3495,9 +3495,9 @@
    "description": "Outstanding performance (see sec. 3.8.3)",
    "level": "-",
    "type": "administrative",
-   "points": 236,
+   "points": 192,
    "count": 1,
-   "total": 236,
+   "total": 192,
    "section": "Special Penalties & Bonuses",
    "shared": true,
    "used_by": [
@@ -3517,17 +3517,6 @@
    "family": "MAN/Appliance",
    "variants": [
     {
-     "id": "MAN-APPLIANCE-01",
-     "points": 100,
-     "used_by": [
-      "pick_and_place"
-     ],
-     "modifiers": [
-      "dishwasher_rack",
-      "pull_push"
-     ]
-    },
-    {
      "id": "MAN-APPLIANCE-02",
      "points": 200,
      "used_by": [
@@ -3540,8 +3529,19 @@
      ]
     },
     {
+     "id": "MAN-APPLIANCE-01",
+     "points": 230,
+     "used_by": [
+      "pick_and_place"
+     ],
+     "modifiers": [
+      "dishwasher_rack",
+      "pull_push"
+     ]
+    },
+    {
      "id": "MAN-APPLIANCE-03",
-     "points": 300,
+     "points": 270,
      "used_by": [
       "doing_laundry"
      ],
@@ -3556,24 +3556,24 @@
    "family": "MAN/Open",
    "variants": [
     {
-     "id": "MAN-OPEN-01",
-     "points": 200,
-     "used_by": [
-      "hri"
-     ],
-     "modifiers": [
-      "entrance_door"
-     ]
-    },
-    {
      "id": "MAN-OPEN-02",
-     "points": 400,
+     "points": 200,
      "used_by": [
       "pick_and_place"
      ],
      "modifiers": [
       "milk_container",
       "no_assistance"
+     ]
+    },
+    {
+     "id": "MAN-OPEN-01",
+     "points": 230,
+     "used_by": [
+      "hri"
+     ],
+     "modifiers": [
+      "entrance_door"
      ]
     }
    ]
@@ -3583,13 +3583,24 @@
    "variants": [
     {
      "id": "MAN-PICK-01",
-     "points": 50,
+     "points": 80,
      "used_by": [
       "pick_and_place"
      ],
      "modifiers": [
       "known",
       "transport"
+     ]
+    },
+    {
+     "id": "MAN-PICK-05",
+     "points": 80,
+     "used_by": [
+      "restaurant"
+     ],
+     "modifiers": [
+      "kitchen_bar",
+      "order_item"
      ]
     },
     {
@@ -3604,7 +3615,7 @@
     },
     {
      "id": "MAN-PICK-03",
-     "points": 100,
+     "points": 200,
      "used_by": [
       "doing_laundry"
      ],
@@ -3614,19 +3625,8 @@
      ]
     },
     {
-     "id": "MAN-PICK-05",
-     "points": 100,
-     "used_by": [
-      "restaurant"
-     ],
-     "modifiers": [
-      "kitchen_bar",
-      "order_item"
-     ]
-    },
-    {
      "id": "MAN-PICK-04",
-     "points": 300,
+     "points": 210,
      "used_by": [
       "doing_laundry"
      ],
@@ -3641,6 +3641,17 @@
    "family": "MAN/Place",
    "variants": [
     {
+     "id": "MAN-PLACE-03",
+     "points": 35,
+     "used_by": [
+      "restaurant"
+     ],
+     "modifiers": [
+      "customer_table",
+      "order_item"
+     ]
+    },
+    {
      "id": "MAN-PLACE-04",
      "points": 35,
      "used_by": [
@@ -3653,7 +3664,7 @@
     },
     {
      "id": "MAN-PLACE-02",
-     "points": 40,
+     "points": 45,
      "used_by": [
       "pick_and_place"
      ],
@@ -3672,17 +3683,6 @@
       "bag",
       "correct_area"
      ]
-    },
-    {
-     "id": "MAN-PLACE-03",
-     "points": 100,
-     "used_by": [
-      "restaurant"
-     ],
-     "modifiers": [
-      "customer_table",
-      "order_item"
-     ]
     }
    ]
   },
@@ -3691,7 +3691,7 @@
    "variants": [
     {
      "id": "NAV-NAVIGATE-01",
-     "points": 15,
+     "points": 35,
      "used_by": [
       "doing_laundry",
       "pick_and_place"
@@ -3712,7 +3712,7 @@
     },
     {
      "id": "NAV-NAVIGATE-03",
-     "points": 80,
+     "points": 50,
      "used_by": [
       "restaurant"
      ],
@@ -3727,7 +3727,7 @@
    "variants": [
     {
      "id": "NLU-UNDERSTANDCOMMAND-01",
-     "points": 80,
+     "points": 100,
      "used_by": [
       "gpsr"
      ],
@@ -3737,7 +3737,7 @@
     },
     {
      "id": "NLU-UNDERSTANDCOMMAND-05",
-     "points": 160,
+     "points": 130,
      "used_by": [
       "restaurant"
      ],

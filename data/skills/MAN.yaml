@@ -14,7 +14,7 @@ skills:
   conditions:
     reach: enclosed
   level: X
-  points: 100
+  points: 230
   type: achievement
 - id: MAN-APPLIANCE-02
   area: MAN
@@ -47,7 +47,7 @@ skills:
   conditions:
     reach: low_high
   level: X
-  points: 300
+  points: 270
   type: achievement
 - id: MAN-FOLD-02
   area: MAN
@@ -60,7 +60,7 @@ skills:
   objects:
   - clothing
   level: X
-  points: 400
+  points: 600
   type: achievement
 - id: MAN-FOLD-02B
   area: MAN
@@ -87,7 +87,7 @@ skills:
   description: Quality penalties (per item)
   failure_mode: quality
   level: X
-  points: -400
+  points: -600
   type: penalty_behavior
 - id: MAN-INSERT-01
   area: MAN
@@ -118,7 +118,7 @@ skills:
   conditions:
     reach: table
   level: X
-  points: 200
+  points: 230
   type: achievement
 - id: MAN-OPEN-02
   area: MAN
@@ -134,7 +134,7 @@ skills:
   conditions:
     reach: table
   level: X
-  points: 400
+  points: 200
   type: achievement
 - id: MAN-PICK-01
   area: MAN
@@ -154,7 +154,7 @@ skills:
     clutter: nearby
     knowledge: known_instance
   level: C
-  points: 50
+  points: 80
   type: achievement
 - id: MAN-PICK-01B2
   area: MAN
@@ -188,7 +188,7 @@ skills:
     clutter: nearby
     knowledge: known_instance
   level: C
-  points: 50
+  points: 70
   type: bonus
 - id: MAN-PICK-01B4
   area: MAN
@@ -205,7 +205,7 @@ skills:
     clutter: nearby
     knowledge: known_instance
   level: C
-  points: 100
+  points: 80
   type: bonus
 - id: MAN-PICK-01B5
   area: MAN
@@ -222,7 +222,7 @@ skills:
     clutter: isolated
     knowledge: known_instance
   level: C
-  points: 100
+  points: 60
   type: bonus
 - id: MAN-PICK-01P1
   area: MAN
@@ -281,7 +281,7 @@ skills:
     clutter: piled
     knowledge: known_class
   level: C
-  points: 100
+  points: 200
   type: achievement
 - id: MAN-PICK-03P
   area: MAN
@@ -293,7 +293,7 @@ skills:
   description: Picking up multiple at once
   failure_mode: multiple_at_once
   level: C
-  points: -100
+  points: -200
   type: penalty_behavior
 - id: MAN-PICK-04
   area: MAN
@@ -311,7 +311,7 @@ skills:
     clutter: piled
     knowledge: known_class
   level: X
-  points: 300
+  points: 210
   type: achievement
 - id: MAN-PICK-04P
   area: MAN
@@ -323,7 +323,7 @@ skills:
   description: The clothing touches the floor
   failure_mode: quality
   level: X
-  points: -200
+  points: -210
   type: penalty_behavior
 - id: MAN-PICK-05
   area: MAN
@@ -341,7 +341,7 @@ skills:
     clutter: nearby
     knowledge: known_instance
   level: C
-  points: 100
+  points: 80
   type: achievement
 - id: MAN-PICK-06
   area: MAN
@@ -397,7 +397,7 @@ skills:
     placement_tolerance: spot
     clutter: nearby
   level: C
-  points: 40
+  points: 45
   type: achievement
 - id: MAN-PLACE-02B1
   area: MAN
@@ -415,7 +415,7 @@ skills:
     placement_tolerance: constrained
     clutter: nearby
   level: X
-  points: 70
+  points: 15
   type: bonus
 - id: MAN-PLACE-02B2
   area: MAN
@@ -433,7 +433,7 @@ skills:
     placement_tolerance: spot
     clutter: nearby
   level: C
-  points: 20
+  points: 5
   type: bonus
 - id: MAN-PLACE-02P1
   area: MAN
@@ -446,7 +446,7 @@ skills:
   description: Area around breakfast items is not cleaned
   failure_mode: quality
   level: C
-  points: -30
+  points: -45
   type: penalty_behavior
 - id: MAN-PLACE-02P2
   area: MAN
@@ -476,7 +476,7 @@ skills:
   description: Objects thrown or dropped while placing
   failure_mode: drop
   level: C
-  points: -40
+  points: -20
   type: penalty_behavior
 - id: MAN-PLACE-03
   area: MAN
@@ -494,7 +494,7 @@ skills:
     placement_tolerance: region
     clutter: nearby
   level: C
-  points: 100
+  points: 35
   type: achievement
 - id: MAN-PLACE-03B
   area: MAN
@@ -583,7 +583,7 @@ skills:
   conditions:
     carrier: unattached
   level: X
-  points: 300
+  points: 240
   type: achievement
 - id: MAN-TRANSPORTWITHBASKET-02P
   area: MAN
@@ -595,7 +595,7 @@ skills:
   description: Laundry is dropped or otherwise lost during transportation
   failure_mode: drop
   level: X
-  points: -200
+  points: -120
   type: penalty_behavior
 - id: MAN-TRANSPORTWITHTRAY-01
   area: MAN
@@ -610,5 +610,5 @@ skills:
   conditions:
     carrier: unattached
   level: X
-  points: 200
+  points: 270
   type: achievement

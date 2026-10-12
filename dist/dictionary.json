@@ -14,7 +14,7 @@
       "description": "Alternative HRI",
       "failure_mode": "alternative_input",
       "level": "C",
-      "points": -20,
+      "points": -15,
       "type": "penalty_behavior",
       "used_by": [
         "hri"
@@ -32,7 +32,7 @@
       "description": "Alternative HRI",
       "failure_mode": "alternative_input",
       "level": "C",
-      "points": -80,
+      "points": -30,
       "type": "penalty_behavior",
       "used_by": [
         "restaurant"
@@ -68,7 +68,7 @@
       "description": "Human assistance: object repositioned by a person",
       "failure_mode": "assistance",
       "level": "-",
-      "points": -30,
+      "points": -5,
       "type": "penalty_behavior",
       "used_by": [
         "pick_and_place"
@@ -86,7 +86,7 @@
       "description": "Human assistance: a person hands the object to the robot instead of the robot picking it",
       "failure_mode": "assistance",
       "level": "-",
-      "points": -100,
+      "points": -40,
       "type": "penalty_behavior",
       "used_by": [
         "pick_and_place",
@@ -161,7 +161,7 @@
       "description": "Human assistance during folding (percentage penalty per amount of help, per item)",
       "failure_mode": "assistance",
       "level": "-",
-      "points": -400,
+      "points": -300,
       "type": "penalty_behavior",
       "penalty_type": "percentage",
       "basis": "MAN-FOLD-02 points",
@@ -181,7 +181,7 @@
       "description": "Human assistance: Guest needing to take the object from a tray or the robot's hand",
       "failure_mode": "assistance",
       "level": "-",
-      "points": -100,
+      "points": -20,
       "type": "penalty_behavior",
       "used_by": [
         "restaurant"
@@ -217,7 +217,7 @@
       "description": "Human Assistance: Being told/pointed where a table/Kitchen-bar is located",
       "failure_mode": "assistance",
       "level": "-",
-      "points": -40,
+      "points": -25,
       "type": "penalty_behavior",
       "used_by": [
         "restaurant"
@@ -299,7 +299,7 @@
         "distractors": "none"
       },
       "level": "C",
-      "points": 80,
+      "points": 50,
       "type": "achievement",
       "used_by": [
         "restaurant"
@@ -344,7 +344,7 @@
         "distractors": "none"
       },
       "level": "C",
-      "points": 50,
+      "points": 45,
       "type": "achievement",
       "used_by": [
         "hri"
@@ -468,7 +468,7 @@
         "distractors": "few"
       },
       "level": "C",
-      "points": 30,
+      "points": 60,
       "type": "achievement",
       "used_by": [
         "hri"
@@ -486,7 +486,7 @@
       "description": "Wrong guest information was memorized",
       "failure_mode": "wrong_info",
       "level": "C",
-      "points": -40,
+      "points": -30,
       "type": "penalty_behavior",
       "used_by": [
         "hri"
@@ -555,7 +555,7 @@
         "reach": "enclosed"
       },
       "level": "X",
-      "points": 100,
+      "points": 230,
       "type": "achievement",
       "used_by": [
         "pick_and_place"
@@ -604,7 +604,7 @@
         "reach": "low_high"
       },
       "level": "X",
-      "points": 300,
+      "points": 270,
       "type": "achievement",
       "used_by": [
         "doing_laundry"
@@ -624,7 +624,7 @@
         "clothing"
       ],
       "level": "X",
-      "points": 400,
+      "points": 600,
       "type": "achievement",
       "used_by": [
         "doing_laundry"
@@ -664,7 +664,7 @@
       "description": "Quality penalties (per item)",
       "failure_mode": "quality",
       "level": "X",
-      "points": -400,
+      "points": -600,
       "type": "penalty_behavior",
       "used_by": [
         "doing_laundry"
@@ -711,7 +711,7 @@
         "reach": "table"
       },
       "level": "X",
-      "points": 200,
+      "points": 230,
       "type": "achievement",
       "used_by": [
         "hri"
@@ -735,7 +735,7 @@
         "reach": "table"
       },
       "level": "X",
-      "points": 400,
+      "points": 200,
       "type": "achievement",
       "used_by": [
         "pick_and_place"
@@ -763,7 +763,7 @@
         "knowledge": "known_instance"
       },
       "level": "C",
-      "points": 50,
+      "points": 80,
       "type": "achievement",
       "used_by": [
         "pick_and_place"
@@ -813,7 +813,7 @@
         "knowledge": "known_instance"
       },
       "level": "C",
-      "points": 50,
+      "points": 70,
       "type": "bonus",
       "used_by": [
         "pick_and_place"
@@ -838,7 +838,7 @@
         "knowledge": "known_instance"
       },
       "level": "C",
-      "points": 100,
+      "points": 80,
       "type": "bonus",
       "used_by": [
         "pick_and_place"
@@ -863,7 +863,7 @@
         "knowledge": "known_instance"
       },
       "level": "C",
-      "points": 100,
+      "points": 60,
       "type": "bonus",
       "used_by": [
         "pick_and_place"
@@ -951,7 +951,7 @@
         "knowledge": "known_class"
       },
       "level": "C",
-      "points": 100,
+      "points": 200,
       "type": "achievement",
       "used_by": [
         "doing_laundry"
@@ -969,7 +969,7 @@
       "description": "Picking up multiple at once",
       "failure_mode": "multiple_at_once",
       "level": "C",
-      "points": -100,
+      "points": -200,
       "type": "penalty_behavior",
       "used_by": [
         "doing_laundry"
@@ -995,7 +995,7 @@
         "knowledge": "known_class"
       },
       "level": "X",
-      "points": 300,
+      "points": 210,
       "type": "achievement",
       "used_by": [
         "doing_laundry"
@@ -1013,7 +1013,7 @@
       "description": "The clothing touches the floor",
       "failure_mode": "quality",
       "level": "X",
-      "points": -200,
+      "points": -210,
       "type": "penalty_behavior",
       "used_by": [
         "doing_laundry"
@@ -1039,7 +1039,7 @@
         "knowledge": "known_instance"
       },
       "level": "C",
-      "points": 100,
+      "points": 80,
       "type": "achievement",
       "used_by": [
         "restaurant"
@@ -1120,7 +1120,7 @@
         "clutter": "nearby"
       },
       "level": "C",
-      "points": 40,
+      "points": 45,
       "type": "achievement",
       "used_by": [
         "pick_and_place"
@@ -1146,7 +1146,7 @@
         "clutter": "nearby"
       },
       "level": "X",
-      "points": 70,
+      "points": 15,
       "type": "bonus",
       "used_by": [
         "pick_and_place"
@@ -1172,7 +1172,7 @@
         "clutter": "nearby"
       },
       "level": "C",
-      "points": 20,
+      "points": 5,
       "type": "bonus",
       "used_by": [
         "pick_and_place"
@@ -1191,7 +1191,7 @@
       "description": "Area around breakfast items is not cleaned",
       "failure_mode": "quality",
       "level": "C",
-      "points": -30,
+      "points": -45,
       "type": "penalty_behavior",
       "used_by": [
         "pick_and_place"
@@ -1235,7 +1235,7 @@
       "description": "Objects thrown or dropped while placing",
       "failure_mode": "drop",
       "level": "C",
-      "points": -40,
+      "points": -20,
       "type": "penalty_behavior",
       "used_by": [
         "pick_and_place"
@@ -1261,7 +1261,7 @@
         "clutter": "nearby"
       },
       "level": "C",
-      "points": 100,
+      "points": 35,
       "type": "achievement",
       "used_by": [
         "restaurant"
@@ -1394,7 +1394,7 @@
         "carrier": "unattached"
       },
       "level": "X",
-      "points": 300,
+      "points": 240,
       "type": "achievement",
       "used_by": [
         "doing_laundry"
@@ -1412,7 +1412,7 @@
       "description": "Laundry is dropped or otherwise lost during transportation",
       "failure_mode": "drop",
       "level": "X",
-      "points": -200,
+      "points": -120,
       "type": "penalty_behavior",
       "used_by": [
         "doing_laundry"
@@ -1435,7 +1435,7 @@
         "carrier": "unattached"
       },
       "level": "X",
-      "points": 200,
+      "points": 270,
       "type": "achievement",
       "used_by": [
         "restaurant"
@@ -1476,7 +1476,7 @@
       "description": "Drop the bag while following the host",
       "failure_mode": "drop",
       "level": "C",
-      "points": -50,
+      "points": -100,
       "type": "penalty_behavior",
       "used_by": [
         "hri"
@@ -1495,7 +1495,7 @@
       "description": "Rediscovering the operator by natural interaction",
       "failure_mode": "assistance",
       "level": "C",
-      "points": -50,
+      "points": -100,
       "type": "penalty_behavior",
       "used_by": [
         "hri"
@@ -1513,7 +1513,7 @@
       "description": "Asking the operator to wait",
       "failure_mode": "assistance",
       "level": "C",
-      "points": -50,
+      "points": -100,
       "type": "penalty_behavior",
       "used_by": [
         "hri"
@@ -1531,7 +1531,7 @@
       "description": "Guiding the robot with physical contact (take by the hand)",
       "failure_mode": "assistance",
       "level": "C",
-      "points": -150,
+      "points": -100,
       "type": "penalty_behavior",
       "used_by": [
         "hri"
@@ -1618,7 +1618,7 @@
         "obstacle_visibility": "large"
       },
       "level": "E",
-      "points": 15,
+      "points": 35,
       "type": "achievement",
       "used_by": [
         "doing_laundry",
@@ -1642,7 +1642,7 @@
         "obstacle_visibility": "small"
       },
       "level": "C",
-      "points": 80,
+      "points": 50,
       "type": "achievement",
       "used_by": [
         "restaurant"
@@ -1660,7 +1660,7 @@
       "description": "Human Assistance: Being guided to a table",
       "failure_mode": "assistance",
       "level": "C",
-      "points": -80,
+      "points": -25,
       "type": "penalty_behavior",
       "used_by": [
         "restaurant"
@@ -1679,7 +1679,7 @@
       "description": "Not reaching the bar (barman has to move from behind the bar to interact)",
       "failure_mode": "assistance",
       "level": "C",
-      "points": -60,
+      "points": -25,
       "type": "penalty_behavior",
       "used_by": [
         "restaurant"
@@ -1743,7 +1743,7 @@
         "info_load": "few"
       },
       "level": "C",
-      "points": 80,
+      "points": 100,
       "type": "achievement",
       "used_by": [
         "gpsr"
@@ -1761,7 +1761,7 @@
       "description": "Using a custom operator",
       "failure_mode": "alternative_input",
       "level": "C",
-      "points": -20,
+      "points": -25,
       "type": "penalty_behavior",
       "used_by": [
         "gpsr"
@@ -1779,7 +1779,7 @@
       "description": "Request a rephrasing",
       "failure_mode": "assistance",
       "level": "C",
-      "points": -30,
+      "points": -50,
       "type": "penalty_behavior",
       "used_by": [
         "gpsr"
@@ -1797,7 +1797,7 @@
       "description": "Bypassing speech recognition",
       "failure_mode": "alternative_input",
       "level": "C",
-      "points": -50,
+      "points": -25,
       "type": "penalty_behavior",
       "used_by": [
         "gpsr"
@@ -1820,7 +1820,7 @@
         "info_load": "few"
       },
       "level": "C",
-      "points": 160,
+      "points": 130,
       "type": "achievement",
       "used_by": [
         "restaurant"
@@ -2047,7 +2047,7 @@
       "description": "Tell a visual attribute of the first guest to the second guest (incorrect)",
       "failure_mode": "wrong_info",
       "level": "C",
-      "points": -20,
+      "points": -10,
       "type": "penalty_behavior",
       "used_by": [
         "hri"

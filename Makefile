@@ -2,7 +2,7 @@
 PY ?= python3
 SD  = $(PY) -m skilldict
 
-.PHONY: help check findings sheets prices pdf all clean
+.PHONY: help check findings sheets pdf all clean
 
 help:            ## list the targets
 	@grep -E '^[a-z]+:.*##' $(MAKEFILE_LIST) | sed 's/:.*## /\t/'
@@ -16,13 +16,10 @@ findings:        ## TC findings report
 sheets:          ## score sheets, HTML + rulebook LaTeX -> build/sheets/
 	$(SD) sheets
 
-prices:          ## every line under the pricing rule -> build/pricing.html
-	$(SD) prices
-
 pdf:             ## rulebook sheet next to the generated one, per challenge (needs latexmk)
 	$(SD) pdf
 
-all: check sheets prices pdf   ## everything
+all: check sheets pdf   ## everything
 
 clean:           ## remove build/ (dist/ is committed and kept)
 	rm -rf build

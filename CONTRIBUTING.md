@@ -44,7 +44,6 @@ rather than working around it.
 |---|---|
 | change a skill or its price | `data/skills/` |
 | change how a test uses skills | `data/challenges/` |
-| change the pricing rule | `data/pricing.yaml` |
 | add an object, a factor, a taxonomy node | `data/vocabulary/` |
 | change a page or sheet layout | `templates/` or `skilldict/render/` |
 | add a check | `skilldict/checks/` |
@@ -150,8 +149,9 @@ Then reference it from the challenge:
     permitted: false
 ```
 
-Price it with the rule: `make prices` shows what `data/pricing.yaml` gives
-the line at its difficulty.
+Price it with the rule in [docs/changes-2027.md](docs/changes-2027.md)
+(*One price per skill and difficulty*): `make check` writes the line's D to
+`dist/skill_ratings.json`, and T2 flags a price that breaks the rule.
 
 Before adding an entry, read [docs/skill-model.md](docs/skill-model.md). In
 short:

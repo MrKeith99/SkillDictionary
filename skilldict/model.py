@@ -3,7 +3,7 @@
 The tree describes one release (data/release.yaml); earlier ones are git tags.
 load() returns a Build: every skill, challenge and the vocabulary, with the
 derived fields (used_by, total_score, GPSR command counts) filled in and every
-line rated. Everything else (checks, pricing, sheets) works on a Build.
+line rated. Everything else (checks, sheets, pages) works on a Build.
 """
 import glob, math, os, re
 from . import paths
@@ -31,10 +31,6 @@ class Release:
     @property
     def in_force(self):
         return self.status == "in_force"
-
-    def pricing(self):
-        p = os.path.join(paths.DATA, "pricing.yaml")
-        return paths.load_yaml(p) if os.path.exists(p) else None
 
     def __repr__(self):
         return f"{self.year} ({self.status})"

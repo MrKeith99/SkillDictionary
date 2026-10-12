@@ -3,7 +3,6 @@
   check      build, run all checks, write dist/  (the CI gate)
   findings   the TC findings report
   sheets     score sheets, HTML + rulebook LaTeX -> build/sheets/   (-c SLUG for one)
-  prices     every line under the pricing rule   -> build/pricing.*, dist/pricing.json
   pdf        rulebook sheet next to generated, per challenge -> build/*.pdf
 
 The tree describes one release (data/release.yaml); earlier ones are git tags.
@@ -12,8 +11,7 @@ import argparse, sys
 from . import model, paths
 from .checks import RULE, schema, integrity, rulebook, findings
 from .model import DataError
-from .pricing import rule_of
-from .render import sheets as r_sheets, pricing as r_pricing, viz as r_viz, pdf as r_pdf
+from .render import sheets as r_sheets, viz as r_viz, pdf as r_pdf
 
 
 def _load():
@@ -43,13 +41,6 @@ def cmd_check(a):
             findings.run(b)
         b.write_dist()
         r_viz.write(b)
-        rule = rule_of(b.release)
-        if rule:
-            rp, _ = r_pricing.write(b, rule)
-            print(RULE)
-            print(f"PRICING RULE: inversions {len(rp.inv_old)} now -> {len(rp.inv_new)} under the rule, "
-                  f"{sum(1 for r in rp.rows if r['delta'])} lines priced differently from the rule "
-                  f"(`make prices`)")
         print(f"  wrote {paths.rel(paths.DIST)}/")
     print(RULE)
     print("ALL CHECKS PASSED" if not fail else f"CHECKS FAILED ({fail})")
@@ -71,31 +62,6 @@ def cmd_sheets(a):
     return 0
 
 
-def cmd_prices(a):
-    b = _load()
-    rule = rule_of(b.release)
-    if rule is None:
-        sys.exit("no data/pricing.yaml")
-    rp, written = r_pricing.write(b, rule)
-    print(RULE)
-    print("PRICES UNDER THE RULE (data/pricing.yaml) — report only, data unchanged")
-    print(f"  price inversions within a skill: {len(rp.inv_old)} now -> {len(rp.inv_new)} under the rule")
-    for node, x, y in rp.inv_new:
-        print(f"    still: {x[4]} D{x[1]}-{x[2]} = {x[3]}  <  {y[4]} D{y[1]}-{y[2]} = {y[3]}")
-    print("  challenge max (positive lines), now -> under the rule:")
-    for s in b.challenges:
-        print(f"    {s:16s} {rp.tot_old[s]:6d} -> {rp.tot_new[s]:6d}  ({rp.tot_new[s] - rp.tot_old[s]:+d})")
-    print(f"  lines the rule cannot price ({len(rp.kept)}): kept as they are")
-    for i, why in rp.kept:
-        print(f"    {i:28s} {why}")
-    for r in rp.rows:
-        if "CONFLICT" in r["rule"]:
-            print(f"  CONFLICT {r['id']}: {r['rule']}")
-    for p in written:
-        print(f"wrote {paths.rel(p)}")
-    return 0
-
-
 def cmd_pdf(a):
     print(f"wrote {paths.rel(r_pdf.write(_load()))}")
     return 0
@@ -112,7 +78,6 @@ def main(argv=None):
     c = sub.add_parser("sheets", help="score sheets (HTML + LaTeX)")
     c.add_argument("-c", "--challenge", action="append", help="only this challenge (repeatable)")
     c.set_defaults(fn=cmd_sheets)
-    sub.add_parser("prices", help="every line under the pricing rule").set_defaults(fn=cmd_prices)
     sub.add_parser("pdf", help="rulebook vs generated sheets, one PDF").set_defaults(fn=cmd_pdf)
     a = p.parse_args(argv)
     try:

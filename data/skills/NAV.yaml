@@ -26,7 +26,7 @@ skills:
   description: Drop the bag while following the host
   failure_mode: drop
   level: C
-  points: -50
+  points: -100
   type: penalty_behavior
 - id: NAV-FOLLOW-01P2
   area: NAV
@@ -39,7 +39,7 @@ skills:
   description: Rediscovering the operator by natural interaction
   failure_mode: assistance
   level: C
-  points: -50
+  points: -100
   type: penalty_behavior
 - id: NAV-FOLLOW-01P3
   area: NAV
@@ -51,7 +51,7 @@ skills:
   description: Asking the operator to wait
   failure_mode: assistance
   level: C
-  points: -50
+  points: -100
   type: penalty_behavior
 - id: NAV-FOLLOW-01P4
   area: NAV
@@ -63,7 +63,7 @@ skills:
   description: Guiding the robot with physical contact (take by the hand)
   failure_mode: assistance
   level: C
-  points: -150
+  points: -100
   type: penalty_behavior
 - id: NAV-FOLLOW-02
   area: NAV
@@ -122,7 +122,7 @@ skills:
     crowd: none
     obstacle_visibility: large
   level: E
-  points: 15
+  points: 35
   type: achievement
 - id: NAV-NAVIGATE-03
   area: NAV
@@ -138,7 +138,7 @@ skills:
     crowd: crowd
     obstacle_visibility: small
   level: C
-  points: 80
+  points: 50
   type: achievement
 - id: NAV-NAVIGATE-03P
   area: NAV
@@ -150,7 +150,7 @@ skills:
   description: 'Human Assistance: Being guided to a table'
   failure_mode: assistance
   level: C
-  points: -80
+  points: -25
   type: penalty_behavior
 - id: NAV-NAVIGATE-05P
   area: NAV
@@ -163,7 +163,7 @@ skills:
   description: Not reaching the bar (barman has to move from behind the bar to interact)
   failure_mode: assistance
   level: C
-  points: -60
+  points: -25
   type: penalty_behavior
 - id: NAV-NAVIGATE-06
   area: NAV

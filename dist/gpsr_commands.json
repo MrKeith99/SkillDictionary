@@ -1,7 +1,7 @@
 {
   "mean_command": 215.0,
   "completion_bonus": 35,
-  "max_score": 1760,
+  "max_score": 1820,
   "templates": {
     "goToLoc": {
       "min": 140,

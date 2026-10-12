@@ -207,7 +207,7 @@
           "section": "Special Penalties & Bonuses"
         }
       ],
-      "total_score": 4415
+      "total_score": 5555
     },
     "gpsr": {
       "challenge": "General Purpose Service Robot",
@@ -686,8 +686,8 @@
           }
         }
       },
-      "max_score": 1760,
-      "total_score": 1760
+      "max_score": 1820,
+      "total_score": 1820
     },
     "hri": {
       "challenge": "Human Robot Interaction Challenge",
@@ -973,7 +973,7 @@
           "section": "Special Penalties & Bonuses"
         }
       ],
-      "total_score": 1450
+      "total_score": 1620
     },
     "pick_and_place": {
       "challenge": "Pick and Place Challenge",
@@ -1363,7 +1363,7 @@
           "section": "Special Penalties & Bonuses"
         }
       ],
-      "total_score": 3515
+      "total_score": 3800
     },
     "restaurant": {
       "challenge": "Restaurant Challenge",
@@ -1644,7 +1644,7 @@
           "section": "Special Penalties & Bonuses"
         }
       ],
-      "total_score": 2360
+      "total_score": 1920
     }
   }
 }

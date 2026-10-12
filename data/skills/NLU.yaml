@@ -26,7 +26,7 @@ skills:
     ambient_noise: background
     info_load: few
   level: C
-  points: 80
+  points: 100
   type: achievement
 - id: NLU-UNDERSTANDCOMMAND-02P
   area: NLU
@@ -38,7 +38,7 @@ skills:
   description: Using a custom operator
   failure_mode: alternative_input
   level: C
-  points: -20
+  points: -25
   type: penalty_behavior
 - id: NLU-UNDERSTANDCOMMAND-03P
   area: NLU
@@ -50,7 +50,7 @@ skills:
   description: Request a rephrasing
   failure_mode: assistance
   level: C
-  points: -30
+  points: -50
   type: penalty_behavior
 - id: NLU-UNDERSTANDCOMMAND-04P
   area: NLU
@@ -62,7 +62,7 @@ skills:
   description: Bypassing speech recognition
   failure_mode: alternative_input
   level: C
-  points: -50
+  points: -25
   type: penalty_behavior
 - id: NLU-UNDERSTANDCOMMAND-05
   area: NLU
@@ -78,5 +78,5 @@ skills:
     ambient_noise: loud
     info_load: few
   level: C
-  points: 160
+  points: 130
   type: achievement

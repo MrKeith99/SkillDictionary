@@ -4,9 +4,80 @@ What this branch changes against the rulebook as published (git tag `2026.2`),
 and why. `make check` prints the same changes line by line (stage RULEBOOK),
 and `make pdf` sets each official sheet next to the proposed one.
 
-All prices follow one rule ([data/pricing.yaml](../data/pricing.yaml)): the same
-skill at the same difficulty pays the same everywhere, and the same failure
-costs the same share of the line it belongs to.
+All prices follow one rule (below): the same skill at the same difficulty pays
+the same everywhere, and the same failure costs the same share of the line it
+belongs to.
+
+---
+
+## One price per skill and difficulty
+
+2026 prices each line on its own, so the same skill drifts: a pick pays 50 in
+one test and 300 in another, and 11 times a strictly harder line of a skill
+pays less than an easier one. Every price in `data/skills/` now follows one
+rule; the 11 inversions are 0.
+
+**Achievement** = base[skill] × (1 + D / 4), rounded to 10 (to 5 below 50).
+D is the intrinsic difficulty of the easiest instance the line covers
+(`dist/skill_ratings.json`); harder objects are paid by bonus lines.
+
+**Bonus or discount** on a parent line: parent + line together pay the rule
+price at the line's own D; the line pays the difference.
+
+**Penalty** = a share of the line it belongs to:
+
+| failure | share | | failure | share |
+|---|---|---|---|---|
+| damage, quality, multiple at once | 100 % | | drop, spill, collision | 50 % |
+| wrong target, wrong info | 50 % | | assistance (on top of forfeiting the element, §3.7.2) | 50 % |
+| alternative input | 25 % | | | |
+
+Conduct failures are not tied to one action, so they cost a fixed amount
+everywhere: neglect −100, unsafe contact −200.
+
+**Skill bases** are calibrated, not invented: the median over the skill's
+lines in rulebook 2026.2 of price ÷ (1 + D / 4). The league's level per skill is
+kept; only the spread inside a skill goes.
+
+| skill | base | skill | base | skill | base |
+|---|---|---|---|---|---|
+| MAN.Fold | 300 | MAN.Pick | 60 | HRI.ConveyInfo | 35 |
+| PLN.Execute | 200 | NLU.UnderstandCommand | 58 | HRI.Handover | 33 |
+| MAN.Pour | 160 | MAN.Stack | 50 | MAN.Place | 29 |
+| MAN.OperateArticulated | 133 | PPL.Detect¹ | 40 | HRI.Gaze | 27 |
+| NAV.Follow | 133 | PPL.DetectGesture | 40 | NAV.Navigate | 23 |
+| NAV.Guide¹ | 133 | PPL.Reidentify¹ | 40 | OBJ.DetectEvent | 20 |
+| PLN.Interleave | 133 | MAN.Insert | 64 | PPL.DescribeAttribute | 16 |
+| MAN.Transport | 119 | HRI.Indicate | 67 | OBJ.DetectPlacement | 15 |
+| PLN.Plan | 67 | NAV.SignalIntent | 12 | NLU.Clarify | 9 |
+| OBJ.Recognize | 7 | | | | |
+
+¹ no 2026 line: as NAV.Follow / PPL.DetectGesture.
+
+To price a new line: rate it (`make check` writes its D), apply the formula.
+`make findings` T2 reports any line that breaks it.
+
+**Not priced by the rule**, kept at their value:
+
+- goal bonuses — they pay for reaching the goal, not for difficulty:
+  `MAN-FOLD-02B` (+400), `PLN-COMPLETECOMMAND-01B` (+35);
+- discounts the rule would zero or flip: `MAN-PICK-01B2` (+30), `MAN-PLACE-02P2` (−20);
+- `GEN-HUMANASSIST-08P` (−100): flattening help is less help than folding
+  help (−300); the share does not see the amount of help;
+- lines with no difficulty factors, lines judged on the day, explicit 0s.
+
+Challenge maximums:
+
+| challenge | 2026.2 | 2027 |
+|---|---|---|
+| Doing Laundry | 4415 | 5555 |
+| GPSR | 1490 | 1820 |
+| HRI | 1450 | 1620 |
+| Pick & Place | 3515 | 3800 |
+| Restaurant | 2360 | 1920 |
+
+Challenges are not rescaled: scaling one would make the same skill pay
+differently again. Balance between challenges is set through the skill bases.
 
 ---
 
@@ -38,11 +109,12 @@ additional clothes" 400, both MAN.Fold on the same garments (D4). The extra 400
 rewards reaching the main goal, not a harder fold. Same for their penalties:
 quality −800 / −400, flattening help −200 / −100, folding help up to −800 / −400.
 
-Every garment is now the same fold line (`MAN-FOLD-02`, 400 × 6) with the same
+Every garment is now the same fold line (`MAN-FOLD-02` × 6) with the same
 per-item penalties; the main-goal premium becomes an explicit bonus
 (`MAN-FOLD-02B`, +400 for the first garment folded without assistance and to
-quality), as Pick & Place does with its First Pick Bonus. Values are the 2026
-ones, so the maximum is unchanged (4415); only the structure is consistent.
+quality), as Pick & Place does with its First Pick Bonus. Under the pricing
+rule a fold (D4) pays 600, quality failures cost the fold (−600) and folding
+help half of it (−300).
 
 Retired: `MAN-FOLD-01`, `MAN-FOLD-01P1`, `GEN-HUMANASSIST-06P`, `GEN-HUMANASSIST-07P`.
 
@@ -79,8 +151,8 @@ person completes, functional touching of furniture announced by the robot).
 
 ## Open for the TC
 
-- The pricing rule's skill bases are the median of the 2026 lines; fix them with
-  `base_overrides` once agreed, so a new line cannot move them.
+- The skill bases (2026 medians): a base is how much the league values a skill.
 - Penalty shares and the two fixed conduct prices (−100, −200).
-- Challenge totals: the rule keeps each skill's 2026 level, it does not rebalance
-  challenges against each other.
+- The lines kept outside the rule, above.
+- Challenge maximums: the rule keeps each skill's 2026 level, it does not
+  rebalance challenges against each other (Restaurant drops, Laundry rises).

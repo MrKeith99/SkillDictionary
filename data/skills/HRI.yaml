@@ -25,7 +25,7 @@ skills:
     retention: task
     distractors: none
   level: C
-  points: 80
+  points: 50
   type: achievement
 - id: HRI-HANDOVER-02
   area: HRI
@@ -56,7 +56,7 @@ skills:
     ambient_noise: background
     distractors: none
   level: C
-  points: 50
+  points: 45
   type: achievement
 - id: HRI-LOOKAT-02
   area: HRI
@@ -140,7 +140,7 @@ skills:
     retention: task
     distractors: few
   level: C
-  points: 30
+  points: 60
   type: achievement
 - id: HRI-STATESTOREDINFO-02P
   area: HRI
@@ -152,7 +152,7 @@ skills:
   description: Wrong guest information was memorized
   failure_mode: wrong_info
   level: C
-  points: -40
+  points: -30
   type: penalty_behavior
 - id: HRI-TELLINFO-01
   area: HRI

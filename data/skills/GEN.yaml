@@ -9,7 +9,7 @@ skills:
   description: Alternative HRI
   failure_mode: alternative_input
   level: C
-  points: -20
+  points: -15
   type: penalty_behavior
 - id: GEN-ALTERNATIVEHRI-02P
   area: GEN
@@ -21,7 +21,7 @@ skills:
   description: Alternative HRI
   failure_mode: alternative_input
   level: C
-  points: -80
+  points: -30
   type: penalty_behavior
 - id: GEN-BREAKFAST-01P
   area: GEN
@@ -45,7 +45,7 @@ skills:
   description: 'Human assistance: object repositioned by a person'
   failure_mode: assistance
   level: '-'
-  points: -30
+  points: -5
   type: penalty_behavior
 - id: GEN-HUMANASSIST-02P
   area: GEN
@@ -57,7 +57,7 @@ skills:
   description: 'Human assistance: a person hands the object to the robot instead of the robot picking it'
   failure_mode: assistance
   level: '-'
-  points: -100
+  points: -40
   type: penalty_behavior
 - id: GEN-HUMANASSIST-04P
   area: GEN
@@ -107,7 +107,7 @@ skills:
   description: Human assistance during folding (percentage penalty per amount of help, per item)
   failure_mode: assistance
   level: '-'
-  points: -400
+  points: -300
   type: penalty_behavior
   penalty_type: percentage
   basis: MAN-FOLD-02 points
@@ -121,7 +121,7 @@ skills:
   description: 'Human assistance: Guest needing to take the object from a tray or the robot''s hand'
   failure_mode: assistance
   level: '-'
-  points: -100
+  points: -20
   type: penalty_behavior
 - id: GEN-HUMANASSIST-12P
   area: GEN
@@ -145,7 +145,7 @@ skills:
   description: 'Human Assistance: Being told/pointed where a table/Kitchen-bar is located'
   failure_mode: assistance
   level: '-'
-  points: -40
+  points: -25
   type: penalty_behavior
 - id: GEN-HUMANASSIST-14P
   area: GEN
