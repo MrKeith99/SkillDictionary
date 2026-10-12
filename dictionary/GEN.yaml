@@ -16,8 +16,7 @@ skills:
   type: penalty_behavior
   used_by:
   - hri
-  legacy_ids:
-  - GEN-ALTHRI-01
+  legacy_ids: []
 - id: GEN-ALTERNATIVEHRI-02P
   area: GEN
   skill: AlternativeHRI
@@ -32,8 +31,7 @@ skills:
   type: penalty_behavior
   used_by:
   - restaurant
-  legacy_ids:
-  - GEN-ALTHRI-02
+  legacy_ids: []
 - id: GEN-BREAKFAST-01P
   area: GEN
   skill: null
@@ -48,8 +46,7 @@ skills:
   type: penalty_behavior
   used_by:
   - pick_and_place
-  legacy_ids:
-  - GEN-BREAKFAST-01P
+  legacy_ids: []
 - id: GEN-HUMANASSIST-01P
   area: GEN
   skill: null
@@ -64,8 +61,7 @@ skills:
   type: penalty_behavior
   used_by:
   - pick_and_place
-  legacy_ids:
-  - GEN-HUMANASSIST-01
+  legacy_ids: []
 - id: GEN-HUMANASSIST-02P
   area: GEN
   skill: null
@@ -73,15 +69,14 @@ skills:
   taxonomy: GEN.HumanAssistance
   modifiers:
   - handover
-  description: 'Human assistance: handover'
+  description: 'Human assistance: a person hands the object to the robot instead of the robot picking it'
   failure_mode: assistance
   level: '-'
   points: -100
   type: penalty_behavior
   used_by:
   - pick_and_place
-  legacy_ids:
-  - GEN-HUMANASSIST-02
+  legacy_ids: []
 - id: GEN-HUMANASSIST-04P
   area: GEN
   skill: null
@@ -96,8 +91,7 @@ skills:
   type: penalty_behavior
   used_by:
   - pick_and_place
-  legacy_ids:
-  - GEN-HUMANASSIST-04
+  legacy_ids: []
 - id: GEN-HUMANASSIST-05P
   area: GEN
   skill: null
@@ -112,8 +106,7 @@ skills:
   type: penalty_behavior
   used_by:
   - pick_and_place
-  legacy_ids:
-  - GEN-HUMANASSIST-05
+  legacy_ids: []
 - id: GEN-HUMANASSIST-06P
   area: GEN
   skill: null
@@ -128,8 +121,7 @@ skills:
   type: penalty_behavior
   used_by:
   - doing_laundry
-  legacy_ids:
-  - GEN-HUMANASSIST-06
+  legacy_ids: []
 - id: GEN-HUMANASSIST-07P
   area: GEN
   skill: null
@@ -146,8 +138,7 @@ skills:
   basis: MAN-FOLD-01 points
   used_by:
   - doing_laundry
-  legacy_ids:
-  - GEN-HUMANASSIST-07
+  legacy_ids: []
 - id: GEN-HUMANASSIST-08P
   area: GEN
   skill: null
@@ -163,8 +154,7 @@ skills:
   type: penalty_behavior
   used_by:
   - doing_laundry
-  legacy_ids:
-  - GEN-HUMANASSIST-08
+  legacy_ids: []
 - id: GEN-HUMANASSIST-09P
   area: GEN
   skill: null
@@ -182,24 +172,7 @@ skills:
   basis: MAN-FOLD-02 points
   used_by:
   - doing_laundry
-  legacy_ids:
-  - GEN-HUMANASSIST-09
-- id: GEN-HUMANASSIST-10P
-  area: GEN
-  skill: null
-  variant_number: '10'
-  taxonomy: GEN.HumanAssistance
-  modifiers:
-  - barman_handover
-  description: 'Human assistance: Asking the Barman to handover object to the robot'
-  failure_mode: assistance
-  level: '-'
-  points: -100
-  type: penalty_behavior
-  used_by:
-  - restaurant
-  legacy_ids:
-  - GEN-HUMANASSIST-10
+  legacy_ids: []
 - id: GEN-HUMANASSIST-11P
   area: GEN
   skill: null
@@ -214,8 +187,7 @@ skills:
   type: penalty_behavior
   used_by:
   - restaurant
-  legacy_ids:
-  - GEN-HUMANASSIST-11
+  legacy_ids: []
 - id: GEN-HUMANASSIST-12P
   area: GEN
   skill: null
@@ -230,8 +202,7 @@ skills:
   type: penalty_behavior
   used_by:
   - restaurant
-  legacy_ids:
-  - GEN-HUMANASSIST-12
+  legacy_ids: []
 - id: GEN-HUMANASSIST-13P
   area: GEN
   skill: null
@@ -246,8 +217,7 @@ skills:
   type: penalty_behavior
   used_by:
   - restaurant
-  legacy_ids:
-  - GEN-HUMANASSIST-13
+  legacy_ids: []
 - id: GEN-HUMANASSIST-14P
   area: GEN
   skill: null
@@ -263,6 +233,4 @@ skills:
   used_by:
   - doing_laundry
   - pick_and_place
-  legacy_ids:
-  - GEN-HUMANASSIST-03
-  - GEN-HUMANASSIST-03B
+  legacy_ids: []

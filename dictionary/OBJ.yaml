@@ -20,8 +20,7 @@ skills:
   type: achievement
   used_by:
   - hri
-  legacy_ids:
-  - OBJ-DETECTEVENT-01
+  legacy_ids: []
 - id: OBJ-PERCEIVE-01
   area: OBJ
   skill: Perceive
@@ -40,8 +39,7 @@ skills:
   type: achievement
   used_by:
   - pick_and_place
-  legacy_ids:
-  - OBJ-PERCEIVE-01
+  legacy_ids: []
 - id: OBJ-RECOGNIZE-01
   area: OBJ
   skill: Recognize
@@ -60,5 +58,4 @@ skills:
   type: achievement
   used_by:
   - pick_and_place
-  legacy_ids:
-  - OBJ-RECOGNIZE-01
+  legacy_ids: []

@@ -17,9 +17,7 @@
       "used_by": [
         "hri"
       ],
-      "legacy_ids": [
-        "GEN-ALTHRI-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "GEN-ALTERNATIVEHRI-02P",
@@ -38,9 +36,7 @@
       "used_by": [
         "restaurant"
       ],
-      "legacy_ids": [
-        "GEN-ALTHRI-02"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "GEN-BREAKFAST-01P",
@@ -59,9 +55,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "GEN-BREAKFAST-01P"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "GEN-HUMANASSIST-01P",
@@ -80,9 +74,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "GEN-HUMANASSIST-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "GEN-HUMANASSIST-02P",
@@ -93,17 +85,16 @@
       "modifiers": [
         "handover"
       ],
-      "description": "Human assistance: handover",
+      "description": "Human assistance: a person hands the object to the robot instead of the robot picking it",
       "failure_mode": "assistance",
       "level": "-",
       "points": -100,
       "type": "penalty_behavior",
       "used_by": [
-        "pick_and_place"
+        "pick_and_place",
+        "restaurant"
       ],
-      "legacy_ids": [
-        "GEN-HUMANASSIST-02"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "GEN-HUMANASSIST-04P",
@@ -122,9 +113,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "GEN-HUMANASSIST-04"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "GEN-HUMANASSIST-05P",
@@ -143,9 +132,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "GEN-HUMANASSIST-05"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "GEN-HUMANASSIST-06P",
@@ -164,9 +151,7 @@
       "used_by": [
         "doing_laundry"
       ],
-      "legacy_ids": [
-        "GEN-HUMANASSIST-06"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "GEN-HUMANASSIST-07P",
@@ -187,9 +172,7 @@
       "used_by": [
         "doing_laundry"
       ],
-      "legacy_ids": [
-        "GEN-HUMANASSIST-07"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "GEN-HUMANASSIST-08P",
@@ -209,9 +192,7 @@
       "used_by": [
         "doing_laundry"
       ],
-      "legacy_ids": [
-        "GEN-HUMANASSIST-08"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "GEN-HUMANASSIST-09P",
@@ -233,30 +214,7 @@
       "used_by": [
         "doing_laundry"
       ],
-      "legacy_ids": [
-        "GEN-HUMANASSIST-09"
-      ]
-    },
-    {
-      "id": "GEN-HUMANASSIST-10P",
-      "area": "GEN",
-      "skill": null,
-      "variant_number": "10",
-      "taxonomy": "GEN.HumanAssistance",
-      "modifiers": [
-        "barman_handover"
-      ],
-      "description": "Human assistance: Asking the Barman to handover object to the robot",
-      "failure_mode": "assistance",
-      "level": "-",
-      "points": -100,
-      "type": "penalty_behavior",
-      "used_by": [
-        "restaurant"
-      ],
-      "legacy_ids": [
-        "GEN-HUMANASSIST-10"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "GEN-HUMANASSIST-11P",
@@ -275,9 +233,7 @@
       "used_by": [
         "restaurant"
       ],
-      "legacy_ids": [
-        "GEN-HUMANASSIST-11"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "GEN-HUMANASSIST-12P",
@@ -296,9 +252,7 @@
       "used_by": [
         "restaurant"
       ],
-      "legacy_ids": [
-        "GEN-HUMANASSIST-12"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "GEN-HUMANASSIST-13P",
@@ -317,9 +271,7 @@
       "used_by": [
         "restaurant"
       ],
-      "legacy_ids": [
-        "GEN-HUMANASSIST-13"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "GEN-HUMANASSIST-14P",
@@ -339,10 +291,7 @@
         "doing_laundry",
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "GEN-HUMANASSIST-03",
-        "GEN-HUMANASSIST-03B"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "HRI-ATTEND-01P",
@@ -361,9 +310,7 @@
       "used_by": [
         "hri"
       ],
-      "legacy_ids": [
-        "HRI-ATTEND-01P"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "HRI-COMMUNICATEORDER-01",
@@ -386,9 +333,7 @@
       "used_by": [
         "restaurant"
       ],
-      "legacy_ids": [
-        "HRI-COMMUNICATE-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "HRI-EYECONTACT-01P",
@@ -407,9 +352,7 @@
       "used_by": [
         "restaurant"
       ],
-      "legacy_ids": [
-        "HRI-EYECONTACT-01P"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "HRI-LOOKAT-01",
@@ -425,7 +368,8 @@
       "conditions": {
         "crowd": "few",
         "target_motion": "shifting",
-        "ambient_noise": "background"
+        "ambient_noise": "background",
+        "distractors": "none"
       },
       "level": "C",
       "points": 50,
@@ -433,9 +377,7 @@
       "used_by": [
         "hri"
       ],
-      "legacy_ids": [
-        "HRI-LOOKAT-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "HRI-LOOKAT-02",
@@ -451,7 +393,8 @@
       "conditions": {
         "crowd": "few",
         "target_motion": "shifting",
-        "ambient_noise": "background"
+        "ambient_noise": "background",
+        "distractors": "few"
       },
       "level": "C",
       "points": 50,
@@ -459,9 +402,7 @@
       "used_by": [
         "hri"
       ],
-      "legacy_ids": [
-        "HRI-LOOKAT-02"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "HRI-OFFERSEAT-01",
@@ -483,9 +424,7 @@
       "used_by": [
         "hri"
       ],
-      "legacy_ids": [
-        "HRI-OFFERSEAT-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "HRI-RECEIVEHANDOVER-01",
@@ -506,9 +445,7 @@
       "used_by": [
         "hri"
       ],
-      "legacy_ids": [
-        "HRI-RECEIVEHANDOVER-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "HRI-RECEIVEHANDOVER-01P1",
@@ -527,9 +464,7 @@
       "used_by": [
         "hri"
       ],
-      "legacy_ids": [
-        "HRI-RECEIVEHANDOVER-01P1"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "HRI-RECEIVEHANDOVER-01P2",
@@ -548,9 +483,7 @@
       "used_by": [
         "hri"
       ],
-      "legacy_ids": [
-        "HRI-RECEIVEHANDOVER-01P2"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "HRI-STATESTOREDINFO-01",
@@ -574,9 +507,7 @@
       "used_by": [
         "hri"
       ],
-      "legacy_ids": [
-        "HRI-STATEINFO-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "HRI-STATESTOREDINFO-02P",
@@ -595,9 +526,7 @@
       "used_by": [
         "hri"
       ],
-      "legacy_ids": [
-        "HRI-STATEINFO-01P"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-APPLIANCE-01",
@@ -622,9 +551,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "MAN-APPLIANCE-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-APPLIANCE-02",
@@ -650,9 +577,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "MAN-APPLIANCE-02"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-APPLIANCE-03",
@@ -677,9 +602,7 @@
       "used_by": [
         "doing_laundry"
       ],
-      "legacy_ids": [
-        "MAN-APPLIANCE-03"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-FOLD-01",
@@ -701,9 +624,7 @@
       "used_by": [
         "doing_laundry"
       ],
-      "legacy_ids": [
-        "MAN-FOLD-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-FOLD-01P1",
@@ -722,9 +643,7 @@
       "used_by": [
         "doing_laundry"
       ],
-      "legacy_ids": [
-        "MAN-FOLD-01P1"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-FOLD-02",
@@ -745,9 +664,7 @@
       "used_by": [
         "doing_laundry"
       ],
-      "legacy_ids": [
-        "MAN-FOLD-02"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-FOLD-02P1",
@@ -767,9 +684,7 @@
       "used_by": [
         "doing_laundry"
       ],
-      "legacy_ids": [
-        "MAN-FOLD-02P1"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-INSERT-01",
@@ -794,9 +709,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "MAN-INSERT-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-OPEN-01",
@@ -820,9 +733,7 @@
       "used_by": [
         "hri"
       ],
-      "legacy_ids": [
-        "MAN-OPEN-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-OPEN-02",
@@ -847,9 +758,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "MAN-OPEN-02"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-PICK-01",
@@ -878,9 +787,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "MAN-PICK-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-PICK-01B2",
@@ -906,9 +813,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "MAN-PICK-01B2"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-PICK-01B3",
@@ -934,9 +839,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "MAN-PICK-01B3"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-PICK-01B4",
@@ -962,9 +865,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "MAN-PICK-01B4"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-PICK-01B5",
@@ -990,9 +891,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "MAN-PICK-01B5"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-PICK-01P1",
@@ -1011,9 +910,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "MAN-PICK-01P1"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-PICK-02B",
@@ -1032,10 +929,7 @@
         "pick_and_place",
         "restaurant"
       ],
-      "legacy_ids": [
-        "MAN-PICK-01B1",
-        "MAN-PICK-05B"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-PICK-02P",
@@ -1062,9 +956,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "MAN-PICK-02P"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-PICK-03",
@@ -1091,9 +983,7 @@
       "used_by": [
         "doing_laundry"
       ],
-      "legacy_ids": [
-        "MAN-PICK-03"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-PICK-03P",
@@ -1112,9 +1002,7 @@
       "used_by": [
         "doing_laundry"
       ],
-      "legacy_ids": [
-        "MAN-PICK-03P"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-PICK-04",
@@ -1141,9 +1029,7 @@
       "used_by": [
         "doing_laundry"
       ],
-      "legacy_ids": [
-        "MAN-PICK-04"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-PICK-04P",
@@ -1162,9 +1048,7 @@
       "used_by": [
         "doing_laundry"
       ],
-      "legacy_ids": [
-        "MAN-PICK-04P"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-PICK-05",
@@ -1191,9 +1075,7 @@
       "used_by": [
         "restaurant"
       ],
-      "legacy_ids": [
-        "MAN-PICK-05"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-PLACE-01",
@@ -1219,9 +1101,7 @@
       "used_by": [
         "hri"
       ],
-      "legacy_ids": [
-        "MAN-PLACE-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-PLACE-02",
@@ -1250,9 +1130,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "MAN-PLACE-02"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-PLACE-02B1",
@@ -1279,9 +1157,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "MAN-PLACE-02B1"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-PLACE-02B2",
@@ -1308,9 +1184,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "MAN-PLACE-02B2"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-PLACE-02P1",
@@ -1330,9 +1204,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "MAN-PLACE-02P1"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-PLACE-02P2",
@@ -1359,9 +1231,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "MAN-PLACE-02P2"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-PLACE-02P3",
@@ -1380,9 +1250,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "MAN-PLACE-02P3"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-PLACE-03",
@@ -1409,9 +1277,7 @@
       "used_by": [
         "restaurant"
       ],
-      "legacy_ids": [
-        "MAN-PLACE-03"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-PLACE-03B",
@@ -1429,9 +1295,7 @@
       "used_by": [
         "restaurant"
       ],
-      "legacy_ids": [
-        "MAN-PLACE-03B"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-POUR-01",
@@ -1457,9 +1321,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "MAN-POUR-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-POUR-01P",
@@ -1478,9 +1340,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "MAN-POUR-01P"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-STACK-01",
@@ -1504,9 +1364,7 @@
       "used_by": [
         "doing_laundry"
       ],
-      "legacy_ids": [
-        "MAN-STACK-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-TRANSPORTWITHBASKET-01",
@@ -1528,9 +1386,7 @@
       "used_by": [
         "doing_laundry"
       ],
-      "legacy_ids": [
-        "MAN-TRANSPORT-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-TRANSPORTWITHBASKET-02P",
@@ -1549,9 +1405,7 @@
       "used_by": [
         "doing_laundry"
       ],
-      "legacy_ids": [
-        "MAN-TRANSPORT-01P"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "MAN-TRANSPORTWITHTRAY-01",
@@ -1575,9 +1429,7 @@
       "used_by": [
         "restaurant"
       ],
-      "legacy_ids": [
-        "MAN-TRANSPORT-02"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "NAV-FOLLOW-01",
@@ -1601,9 +1453,7 @@
       "used_by": [
         "hri"
       ],
-      "legacy_ids": [
-        "NAV-FOLLOW-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "NAV-FOLLOW-01P1",
@@ -1622,9 +1472,7 @@
       "used_by": [
         "hri"
       ],
-      "legacy_ids": [
-        "NAV-FOLLOW-01P1"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "NAV-FOLLOW-01P2",
@@ -1644,9 +1492,7 @@
       "used_by": [
         "hri"
       ],
-      "legacy_ids": [
-        "NAV-FOLLOW-01P2"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "NAV-FOLLOW-01P3",
@@ -1665,9 +1511,7 @@
       "used_by": [
         "hri"
       ],
-      "legacy_ids": [
-        "NAV-FOLLOW-01P3"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "NAV-FOLLOW-01P4",
@@ -1686,9 +1530,7 @@
       "used_by": [
         "hri"
       ],
-      "legacy_ids": [
-        "NAV-FOLLOW-01P4"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "NAV-GAZEDIRECTION-01",
@@ -1709,9 +1551,7 @@
       "used_by": [
         "hri"
       ],
-      "legacy_ids": [
-        "NAV-GAZEDIR-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "NAV-NAVIGATE-01",
@@ -1720,9 +1560,9 @@
       "variant_number": "01",
       "taxonomy": "NAV.Navigate",
       "modifiers": [
-        "table"
+        "announced_location"
       ],
-      "description": "Navigate to the table",
+      "description": "Navigate to the announced furniture or area (dining table, laundry area)",
       "conditions": {
         "map_knowledge": "moved",
         "route_extent": "rooms",
@@ -1733,37 +1573,10 @@
       "points": 15,
       "type": "achievement",
       "used_by": [
+        "doing_laundry",
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "NAV-NAVIGATE-01"
-      ]
-    },
-    {
-      "id": "NAV-NAVIGATE-02",
-      "area": "NAV",
-      "skill": "Navigate",
-      "variant_number": "02",
-      "taxonomy": "NAV.Navigate",
-      "modifiers": [
-        "laundry_area"
-      ],
-      "description": "Navigating to the laundry area",
-      "conditions": {
-        "map_knowledge": "mapped",
-        "route_extent": "rooms",
-        "crowd": "none",
-        "obstacle_visibility": "large"
-      },
-      "level": "E",
-      "points": 15,
-      "type": "achievement",
-      "used_by": [
-        "doing_laundry"
-      ],
-      "legacy_ids": [
-        "NAV-NAVIGATE-02"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "NAV-NAVIGATE-03",
@@ -1774,7 +1587,7 @@
       "modifiers": [
         "customer_table"
       ],
-      "description": "Reach a customer's table",
+      "description": "Reach a customer's table (to take the order, and again to serve it)",
       "conditions": {
         "map_knowledge": "unknown",
         "route_extent": "room",
@@ -1787,9 +1600,7 @@
       "used_by": [
         "restaurant"
       ],
-      "legacy_ids": [
-        "NAV-NAVIGATE-03"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "NAV-NAVIGATE-03P",
@@ -1808,36 +1619,7 @@
       "used_by": [
         "restaurant"
       ],
-      "legacy_ids": [
-        "NAV-NAVIGATE-03P"
-      ]
-    },
-    {
-      "id": "NAV-NAVIGATE-04",
-      "area": "NAV",
-      "skill": "Navigate",
-      "variant_number": "04",
-      "taxonomy": "NAV.Navigate",
-      "modifiers": [
-        "order",
-        "return_to_table"
-      ],
-      "description": "Return to the customer table with the order",
-      "conditions": {
-        "map_knowledge": "unknown",
-        "route_extent": "room",
-        "crowd": "crowd",
-        "obstacle_visibility": "small"
-      },
-      "level": "C",
-      "points": 80,
-      "type": "achievement",
-      "used_by": [
-        "restaurant"
-      ],
-      "legacy_ids": [
-        "NAV-NAVIGATE-04"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "NAV-NAVIGATE-05P",
@@ -1857,9 +1639,7 @@
       "used_by": [
         "restaurant"
       ],
-      "legacy_ids": [
-        "NAV-NAVIGATE-05P"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "NLU-AVOIDNONESSENTIALQUESTIONS-01B",
@@ -1879,9 +1659,7 @@
       "used_by": [
         "hri"
       ],
-      "legacy_ids": [
-        "NLU-NOQUESTION-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "NLU-UNDERSTANDCOMMAND-01",
@@ -1904,9 +1682,7 @@
       "used_by": [
         "gpsr"
       ],
-      "legacy_ids": [
-        "NLU-UNDERSTAND-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "NLU-UNDERSTANDCOMMAND-02P",
@@ -1925,9 +1701,7 @@
       "used_by": [
         "gpsr"
       ],
-      "legacy_ids": [
-        "NLU-UNDERSTAND-01P1"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "NLU-UNDERSTANDCOMMAND-03P",
@@ -1946,9 +1720,7 @@
       "used_by": [
         "gpsr"
       ],
-      "legacy_ids": [
-        "NLU-UNDERSTAND-01P2"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "NLU-UNDERSTANDCOMMAND-04P",
@@ -1967,9 +1739,7 @@
       "used_by": [
         "gpsr"
       ],
-      "legacy_ids": [
-        "NLU-UNDERSTAND-01P3"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "NLU-UNDERSTANDCOMMAND-05",
@@ -1993,9 +1763,7 @@
       "used_by": [
         "restaurant"
       ],
-      "legacy_ids": [
-        "NLU-UNDERSTAND-02"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "OBJ-DETECTEVENT-01",
@@ -2018,9 +1786,7 @@
       "used_by": [
         "hri"
       ],
-      "legacy_ids": [
-        "OBJ-DETECTEVENT-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "OBJ-PERCEIVE-01",
@@ -2044,9 +1810,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "OBJ-PERCEIVE-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "OBJ-RECOGNIZE-01",
@@ -2070,9 +1834,7 @@
       "used_by": [
         "pick_and_place"
       ],
-      "legacy_ids": [
-        "OBJ-RECOGNIZE-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "PLN-DEMONSTRATEPLAN-01",
@@ -2095,9 +1857,7 @@
       "used_by": [
         "gpsr"
       ],
-      "legacy_ids": [
-        "PLN-PLAN-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "PLN-INTERLEAVETASKS-01B",
@@ -2116,9 +1876,7 @@
       "used_by": [
         "gpsr"
       ],
-      "legacy_ids": [
-        "PLN-INTERLEAVE-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "PLN-SOLVECOMMAND-01",
@@ -2127,9 +1885,9 @@
       "variant_number": "01",
       "taxonomy": "PLN.Execute",
       "modifiers": [
-        "command_1"
+        "command"
       ],
-      "description": "Solving the first command",
+      "description": "Solving a command (one line per command)",
       "conditions": {
         "plan_length": [
           "medium",
@@ -2142,61 +1900,7 @@
       "used_by": [
         "gpsr"
       ],
-      "legacy_ids": [
-        "PLN-SOLVE-01"
-      ]
-    },
-    {
-      "id": "PLN-SOLVECOMMAND-02",
-      "area": "PLN",
-      "skill": "SolveCommand",
-      "variant_number": "02",
-      "taxonomy": "PLN.Execute",
-      "modifiers": [
-        "command_2"
-      ],
-      "description": "Solving the second command",
-      "conditions": {
-        "plan_length": [
-          "medium",
-          "long"
-        ]
-      },
-      "level": "X",
-      "points": 250,
-      "type": "achievement",
-      "used_by": [
-        "gpsr"
-      ],
-      "legacy_ids": [
-        "PLN-SOLVE-02"
-      ]
-    },
-    {
-      "id": "PLN-SOLVECOMMAND-03",
-      "area": "PLN",
-      "skill": "SolveCommand",
-      "variant_number": "03",
-      "taxonomy": "PLN.Execute",
-      "modifiers": [
-        "command_3"
-      ],
-      "description": "Solving the third command",
-      "conditions": {
-        "plan_length": [
-          "medium",
-          "long"
-        ]
-      },
-      "level": "X",
-      "points": 250,
-      "type": "achievement",
-      "used_by": [
-        "gpsr"
-      ],
-      "legacy_ids": [
-        "PLN-SOLVE-03"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "PLN-SOLVECOMMAND-04P",
@@ -2217,9 +1921,7 @@
       "used_by": [
         "gpsr"
       ],
-      "legacy_ids": [
-        "PLN-SOLVE-PARTIAL"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "PPL-DESCRIBEATTRIBUTE-01B",
@@ -2243,9 +1945,7 @@
       "used_by": [
         "hri"
       ],
-      "legacy_ids": [
-        "PPL-DESCRIBE-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "PPL-DESCRIBEATTRIBUTE-02P",
@@ -2265,9 +1965,7 @@
       "used_by": [
         "hri"
       ],
-      "legacy_ids": [
-        "PPL-DESCRIBE-01P"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "PPL-DETECTCALLINGORWAVING-01",
@@ -2289,9 +1987,7 @@
       "used_by": [
         "restaurant"
       ],
-      "legacy_ids": [
-        "PPL-DETECT-01"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "SPECIAL-01",
@@ -2311,9 +2007,7 @@
         "pick_and_place",
         "restaurant"
       ],
-      "legacy_ids": [
-        "SPECIAL-NOTATTEND"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "SPECIAL-02",
@@ -2332,9 +2026,7 @@
         "pick_and_place",
         "restaurant"
       ],
-      "legacy_ids": [
-        "SPECIAL-ALTSTART"
-      ]
+      "legacy_ids": []
     },
     {
       "id": "SPECIAL-03",
@@ -2355,9 +2047,7 @@
         "pick_and_place",
         "restaurant"
       ],
-      "legacy_ids": [
-        "SPECIAL-OUTSTANDING"
-      ]
+      "legacy_ids": []
     }
   ]
 }

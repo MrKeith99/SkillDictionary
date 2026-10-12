@@ -78,22 +78,23 @@
  "rows": [
   {
    "challenge": "doing_laundry",
-   "id": "NAV-NAVIGATE-02",
+   "id": "NAV-NAVIGATE-01",
    "area": "NAV",
    "skill": "Navigate",
    "modifiers": [
-    "laundry_area"
+    "announced_location"
    ],
-   "description": "Navigating to the laundry area",
+   "description": "Navigate to the announced furniture or area (dining table, laundry area)",
    "level": "E",
    "type": "achievement",
    "points": 15,
    "count": 1,
    "total": 15,
    "section": "Main Goal",
-   "shared": false,
+   "shared": true,
    "used_by": [
-    "doing_laundry"
+    "doing_laundry",
+    "pick_and_place"
    ],
    "deps": [],
    "assistance": false,
@@ -678,9 +679,9 @@
    "area": "PLN",
    "skill": "SolveCommand",
    "modifiers": [
-    "command_1"
+    "command"
    ],
-   "description": "Solving the first command",
+   "description": "Solving a command (one line per command)",
    "level": "X",
    "type": "achievement",
    "points": 250,
@@ -699,13 +700,13 @@
   },
   {
    "challenge": "gpsr",
-   "id": "PLN-SOLVECOMMAND-02",
+   "id": "PLN-SOLVECOMMAND-01",
    "area": "PLN",
    "skill": "SolveCommand",
    "modifiers": [
-    "command_2"
+    "command"
    ],
-   "description": "Solving the second command",
+   "description": "Solving a command (one line per command)",
    "level": "X",
    "type": "achievement",
    "points": 250,
@@ -724,13 +725,13 @@
   },
   {
    "challenge": "gpsr",
-   "id": "PLN-SOLVECOMMAND-03",
+   "id": "PLN-SOLVECOMMAND-01",
    "area": "PLN",
    "skill": "SolveCommand",
    "modifiers": [
-    "command_3"
+    "command"
    ],
-   "description": "Solving the third command",
+   "description": "Solving a command (one line per command)",
    "level": "X",
    "type": "achievement",
    "points": 250,
@@ -1470,17 +1471,18 @@
    "area": "NAV",
    "skill": "Navigate",
    "modifiers": [
-    "table"
+    "announced_location"
    ],
-   "description": "Navigate to the table",
+   "description": "Navigate to the announced furniture or area (dining table, laundry area)",
    "level": "E",
    "type": "achievement",
    "points": 15,
    "count": 1,
    "total": 15,
    "section": null,
-   "shared": false,
+   "shared": true,
    "used_by": [
+    "doing_laundry",
     "pick_and_place"
    ],
    "deps": [],
@@ -2084,16 +2086,17 @@
    "modifiers": [
     "handover"
    ],
-   "description": "Human assistance: handover",
+   "description": "Human assistance: a person hands the object to the robot instead of the robot picking it",
    "level": "-",
    "type": "penalty_behavior",
    "points": -100,
    "count": 24,
    "total": -2400,
    "section": "Penalties",
-   "shared": false,
+   "shared": true,
    "used_by": [
-    "pick_and_place"
+    "pick_and_place",
+    "restaurant"
    ],
    "deps": [],
    "assistance": null,
@@ -2274,7 +2277,7 @@
    "modifiers": [
     "customer_table"
    ],
-   "description": "Reach a customer's table",
+   "description": "Reach a customer's table (to take the order, and again to serve it)",
    "level": "C",
    "type": "achievement",
    "points": 80,
@@ -2465,21 +2468,22 @@
   },
   {
    "challenge": "restaurant",
-   "id": "GEN-HUMANASSIST-10P",
+   "id": "GEN-HUMANASSIST-02P",
    "area": "GEN",
    "skill": null,
    "modifiers": [
-    "barman_handover"
+    "handover"
    ],
-   "description": "Human assistance: Asking the Barman to handover object to the robot",
+   "description": "Human assistance: a person hands the object to the robot instead of the robot picking it",
    "level": "-",
    "type": "penalty_behavior",
    "points": -100,
    "count": 4,
    "total": -400,
    "section": "Regular Rewards",
-   "shared": false,
+   "shared": true,
    "used_by": [
+    "pick_and_place",
     "restaurant"
    ],
    "deps": [],
@@ -2488,14 +2492,13 @@
   },
   {
    "challenge": "restaurant",
-   "id": "NAV-NAVIGATE-04",
+   "id": "NAV-NAVIGATE-03",
    "area": "NAV",
    "skill": "Navigate",
    "modifiers": [
-    "order",
-    "return_to_table"
+    "customer_table"
    ],
-   "description": "Return to the customer table with the order",
+   "description": "Reach a customer's table (to take the order, and again to serve it)",
    "level": "C",
    "type": "achievement",
    "points": 80,
@@ -2915,20 +2918,11 @@
      "id": "NAV-NAVIGATE-01",
      "points": 15,
      "used_by": [
+      "doing_laundry",
       "pick_and_place"
      ],
      "modifiers": [
-      "table"
-     ]
-    },
-    {
-     "id": "NAV-NAVIGATE-02",
-     "points": 15,
-     "used_by": [
-      "doing_laundry"
-     ],
-     "modifiers": [
-      "laundry_area"
+      "announced_location"
      ]
     },
     {
@@ -2939,17 +2933,6 @@
      ],
      "modifiers": [
       "customer_table"
-     ]
-    },
-    {
-     "id": "NAV-NAVIGATE-04",
-     "points": 80,
-     "used_by": [
-      "restaurant"
-     ],
-     "modifiers": [
-      "order",
-      "return_to_table"
      ]
     }
    ]
@@ -3015,6 +2998,14 @@
    ]
   },
   {
+   "id": "GEN-HUMANASSIST-02P",
+   "description": "Human assistance: a person hands the object to the robot instead of the robot picking it",
+   "used_by": [
+    "pick_and_place",
+    "restaurant"
+   ]
+  },
+  {
    "id": "GEN-HUMANASSIST-14P",
    "description": "Human assistance: environment changes (per item)",
    "used_by": [
@@ -3028,6 +3019,14 @@
    "used_by": [
     "pick_and_place",
     "restaurant"
+   ]
+  },
+  {
+   "id": "NAV-NAVIGATE-01",
+   "description": "Navigate to the announced furniture or area (dining table, laundry area)",
+   "used_by": [
+    "doing_laundry",
+    "pick_and_place"
    ]
   }
  ]

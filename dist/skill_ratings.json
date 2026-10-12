@@ -65,12 +65,6 @@
   "difficulty": null,
   "level": "-"
  },
- "GEN-HUMANASSIST-10P": {
-  "taxonomy": "GEN.HumanAssistance",
-  "objects": [],
-  "difficulty": null,
-  "level": "-"
- },
  "GEN-HUMANASSIST-11P": {
   "taxonomy": "GEN.HumanAssistance",
   "objects": [],
@@ -142,7 +136,8 @@
      "factors": {
       "crowd": "few",
       "target_motion": "shifting",
-      "ambient_noise": "background"
+      "ambient_noise": "background",
+      "distractors": "none"
      }
     }
    }
@@ -153,17 +148,18 @@
   "taxonomy": "HRI.Gaze",
   "objects": [],
   "difficulty": {
-   "min": 3,
-   "max": 3,
+   "min": 4,
+   "max": 4,
    "tier": "C",
    "per_object": {
     "-": {
-     "min": 3,
-     "max": 3,
+     "min": 4,
+     "max": 4,
      "factors": {
       "crowd": "few",
       "target_motion": "shifting",
-      "ambient_noise": "background"
+      "ambient_noise": "background",
+      "distractors": "few"
      }
     }
    }
@@ -2937,28 +2933,6 @@
   },
   "level": "E"
  },
- "NAV-NAVIGATE-02": {
-  "taxonomy": "NAV.Navigate",
-  "objects": [],
-  "difficulty": {
-   "min": 1,
-   "max": 1,
-   "tier": "E",
-   "per_object": {
-    "-": {
-     "min": 1,
-     "max": 1,
-     "factors": {
-      "map_knowledge": "mapped",
-      "route_extent": "rooms",
-      "crowd": "none",
-      "obstacle_visibility": "large"
-     }
-    }
-   }
-  },
-  "level": "E"
- },
  "NAV-NAVIGATE-03": {
   "taxonomy": "NAV.Navigate",
   "objects": [],
@@ -2985,28 +2959,6 @@
   "taxonomy": "NAV.Navigate",
   "objects": [],
   "difficulty": null,
-  "level": "C"
- },
- "NAV-NAVIGATE-04": {
-  "taxonomy": "NAV.Navigate",
-  "objects": [],
-  "difficulty": {
-   "min": 5,
-   "max": 5,
-   "tier": "C",
-   "per_object": {
-    "-": {
-     "min": 5,
-     "max": 5,
-     "factors": {
-      "map_knowledge": "unknown",
-      "route_extent": "room",
-      "crowd": "crowd",
-      "obstacle_visibility": "small"
-     }
-    }
-   }
-  },
   "level": "C"
  },
  "NAV-NAVIGATE-05P": {
@@ -3201,50 +3153,6 @@
   "level": "X"
  },
  "PLN-SOLVECOMMAND-01": {
-  "taxonomy": "PLN.Execute",
-  "objects": [],
-  "difficulty": {
-   "min": 1,
-   "max": 2,
-   "tier": "E",
-   "per_object": {
-    "-": {
-     "min": 1,
-     "max": 2,
-     "factors": {
-      "plan_length": [
-       "medium",
-       "long"
-      ]
-     }
-    }
-   }
-  },
-  "level": "X"
- },
- "PLN-SOLVECOMMAND-02": {
-  "taxonomy": "PLN.Execute",
-  "objects": [],
-  "difficulty": {
-   "min": 1,
-   "max": 2,
-   "tier": "E",
-   "per_object": {
-    "-": {
-     "min": 1,
-     "max": 2,
-     "factors": {
-      "plan_length": [
-       "medium",
-       "long"
-      ]
-     }
-    }
-   }
-  },
-  "level": "X"
- },
- "PLN-SOLVECOMMAND-03": {
   "taxonomy": "PLN.Execute",
   "objects": [],
   "difficulty": {

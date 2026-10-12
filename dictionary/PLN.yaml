@@ -18,8 +18,7 @@ skills:
   type: achievement
   used_by:
   - gpsr
-  legacy_ids:
-  - PLN-PLAN-01
+  legacy_ids: []
 - id: PLN-INTERLEAVETASKS-01B
   area: PLN
   skill: InterleaveTasks
@@ -34,16 +33,15 @@ skills:
   type: bonus
   used_by:
   - gpsr
-  legacy_ids:
-  - PLN-INTERLEAVE-01
+  legacy_ids: []
 - id: PLN-SOLVECOMMAND-01
   area: PLN
   skill: SolveCommand
   variant_number: '01'
   taxonomy: PLN.Execute
   modifiers:
-  - command_1
-  description: Solving the first command
+  - command
+  description: Solving a command (one line per command)
   conditions:
     plan_length: [medium, long]
   level: X
@@ -51,42 +49,7 @@ skills:
   type: achievement
   used_by:
   - gpsr
-  legacy_ids:
-  - PLN-SOLVE-01
-- id: PLN-SOLVECOMMAND-02
-  area: PLN
-  skill: SolveCommand
-  variant_number: '02'
-  taxonomy: PLN.Execute
-  modifiers:
-  - command_2
-  description: Solving the second command
-  conditions:
-    plan_length: [medium, long]
-  level: X
-  points: 250
-  type: achievement
-  used_by:
-  - gpsr
-  legacy_ids:
-  - PLN-SOLVE-02
-- id: PLN-SOLVECOMMAND-03
-  area: PLN
-  skill: SolveCommand
-  variant_number: '03'
-  taxonomy: PLN.Execute
-  modifiers:
-  - command_3
-  description: Solving the third command
-  conditions:
-    plan_length: [medium, long]
-  level: X
-  points: 250
-  type: achievement
-  used_by:
-  - gpsr
-  legacy_ids:
-  - PLN-SOLVE-03
+  legacy_ids: []
 - id: PLN-SOLVECOMMAND-04P
   area: PLN
   skill: SolveCommand
@@ -103,5 +66,4 @@ skills:
   basis: similar_scores_in_other_tests
   used_by:
   - gpsr
-  legacy_ids:
-  - PLN-SOLVE-PARTIAL
+  legacy_ids: []

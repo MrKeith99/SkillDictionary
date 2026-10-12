@@ -18,8 +18,7 @@ skills:
   type: bonus
   used_by:
   - hri
-  legacy_ids:
-  - NLU-NOQUESTION-01
+  legacy_ids: []
 - id: NLU-UNDERSTANDCOMMAND-01
   area: NLU
   skill: UnderstandCommand
@@ -37,8 +36,7 @@ skills:
   type: achievement
   used_by:
   - gpsr
-  legacy_ids:
-  - NLU-UNDERSTAND-01
+  legacy_ids: []
 - id: NLU-UNDERSTANDCOMMAND-02P
   area: NLU
   skill: UnderstandCommand
@@ -53,8 +51,7 @@ skills:
   type: penalty_behavior
   used_by:
   - gpsr
-  legacy_ids:
-  - NLU-UNDERSTAND-01P1
+  legacy_ids: []
 - id: NLU-UNDERSTANDCOMMAND-03P
   area: NLU
   skill: UnderstandCommand
@@ -69,8 +66,7 @@ skills:
   type: penalty_behavior
   used_by:
   - gpsr
-  legacy_ids:
-  - NLU-UNDERSTAND-01P2
+  legacy_ids: []
 - id: NLU-UNDERSTANDCOMMAND-04P
   area: NLU
   skill: UnderstandCommand
@@ -85,8 +81,7 @@ skills:
   type: penalty_behavior
   used_by:
   - gpsr
-  legacy_ids:
-  - NLU-UNDERSTAND-01P3
+  legacy_ids: []
 - id: NLU-UNDERSTANDCOMMAND-05
   area: NLU
   skill: UnderstandCommand
@@ -105,5 +100,4 @@ skills:
   type: achievement
   used_by:
   - restaurant
-  legacy_ids:
-  - NLU-UNDERSTAND-02
+  legacy_ids: []

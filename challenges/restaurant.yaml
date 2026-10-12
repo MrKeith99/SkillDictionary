@@ -68,6 +68,7 @@ entries:
 - ref: HRI-EYECONTACT-01P
   count: 2
   section: Regular Rewards
+  related_skill: NLU-UNDERSTANDCOMMAND-05
 - ref: HRI-COMMUNICATEORDER-01
   count: 2
   section: Regular Rewards
@@ -94,7 +95,7 @@ entries:
     permitted: true
     listed_in_task_description: true
     self_score: 0
-    extra_penalty_ref: GEN-HUMANASSIST-10P
+    extra_penalty_ref: GEN-HUMANASSIST-02P
     blocks_dependents: false
     note: Barman handover forfeits this line and costs -100; serving remains available.
 - ref: MAN-PICK-02B
@@ -106,11 +107,11 @@ entries:
     blocking: true
     satisfiable_by_assistance: false
   related_skill: MAN-PICK-05
-- ref: GEN-HUMANASSIST-10P
+- ref: GEN-HUMANASSIST-02P
   count: 4
   section: Regular Rewards
   related_skill: MAN-PICK-05
-- ref: NAV-NAVIGATE-04
+- ref: NAV-NAVIGATE-03
   count: 2
   section: Regular Rewards
   depends_on:

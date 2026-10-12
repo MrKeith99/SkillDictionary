@@ -19,7 +19,7 @@ challenge_rules:
       penalty: maximum
     ambiguity: Rule 6 lists -100/-200 for minimal/partial help, but the score sheet lists -200 (main) and 5x-100 (additional) for flattening plus a separate percentage penalty up to -800/-400. Reconcile the two scales.
 entries:
-- ref: NAV-NAVIGATE-02
+- ref: NAV-NAVIGATE-01
   count: 1
   section: Main Goal
   assistance:
@@ -68,6 +68,7 @@ entries:
 - ref: GEN-HUMANASSIST-06P
   count: 1
   section: Main Goal
+  related_skill: MAN-FOLD-01
 - ref: GEN-HUMANASSIST-07P
   count: 1
   section: Main Goal
@@ -140,6 +141,7 @@ entries:
 - ref: GEN-HUMANASSIST-08P
   count: 5
   section: Extra Rewards
+  related_skill: MAN-FOLD-02
 - ref: GEN-HUMANASSIST-09P
   count: 5
   section: Extra Rewards

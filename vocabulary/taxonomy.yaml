@@ -386,7 +386,10 @@ nodes:
       Show awareness of the people the robot interacts with — acknowledge them,
       face them, do not ignore them.
     success: Each person in the interaction is acknowledged.
-    not_judged: Exact behaviour used to acknowledge.
+    not_judged: >-
+      Exact behaviour used to acknowledge, and gaze quality — that is scored by
+      HRI.Gaze lines. A neglect penalty here means the robot did not engage at
+      all: it ignored, turned away from, or never responded to the person.
     composed_of: [PPL.Detect]
     factors: [crowd, target_motion]
     status: active
@@ -398,7 +401,7 @@ nodes:
     intent: Look at the person speaking or being spoken about.
     success: Head/gaze is visibly directed at the correct person.
     not_judged: Eye design.
-    factors: [crowd, target_motion, ambient_noise]
+    factors: [crowd, target_motion, ambient_noise, distractors]
     status: active
     sources: [SkillDictionaryPDF]
 
@@ -546,6 +549,17 @@ nodes:
     not_judged: n/a
     factors: []
     status: active
+
+  GEN.UnsafeConduct:
+    name: Unsafe conduct
+    intent: >-
+      Not a skill. Records that the robot endangered a person, so safety has a
+      price in the score and not only in the stop it causes (league draft #90).
+    success: n/a
+    not_judged: n/a
+    factors: []
+    status: proposed
+    sources: [SkillDictionaryPDF]
 
   GEN.TaskConstraint:
     name: Task-specific constraint

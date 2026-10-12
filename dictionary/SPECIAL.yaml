@@ -19,8 +19,7 @@ skills:
   - hri
   - pick_and_place
   - restaurant
-  legacy_ids:
-  - SPECIAL-NOTATTEND
+  legacy_ids: []
 - id: SPECIAL-02
   area: SPECIAL
   skill: null
@@ -36,8 +35,7 @@ skills:
   - gpsr
   - pick_and_place
   - restaurant
-  legacy_ids:
-  - SPECIAL-ALTSTART
+  legacy_ids: []
 - id: SPECIAL-03
   area: SPECIAL
   skill: null
@@ -55,5 +53,4 @@ skills:
   - hri
   - pick_and_place
   - restaurant
-  legacy_ids:
-  - SPECIAL-OUTSTANDING
+  legacy_ids: []

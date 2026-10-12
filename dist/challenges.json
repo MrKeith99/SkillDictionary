@@ -35,7 +35,7 @@
       },
       "entries": [
         {
-          "ref": "NAV-NAVIGATE-02",
+          "ref": "NAV-NAVIGATE-01",
           "count": 1,
           "section": "Main Goal",
           "assistance": {
@@ -101,7 +101,8 @@
         {
           "ref": "GEN-HUMANASSIST-06P",
           "count": 1,
-          "section": "Main Goal"
+          "section": "Main Goal",
+          "related_skill": "MAN-FOLD-01"
         },
         {
           "ref": "GEN-HUMANASSIST-07P",
@@ -201,7 +202,8 @@
         {
           "ref": "GEN-HUMANASSIST-08P",
           "count": 5,
-          "section": "Extra Rewards"
+          "section": "Extra Rewards",
+          "related_skill": "MAN-FOLD-02"
         },
         {
           "ref": "GEN-HUMANASSIST-09P",
@@ -349,7 +351,7 @@
           }
         },
         {
-          "ref": "PLN-SOLVECOMMAND-02",
+          "ref": "PLN-SOLVECOMMAND-01",
           "count": 1,
           "section": "Main Goal",
           "depends_on": [
@@ -369,7 +371,7 @@
           }
         },
         {
-          "ref": "PLN-SOLVECOMMAND-03",
+          "ref": "PLN-SOLVECOMMAND-01",
           "count": 1,
           "section": "Main Goal",
           "depends_on": [
@@ -955,7 +957,8 @@
             "extra_penalty_ref": null,
             "blocks_dependents": false,
             "note": "Falls back to \u00a73.7.2 default: assisted element scores zero."
-          }
+          },
+          "related_skill": "MAN-PLACE-02"
         },
         {
           "ref": "MAN-PLACE-02P2",
@@ -1204,7 +1207,8 @@
         {
           "ref": "HRI-EYECONTACT-01P",
           "count": 2,
-          "section": "Regular Rewards"
+          "section": "Regular Rewards",
+          "related_skill": "NLU-UNDERSTANDCOMMAND-05"
         },
         {
           "ref": "HRI-COMMUNICATEORDER-01",
@@ -1242,7 +1246,7 @@
             "permitted": true,
             "listed_in_task_description": true,
             "self_score": 0,
-            "extra_penalty_ref": "GEN-HUMANASSIST-10P",
+            "extra_penalty_ref": "GEN-HUMANASSIST-02P",
             "blocks_dependents": false,
             "note": "Barman handover forfeits this line and costs -100; serving remains available."
           }
@@ -1262,13 +1266,13 @@
           "related_skill": "MAN-PICK-05"
         },
         {
-          "ref": "GEN-HUMANASSIST-10P",
+          "ref": "GEN-HUMANASSIST-02P",
           "count": 4,
           "section": "Regular Rewards",
           "related_skill": "MAN-PICK-05"
         },
         {
-          "ref": "NAV-NAVIGATE-04",
+          "ref": "NAV-NAVIGATE-03",
           "count": 2,
           "section": "Regular Rewards",
           "depends_on": [

@@ -22,10 +22,12 @@ from collections import defaultdict
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
+# SKILLDICT_DIST points the checker at another build (e.g. dist/proposal_2027).
+DIST = os.environ.get("SKILLDICT_DIST", os.path.join(ROOT, "dist"))
 
-D = json.load(open(os.path.join(ROOT, "dist", "dictionary.json")))["skills"]
-CH = json.load(open(os.path.join(ROOT, "dist", "challenges.json")))["challenges"]
-V = json.load(open(os.path.join(ROOT, "dist", "vocabulary.json")))
+D = json.load(open(os.path.join(DIST, "dictionary.json")))["skills"]
+CH = json.load(open(os.path.join(DIST, "challenges.json")))["challenges"]
+V = json.load(open(os.path.join(DIST, "vocabulary.json")))
 TAX, FAC = V["taxonomy"], V["difficulty_factors"]
 CATALOG, FIXTURES, OSET = V["objects"]["catalog"], V["objects"]["fixtures"], V["objects"]["set"]
 NODES, FMODES, FACTORS = TAX["nodes"], TAX["failure_modes"], FAC["factors"]
@@ -283,7 +285,7 @@ print("     Price per difficulty point, by skill (lines with D > 0)")
 for node, ls in sorted(by_node.items()):
     if len(ls) < 2:
         continue
-    pts = [(l["price"] / l["hi"], l) for l in ls if l["hi"] > 0]
+    pts = [(l["price"] / l["hi"], l) for l in ls if l["hi"] > 0 and l["price"] > 0]
     if len(pts) < 2:
         continue
     lo, hi = min(pts, key=lambda x: x[0]), max(pts, key=lambda x: x[0])
@@ -338,7 +340,7 @@ for e in D:
         },
         "level": e["level"],
     }
-json.dump(out, open(os.path.join(ROOT, "dist", "skill_ratings.json"), "w"), indent=1)
+json.dump(out, open(os.path.join(DIST, "skill_ratings.json"), "w"), indent=1)
 print("=" * 78)
 print(f"T5 — Object data quality ({OSET['competition']})")
 in_set = set().union(*[expand(g) for g in GROUPS])

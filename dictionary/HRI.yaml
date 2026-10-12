@@ -17,8 +17,7 @@ skills:
   type: penalty_behavior
   used_by:
   - hri
-  legacy_ids:
-  - HRI-ATTEND-01P
+  legacy_ids: []
 - id: HRI-COMMUNICATEORDER-01
   area: HRI
   skill: CommunicateOrder
@@ -36,8 +35,7 @@ skills:
   type: achievement
   used_by:
   - restaurant
-  legacy_ids:
-  - HRI-COMMUNICATE-01
+  legacy_ids: []
 - id: HRI-EYECONTACT-01P
   area: HRI
   skill: EyeContact
@@ -52,8 +50,7 @@ skills:
   type: penalty_behavior
   used_by:
   - restaurant
-  legacy_ids:
-  - HRI-EYECONTACT-01P
+  legacy_ids: []
 - id: HRI-LOOKAT-01
   area: HRI
   skill: LookAt
@@ -67,13 +64,13 @@ skills:
     crowd: few
     target_motion: shifting
     ambient_noise: background
+    distractors: none
   level: C
   points: 50
   type: achievement
   used_by:
   - hri
-  legacy_ids:
-  - HRI-LOOKAT-01
+  legacy_ids: []
 - id: HRI-LOOKAT-02
   area: HRI
   skill: LookAt
@@ -87,13 +84,13 @@ skills:
     crowd: few
     target_motion: shifting
     ambient_noise: background
+    distractors: few
   level: C
   points: 50
   type: achievement
   used_by:
   - hri
-  legacy_ids:
-  - HRI-LOOKAT-02
+  legacy_ids: []
 - id: HRI-OFFERSEAT-01
   area: HRI
   skill: OfferSeat
@@ -110,8 +107,7 @@ skills:
   type: achievement
   used_by:
   - hri
-  legacy_ids:
-  - HRI-OFFERSEAT-01
+  legacy_ids: []
 - id: HRI-RECEIVEHANDOVER-01
   area: HRI
   skill: ReceiveHandover
@@ -127,8 +123,7 @@ skills:
   type: achievement
   used_by:
   - hri
-  legacy_ids:
-  - HRI-RECEIVEHANDOVER-01
+  legacy_ids: []
 - id: HRI-RECEIVEHANDOVER-01P1
   area: HRI
   skill: ReceiveHandover
@@ -143,8 +138,7 @@ skills:
   type: penalty_behavior
   used_by:
   - hri
-  legacy_ids:
-  - HRI-RECEIVEHANDOVER-01P1
+  legacy_ids: []
 - id: HRI-RECEIVEHANDOVER-01P2
   area: HRI
   skill: ReceiveHandover
@@ -159,8 +153,7 @@ skills:
   type: penalty_behavior
   used_by:
   - hri
-  legacy_ids:
-  - HRI-RECEIVEHANDOVER-01P2
+  legacy_ids: []
 - id: HRI-STATESTOREDINFO-01
   area: HRI
   skill: StateStoredInfo
@@ -179,8 +172,7 @@ skills:
   type: achievement
   used_by:
   - hri
-  legacy_ids:
-  - HRI-STATEINFO-01
+  legacy_ids: []
 - id: HRI-STATESTOREDINFO-02P
   area: HRI
   skill: StateStoredInfo
@@ -195,5 +187,4 @@ skills:
   type: penalty_behavior
   used_by:
   - hri
-  legacy_ids:
-  - HRI-STATEINFO-01P
+  legacy_ids: []

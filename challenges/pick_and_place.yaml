@@ -163,6 +163,7 @@ entries:
     extra_penalty_ref: null
     blocks_dependents: false
     note: 'Falls back to §3.7.2 default: assisted element scores zero.'
+  related_skill: MAN-PLACE-02
 - ref: MAN-PLACE-02P2
   count: 2
   section: Placing
