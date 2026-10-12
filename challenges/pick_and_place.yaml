@@ -96,6 +96,7 @@ entries:
 - ref: MAN-PICK-02P
   count: 2
   section: Picking
+  related_skill: MAN-PICK-01
   note: Deliberate negative pricing of an easy pick; acts as an Entry-Level discount rather than a tier.
 - ref: MAN-PLACE-02
   count: 12
@@ -165,6 +166,7 @@ entries:
 - ref: MAN-PLACE-02P2
   count: 2
   section: Placing
+  related_skill: MAN-PLACE-02
 - ref: MAN-APPLIANCE-01
   count: 2
   section: Extra Rewards

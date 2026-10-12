@@ -56,13 +56,14 @@ Same convention as the RuleBook — lowercase, underscore-separated:
 
 ## What CI enforces
 
-`tools/ci.sh` runs six stages. All must pass before review.
+`tools/ci.sh` runs seven stages. All must pass before review.
 
 | stage | proves |
 |---|---|
-| `merge_challenges.py` | sources rebuild cleanly into `dist/` |
+| `build_dist.py` | sources build cleanly into `dist/` |
 | `build_viz_data.py` | regenerates `dist/viz_data.json` + `skill_coverage.html` |
 | `check_schema.py` | every entry satisfies the JSON Schema |
+| `check_taxonomy.py` | taxonomy/object/factor refs resolve; reports fairness findings |
 | `reconcile.py` | the merge is lossless; no orphans or stale refs |
 | `check_scoresheets.py` | the dictionary matches the rulebook `.tex` |
 | `validate.py` | reports open questions (findings are expected) |
@@ -119,8 +120,11 @@ Add the entry to the area file in `dictionary/`, keeping entries sorted by id:
   area: MAN
   skill: Pick
   variant_number: '14'
+  taxonomy: MAN.Pick
   modifiers: [deformable, from_floor]
   description: Picking up a deformable object from the floor
+  objects: [clothing]
+  conditions: {reach: low_high, clutter: isolated, knowledge: known_class}
   level: C
   points: 80
   type: achievement
@@ -136,6 +140,19 @@ Then reference it from the challenge:
   assistance:
     permitted: false
 ```
+
+Before adding an entry, read [docs/skill-model.md](docs/skill-model.md). In
+short:
+
+- **Reuse a taxonomy node.** A new object or situation is new `objects` /
+  `conditions` on an existing node, not a new skill. If the object has no
+  profile, add one to `vocabulary/objects/catalog.yaml` and list it in the
+  year's set under `vocabulary/objects/sets/`.
+- **A genuinely new capability** gets a node in `vocabulary/taxonomy.yaml` first
+  — `intent`, `success`, `not_judged`, `factors` — with `status: proposed`, and
+  is reviewed on its definition before anything scores it.
+- **Penalties** name a `failure_mode`. If T3 shows the same failure priced
+  differently elsewhere, explain why in the PR.
 
 Controlled vocabularies:
 
@@ -235,9 +252,11 @@ Work on a `year/` branch:
 1. Move the submodule pin: `git -C external/RuleBook checkout <tag>`, then
    `git add external/RuleBook`.
 2. Update the pin note in `external/README.md`.
-3. Update `rulebook_version` in `tools/merge_challenges.py`.
-4. Add, remove or reprice entries to match.
-5. Run `tools/ci.sh`.
+3. Update `RULEBOOK_VERSION` in `tools/build_dist.py`.
+4. Add `vocabulary/objects/sets/<year>.yaml` from the year's published object
+   list (see docs/skill-model.md, *A new competition year*).
+5. Add, remove or reprice entries to match.
+6. Run `tools/ci.sh`.
 
 `master` currently targets **2026.2**. Restaurant is deliberately included: it
 exists in 2026.2 and is removed only in the Current Draft (PR #1059). Removing it

@@ -1,5 +1,5 @@
 area: PPL
-schema_version: 0.2.0
+schema_version: 0.3.0
 rulebook_version: '2026.2'
 note: Canonical cross-challenge definitions. Each entry is defined and priced exactly once here; challenges reference it by id.
 skills:
@@ -7,10 +7,15 @@ skills:
   area: PPL
   skill: DescribeAttribute
   variant_number: '01'
+  taxonomy: PPL.DescribeAttribute
   modifiers:
   - correct
   - visual
   description: Tell a visual attribute of the first guest to the second guest (correct)
+  conditions:
+    info_load: single
+    target_motion: static
+    retention: task
   level: C
   points: 20
   type: bonus
@@ -22,10 +27,12 @@ skills:
   area: PPL
   skill: DescribeAttribute
   variant_number: '02'
+  taxonomy: PPL.DescribeAttribute
   modifiers:
   - incorrect
   - visual
   description: Tell a visual attribute of the first guest to the second guest (incorrect)
+  failure_mode: wrong_info
   level: C
   points: -20
   type: penalty_behavior
@@ -37,9 +44,13 @@ skills:
   area: PPL
   skill: DetectCallingOrWaving
   variant_number: '01'
+  taxonomy: PPL.DetectGesture
   modifiers:
   - customer
   description: Detect calling or waving customer
+  conditions:
+    crowd: crowd
+    perception_range: far
   level: C
   points: 80
   type: achievement

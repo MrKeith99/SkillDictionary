@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
-"""Merge the five per-challenge files into a canonical cross-challenge dictionary.
+"""ONE-TIME MIGRATION. Not part of CI. Running it overwrites hand-edited sources.
+
+Merged the five per-challenge extractions into the canonical dictionary. Since
+schema 0.3.0, dictionary/ and challenges/ are hand-maintained and carry fields
+(taxonomy, objects, conditions) that extraction/ does not have, so re-running
+this would destroy them. It is kept for provenance and refuses to run without
+--force. tools/build_dist.py builds dist/ from the sources instead.
+
+Merge the five per-challenge files into a canonical cross-challenge dictionary.
 
 Reads  : dictionary/*_challenge.json   (legacy per-challenge extraction)
 Writes : SkillDictionary/dictionary/<AREA>.yaml   — definition + points, one file per area
@@ -334,6 +342,9 @@ def scalar(v):
 
 
 def main():
+    if "--force" not in sys.argv:
+        sys.exit("migrate_legacy.py overwrites dictionary/ and challenges/; "
+                 "pass --force if that is really intended. Use build_dist.py for CI.")
     docs = load_legacy()
     canon, legacy_to_canon = assign_ids(docs)
     challenges, dangling = build(docs, canon, legacy_to_canon)

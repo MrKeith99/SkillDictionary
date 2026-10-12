@@ -51,6 +51,30 @@ hardware method. Scoring how a robot achieves something rather than whether it
 did penalises unconventional and low-cost builds, and forces referees to judge
 mechanism instead of outcome.
 
+### Taxonomy, objects and difficulty
+
+Since schema 0.3.0 every entry also says **what capability** it scores and
+**how hard** that instance is, so the same skill is judged and compared the
+same way in every challenge:
+
+```yaml
+- id: MAN-PICK-01B4
+  taxonomy: MAN.Pick          # vocabulary/taxonomy.yaml: intent, success criterion,
+                              #   what the referee must not judge, sub-skills
+  description: Plate
+  objects: [plate]            # vocabulary/objects/: catalog + this year's set
+  conditions:                 # vocabulary/difficulty_factors.yaml
+    reach: table
+    clutter: nearby
+    knowledge: known_instance
+```
+
+A harder object is a different *difficulty*, not a different skill, so the
+dictionary does not grow as verbs × properties. Grasping is decomposed into
+power / intermediate / precision sub-skills (after Feix et al. 2016) without
+ever scoring grasp technique. `check_taxonomy.py` reports where price
+does not follow difficulty. Full explanation: **[docs/skill-model.md](docs/skill-model.md)**.
+
 ### Difficulty levels
 
 `level` rates how hard a skill is **for the field**, not what it is worth. It is
@@ -138,13 +162,14 @@ Hence `blocking` and `satisfiable_by_assistance` are separate fields, and
 ## Layout
 
 ```
-extraction/    per-challenge extractions from the scoresheets — the build SOURCE
+extraction/    original per-challenge extractions — provenance for reconcile.py
 external/      RuleBook git submodule, pinned @ 2026.2 (see external/README.md)
-dictionary/    one file per area — owns definition + points
-challenges/    references dictionary by id; NO points field
-vocabulary/    global_rules.yaml (§3.7 assistance, §3.7.4 ASR ladder, §3.8.2 DQ)
+dictionary/    SOURCE: one file per area — owns definition + points
+challenges/    SOURCE: references dictionary by id; NO points field
+vocabulary/    SOURCE: taxonomy, difficulty factors, object profiles, global rules
+docs/          skill-model.md — how skills, objects and difficulty fit together
 schema/        JSON Schema, enforced in CI
-tools/         merge, validate, reconcile, schema + scoresheet checks, ci.sh
+tools/         build, validate, reconcile, schema/taxonomy/scoresheet checks, ci.sh
 dist/          GENERATED, committed so CommandGenerator can consume by raw URL
 ```
 
@@ -172,6 +197,8 @@ CommandGenerator) can fetch it by raw URL.
 |---|---|
 | `dist/dictionary.json` | all 98 skills, canonical definitions and prices |
 | `dist/challenges.json` | per-challenge references, counts, dependencies |
+| `dist/vocabulary.json` | taxonomy, difficulty factors and object profiles |
+| `dist/skill_ratings.json` | per line: taxonomy node, objects, factors, intrinsic difficulty |
 | `dist/viz_data.json` | flattened rows + area matrix + drift, for the visualizer |
 | `dist/id_migration.csv` | legacy id → canonical id, for anything citing old ids |
 
@@ -255,7 +282,14 @@ leave them distinct and let CHECK 5 report the drift.
 
 ## Checks
 
-`tools/ci.sh` runs six stages. All must pass.
+`tools/ci.sh` runs seven stages. All must pass.
+
+**`check_taxonomy.py`** — every entry points at a known taxonomy node, object
+profile, factor and level; penalties name a failure mode. Then reports, as
+findings: intrinsic difficulty vs `level` (T1), price inversions within a skill
+(T2), one failure mode priced differently across challenges (T3), proposed
+future skills (T4), and object data quality — unmeasured values and lines whose
+objects span a wide difficulty range (T5).
 
 **`check_scoresheets.py`** — the dictionary vs the **rulebook itself**. Parses
 `external/RuleBook/scoresheets/*.tex` from the pinned submodule and diffs every

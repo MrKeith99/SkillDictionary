@@ -1,5 +1,5 @@
 area: SPECIAL
-schema_version: 0.2.0
+schema_version: 0.3.0
 rulebook_version: '2026.2'
 note: Canonical cross-challenge definitions. Each entry is defined and priced exactly once here; challenges reference it by id.
 skills:
@@ -7,6 +7,7 @@ skills:
   area: SPECIAL
   skill: null
   variant_number: '01'
+  taxonomy: SPECIAL.Administrative
   modifiers: []
   description: Not attending (see sec. 3.8.1)
   level: '-'
@@ -24,6 +25,7 @@ skills:
   area: SPECIAL
   skill: null
   variant_number: '02'
+  taxonomy: SPECIAL.Administrative
   modifiers: []
   description: Using alternative start signal (see sec. 3.6.8)
   level: '-'
@@ -40,6 +42,7 @@ skills:
   area: SPECIAL
   skill: null
   variant_number: '03'
+  taxonomy: SPECIAL.Administrative
   modifiers: []
   description: Outstanding performance (see sec. 3.8.3)
   level: '-'

@@ -1,5 +1,5 @@
 area: MAN
-schema_version: 0.2.0
+schema_version: 0.3.0
 rulebook_version: '2026.2'
 note: Canonical cross-challenge definitions. Each entry is defined and priced exactly once here; challenges reference it by id.
 skills:
@@ -7,10 +7,15 @@ skills:
   area: MAN
   skill: Appliance
   variant_number: '01'
+  taxonomy: MAN.OperateArticulated
   modifiers:
   - dishwasher_rack
   - pull_push
   description: Pull or push the dishwasher rack
+  objects:
+  - dishwasher_rack
+  conditions:
+    reach: enclosed
   level: X
   points: 100
   type: achievement
@@ -22,11 +27,16 @@ skills:
   area: MAN
   skill: Appliance
   variant_number: '02'
+  taxonomy: MAN.OperateArticulated
   modifiers:
   - dishwasher_door
   - no_assistance
   - open_close
   description: Open or close the dishwasher door without assistance
+  objects:
+  - dishwasher_door
+  conditions:
+    reach: table
   level: X
   points: 200
   type: achievement
@@ -38,10 +48,15 @@ skills:
   area: MAN
   skill: Appliance
   variant_number: '03'
+  taxonomy: MAN.OperateArticulated
   modifiers:
   - open
   - washing_machine_door
   description: Opening the washing machine door
+  objects:
+  - washing_machine_door
+  conditions:
+    reach: low_high
   level: X
   points: 300
   type: achievement
@@ -53,10 +68,13 @@ skills:
   area: MAN
   skill: Fold
   variant_number: '01'
+  taxonomy: MAN.Fold
   modifiers:
   - loose
   - single
   description: Folding a piece of clothing
+  objects:
+  - clothing
   level: X
   points: 800
   type: achievement
@@ -68,9 +86,11 @@ skills:
   area: MAN
   skill: Fold
   variant_number: 01P1
+  taxonomy: MAN.Fold
   modifiers:
   - quality_penalty
   description: Quality penalties
+  failure_mode: quality
   level: X
   points: -800
   type: penalty_behavior
@@ -82,9 +102,12 @@ skills:
   area: MAN
   skill: Fold
   variant_number: '02'
+  taxonomy: MAN.Fold
   modifiers:
   - additional_item
   description: Folding additional clothes (per item)
+  objects:
+  - clothing
   level: X
   points: 400
   type: achievement
@@ -96,10 +119,12 @@ skills:
   area: MAN
   skill: Fold
   variant_number: 02P1
+  taxonomy: MAN.Fold
   modifiers:
   - additional
   - quality_penalty
   description: Quality penalties (additional clothes)
+  failure_mode: quality
   level: X
   points: -400
   type: penalty_behavior
@@ -111,9 +136,15 @@ skills:
   area: MAN
   skill: Insert
   variant_number: '01'
+  taxonomy: MAN.Insert
   modifiers:
   - dishwasher_tab_slot
   description: In the dishwasher tab slot inside the dishwasher
+  objects:
+  - dishwasher_tab
+  conditions:
+    reach: enclosed
+    placement_tolerance: constrained
   level: X
   points: 160
   type: achievement
@@ -125,9 +156,14 @@ skills:
   area: MAN
   skill: Open
   variant_number: '01'
+  taxonomy: MAN.OperateArticulated
   modifiers:
   - entrance_door
   description: Open the entrance door for a guest
+  objects:
+  - entrance_door
+  conditions:
+    reach: table
   level: X
   points: 200
   type: achievement
@@ -139,10 +175,15 @@ skills:
   area: MAN
   skill: Open
   variant_number: '02'
+  taxonomy: MAN.OperateArticulated
   modifiers:
   - milk_container
   - no_assistance
   description: Open milk container without assistance
+  objects:
+  - milk_cap
+  conditions:
+    reach: table
   level: X
   points: 400
   type: achievement
@@ -154,10 +195,19 @@ skills:
   area: MAN
   skill: Pick
   variant_number: '01'
+  taxonomy: MAN.Pick
   modifiers:
   - known
   - transport
   description: Picking up an object for transportation
+  objects:
+  - dishwasher_items
+  - cabinet_objects
+  - breakfast
+  conditions:
+    reach: table
+    clutter: nearby
+    knowledge: known_instance
   level: C
   points: 50
   type: achievement
@@ -169,9 +219,16 @@ skills:
   area: MAN
   skill: Pick
   variant_number: 01B2
+  taxonomy: MAN.Pick
   modifiers:
   - from_floor
   description: From the floor
+  objects:
+  - trash
+  conditions:
+    reach: low_high
+    clutter: isolated
+    knowledge: known_instance
   level: C
   points: 30
   type: bonus
@@ -183,9 +240,16 @@ skills:
   area: MAN
   skill: Pick
   variant_number: 01B3
+  taxonomy: MAN.Pick
   modifiers:
   - cutlery
   description: Cutlery
+  objects:
+  - cutlery
+  conditions:
+    reach: table
+    clutter: nearby
+    knowledge: known_instance
   level: C
   points: 50
   type: bonus
@@ -197,9 +261,16 @@ skills:
   area: MAN
   skill: Pick
   variant_number: 01B4
+  taxonomy: MAN.Pick
   modifiers:
   - plate
   description: Plate
+  objects:
+  - plate
+  conditions:
+    reach: table
+    clutter: nearby
+    knowledge: known_instance
   level: C
   points: 100
   type: bonus
@@ -211,9 +282,16 @@ skills:
   area: MAN
   skill: Pick
   variant_number: 01B5
+  taxonomy: MAN.Pick
   modifiers:
   - dishwasher_tab
   description: Dishwasher tab
+  objects:
+  - dishwasher_tab
+  conditions:
+    reach: table
+    clutter: isolated
+    knowledge: known_instance
   level: C
   points: 100
   type: bonus
@@ -225,9 +303,11 @@ skills:
   area: MAN
   skill: Pick
   variant_number: 01P1
+  taxonomy: MAN.Pick
   modifiers:
   - dropped_on_floor
   description: Objects dropped on the floor
+  failure_mode: drop
   level: C
   points: -40
   type: penalty_behavior
@@ -239,6 +319,7 @@ skills:
   area: MAN
   skill: Pick
   variant_number: '02'
+  taxonomy: MAN.Pick
   modifiers:
   - first_pick_bonus
   description: First Pick Bonus
@@ -255,10 +336,17 @@ skills:
   area: MAN
   skill: Pick
   variant_number: 02P
+  taxonomy: MAN.Pick
   modifiers:
   - auxiliary_table
   - common_object
   description: Common object from auxiliary table (picking)
+  objects:
+  - common_objects
+  conditions:
+    reach: table
+    clutter: isolated
+    knowledge: known_instance
   level: E
   points: -20
   type: penalty_behavior
@@ -270,10 +358,17 @@ skills:
   area: MAN
   skill: Pick
   variant_number: '03'
+  taxonomy: MAN.Pick
   modifiers:
   - basket
   - clothing
   description: Picking up a piece of clothing from the basket
+  objects:
+  - clothing
+  conditions:
+    reach: low_high
+    clutter: piled
+    knowledge: known_class
   level: C
   points: 100
   type: achievement
@@ -285,9 +380,11 @@ skills:
   area: MAN
   skill: Pick
   variant_number: 03P
+  taxonomy: MAN.Pick
   modifiers:
   - multiple_at_once
   description: Picking up multiple at once
+  failure_mode: multiple_at_once
   level: C
   points: -100
   type: penalty_behavior
@@ -299,10 +396,17 @@ skills:
   area: MAN
   skill: Pick
   variant_number: '04'
+  taxonomy: MAN.Pick
   modifiers:
   - clothing
   - washing_machine
   description: Removing one or more pieces of clothing from the washing machine
+  objects:
+  - clothing
+  conditions:
+    reach: enclosed
+    clutter: piled
+    knowledge: known_class
   level: X
   points: 300
   type: achievement
@@ -314,9 +418,11 @@ skills:
   area: MAN
   skill: Pick
   variant_number: 04P
+  taxonomy: MAN.Pick
   modifiers:
   - touches_floor
   description: The clothing touches the floor
+  failure_mode: quality
   level: X
   points: -200
   type: penalty_behavior
@@ -328,10 +434,17 @@ skills:
   area: MAN
   skill: Pick
   variant_number: '05'
+  taxonomy: MAN.Pick
   modifiers:
   - kitchen_bar
   - order_item
   description: Picking up the requested items from the Kitchen-bar
+  objects:
+  - restaurant_orders
+  conditions:
+    reach: table
+    clutter: nearby
+    knowledge: known_instance
   level: C
   points: 100
   type: achievement
@@ -343,10 +456,16 @@ skills:
   area: MAN
   skill: Place
   variant_number: '01'
+  taxonomy: MAN.Place
   modifiers:
   - bag
   - correct_area
   description: Drop the bag in the correct area
+  objects:
+  - bag
+  conditions:
+    reach: low_high
+    placement_tolerance: region
   level: C
   points: 50
   type: achievement
@@ -358,10 +477,19 @@ skills:
   area: MAN
   skill: Place
   variant_number: '02'
+  taxonomy: MAN.Place
   modifiers:
   - designated_location
   - known
   description: Place an object in its designated location
+  objects:
+  - dishwasher_items
+  - cabinet_objects
+  - breakfast
+  conditions:
+    reach: table
+    placement_tolerance: spot
+    clutter: nearby
   level: C
   points: 40
   type: achievement
@@ -373,10 +501,17 @@ skills:
   area: MAN
   skill: Place
   variant_number: 02B1
+  taxonomy: MAN.Place
   modifiers:
   - correct
   - dishwasher
   description: Correctly in the dishwasher
+  objects:
+  - dishwasher_items
+  conditions:
+    reach: enclosed
+    placement_tolerance: constrained
+    clutter: nearby
   level: X
   points: 70
   type: bonus
@@ -388,10 +523,17 @@ skills:
   area: MAN
   skill: Place
   variant_number: 02B2
+  taxonomy: MAN.Place
   modifiers:
   - cabinet
   - similar_objects
   description: Next to similar objects in the cabinet
+  objects:
+  - cabinet_objects
+  conditions:
+    reach: low_high
+    placement_tolerance: spot
+    clutter: nearby
   level: C
   points: 20
   type: bonus
@@ -403,10 +545,12 @@ skills:
   area: MAN
   skill: Place
   variant_number: 02P1
+  taxonomy: MAN.Place
   modifiers:
   - breakfast_area
   - not_cleaned
   description: Area around breakfast items is not cleaned
+  failure_mode: quality
   level: C
   points: -30
   type: penalty_behavior
@@ -418,10 +562,17 @@ skills:
   area: MAN
   skill: Place
   variant_number: 02P2
+  taxonomy: MAN.Place
   modifiers:
   - auxiliary_table
   - common_object
   description: Common object from auxiliary table (placing)
+  objects:
+  - common_objects
+  conditions:
+    reach: low_high
+    placement_tolerance: spot
+    clutter: nearby
   level: E
   points: -20
   type: penalty_behavior
@@ -433,9 +584,11 @@ skills:
   area: MAN
   skill: Place
   variant_number: 02P3
+  taxonomy: MAN.Place
   modifiers:
   - thrown_or_dropped
   description: Objects thrown or dropped while placing
+  failure_mode: drop
   level: C
   points: -40
   type: penalty_behavior
@@ -447,10 +600,17 @@ skills:
   area: MAN
   skill: Place
   variant_number: '03'
+  taxonomy: MAN.Place
   modifiers:
   - customer_table
   - order_item
   description: Serve the order to the customer
+  objects:
+  - restaurant_orders
+  conditions:
+    reach: table
+    placement_tolerance: region
+    clutter: nearby
   level: C
   points: 100
   type: achievement
@@ -462,6 +622,7 @@ skills:
   area: MAN
   skill: Place
   variant_number: 03B
+  taxonomy: MAN.Place
   modifiers:
   - first_place_bonus
   description: First Place Bonus
@@ -476,10 +637,16 @@ skills:
   area: MAN
   skill: Pour
   variant_number: '01'
+  taxonomy: MAN.Pour
   modifiers:
   - cereal_or_milk
   - no_assistance
   description: Pour cereal or milk into the bowl without assistance
+  objects:
+  - milk
+  - cornflakes
+  conditions:
+    placement_tolerance: spot
   level: X
   points: 200
   type: achievement
@@ -491,9 +658,11 @@ skills:
   area: MAN
   skill: Pour
   variant_number: 01P
+  taxonomy: MAN.Pour
   modifiers:
   - spilling
   description: Spilling cereal and milk while pouring
+  failure_mode: spill
   level: X
   points: -100
   type: penalty_behavior
@@ -505,9 +674,14 @@ skills:
   area: MAN
   skill: Stack
   variant_number: '01'
+  taxonomy: MAN.Stack
   modifiers:
   - folded_clothes
   description: Stacking folded clothes neatly (per item)
+  objects:
+  - clothing
+  conditions:
+    placement_tolerance: constrained
   level: C
   points: 100
   type: achievement
@@ -519,8 +693,13 @@ skills:
   area: MAN
   skill: TransportWithBasket
   variant_number: '01'
+  taxonomy: MAN.Transport
   modifiers: []
   description: Using the basket for transportation
+  objects:
+  - laundry_basket
+  conditions:
+    carrier: unattached
   level: X
   points: 300
   type: achievement
@@ -532,9 +711,11 @@ skills:
   area: MAN
   skill: TransportWithBasket
   variant_number: '02'
+  taxonomy: MAN.Transport
   modifiers:
   - dropped_or_lost
   description: Laundry is dropped or otherwise lost during transportation
+  failure_mode: drop
   level: X
   points: -200
   type: penalty_behavior
@@ -546,9 +727,14 @@ skills:
   area: MAN
   skill: TransportWithTray
   variant_number: '01'
+  taxonomy: MAN.Transport
   modifiers:
   - unattached
   description: Use an unattached tray to transport
+  objects:
+  - tray
+  conditions:
+    carrier: unattached
   level: X
   points: 200
   type: achievement

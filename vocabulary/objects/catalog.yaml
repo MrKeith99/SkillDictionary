@@ -1,0 +1,326 @@
+# Object catalog — one entry per REAL object, reused across years.
+#
+# The year's object set (sets/<year>.yaml) says which of these are in play and
+# how they are grouped; dictionary entries name those groups. This file only
+# says what each object physically is.
+#
+# Fields
+#   name            human name
+#   ycb             YCB dataset id, when the object is (equivalent to) a YCB item.
+#                   The rulebook draws objects from YCB (§ Scenario); YCB
+#                   publishes mass and dimensions, so prefer its values.
+#   mass_g          mass in grams, with contents as used in the arena
+#   grasp_width_mm  narrowest dimension the object can be gripped across
+#   values          where mass_g / grasp_width_mm come from, best first:
+#                     measured  weighed and measured on the arena object
+#                     ycb       YCB published values (Calli et al. 2015,
+#                               arXiv:1502.03143, Table II) — only when the
+#                               arena object is the same kind of item
+#                     estimate  from photos or product specs; replace during
+#                               Setup Days (check_taxonomy.py lists these)
+#   surface, rigidity, shape, contents
+#                   judged levels from difficulty_factors.yaml. mass and size
+#                   levels are NOT written here: they are computed from the
+#                   numbers above, so two people cannot rate them differently.
+#   note            anything that explains a judgement
+#
+# Ids are the names the league uses in its object list, so a year set can be
+# copied from the published list without renaming.
+
+version: 1
+
+objects:
+
+  # ── dishes (enamel camping ware in 2026) ────────────────────────────────────
+  cup:
+    name: Enamel mug
+    ycb: 025_mug
+    mass_g: 118
+    grasp_width_mm: 80
+    values: ycb
+    surface: smooth
+    rigidity: rigid
+    shape: regular
+    note: YCB mug 80 x 82 mm. Has a handle.
+  plate:
+    name: Enamel plate
+    ycb: 029_plate
+    mass_g: 279
+    grasp_width_mm: 3
+    values: ycb
+    surface: smooth
+    rigidity: rigid
+    shape: flat_lying
+    note: YCB plate 258 x 24 mm; rim thickness is not in YCB, estimated. Only the rim can be gripped across.
+  bowl:
+    name: Enamel bowl
+    ycb: 024_bowl
+    mass_g: 147
+    grasp_width_mm: 3
+    values: ycb
+    surface: smooth
+    rigidity: rigid
+    shape: irregular
+    note: YCB bowl 159 x 53 mm; wall thickness is not in YCB, estimated. Gripped across the wall at the rim; concave.
+  spoon:
+    name: Spoon
+    ycb: 031_spoon
+    mass_g: 30
+    grasp_width_mm: 14
+    values: ycb
+    surface: smooth
+    rigidity: rigid
+    shape: flat_lying
+    note: YCB spoon 14 x 20 x 195 mm.
+  fork:
+    name: Fork
+    ycb: 030_fork
+    mass_g: 34
+    grasp_width_mm: 14
+    values: ycb
+    surface: smooth
+    rigidity: rigid
+    shape: flat_lying
+    note: YCB fork 14 x 20 x 198 mm.
+  knife:
+    name: Knife
+    ycb: 032_knife
+    mass_g: 31
+    grasp_width_mm: 14
+    values: ycb
+    surface: smooth
+    rigidity: rigid
+    shape: flat_lying
+    note: YCB knife 14 x 20 x 215 mm.
+  # ── drinks ──────────────────────────────────────────────────────────────────
+  coke:
+    name: Coca-Cola can (355 ml)
+    mass_g: 370
+    grasp_width_mm: 66
+    values: estimate
+    surface: smooth
+    rigidity: rigid
+    shape: regular
+  red_bull:
+    name: Red Bull can (250 ml)
+    mass_g: 275
+    grasp_width_mm: 53
+    values: estimate
+    surface: smooth
+    rigidity: rigid
+    shape: regular
+    note: Rulebook common object.
+  milk:
+    name: Milk carton (~250 ml)
+    mass_g: 270
+    grasp_width_mm: 60
+    values: estimate
+    surface: grippy
+    rigidity: compliant
+    shape: regular
+    note: Paper carton with screw cap; squeezes if gripped hard.
+  soju:
+    name: Soju glass bottle (360 ml)
+    mass_g: 650
+    grasp_width_mm: 60
+    values: estimate
+    surface: smooth
+    rigidity: compliant
+    shape: regular
+    note: Glass; rated compliant because it must not be dropped or knocked.
+  pepsi:
+    name: Pepsi PET bottle (~1.5 l)
+    mass_g: 1550
+    grasp_width_mm: 90
+    values: estimate
+    surface: smooth
+    rigidity: rigid
+    shape: regular
+    note: 1.5 l confirmed; mass = contents + PET bottle.
+
+  # ── food & snacks ───────────────────────────────────────────────────────────
+  cornflakes:
+    name: Cereal cup
+    mass_g: 60
+    grasp_width_mm: 85
+    values: estimate
+    surface: grippy
+    rigidity: compliant
+    shape: regular
+    contents: none
+    note: Paper cup; when opened for pouring it must stay upright.
+  instant_noodles:
+    name: Instant noodle pack
+    mass_g: 120
+    grasp_width_mm: 40
+    values: estimate
+    surface: slippery
+    rigidity: compliant
+    shape: irregular
+    note: Film-wrapped pillow pack.
+  pringles:
+    name: Pringles can
+    ycb: 001_chips_can
+    mass_g: 205
+    grasp_width_mm: 75
+    values: ycb
+    surface: smooth
+    rigidity: rigid
+    shape: regular
+    note: YCB chips can 75 x 250 mm. Rulebook common object.
+  seaweed:
+    name: Seaweed snack pack
+    mass_g: 30
+    grasp_width_mm: 12
+    values: estimate
+    surface: slippery
+    rigidity: compliant
+    shape: flat_lying
+
+  # ── fruits ──────────────────────────────────────────────────────────────────
+  apple:
+    name: Apple
+    ycb: 013_apple
+    mass_g: 200
+    grasp_width_mm: 75
+    values: estimate
+    surface: smooth
+    rigidity: rigid
+    shape: regular
+    note: YCB apple is plastic (68 g); arena fruit is real, so YCB mass not used.
+  peach:
+    name: Peach
+    ycb: 015_peach
+    mass_g: 150
+    grasp_width_mm: 65
+    values: estimate
+    surface: grippy
+    rigidity: compliant
+    shape: regular
+    note: Bruises easily. YCB peach is plastic (33 g); arena fruit is real, so YCB mass not used.
+  mangostane:
+    name: Mangosteen
+    mass_g: 80
+    grasp_width_mm: 55
+    values: estimate
+    surface: grippy
+    rigidity: rigid
+    shape: regular
+  lemon:
+    name: Lemon
+    ycb: 014_lemon
+    mass_g: 100
+    grasp_width_mm: 55
+    values: estimate
+    surface: smooth
+    rigidity: rigid
+    shape: regular
+    note: YCB lemon is plastic (29 g); arena fruit is real, so YCB mass not used.
+  red_bellpepper:
+    name: Red bell pepper
+    mass_g: 180
+    grasp_width_mm: 80
+    values: estimate
+    surface: smooth
+    rigidity: rigid
+    shape: irregular
+  yellow_bellpepper:
+    name: Yellow bell pepper
+    mass_g: 180
+    grasp_width_mm: 80
+    values: estimate
+    surface: smooth
+    rigidity: rigid
+    shape: irregular
+
+  # ── cleaning supplies ───────────────────────────────────────────────────────
+  dishwasher_tab:
+    name: Dishwasher tab
+    mass_g: 20
+    grasp_width_mm: 14
+    values: estimate
+    surface: smooth
+    rigidity: rigid
+    shape: flat_lying
+  sponge:
+    name: Kitchen sponge
+    ycb: 026_sponge
+    mass_g: 15
+    grasp_width_mm: 40
+    values: estimate
+    surface: grippy
+    rigidity: compliant
+    shape: regular
+    note: Thick kitchen sponge in the 2026 photo; YCB's sponge is a 14 mm scrub pad, so YCB values not used.
+  toothpaste:
+    name: Colgate toothpaste box
+    mass_g: 140
+    grasp_width_mm: 40
+    values: estimate
+    surface: grippy
+    rigidity: rigid
+    shape: regular
+    note: Rulebook common object.
+
+  # ── toys ────────────────────────────────────────────────────────────────────
+  rubiks_cube:
+    name: Rubik's cube
+    ycb: 077_rubiks_cube
+    mass_g: 100
+    grasp_width_mm: 57
+    values: estimate
+    surface: smooth
+    rigidity: rigid
+    shape: regular
+    note: Rulebook common object.
+
+  # ── fabrics ─────────────────────────────────────────────────────────────────
+  white_shirt: &shirt
+    name: T-shirt (white)
+    mass_g: 180
+    grasp_width_mm: 3
+    values: estimate
+    surface: grippy
+    rigidity: deformable
+    shape: flat_lying
+  grey_shirt:  {<<: *shirt, name: T-shirt (grey)}
+  blue_shirt:  {<<: *shirt, name: T-shirt (blue)}
+  black_shirt: {<<: *shirt, name: T-shirt (black)}
+  hand_towel:
+    name: Hand towel
+    mass_g: 100
+    grasp_width_mm: 5
+    values: estimate
+    surface: grippy
+    rigidity: deformable
+    shape: irregular
+
+  # ── test objects ────────────────────────────────────────────────────────────
+  bag:
+    name: Tote bag with handles (guest luggage)
+    mass_g: 500
+    grasp_width_mm: 25
+    values: estimate
+    surface: grippy
+    rigidity: compliant
+    shape: regular
+    note: Mass depends on what the guest puts in it — fix a reference load.
+
+  # ── carriers (not in the 2026 object list; used by Restaurant / Laundry) ────
+  tray:
+    name: Serving tray
+    mass_g: 400
+    grasp_width_mm: 5
+    values: estimate
+    surface: smooth
+    rigidity: rigid
+    shape: flat_lying
+  laundry_basket:
+    name: Laundry basket, loaded
+    mass_g: 1500
+    grasp_width_mm: 20
+    values: estimate
+    surface: grippy
+    rigidity: rigid
+    shape: regular
+    note: Rulebook says it needs two arms to carry.

@@ -3,14 +3,17 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-echo ">>> rebuilding canonical dictionary from source"
-python3 merge_challenges.py
+echo ">>> building dist/ from dictionary/, challenges/, vocabulary/"
+python3 build_dist.py
 
 echo; echo ">>> viz data"
 python3 build_viz_data.py
 
 echo; echo ">>> schema"
 python3 check_schema.py
+
+echo; echo ">>> taxonomy + difficulty (vocabulary refs, fairness findings)"
+python3 check_taxonomy.py
 
 echo; echo ">>> reconcile (lossless vs legacy scoresheets)"
 python3 reconcile.py

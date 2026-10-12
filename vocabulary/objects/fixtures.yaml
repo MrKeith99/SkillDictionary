@@ -1,0 +1,32 @@
+# Fixtures — articulated parts of the arena (doors, racks, caps) that a robot
+# operates but never carries. They have no mass or grasp width; their
+# difficulty is the mechanism and the force it takes.
+
+version: 1
+
+fixtures:
+  dishwasher_door:
+    name: Dishwasher door
+    mechanism: guided
+    actuation_force: medium
+    note: Bottom-hinged, counterweighted; open position is horizontal.
+  dishwasher_rack:
+    name: Dishwasher rack
+    mechanism: guided
+    actuation_force: low
+    note: Slides on rails; requires the door open.
+  washing_machine_door:
+    name: Washing machine door
+    mechanism: latched
+    actuation_force: medium
+    note: Side-hinged porthole; latch released by pulling a handle.
+  entrance_door:
+    name: Entrance door
+    mechanism: latched
+    actuation_force: medium
+    note: Lever handle, side-hinged.
+  milk_cap:
+    name: Milk carton cap
+    mechanism: latched
+    actuation_force: low
+    note: Screw cap ~3 cm.

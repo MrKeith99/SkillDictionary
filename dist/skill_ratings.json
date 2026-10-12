@@ -1,0 +1,3340 @@
+{
+ "GEN-ALTERNATIVEHRI-01P": {
+  "taxonomy": "GEN.AlternativeInput",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
+ "GEN-ALTERNATIVEHRI-02P": {
+  "taxonomy": "GEN.AlternativeInput",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
+ "GEN-BREAKFAST-01P": {
+  "taxonomy": "GEN.TaskConstraint",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "GEN-HUMANASSIST-01P": {
+  "taxonomy": "GEN.HumanAssistance",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "GEN-HUMANASSIST-02P": {
+  "taxonomy": "GEN.HumanAssistance",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "GEN-HUMANASSIST-04P": {
+  "taxonomy": "GEN.HumanAssistance",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "GEN-HUMANASSIST-05P": {
+  "taxonomy": "GEN.HumanAssistance",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "GEN-HUMANASSIST-06P": {
+  "taxonomy": "GEN.HumanAssistance",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "GEN-HUMANASSIST-07P": {
+  "taxonomy": "GEN.HumanAssistance",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "GEN-HUMANASSIST-08P": {
+  "taxonomy": "GEN.HumanAssistance",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "GEN-HUMANASSIST-09P": {
+  "taxonomy": "GEN.HumanAssistance",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "GEN-HUMANASSIST-10P": {
+  "taxonomy": "GEN.HumanAssistance",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "GEN-HUMANASSIST-11P": {
+  "taxonomy": "GEN.HumanAssistance",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "GEN-HUMANASSIST-12P": {
+  "taxonomy": "GEN.HumanAssistance",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "GEN-HUMANASSIST-13P": {
+  "taxonomy": "GEN.HumanAssistance",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "GEN-HUMANASSIST-14P": {
+  "taxonomy": "GEN.HumanAssistance",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "HRI-ATTEND-01P": {
+  "taxonomy": "HRI.Attend",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
+ "HRI-COMMUNICATEORDER-01": {
+  "taxonomy": "HRI.ConveyInfo",
+  "objects": [],
+  "difficulty": {
+   "min": 2,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "info_load": "few",
+      "retention": "task",
+      "distractors": "none"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "HRI-EYECONTACT-01P": {
+  "taxonomy": "HRI.Gaze",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
+ "HRI-LOOKAT-01": {
+  "taxonomy": "HRI.Gaze",
+  "objects": [],
+  "difficulty": {
+   "min": 3,
+   "max": 3,
+   "tier": "C",
+   "per_object": {
+    "-": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "crowd": "few",
+      "target_motion": "shifting",
+      "ambient_noise": "background"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "HRI-LOOKAT-02": {
+  "taxonomy": "HRI.Gaze",
+  "objects": [],
+  "difficulty": {
+   "min": 3,
+   "max": 3,
+   "tier": "C",
+   "per_object": {
+    "-": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "crowd": "few",
+      "target_motion": "shifting",
+      "ambient_noise": "background"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "HRI-OFFERSEAT-01": {
+  "taxonomy": "HRI.Indicate",
+  "objects": [],
+  "difficulty": {
+   "min": 2,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "distractors": "few",
+      "crowd": "few"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "HRI-RECEIVEHANDOVER-01": {
+  "taxonomy": "HRI.Handover",
+  "objects": [
+   "bag"
+  ],
+  "difficulty": {
+   "min": 2,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "bag": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "mass": "medium",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "HRI-RECEIVEHANDOVER-01P1": {
+  "taxonomy": "HRI.Handover",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
+ "HRI-RECEIVEHANDOVER-01P2": {
+  "taxonomy": "HRI.Handover",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
+ "HRI-STATESTOREDINFO-01": {
+  "taxonomy": "HRI.ConveyInfo",
+  "objects": [],
+  "difficulty": {
+   "min": 3,
+   "max": 3,
+   "tier": "C",
+   "per_object": {
+    "-": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "info_load": "few",
+      "retention": "task",
+      "distractors": "few"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "HRI-STATESTOREDINFO-02P": {
+  "taxonomy": "HRI.ConveyInfo",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
+ "MAN-APPLIANCE-01": {
+  "taxonomy": "MAN.OperateArticulated",
+  "objects": [
+   "dishwasher_rack"
+  ],
+  "difficulty": {
+   "min": 3,
+   "max": 3,
+   "tier": "C",
+   "per_object": {
+    "dishwasher_rack": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "enclosed",
+      "mechanism": "guided",
+      "actuation_force": "low"
+     }
+    }
+   }
+  },
+  "level": "X"
+ },
+ "MAN-APPLIANCE-02": {
+  "taxonomy": "MAN.OperateArticulated",
+  "objects": [
+   "dishwasher_door"
+  ],
+  "difficulty": {
+   "min": 2,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "dishwasher_door": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "mechanism": "guided",
+      "actuation_force": "medium"
+     }
+    }
+   }
+  },
+  "level": "X"
+ },
+ "MAN-APPLIANCE-03": {
+  "taxonomy": "MAN.OperateArticulated",
+  "objects": [
+   "washing_machine_door"
+  ],
+  "difficulty": {
+   "min": 4,
+   "max": 4,
+   "tier": "C",
+   "per_object": {
+    "washing_machine_door": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "reach": "low_high",
+      "mechanism": "latched",
+      "actuation_force": "medium"
+     }
+    }
+   }
+  },
+  "level": "X"
+ },
+ "MAN-FOLD-01": {
+  "taxonomy": "MAN.Fold",
+  "objects": [
+   "clothing"
+  ],
+  "difficulty": {
+   "min": 4,
+   "max": 4,
+   "tier": "C",
+   "per_object": {
+    "black_shirt": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable"
+     }
+    },
+    "blue_shirt": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable"
+     }
+    },
+    "grey_shirt": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable"
+     }
+    },
+    "hand_towel": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable"
+     }
+    },
+    "white_shirt": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable"
+     }
+    }
+   }
+  },
+  "level": "X"
+ },
+ "MAN-FOLD-01P1": {
+  "taxonomy": "MAN.Fold",
+  "objects": [],
+  "difficulty": null,
+  "level": "X"
+ },
+ "MAN-FOLD-02": {
+  "taxonomy": "MAN.Fold",
+  "objects": [
+   "clothing"
+  ],
+  "difficulty": {
+   "min": 4,
+   "max": 4,
+   "tier": "C",
+   "per_object": {
+    "black_shirt": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable"
+     }
+    },
+    "blue_shirt": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable"
+     }
+    },
+    "grey_shirt": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable"
+     }
+    },
+    "hand_towel": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable"
+     }
+    },
+    "white_shirt": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable"
+     }
+    }
+   }
+  },
+  "level": "X"
+ },
+ "MAN-FOLD-02P1": {
+  "taxonomy": "MAN.Fold",
+  "objects": [],
+  "difficulty": null,
+  "level": "X"
+ },
+ "MAN-INSERT-01": {
+  "taxonomy": "MAN.Insert",
+  "objects": [
+   "dishwasher_tab"
+  ],
+  "difficulty": {
+   "min": 6,
+   "max": 6,
+   "tier": "X",
+   "per_object": {
+    "dishwasher_tab": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "reach": "enclosed",
+      "placement_tolerance": "constrained",
+      "size": "thin"
+     }
+    }
+   }
+  },
+  "level": "X"
+ },
+ "MAN-OPEN-01": {
+  "taxonomy": "MAN.OperateArticulated",
+  "objects": [
+   "entrance_door"
+  ],
+  "difficulty": {
+   "min": 3,
+   "max": 3,
+   "tier": "C",
+   "per_object": {
+    "entrance_door": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "table",
+      "mechanism": "latched",
+      "actuation_force": "medium"
+     }
+    }
+   }
+  },
+  "level": "X"
+ },
+ "MAN-OPEN-02": {
+  "taxonomy": "MAN.OperateArticulated",
+  "objects": [
+   "milk_cap"
+  ],
+  "difficulty": {
+   "min": 2,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "milk_cap": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "mechanism": "latched",
+      "actuation_force": "low"
+     }
+    }
+   }
+  },
+  "level": "X"
+ },
+ "MAN-PICK-01": {
+  "taxonomy": "MAN.Pick",
+  "objects": [
+   "dishwasher_items",
+   "cabinet_objects",
+   "breakfast"
+  ],
+  "difficulty": {
+   "min": 1,
+   "max": 8,
+   "tier": "X",
+   "per_object": {
+    "apple": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "bowl": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "irregular"
+     }
+    },
+    "coke": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "medium",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "cornflakes": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "bulky",
+      "surface": "grippy",
+      "rigidity": "compliant",
+      "shape": "regular"
+     }
+    },
+    "cup": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "dishwasher_tab": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "flat_lying"
+     }
+    },
+    "fork": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "flat_lying"
+     }
+    },
+    "instant_noodles": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "slippery",
+      "rigidity": "compliant",
+      "shape": "irregular"
+     }
+    },
+    "knife": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "flat_lying"
+     }
+    },
+    "lemon": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "mangostane": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "grippy",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "milk": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "medium",
+      "size": "regular",
+      "surface": "grippy",
+      "rigidity": "compliant",
+      "shape": "regular"
+     }
+    },
+    "peach": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "grippy",
+      "rigidity": "compliant",
+      "shape": "regular"
+     }
+    },
+    "pepsi": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "heavy",
+      "size": "bulky",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "plate": {
+     "min": 7,
+     "max": 7,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "medium",
+      "size": "thin",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "flat_lying"
+     }
+    },
+    "pringles": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "red_bellpepper": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "irregular"
+     }
+    },
+    "red_bull": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "medium",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "rubiks_cube": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "seaweed": {
+     "min": 8,
+     "max": 8,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "slippery",
+      "rigidity": "compliant",
+      "shape": "flat_lying"
+     }
+    },
+    "soju": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "medium",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "compliant",
+      "shape": "regular"
+     }
+    },
+    "sponge": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "grippy",
+      "rigidity": "compliant",
+      "shape": "regular"
+     }
+    },
+    "spoon": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "flat_lying"
+     }
+    },
+    "toothpaste": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "grippy",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "yellow_bellpepper": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "irregular"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "MAN-PICK-01B2": {
+  "taxonomy": "MAN.Pick",
+  "objects": [
+   "trash"
+  ],
+  "difficulty": {
+   "min": 1,
+   "max": 8,
+   "tier": "X",
+   "per_object": {
+    "apple": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "coke": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "medium",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "cornflakes": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "bulky",
+      "surface": "grippy",
+      "rigidity": "compliant",
+      "shape": "regular"
+     }
+    },
+    "dishwasher_tab": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "flat_lying"
+     }
+    },
+    "instant_noodles": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "slippery",
+      "rigidity": "compliant",
+      "shape": "irregular"
+     }
+    },
+    "lemon": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "mangostane": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "grippy",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "milk": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "medium",
+      "size": "regular",
+      "surface": "grippy",
+      "rigidity": "compliant",
+      "shape": "regular"
+     }
+    },
+    "peach": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "grippy",
+      "rigidity": "compliant",
+      "shape": "regular"
+     }
+    },
+    "pepsi": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "heavy",
+      "size": "bulky",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "pringles": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "red_bellpepper": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "irregular"
+     }
+    },
+    "red_bull": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "medium",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "rubiks_cube": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "seaweed": {
+     "min": 8,
+     "max": 8,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "slippery",
+      "rigidity": "compliant",
+      "shape": "flat_lying"
+     }
+    },
+    "soju": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "medium",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "compliant",
+      "shape": "regular"
+     }
+    },
+    "sponge": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "grippy",
+      "rigidity": "compliant",
+      "shape": "regular"
+     }
+    },
+    "toothpaste": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "grippy",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "yellow_bellpepper": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "irregular"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "MAN-PICK-01B3": {
+  "taxonomy": "MAN.Pick",
+  "objects": [
+   "cutlery"
+  ],
+  "difficulty": {
+   "min": 6,
+   "max": 6,
+   "tier": "X",
+   "per_object": {
+    "fork": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "flat_lying"
+     }
+    },
+    "knife": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "flat_lying"
+     }
+    },
+    "spoon": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "flat_lying"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "MAN-PICK-01B4": {
+  "taxonomy": "MAN.Pick",
+  "objects": [
+   "plate"
+  ],
+  "difficulty": {
+   "min": 7,
+   "max": 7,
+   "tier": "X",
+   "per_object": {
+    "plate": {
+     "min": 7,
+     "max": 7,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "medium",
+      "size": "thin",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "flat_lying"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "MAN-PICK-01B5": {
+  "taxonomy": "MAN.Pick",
+  "objects": [
+   "dishwasher_tab"
+  ],
+  "difficulty": {
+   "min": 5,
+   "max": 5,
+   "tier": "C",
+   "per_object": {
+    "dishwasher_tab": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "reach": "table",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "flat_lying"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "MAN-PICK-01P1": {
+  "taxonomy": "MAN.Pick",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
+ "MAN-PICK-02B": {
+  "taxonomy": "MAN.Pick",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
+ "MAN-PICK-02P": {
+  "taxonomy": "MAN.Pick",
+  "objects": [
+   "common_objects"
+  ],
+  "difficulty": {
+   "min": 0,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "pringles": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "reach": "table",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "red_bull": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "medium",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "rubiks_cube": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "reach": "table",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "toothpaste": {
+     "min": 0,
+     "max": 0,
+     "factors": {
+      "reach": "table",
+      "clutter": "isolated",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "grippy",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    }
+   }
+  },
+  "level": "E"
+ },
+ "MAN-PICK-03": {
+  "taxonomy": "MAN.Pick",
+  "objects": [
+   "clothing"
+  ],
+  "difficulty": {
+   "min": 9,
+   "max": 10,
+   "tier": "X",
+   "per_object": {
+    "black_shirt": {
+     "min": 10,
+     "max": 10,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "piled",
+      "knowledge": "known_class",
+      "mass": "light",
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable",
+      "shape": "flat_lying"
+     }
+    },
+    "blue_shirt": {
+     "min": 10,
+     "max": 10,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "piled",
+      "knowledge": "known_class",
+      "mass": "light",
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable",
+      "shape": "flat_lying"
+     }
+    },
+    "grey_shirt": {
+     "min": 10,
+     "max": 10,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "piled",
+      "knowledge": "known_class",
+      "mass": "light",
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable",
+      "shape": "flat_lying"
+     }
+    },
+    "hand_towel": {
+     "min": 9,
+     "max": 9,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "piled",
+      "knowledge": "known_class",
+      "mass": "light",
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable",
+      "shape": "irregular"
+     }
+    },
+    "white_shirt": {
+     "min": 10,
+     "max": 10,
+     "factors": {
+      "reach": "low_high",
+      "clutter": "piled",
+      "knowledge": "known_class",
+      "mass": "light",
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable",
+      "shape": "flat_lying"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "MAN-PICK-03P": {
+  "taxonomy": "MAN.Pick",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
+ "MAN-PICK-04": {
+  "taxonomy": "MAN.Pick",
+  "objects": [
+   "clothing"
+  ],
+  "difficulty": {
+   "min": 10,
+   "max": 11,
+   "tier": "X",
+   "per_object": {
+    "black_shirt": {
+     "min": 11,
+     "max": 11,
+     "factors": {
+      "reach": "enclosed",
+      "clutter": "piled",
+      "knowledge": "known_class",
+      "mass": "light",
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable",
+      "shape": "flat_lying"
+     }
+    },
+    "blue_shirt": {
+     "min": 11,
+     "max": 11,
+     "factors": {
+      "reach": "enclosed",
+      "clutter": "piled",
+      "knowledge": "known_class",
+      "mass": "light",
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable",
+      "shape": "flat_lying"
+     }
+    },
+    "grey_shirt": {
+     "min": 11,
+     "max": 11,
+     "factors": {
+      "reach": "enclosed",
+      "clutter": "piled",
+      "knowledge": "known_class",
+      "mass": "light",
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable",
+      "shape": "flat_lying"
+     }
+    },
+    "hand_towel": {
+     "min": 10,
+     "max": 10,
+     "factors": {
+      "reach": "enclosed",
+      "clutter": "piled",
+      "knowledge": "known_class",
+      "mass": "light",
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable",
+      "shape": "irregular"
+     }
+    },
+    "white_shirt": {
+     "min": 11,
+     "max": 11,
+     "factors": {
+      "reach": "enclosed",
+      "clutter": "piled",
+      "knowledge": "known_class",
+      "mass": "light",
+      "size": "thin",
+      "surface": "grippy",
+      "rigidity": "deformable",
+      "shape": "flat_lying"
+     }
+    }
+   }
+  },
+  "level": "X"
+ },
+ "MAN-PICK-04P": {
+  "taxonomy": "MAN.Pick",
+  "objects": [],
+  "difficulty": null,
+  "level": "X"
+ },
+ "MAN-PICK-05": {
+  "taxonomy": "MAN.Pick",
+  "objects": [
+   "restaurant_orders"
+  ],
+  "difficulty": {
+   "min": 1,
+   "max": 8,
+   "tier": "X",
+   "per_object": {
+    "apple": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "coke": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "medium",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "cornflakes": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "bulky",
+      "surface": "grippy",
+      "rigidity": "compliant",
+      "shape": "regular"
+     }
+    },
+    "instant_noodles": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "slippery",
+      "rigidity": "compliant",
+      "shape": "irregular"
+     }
+    },
+    "lemon": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "mangostane": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "grippy",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "milk": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "medium",
+      "size": "regular",
+      "surface": "grippy",
+      "rigidity": "compliant",
+      "shape": "regular"
+     }
+    },
+    "peach": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "grippy",
+      "rigidity": "compliant",
+      "shape": "regular"
+     }
+    },
+    "pepsi": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "heavy",
+      "size": "bulky",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "pringles": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "red_bellpepper": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "irregular"
+     }
+    },
+    "red_bull": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "medium",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "regular"
+     }
+    },
+    "seaweed": {
+     "min": 8,
+     "max": 8,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "thin",
+      "surface": "slippery",
+      "rigidity": "compliant",
+      "shape": "flat_lying"
+     }
+    },
+    "soju": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "medium",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "compliant",
+      "shape": "regular"
+     }
+    },
+    "yellow_bellpepper": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "table",
+      "clutter": "nearby",
+      "knowledge": "known_instance",
+      "mass": "light",
+      "size": "regular",
+      "surface": "smooth",
+      "rigidity": "rigid",
+      "shape": "irregular"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "MAN-PLACE-01": {
+  "taxonomy": "MAN.Place",
+  "objects": [
+   "bag"
+  ],
+  "difficulty": {
+   "min": 3,
+   "max": 3,
+   "tier": "C",
+   "per_object": {
+    "bag": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "region",
+      "mass": "medium",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "MAN-PLACE-02": {
+  "taxonomy": "MAN.Place",
+  "objects": [
+   "dishwasher_items",
+   "cabinet_objects",
+   "breakfast"
+  ],
+  "difficulty": {
+   "min": 2,
+   "max": 5,
+   "tier": "C",
+   "per_object": {
+    "apple": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "bowl": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    },
+    "coke": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "medium",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "cornflakes": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "bulky",
+      "rigidity": "compliant"
+     }
+    },
+    "cup": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "dishwasher_tab": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    },
+    "fork": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    },
+    "instant_noodles": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "knife": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    },
+    "lemon": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "mangostane": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "milk": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "medium",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "peach": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "pepsi": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "heavy",
+      "size": "bulky",
+      "rigidity": "rigid"
+     }
+    },
+    "plate": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "medium",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    },
+    "pringles": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "red_bellpepper": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "red_bull": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "medium",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "rubiks_cube": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "seaweed": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "compliant"
+     }
+    },
+    "soju": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "medium",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "sponge": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "spoon": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    },
+    "toothpaste": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "yellow_bellpepper": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "MAN-PLACE-02B1": {
+  "taxonomy": "MAN.Place",
+  "objects": [
+   "dishwasher_items"
+  ],
+  "difficulty": {
+   "min": 5,
+   "max": 8,
+   "tier": "X",
+   "per_object": {
+    "bowl": {
+     "min": 7,
+     "max": 7,
+     "factors": {
+      "reach": "enclosed",
+      "placement_tolerance": "constrained",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    },
+    "cup": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "reach": "enclosed",
+      "placement_tolerance": "constrained",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "fork": {
+     "min": 7,
+     "max": 7,
+     "factors": {
+      "reach": "enclosed",
+      "placement_tolerance": "constrained",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    },
+    "knife": {
+     "min": 7,
+     "max": 7,
+     "factors": {
+      "reach": "enclosed",
+      "placement_tolerance": "constrained",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    },
+    "plate": {
+     "min": 8,
+     "max": 8,
+     "factors": {
+      "reach": "enclosed",
+      "placement_tolerance": "constrained",
+      "clutter": "nearby",
+      "mass": "medium",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    },
+    "spoon": {
+     "min": 7,
+     "max": 7,
+     "factors": {
+      "reach": "enclosed",
+      "placement_tolerance": "constrained",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    }
+   }
+  },
+  "level": "X"
+ },
+ "MAN-PLACE-02B2": {
+  "taxonomy": "MAN.Place",
+  "objects": [
+   "cabinet_objects"
+  ],
+  "difficulty": {
+   "min": 3,
+   "max": 6,
+   "tier": "X",
+   "per_object": {
+    "apple": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "coke": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "medium",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "cornflakes": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "bulky",
+      "rigidity": "compliant"
+     }
+    },
+    "dishwasher_tab": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "rigid"
+     }
+    },
+    "instant_noodles": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "lemon": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "mangostane": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "milk": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "medium",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "peach": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "pepsi": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "heavy",
+      "size": "bulky",
+      "rigidity": "rigid"
+     }
+    },
+    "pringles": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "red_bellpepper": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "red_bull": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "medium",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "rubiks_cube": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "seaweed": {
+     "min": 6,
+     "max": 6,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "compliant"
+     }
+    },
+    "soju": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "medium",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "sponge": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "toothpaste": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "yellow_bellpepper": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "MAN-PLACE-02P1": {
+  "taxonomy": "MAN.Place",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
+ "MAN-PLACE-02P2": {
+  "taxonomy": "MAN.Place",
+  "objects": [
+   "common_objects"
+  ],
+  "difficulty": {
+   "min": 3,
+   "max": 4,
+   "tier": "C",
+   "per_object": {
+    "pringles": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "red_bull": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "medium",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "rubiks_cube": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "toothpaste": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "low_high",
+      "placement_tolerance": "spot",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    }
+   }
+  },
+  "level": "E"
+ },
+ "MAN-PLACE-02P3": {
+  "taxonomy": "MAN.Place",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
+ "MAN-PLACE-03": {
+  "taxonomy": "MAN.Place",
+  "objects": [
+   "restaurant_orders"
+  ],
+  "difficulty": {
+   "min": 1,
+   "max": 4,
+   "tier": "C",
+   "per_object": {
+    "apple": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "coke": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "medium",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "cornflakes": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "bulky",
+      "rigidity": "compliant"
+     }
+    },
+    "instant_noodles": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "lemon": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "mangostane": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "milk": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "medium",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "peach": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "pepsi": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "heavy",
+      "size": "bulky",
+      "rigidity": "rigid"
+     }
+    },
+    "pringles": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "red_bellpepper": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "red_bull": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "medium",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    },
+    "seaweed": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "thin",
+      "rigidity": "compliant"
+     }
+    },
+    "soju": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "medium",
+      "size": "regular",
+      "rigidity": "compliant"
+     }
+    },
+    "yellow_bellpepper": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "reach": "table",
+      "placement_tolerance": "region",
+      "clutter": "nearby",
+      "mass": "light",
+      "size": "regular",
+      "rigidity": "rigid"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "MAN-PLACE-03B": {
+  "taxonomy": "MAN.Place",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
+ "MAN-POUR-01": {
+  "taxonomy": "MAN.Pour",
+  "objects": [
+   "milk",
+   "cornflakes"
+  ],
+  "difficulty": {
+   "min": 1,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "cornflakes": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "placement_tolerance": "spot",
+      "mass": "light",
+      "contents": "none"
+     }
+    },
+    "milk": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "placement_tolerance": "spot",
+      "mass": "medium"
+     }
+    }
+   }
+  },
+  "level": "X"
+ },
+ "MAN-POUR-01P": {
+  "taxonomy": "MAN.Pour",
+  "objects": [],
+  "difficulty": null,
+  "level": "X"
+ },
+ "MAN-STACK-01": {
+  "taxonomy": "MAN.Stack",
+  "objects": [
+   "clothing"
+  ],
+  "difficulty": {
+   "min": 4,
+   "max": 4,
+   "tier": "C",
+   "per_object": {
+    "black_shirt": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "placement_tolerance": "constrained",
+      "rigidity": "deformable"
+     }
+    },
+    "blue_shirt": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "placement_tolerance": "constrained",
+      "rigidity": "deformable"
+     }
+    },
+    "grey_shirt": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "placement_tolerance": "constrained",
+      "rigidity": "deformable"
+     }
+    },
+    "hand_towel": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "placement_tolerance": "constrained",
+      "rigidity": "deformable"
+     }
+    },
+    "white_shirt": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "placement_tolerance": "constrained",
+      "rigidity": "deformable"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "MAN-TRANSPORTWITHBASKET-01": {
+  "taxonomy": "MAN.Transport",
+  "objects": [
+   "laundry_basket"
+  ],
+  "difficulty": {
+   "min": 4,
+   "max": 4,
+   "tier": "C",
+   "per_object": {
+    "laundry_basket": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "carrier": "unattached",
+      "mass": "heavy",
+      "size": "regular"
+     }
+    }
+   }
+  },
+  "level": "X"
+ },
+ "MAN-TRANSPORTWITHBASKET-02P": {
+  "taxonomy": "MAN.Transport",
+  "objects": [],
+  "difficulty": null,
+  "level": "X"
+ },
+ "MAN-TRANSPORTWITHTRAY-01": {
+  "taxonomy": "MAN.Transport",
+  "objects": [
+   "tray"
+  ],
+  "difficulty": {
+   "min": 5,
+   "max": 5,
+   "tier": "C",
+   "per_object": {
+    "tray": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "carrier": "unattached",
+      "mass": "medium",
+      "size": "thin"
+     }
+    }
+   }
+  },
+  "level": "X"
+ },
+ "NAV-FOLLOW-01": {
+  "taxonomy": "NAV.Follow",
+  "objects": [],
+  "difficulty": {
+   "min": 2,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "map_knowledge": "mapped",
+      "route_extent": "rooms",
+      "crowd": "few"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "NAV-FOLLOW-01P1": {
+  "taxonomy": "NAV.Follow",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
+ "NAV-FOLLOW-01P2": {
+  "taxonomy": "NAV.Follow",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
+ "NAV-FOLLOW-01P3": {
+  "taxonomy": "NAV.Follow",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
+ "NAV-FOLLOW-01P4": {
+  "taxonomy": "NAV.Follow",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
+ "NAV-GAZEDIRECTION-01": {
+  "taxonomy": "NAV.SignalIntent",
+  "objects": [],
+  "difficulty": {
+   "min": 1,
+   "max": 1,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "crowd": "few"
+     }
+    }
+   }
+  },
+  "level": "E"
+ },
+ "NAV-NAVIGATE-01": {
+  "taxonomy": "NAV.Navigate",
+  "objects": [],
+  "difficulty": {
+   "min": 2,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "map_knowledge": "moved",
+      "route_extent": "rooms",
+      "crowd": "none",
+      "obstacle_visibility": "large"
+     }
+    }
+   }
+  },
+  "level": "E"
+ },
+ "NAV-NAVIGATE-02": {
+  "taxonomy": "NAV.Navigate",
+  "objects": [],
+  "difficulty": {
+   "min": 1,
+   "max": 1,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "map_knowledge": "mapped",
+      "route_extent": "rooms",
+      "crowd": "none",
+      "obstacle_visibility": "large"
+     }
+    }
+   }
+  },
+  "level": "E"
+ },
+ "NAV-NAVIGATE-03": {
+  "taxonomy": "NAV.Navigate",
+  "objects": [],
+  "difficulty": {
+   "min": 5,
+   "max": 5,
+   "tier": "C",
+   "per_object": {
+    "-": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "map_knowledge": "unknown",
+      "route_extent": "room",
+      "crowd": "crowd",
+      "obstacle_visibility": "small"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "NAV-NAVIGATE-03P": {
+  "taxonomy": "NAV.Navigate",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
+ "NAV-NAVIGATE-04": {
+  "taxonomy": "NAV.Navigate",
+  "objects": [],
+  "difficulty": {
+   "min": 5,
+   "max": 5,
+   "tier": "C",
+   "per_object": {
+    "-": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "map_knowledge": "unknown",
+      "route_extent": "room",
+      "crowd": "crowd",
+      "obstacle_visibility": "small"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "NAV-NAVIGATE-05P": {
+  "taxonomy": "NAV.Navigate",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
+ "NLU-AVOIDNONESSENTIALQUESTIONS-01B": {
+  "taxonomy": "NLU.Clarify",
+  "objects": [],
+  "difficulty": {
+   "min": 3,
+   "max": 3,
+   "tier": "C",
+   "per_object": {
+    "-": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "input_variability": "open",
+      "ambient_noise": "background"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "NLU-UNDERSTANDCOMMAND-01": {
+  "taxonomy": "NLU.UnderstandCommand",
+  "objects": [],
+  "difficulty": {
+   "min": 3,
+   "max": 3,
+   "tier": "C",
+   "per_object": {
+    "-": {
+     "min": 3,
+     "max": 3,
+     "factors": {
+      "input_variability": "paraphrase",
+      "ambient_noise": "background",
+      "info_load": "few"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "NLU-UNDERSTANDCOMMAND-02P": {
+  "taxonomy": "NLU.UnderstandCommand",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
+ "NLU-UNDERSTANDCOMMAND-03P": {
+  "taxonomy": "NLU.UnderstandCommand",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
+ "NLU-UNDERSTANDCOMMAND-04P": {
+  "taxonomy": "NLU.UnderstandCommand",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
+ "NLU-UNDERSTANDCOMMAND-05": {
+  "taxonomy": "NLU.UnderstandCommand",
+  "objects": [],
+  "difficulty": {
+   "min": 5,
+   "max": 5,
+   "tier": "C",
+   "per_object": {
+    "-": {
+     "min": 5,
+     "max": 5,
+     "factors": {
+      "input_variability": "open",
+      "ambient_noise": "loud",
+      "info_load": "few"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "OBJ-DETECTEVENT-01": {
+  "taxonomy": "OBJ.DetectEvent",
+  "objects": [],
+  "difficulty": {
+   "min": 2,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "knowledge": "known_class",
+      "ambient_noise": "background"
+     }
+    }
+   }
+  },
+  "level": "E"
+ },
+ "OBJ-PERCEIVE-01": {
+  "taxonomy": "OBJ.DetectPlacement",
+  "objects": [],
+  "difficulty": {
+   "min": 4,
+   "max": 4,
+   "tier": "C",
+   "per_object": {
+    "-": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "knowledge": "known_class",
+      "clutter": "nearby",
+      "distractors": "similar"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "OBJ-RECOGNIZE-01": {
+  "taxonomy": "OBJ.Recognize",
+  "objects": [],
+  "difficulty": {
+   "min": 2,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "knowledge": "known_instance",
+      "clutter": "nearby",
+      "distractors": "few",
+      "perception_range": "near"
+     }
+    }
+   }
+  },
+  "level": "E"
+ },
+ "PLN-DEMONSTRATEPLAN-01": {
+  "taxonomy": "PLN.Plan",
+  "objects": [],
+  "difficulty": {
+   "min": 2,
+   "max": 3,
+   "tier": "C",
+   "per_object": {
+    "-": {
+     "min": 2,
+     "max": 3,
+     "factors": {
+      "input_variability": "paraphrase",
+      "plan_length": [
+       "medium",
+       "long"
+      ]
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "PLN-INTERLEAVETASKS-01B": {
+  "taxonomy": "PLN.Interleave",
+  "objects": [],
+  "difficulty": {
+   "min": 2,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 2,
+     "max": 2,
+     "factors": {
+      "plan_length": "long"
+     }
+    }
+   }
+  },
+  "level": "X"
+ },
+ "PLN-SOLVECOMMAND-01": {
+  "taxonomy": "PLN.Execute",
+  "objects": [],
+  "difficulty": {
+   "min": 1,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 1,
+     "max": 2,
+     "factors": {
+      "plan_length": [
+       "medium",
+       "long"
+      ]
+     }
+    }
+   }
+  },
+  "level": "X"
+ },
+ "PLN-SOLVECOMMAND-02": {
+  "taxonomy": "PLN.Execute",
+  "objects": [],
+  "difficulty": {
+   "min": 1,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 1,
+     "max": 2,
+     "factors": {
+      "plan_length": [
+       "medium",
+       "long"
+      ]
+     }
+    }
+   }
+  },
+  "level": "X"
+ },
+ "PLN-SOLVECOMMAND-03": {
+  "taxonomy": "PLN.Execute",
+  "objects": [],
+  "difficulty": {
+   "min": 1,
+   "max": 2,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 1,
+     "max": 2,
+     "factors": {
+      "plan_length": [
+       "medium",
+       "long"
+      ]
+     }
+    }
+   }
+  },
+  "level": "X"
+ },
+ "PLN-SOLVECOMMAND-04P": {
+  "taxonomy": "PLN.Execute",
+  "objects": [],
+  "difficulty": null,
+  "level": "X"
+ },
+ "PPL-DESCRIBEATTRIBUTE-01B": {
+  "taxonomy": "PPL.DescribeAttribute",
+  "objects": [],
+  "difficulty": {
+   "min": 1,
+   "max": 1,
+   "tier": "E",
+   "per_object": {
+    "-": {
+     "min": 1,
+     "max": 1,
+     "factors": {
+      "info_load": "single",
+      "target_motion": "static",
+      "retention": "task"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "PPL-DESCRIBEATTRIBUTE-02P": {
+  "taxonomy": "PPL.DescribeAttribute",
+  "objects": [],
+  "difficulty": null,
+  "level": "C"
+ },
+ "PPL-DETECTCALLINGORWAVING-01": {
+  "taxonomy": "PPL.DetectGesture",
+  "objects": [],
+  "difficulty": {
+   "min": 4,
+   "max": 4,
+   "tier": "C",
+   "per_object": {
+    "-": {
+     "min": 4,
+     "max": 4,
+     "factors": {
+      "crowd": "crowd",
+      "perception_range": "far"
+     }
+    }
+   }
+  },
+  "level": "C"
+ },
+ "SPECIAL-01": {
+  "taxonomy": "SPECIAL.Administrative",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "SPECIAL-02": {
+  "taxonomy": "SPECIAL.Administrative",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ },
+ "SPECIAL-03": {
+  "taxonomy": "SPECIAL.Administrative",
+  "objects": [],
+  "difficulty": null,
+  "level": "-"
+ }
+}

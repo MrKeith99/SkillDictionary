@@ -1,0 +1,243 @@
+# Difficulty factors — HOW HARD one instance of a skill is, from the object and
+# the situation, never from the robot's method.
+#
+# Why factors instead of more skills: "PickTinyKnown, PickHeavyKnown,
+# PickLargeUnknown, ..." multiplies verbs by every property and still cannot
+# express "heavy AND slippery AND inside the dishwasher". One Pick skill plus a
+# handful of factors covers every combination, and new objects need a profile in
+# objects/catalog.yaml, not a new skill.
+#
+# Rules
+#   * Every factor has at most three levels, weighted 0 / 1 / 2. Coarse on
+#     purpose: a referee must be able to assign a level by looking, and finer
+#     scales would imply precision nobody can measure consistently.
+#   * `source: object` factors are properties of the thing being handled and
+#     live in objects/catalog.yaml. Factors with a `measure` are computed from a
+#     number in the catalog using the `below` cut-offs (levels in ascending
+#     order; the last level has no cut-off). The rest are judged once per object. `source: condition` factors describe the situation
+#     and are set on the dictionary entry (`conditions:`).
+#   * A factor only counts for a skill if the skill's taxonomy node lists it.
+#     Mass matters to Pick; it does not matter to Recognize.
+#
+# Intrinsic difficulty D = sum of weights of the applicable factors.
+# It is a property of the SPECIFICATION. It is not `level`, which is the
+# empirical, annually reassigned rating of how the field actually performed.
+# Comparing the two is useful: a line with low D but level X means teams find it
+# hard for reasons the factors do not capture yet.
+
+version: 1
+
+tiers:
+  # Provisional cut points for an intrinsic tier, so D can be read at a glance.
+  # Same letters as `level` to make the comparison easy; different meaning.
+  E: {max: 2}
+  C: {max: 5}
+  X: {max: null}
+
+factors:
+
+  # ── object properties ───────────────────────────────────────────────────────
+  mass:
+    source: object
+    question: How heavy is the object (with contents)?
+    measure: mass_g          # computed from the catalog value, never typed by hand
+    levels:
+      light:  {weight: 0, below: 250,  guide: "< 250 g — cutlery, enamel cup, shirt"}
+      medium: {weight: 1, below: 1000, guide: "250–1000 g — cans, soju bottle, small milk carton"}
+      heavy:  {weight: 2,              guide: "≥ 1000 g — 1.5 L bottle, packed bag"}
+
+  size:
+    source: object
+    question: Across its narrowest graspable dimension, how big is the object?
+    measure: grasp_width_mm  # computed from the catalog value, never typed by hand
+    levels:
+      thin:    {weight: 2, below: 15, guide: "< 15 mm — cutlery handle, plate rim, cloth"}
+      regular: {weight: 0, below: 81, guide: "15–80 mm — cans, cups, boxes"}
+      bulky:   {weight: 1,            guide: "> 80 mm — exceeds most gripper openings"}
+
+  surface:
+    source: object
+    question: How easily does the surface slip?
+    levels:
+      grippy:   {weight: 0, guide: "fabric, paper, cardboard, rubber"}
+      smooth:   {weight: 1, guide: "glazed ceramic, glossy plastic, metal, glass"}
+      slippery: {weight: 2, guide: "wet, oily, or film-wrapped"}
+
+  rigidity:
+    source: object
+    question: Does the object keep its shape when held?
+    levels:
+      rigid:      {weight: 0, guide: "cups, boxes, cutlery"}
+      compliant:  {weight: 1, guide: "bags, pouches, fragile items that must not be squeezed"}
+      deformable: {weight: 2, guide: "clothing, towels — shape changes with every grasp"}
+
+  shape:
+    source: object
+    question: Is there an obvious place to hold it?
+    levels:
+      regular:    {weight: 0, guide: "box, cylinder, handle"}
+      irregular:  {weight: 1, guide: "concave or asymmetric — bowl, mug by the body"}
+      flat_lying: {weight: 2, guide: "lies flush on its support — plate, flat cloth"}
+
+  contents:
+    source: object
+    question: Does the object contain something that constrains its motion?
+    levels:
+      none:    {weight: 0, guide: "solid object or closed container"}
+      upright: {weight: 1, guide: "open container with liquid/granular content, must stay level"}
+
+  mechanism:
+    source: object
+    question: (articulated objects / controls) What kind of motion does it need?
+    levels:
+      push:    {weight: 0, guide: "button, push-to-close door"}
+      guided:  {weight: 1, guide: "hinge or slide — door, drawer, rack"}
+      latched: {weight: 2, guide: "needs a handle/latch/thread released first — handle door, screw cap"}
+
+  actuation_force:
+    source: object
+    question: (articulated objects) How much force does it take?
+    levels:
+      low:    {weight: 0, guide: "< 10 N"}
+      medium: {weight: 1, guide: "10–30 N"}
+      high:   {weight: 2, guide: "> 30 N — sprung or weighted doors"}
+
+  # ── situation / conditions ──────────────────────────────────────────────────
+  reach:
+    source: condition
+    question: Where is the object or the target?
+    levels:
+      table:    {weight: 0, guide: "open surface, 0.6–1.0 m high"}
+      low_high: {weight: 1, guide: "floor, bottom or top shelf"}
+      enclosed: {weight: 2, guide: "inside an appliance, drum, cabinet or rack"}
+
+  clutter:
+    source: condition
+    question: What is around the object?
+    levels:
+      isolated: {weight: 0, guide: "nothing within ~5 cm"}
+      nearby:   {weight: 1, guide: "other objects within ~5 cm"}
+      piled:    {weight: 2, guide: "stacked, touching, entangled"}
+
+  knowledge:
+    source: condition
+    question: Has the robot seen (or heard) this exact thing before — object, sound, person, word?
+    levels:
+      known_instance: {weight: 0, guide: "exact object/sound/person/phrase published before the test"}
+      known_class:    {weight: 1, guide: "category known, instance not — 'any traditional doorbell', 'any popular English name'"}
+      unknown:        {weight: 2, guide: "never seen, category not given — a drink not on the object list"}
+
+  placement_tolerance:
+    source: condition
+    question: How exact must the final pose be?
+    levels:
+      region:      {weight: 0, guide: "anywhere in an area or on a surface"}
+      spot:        {weight: 1, guide: "a specific spot or semantic group — next to the bowl, with similar items"}
+      constrained: {weight: 2, guide: "a slot, rack tines, aligned stack, cleanable orientation"}
+
+  carrier:
+    source: condition
+    question: Is a loose carrier used for transport?
+    levels:
+      none:       {weight: 0, guide: "object held directly or in a fixed robot container"}
+      unattached: {weight: 2, guide: "loose tray or basket that must itself be balanced"}
+
+  map_knowledge:
+    source: condition
+    question: How well does the robot know the space?
+    levels:
+      mapped:  {weight: 0, guide: "fixed, mapped location"}
+      moved:   {weight: 1, guide: "furniture may have moved, location given at runtime"}
+      unknown: {weight: 2, guide: "unmapped environment"}
+
+  crowd:
+    source: condition
+    question: How many people move around the robot?
+    levels:
+      none:  {weight: 0, guide: "only the operator"}
+      few:   {weight: 1, guide: "a few people, mostly static"}
+      crowd: {weight: 2, guide: "many moving people, occlusions"}
+
+  obstacle_visibility:
+    source: condition
+    question: How hard are obstacles to perceive?
+    levels:
+      large:       {weight: 0, guide: "furniture-sized"}
+      small:       {weight: 1, guide: "below laser plane, small"}
+      hard_to_see: {weight: 2, guide: "transparent, thin, reflective, or a marked no-go area with no physical boundary"}
+
+  input_variability:
+    source: condition
+    question: How varied is the language the robot must understand?
+    levels:
+      fixed:      {weight: 0, guide: "known phrase set"}
+      paraphrase: {weight: 1, guide: "grammar-generated or paraphrased"}
+      open:       {weight: 2, guide: "free speech from non-experts, noise"}
+
+  # ── people, space, language (NAV, OBJ, PPL, HRI, NLU, PLN) ─────────────────
+  # Same rules as above: three coarse levels a referee can set from the task
+  # description and what they see, never from how the robot works.
+
+  route_extent:
+    source: condition
+    question: How far, topologically, does the robot travel?
+    levels:
+      room:     {weight: 0, guide: "within one room or one open space (a restaurant floor)"}
+      rooms:    {weight: 1, guide: "across rooms, through doorways"}
+      building: {weight: 2, guide: "corridors, lifts, or out of the arena and back"}
+
+  perception_range:
+    source: condition
+    question: How far away is the person, object or signal to perceive?
+    levels:
+      near:  {weight: 0, guide: "≤ 1.5 m, in front of the robot"}
+      room:  {weight: 1, guide: "anywhere in the same room"}
+      far:   {weight: 2, guide: "across a large space or another room; must be searched for"}
+
+  target_motion:
+    source: condition
+    question: Does the person the skill is aimed at move?
+    levels:
+      static:   {weight: 0, guide: "seated or standing still"}
+      shifting: {weight: 1, guide: "sways, paces, changes seat — 'guests move slightly'"}
+      walking:  {weight: 2, guide: "walks freely while the skill runs"}
+
+  distractors:
+    source: condition
+    question: How many plausible wrong answers are present?
+    levels:
+      none:    {weight: 0, guide: "only one candidate person, object, place or class"}
+      few:     {weight: 1, guide: "a few candidates, easy to tell apart"}
+      similar: {weight: 2, guide: "several near-identical candidates — identical chairs, look-alike guests, neighbouring shelf categories"}
+
+  ambient_noise:
+    source: condition
+    question: How noisy is it where the robot listens?
+    levels:
+      quiet:      {weight: 0, guide: "arena with spectators silent"}
+      background: {weight: 1, guide: "arena during a test — spectators, other people talking"}
+      loud:       {weight: 2, guide: "public venue, music, several people speaking at once"}
+
+  info_load:
+    source: condition
+    question: How many separate items must be understood, stored or stated in this line?
+    levels:
+      single: {weight: 0, guide: "one item — a name, one attribute"}
+      few:    {weight: 1, guide: "2–3 items — name and drink, a two-object order"}
+      many:   {weight: 2, guide: "4 or more — a summary, several people's details"}
+
+  retention:
+    source: condition
+    question: How long must the robot keep the information before using it?
+    levels:
+      immediate: {weight: 0, guide: "used in the same exchange it was learned in"}
+      task:      {weight: 1, guide: "used later in the task, after other activity"}
+      long:      {weight: 2, guide: "used in another task, or after the person changed place or appearance"}
+
+  plan_length:
+    source: condition
+    question: How many skills must be chained to reach the goal?
+    levels:
+      short:  {weight: 0, guide: "1–2 skills"}
+      medium: {weight: 1, guide: "3–4 skills"}
+      long:   {weight: 2, guide: "5 or more, or a search with an unknown number of steps"}

@@ -1,5 +1,5 @@
 area: PLN
-schema_version: 0.2.0
+schema_version: 0.3.0
 rulebook_version: '2026.2'
 note: Canonical cross-challenge definitions. Each entry is defined and priced exactly once here; challenges reference it by id.
 skills:
@@ -7,8 +7,12 @@ skills:
   area: PLN
   skill: DemonstratePlan
   variant_number: '01'
+  taxonomy: PLN.Plan
   modifiers: []
   description: Demonstrate a plan has been generated
+  conditions:
+    input_variability: paraphrase
+    plan_length: [medium, long]
   level: C
   points: 100
   type: achievement
@@ -20,8 +24,11 @@ skills:
   area: PLN
   skill: InterleaveTasks
   variant_number: '01'
+  taxonomy: PLN.Interleave
   modifiers: []
   description: Interleaved Task Bonus
+  conditions:
+    plan_length: long
   level: X
   points: 200
   type: bonus
@@ -33,9 +40,12 @@ skills:
   area: PLN
   skill: SolveCommand
   variant_number: '01'
+  taxonomy: PLN.Execute
   modifiers:
   - command_1
   description: Solving the first command
+  conditions:
+    plan_length: [medium, long]
   level: X
   points: 250
   type: achievement
@@ -47,9 +57,12 @@ skills:
   area: PLN
   skill: SolveCommand
   variant_number: '02'
+  taxonomy: PLN.Execute
   modifiers:
   - command_2
   description: Solving the second command
+  conditions:
+    plan_length: [medium, long]
   level: X
   points: 250
   type: achievement
@@ -61,9 +74,12 @@ skills:
   area: PLN
   skill: SolveCommand
   variant_number: '03'
+  taxonomy: PLN.Execute
   modifiers:
   - command_3
   description: Solving the third command
+  conditions:
+    plan_length: [medium, long]
   level: X
   points: 250
   type: achievement
@@ -75,9 +91,11 @@ skills:
   area: PLN
   skill: SolveCommand
   variant_number: '04'
+  taxonomy: PLN.Execute
   modifiers:
   - partial
   description: Solving part of a command (percentage penalty)
+  failure_mode: quality
   level: X
   points: null
   type: penalty_behavior

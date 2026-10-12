@@ -3,7 +3,7 @@
   "$id": "https://robocupathome.org/schema/skill.schema.json",
   "title": "RoboCup@Home canonical skill entry",
   "type": "object",
-  "required": ["id", "area", "skill", "variant_number", "modifiers",
+  "required": ["id", "area", "skill", "variant_number", "taxonomy", "modifiers",
                "description", "level", "type"],
   "additionalProperties": false,
   "properties": {
@@ -24,6 +24,11 @@
       "type": ["string", "integer"],
       "description": "Permanent within its stem. Never reused, never reassigned."
     },
+    "taxonomy": {
+      "type": "string",
+      "pattern": "^[A-Z]+\\.[A-Za-z]+(\\.[A-Za-z]+)*$",
+      "description": "Node in vocabulary/taxonomy.yaml: the capability this line scores. Many entries may share a node."
+    },
     "modifiers": {
       "type": "array",
       "items": {"type": "string"},
@@ -31,6 +36,21 @@
       "description": "Object/environment properties only. NOT grasp technique or hardware method."
     },
     "description": {"type": "string", "minLength": 1},
+    "objects": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true,
+      "description": "Profiles from vocabulary/objects.yaml handled by this line. Supply the object-side difficulty factors."
+    },
+    "conditions": {
+      "type": "object",
+      "additionalProperties": {"oneOf": [{"type": "string"}, {"type": "array", "items": {"type": "string"}, "minItems": 1}]},
+      "description": "Situation-side difficulty factors (source: condition in vocabulary/difficulty_factors.yaml) mapped to a level, or to a list of levels when the level is drawn at test time."
+    },
+    "failure_mode": {
+      "type": "string",
+      "description": "Penalties only: key of failure_modes in vocabulary/taxonomy.yaml, so equal failures can be priced consistently."
+    },
     "level": {"enum": ["E", "C", "X", "-"]},
     "points": {
       "type": ["integer", "null"],
