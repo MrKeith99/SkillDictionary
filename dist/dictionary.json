@@ -1,6 +1,8 @@
 {
-  "schema_version": "0.3.0",
+  "schema_version": "0.4.0",
   "rulebook_version": "2026.2",
+  "season": 2026,
+  "status": "in_force",
   "skills": [
     {
       "id": "GEN-ALTERNATIVEHRI-01P",
@@ -16,8 +18,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "hri"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "GEN-ALTERNATIVEHRI-02P",
@@ -35,8 +36,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "restaurant"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "GEN-BREAKFAST-01P",
@@ -54,8 +54,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "GEN-HUMANASSIST-01P",
@@ -73,8 +72,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "GEN-HUMANASSIST-02P",
@@ -93,8 +91,7 @@
       "used_by": [
         "pick_and_place",
         "restaurant"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "GEN-HUMANASSIST-04P",
@@ -112,8 +109,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "GEN-HUMANASSIST-05P",
@@ -131,8 +127,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "GEN-HUMANASSIST-06P",
@@ -150,8 +145,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "doing_laundry"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "GEN-HUMANASSIST-07P",
@@ -171,8 +165,7 @@
       "basis": "MAN-FOLD-01 points",
       "used_by": [
         "doing_laundry"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "GEN-HUMANASSIST-08P",
@@ -191,8 +184,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "doing_laundry"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "GEN-HUMANASSIST-09P",
@@ -213,8 +205,7 @@
       "basis": "MAN-FOLD-02 points",
       "used_by": [
         "doing_laundry"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "GEN-HUMANASSIST-11P",
@@ -232,8 +223,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "restaurant"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "GEN-HUMANASSIST-12P",
@@ -251,8 +241,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "restaurant"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "GEN-HUMANASSIST-13P",
@@ -270,8 +259,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "restaurant"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "GEN-HUMANASSIST-14P",
@@ -290,8 +278,7 @@
       "used_by": [
         "doing_laundry",
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "HRI-ATTEND-01P",
@@ -309,8 +296,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "hri"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "HRI-COMMUNICATEORDER-01",
@@ -332,8 +318,7 @@
       "type": "achievement",
       "used_by": [
         "restaurant"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "HRI-EYECONTACT-01P",
@@ -351,8 +336,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "restaurant"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "HRI-LOOKAT-01",
@@ -376,8 +360,7 @@
       "type": "achievement",
       "used_by": [
         "hri"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "HRI-LOOKAT-02",
@@ -401,8 +384,7 @@
       "type": "achievement",
       "used_by": [
         "hri"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "HRI-OFFERSEAT-01",
@@ -423,8 +405,7 @@
       "type": "achievement",
       "used_by": [
         "hri"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "HRI-RECEIVEHANDOVER-01",
@@ -444,8 +425,7 @@
       "type": "achievement",
       "used_by": [
         "hri"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "HRI-RECEIVEHANDOVER-01P1",
@@ -463,8 +443,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "hri"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "HRI-RECEIVEHANDOVER-01P2",
@@ -482,8 +461,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "hri"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "HRI-STATESTOREDINFO-01",
@@ -506,8 +484,7 @@
       "type": "achievement",
       "used_by": [
         "hri"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "HRI-STATESTOREDINFO-02P",
@@ -525,8 +502,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "hri"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-APPLIANCE-01",
@@ -550,8 +526,7 @@
       "type": "achievement",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-APPLIANCE-02",
@@ -576,8 +551,7 @@
       "type": "achievement",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-APPLIANCE-03",
@@ -601,8 +575,7 @@
       "type": "achievement",
       "used_by": [
         "doing_laundry"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-FOLD-01",
@@ -623,8 +596,7 @@
       "type": "achievement",
       "used_by": [
         "doing_laundry"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-FOLD-01P1",
@@ -642,8 +614,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "doing_laundry"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-FOLD-02",
@@ -663,8 +634,7 @@
       "type": "achievement",
       "used_by": [
         "doing_laundry"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-FOLD-02P1",
@@ -683,8 +653,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "doing_laundry"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-INSERT-01",
@@ -708,8 +677,7 @@
       "type": "achievement",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-OPEN-01",
@@ -732,8 +700,7 @@
       "type": "achievement",
       "used_by": [
         "hri"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-OPEN-02",
@@ -757,8 +724,7 @@
       "type": "achievement",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-PICK-01",
@@ -786,8 +752,7 @@
       "type": "achievement",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-PICK-01B2",
@@ -812,8 +777,7 @@
       "type": "bonus",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-PICK-01B3",
@@ -838,8 +802,7 @@
       "type": "bonus",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-PICK-01B4",
@@ -864,8 +827,7 @@
       "type": "bonus",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-PICK-01B5",
@@ -890,8 +852,7 @@
       "type": "bonus",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-PICK-01P1",
@@ -909,8 +870,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-PICK-02B",
@@ -928,8 +888,7 @@
       "used_by": [
         "pick_and_place",
         "restaurant"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-PICK-02P",
@@ -955,8 +914,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-PICK-03",
@@ -982,8 +940,7 @@
       "type": "achievement",
       "used_by": [
         "doing_laundry"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-PICK-03P",
@@ -1001,8 +958,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "doing_laundry"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-PICK-04",
@@ -1028,8 +984,7 @@
       "type": "achievement",
       "used_by": [
         "doing_laundry"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-PICK-04P",
@@ -1047,8 +1002,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "doing_laundry"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-PICK-05",
@@ -1074,8 +1028,7 @@
       "type": "achievement",
       "used_by": [
         "restaurant"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-PLACE-01",
@@ -1100,8 +1053,7 @@
       "type": "achievement",
       "used_by": [
         "hri"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-PLACE-02",
@@ -1129,8 +1081,7 @@
       "type": "achievement",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-PLACE-02B1",
@@ -1156,8 +1107,7 @@
       "type": "bonus",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-PLACE-02B2",
@@ -1183,8 +1133,7 @@
       "type": "bonus",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-PLACE-02P1",
@@ -1203,8 +1152,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-PLACE-02P2",
@@ -1230,8 +1178,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-PLACE-02P3",
@@ -1249,8 +1196,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-PLACE-03",
@@ -1276,8 +1222,7 @@
       "type": "achievement",
       "used_by": [
         "restaurant"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-PLACE-03B",
@@ -1294,8 +1239,7 @@
       "type": "bonus",
       "used_by": [
         "restaurant"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-POUR-01",
@@ -1320,8 +1264,7 @@
       "type": "achievement",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-POUR-01P",
@@ -1339,8 +1282,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-STACK-01",
@@ -1363,8 +1305,7 @@
       "type": "achievement",
       "used_by": [
         "doing_laundry"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-TRANSPORTWITHBASKET-01",
@@ -1385,8 +1326,7 @@
       "type": "achievement",
       "used_by": [
         "doing_laundry"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-TRANSPORTWITHBASKET-02P",
@@ -1404,8 +1344,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "doing_laundry"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "MAN-TRANSPORTWITHTRAY-01",
@@ -1428,8 +1367,7 @@
       "type": "achievement",
       "used_by": [
         "restaurant"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "NAV-FOLLOW-01",
@@ -1452,8 +1390,7 @@
       "type": "achievement",
       "used_by": [
         "hri"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "NAV-FOLLOW-01P1",
@@ -1471,8 +1408,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "hri"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "NAV-FOLLOW-01P2",
@@ -1491,8 +1427,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "hri"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "NAV-FOLLOW-01P3",
@@ -1510,8 +1445,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "hri"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "NAV-FOLLOW-01P4",
@@ -1529,8 +1463,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "hri"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "NAV-GAZEDIRECTION-01",
@@ -1550,8 +1483,7 @@
       "type": "achievement",
       "used_by": [
         "hri"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "NAV-NAVIGATE-01",
@@ -1575,8 +1507,7 @@
       "used_by": [
         "doing_laundry",
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "NAV-NAVIGATE-03",
@@ -1599,8 +1530,7 @@
       "type": "achievement",
       "used_by": [
         "restaurant"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "NAV-NAVIGATE-03P",
@@ -1618,8 +1548,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "restaurant"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "NAV-NAVIGATE-05P",
@@ -1638,8 +1567,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "restaurant"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "NLU-AVOIDNONESSENTIALQUESTIONS-01B",
@@ -1658,8 +1586,7 @@
       "type": "bonus",
       "used_by": [
         "hri"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "NLU-UNDERSTANDCOMMAND-01",
@@ -1681,8 +1608,7 @@
       "type": "achievement",
       "used_by": [
         "gpsr"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "NLU-UNDERSTANDCOMMAND-02P",
@@ -1700,8 +1626,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "gpsr"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "NLU-UNDERSTANDCOMMAND-03P",
@@ -1719,8 +1644,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "gpsr"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "NLU-UNDERSTANDCOMMAND-04P",
@@ -1738,8 +1662,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "gpsr"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "NLU-UNDERSTANDCOMMAND-05",
@@ -1762,8 +1685,7 @@
       "type": "achievement",
       "used_by": [
         "restaurant"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "OBJ-DETECTEVENT-01",
@@ -1785,8 +1707,7 @@
       "type": "achievement",
       "used_by": [
         "hri"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "OBJ-PERCEIVE-01",
@@ -1809,8 +1730,7 @@
       "type": "achievement",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "OBJ-RECOGNIZE-01",
@@ -1833,8 +1753,7 @@
       "type": "achievement",
       "used_by": [
         "pick_and_place"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "PLN-DEMONSTRATEPLAN-01",
@@ -1856,8 +1775,7 @@
       "type": "achievement",
       "used_by": [
         "gpsr"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "PLN-INTERLEAVETASKS-01B",
@@ -1875,8 +1793,7 @@
       "type": "bonus",
       "used_by": [
         "gpsr"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "PLN-SOLVECOMMAND-01",
@@ -1899,8 +1816,7 @@
       "type": "achievement",
       "used_by": [
         "gpsr"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "PLN-SOLVECOMMAND-04P",
@@ -1920,8 +1836,7 @@
       "basis": "similar_scores_in_other_tests",
       "used_by": [
         "gpsr"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "PPL-DESCRIBEATTRIBUTE-01B",
@@ -1944,8 +1859,7 @@
       "type": "bonus",
       "used_by": [
         "hri"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "PPL-DESCRIBEATTRIBUTE-02P",
@@ -1964,8 +1878,7 @@
       "type": "penalty_behavior",
       "used_by": [
         "hri"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "PPL-DETECTCALLINGORWAVING-01",
@@ -1986,8 +1899,7 @@
       "type": "achievement",
       "used_by": [
         "restaurant"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "SPECIAL-01",
@@ -2006,8 +1918,7 @@
         "hri",
         "pick_and_place",
         "restaurant"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "SPECIAL-02",
@@ -2025,8 +1936,7 @@
         "gpsr",
         "pick_and_place",
         "restaurant"
-      ],
-      "legacy_ids": []
+      ]
     },
     {
       "id": "SPECIAL-03",
@@ -2046,8 +1956,7 @@
         "hri",
         "pick_and_place",
         "restaurant"
-      ],
-      "legacy_ids": []
+      ]
     }
   ]
 }

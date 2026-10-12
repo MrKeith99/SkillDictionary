@@ -1,14 +1,13 @@
 {
-  "schema_version": "0.3.0",
+  "schema_version": "0.4.0",
   "rulebook_version": "2026.2",
+  "season": 2026,
+  "status": "in_force",
   "challenges": {
     "doing_laundry": {
       "challenge": "Doing Laundry Challenge",
       "rulebook_section": "5.4",
       "max_time_minutes": 7,
-      "total_score": 4415,
-      "dictionary_ref": "../dictionary/",
-      "global_rules_ref": "../vocabulary/global_rules.yaml",
       "challenge_rules": {
         "cloth_placement": {
           "source": "\u00a75.4 rule 2",
@@ -259,16 +258,14 @@
           "count": 1,
           "section": "Special Penalties & Bonuses"
         }
-      ]
+      ],
+      "total_score": 4415
     },
     "gpsr": {
       "challenge": "General Purpose Service Robot Challenge",
       "rulebook_section": "5.3",
       "max_time_minutes": 7,
-      "total_score": 1490,
       "method_note": "Entries are the fixed primitives a generated command is scored against; the command generator composes them at runtime.",
-      "dictionary_ref": "../dictionary/",
-      "global_rules_ref": "../vocabulary/global_rules.yaml",
       "challenge_rules": {
         "autonomy_skip": {
           "source": "\u00a75.3 rule 7",
@@ -436,15 +433,13 @@
           "count": 1,
           "section": "Special Penalties & Bonuses"
         }
-      ]
+      ],
+      "total_score": 1490
     },
     "hri": {
       "challenge": "Human Robot Interaction Challenge",
       "rulebook_section": "5.1",
       "max_time_minutes": 7,
-      "total_score": 1450,
-      "dictionary_ref": "../dictionary/",
-      "global_rules_ref": "../vocabulary/global_rules.yaml",
       "challenge_rules": {
         "custom_operator": {
           "permitted": false,
@@ -719,15 +714,13 @@
           "count": 1,
           "section": "Special Penalties & Bonuses"
         }
-      ]
+      ],
+      "total_score": 1450
     },
     "pick_and_place": {
       "challenge": "Pick and Place Challenge",
       "rulebook_section": "5.2",
       "max_time_minutes": 7,
-      "total_score": 3515,
-      "dictionary_ref": "../dictionary/",
-      "global_rules_ref": "../vocabulary/global_rules.yaml",
       "challenge_rules": {
         "sequence": {
           "source": "\u00a75.2 procedure 5",
@@ -1106,15 +1099,13 @@
           "count": 1,
           "section": "Special Penalties & Bonuses"
         }
-      ]
+      ],
+      "total_score": 3515
     },
     "restaurant": {
       "challenge": "Restaurant Challenge",
       "rulebook_section": "5.5",
       "max_time_minutes": 15,
-      "total_score": 2360,
-      "dictionary_ref": "../dictionary/",
-      "global_rules_ref": "../vocabulary/global_rules.yaml",
       "challenge_rules": {
         "restart": {
           "source": "\u00a75.5.1",
@@ -1384,7 +1375,8 @@
           "count": 1,
           "section": "Special Penalties & Bonuses"
         }
-      ]
+      ],
+      "total_score": 2360
     }
   }
 }

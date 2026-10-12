@@ -19,17 +19,17 @@ git submodule update --init --recursive
 commit `b844d5a6…`. A submodule records the *commit*, so that is what is pinned
 here. Use `git rev-parse <tag>^{commit}` when moving the pin.
 
-`tools/check_scoresheets.py` reads `external/RuleBook/scoresheets/*.tex` and
+`skilldict check` (stage RULEBOOK) reads `external/RuleBook/scoresheets/*.tex` and
 compares every scored line against the dictionary. It prints the checkout's
 `git describe` and warns if that does not match the `rulebook_version` stamped
-in `dist/dictionary.json`.
+in the in-force season's `season.yaml` (`rulebook.version`).
 
 ## Working without the submodule
 
 Point at any RuleBook checkout:
 
 ```sh
-RULEBOOK_DIR=/path/to/RuleBook tools/check_scoresheets.py
+RULEBOOK_DIR=/path/to/RuleBook python3 -m skilldict check
 ```
 
 ## Moving the pin

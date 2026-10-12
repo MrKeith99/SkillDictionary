@@ -9,10 +9,9 @@
     "challenge": {"type": "string"},
     "rulebook_section": {"type": "string"},
     "max_time_minutes": {"type": "integer"},
-    "total_score": {"type": "integer"},
+    "total_score": {"type": "integer", "description": "Derived by the build (dist/ only): max_score, or the sum of the reward lines."},
+    "max_score": {"type": "integer", "description": "Set when not every line is reachable in one run (e.g. GPSR commands)."},
     "method_note": {"type": "string"},
-    "dictionary_ref": {"type": "string"},
-    "global_rules_ref": {"type": "string"},
     "challenge_rules": {"type": "object"},
     "entries": {
       "type": "array",

@@ -1,0 +1,496 @@
+{
+  "mean_command": 215.0,
+  "completion_bonus": 35,
+  "max_score": 1760,
+  "templates": {
+    "goToLoc": {
+      "min": 140,
+      "mean": 250.0,
+      "max": 305,
+      "p": 0.27477477477477474,
+      "steps": [
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "HRI-TELLINFO-01"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "NAV-FOLLOW-02"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "NAV-FOLLOW-02"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "NAV-GUIDE-01"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "HRI-TELLINFO-01"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "NAV-FOLLOW-02"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "NAV-FOLLOW-02"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "NAV-GUIDE-01"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "OBJ-RECOGNIZE-02",
+          "MAN-PICK-06",
+          "NAV-NAVIGATE-06",
+          "MAN-PLACE-04"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "OBJ-RECOGNIZE-02",
+          "MAN-PICK-06",
+          "NAV-NAVIGATE-06",
+          "MAN-PLACE-04"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "OBJ-RECOGNIZE-02",
+          "MAN-PICK-06",
+          "NAV-NAVIGATE-06",
+          "HRI-HANDOVER-02"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "OBJ-RECOGNIZE-02",
+          "MAN-PICK-06",
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "HRI-HANDOVER-02"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "OBJ-RECOGNIZE-02",
+          "MAN-PICK-06",
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "HRI-HANDOVER-02"
+        ]
+      ]
+    },
+    "takeObjFromPlcmt": {
+      "min": 200,
+      "mean": 228.0,
+      "max": 270,
+      "p": 0.08333333333333333,
+      "steps": [
+        [
+          "NAV-NAVIGATE-06",
+          "OBJ-RECOGNIZE-02",
+          "MAN-PICK-06",
+          "NAV-NAVIGATE-06",
+          "MAN-PLACE-04"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "OBJ-RECOGNIZE-02",
+          "MAN-PICK-06",
+          "NAV-NAVIGATE-06",
+          "MAN-PLACE-04"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "OBJ-RECOGNIZE-02",
+          "MAN-PICK-06",
+          "NAV-NAVIGATE-06",
+          "HRI-HANDOVER-02"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "OBJ-RECOGNIZE-02",
+          "MAN-PICK-06",
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "HRI-HANDOVER-02"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "OBJ-RECOGNIZE-02",
+          "MAN-PICK-06",
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "HRI-HANDOVER-02"
+        ]
+      ]
+    },
+    "findPrsInRoom": {
+      "min": 140,
+      "mean": 263.75,
+      "max": 305,
+      "p": 0.05405405405405406,
+      "steps": [
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "HRI-TELLINFO-01"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "NAV-FOLLOW-02"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "NAV-FOLLOW-02"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "NAV-GUIDE-01"
+        ]
+      ]
+    },
+    "findObjInRoom": {
+      "min": 200,
+      "mean": 228.0,
+      "max": 270,
+      "p": 0.08333333333333333,
+      "steps": [
+        [
+          "NAV-NAVIGATE-06",
+          "OBJ-RECOGNIZE-02",
+          "MAN-PICK-06",
+          "NAV-NAVIGATE-06",
+          "MAN-PLACE-04"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "OBJ-RECOGNIZE-02",
+          "MAN-PICK-06",
+          "NAV-NAVIGATE-06",
+          "MAN-PLACE-04"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "OBJ-RECOGNIZE-02",
+          "MAN-PICK-06",
+          "NAV-NAVIGATE-06",
+          "HRI-HANDOVER-02"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "OBJ-RECOGNIZE-02",
+          "MAN-PICK-06",
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "HRI-HANDOVER-02"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "OBJ-RECOGNIZE-02",
+          "MAN-PICK-06",
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "HRI-HANDOVER-02"
+        ]
+      ]
+    },
+    "meetPrsAtBeac": {
+      "min": 140,
+      "mean": 263.75,
+      "max": 305,
+      "p": 0.05405405405405406,
+      "steps": [
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "HRI-TELLINFO-01"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "NAV-FOLLOW-02"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "NAV-FOLLOW-02"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "NAV-GUIDE-01"
+        ]
+      ]
+    },
+    "countObjOnPlcmt": {
+      "min": 85,
+      "mean": 85.0,
+      "max": 85,
+      "p": 0.041666666666666664,
+      "steps": [
+        [
+          "NAV-NAVIGATE-06",
+          "OBJ-RECOGNIZE-03",
+          "NAV-NAVIGATE-06"
+        ]
+      ]
+    },
+    "countPrsInRoom": {
+      "min": 130,
+      "mean": 130.0,
+      "max": 130,
+      "p": 0.013513513513513514,
+      "steps": [
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-02",
+          "NAV-NAVIGATE-06"
+        ]
+      ]
+    },
+    "tellPrsInfoInLoc": {
+      "min": 160,
+      "mean": 160.0,
+      "max": 160,
+      "p": 0.013513513513513514,
+      "steps": [
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "PPL-DESCRIBEATTRIBUTE-04",
+          "NAV-NAVIGATE-06"
+        ]
+      ]
+    },
+    "tellObjPropOnPlcmt": {
+      "min": 85,
+      "mean": 85.0,
+      "max": 85,
+      "p": 0.041666666666666664,
+      "steps": [
+        [
+          "NAV-NAVIGATE-06",
+          "OBJ-RECOGNIZE-03",
+          "NAV-NAVIGATE-06"
+        ]
+      ]
+    },
+    "talkInfoToGestPrsInRoom": {
+      "min": 140,
+      "mean": 140.0,
+      "max": 140,
+      "p": 0.08108108108108109,
+      "steps": [
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "HRI-TELLINFO-01"
+        ]
+      ]
+    },
+    "followNameFromBeacToRoom": {
+      "min": 305,
+      "mean": 305.0,
+      "max": 305,
+      "p": 0.013513513513513514,
+      "steps": [
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "NAV-FOLLOW-02"
+        ]
+      ]
+    },
+    "guideNameFromBeacToBeac": {
+      "min": 305,
+      "mean": 305.0,
+      "max": 305,
+      "p": 0.013513513513513514,
+      "steps": [
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "NAV-GUIDE-01"
+        ]
+      ]
+    },
+    "guidePrsFromBeacToBeac": {
+      "min": 305,
+      "mean": 305.0,
+      "max": 305,
+      "p": 0.013513513513513514,
+      "steps": [
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "NAV-GUIDE-01"
+        ]
+      ]
+    },
+    "guideClothPrsFromBeacToBeac": {
+      "min": 255,
+      "mean": 255.0,
+      "max": 255,
+      "p": 0.013513513513513514,
+      "steps": [
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DESCRIBEATTRIBUTE-03",
+          "NAV-GUIDE-01"
+        ]
+      ]
+    },
+    "bringMeObjFromPlcmt": {
+      "min": 200,
+      "mean": 200.0,
+      "max": 200,
+      "p": 0.041666666666666664,
+      "steps": [
+        [
+          "NAV-NAVIGATE-06",
+          "OBJ-RECOGNIZE-02",
+          "MAN-PICK-06",
+          "NAV-NAVIGATE-06",
+          "HRI-HANDOVER-02"
+        ]
+      ]
+    },
+    "tellCatPropOnPlcmt": {
+      "min": 85,
+      "mean": 85.0,
+      "max": 85,
+      "p": 0.041666666666666664,
+      "steps": [
+        [
+          "NAV-NAVIGATE-06",
+          "OBJ-RECOGNIZE-03",
+          "NAV-NAVIGATE-06"
+        ]
+      ]
+    },
+    "greetClothDscInRm": {
+      "min": 90,
+      "mean": 213.75,
+      "max": 255,
+      "p": 0.013513513513513514,
+      "steps": [
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DESCRIBEATTRIBUTE-03",
+          "HRI-TELLINFO-01"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DESCRIBEATTRIBUTE-03",
+          "NAV-FOLLOW-02"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DESCRIBEATTRIBUTE-03",
+          "NAV-FOLLOW-02"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DESCRIBEATTRIBUTE-03",
+          "NAV-GUIDE-01"
+        ]
+      ]
+    },
+    "greetNameInRm": {
+      "min": 140,
+      "mean": 263.75,
+      "max": 305,
+      "p": 0.05405405405405406,
+      "steps": [
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "HRI-TELLINFO-01"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "NAV-FOLLOW-02"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "NAV-FOLLOW-02"
+        ],
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "NAV-GUIDE-01"
+        ]
+      ]
+    },
+    "meetNameAtLocThenFindInRm": {
+      "min": 220,
+      "mean": 220.0,
+      "max": 220,
+      "p": 0.013513513513513514,
+      "steps": [
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "NAV-NAVIGATE-06",
+          "PPL-REIDENTIFY-01"
+        ]
+      ]
+    },
+    "countClothPrsInRoom": {
+      "min": 130,
+      "mean": 130.0,
+      "max": 130,
+      "p": 0.013513513513513514,
+      "steps": [
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-02",
+          "NAV-NAVIGATE-06"
+        ]
+      ]
+    },
+    "tellPrsInfoAtLocToPrsAtLoc": {
+      "min": 280,
+      "mean": 280.0,
+      "max": 280,
+      "p": 0.013513513513513514,
+      "steps": [
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "PPL-DESCRIBEATTRIBUTE-04",
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "HRI-TELLINFO-02"
+        ]
+      ]
+    },
+    "followPrsAtLoc": {
+      "min": 305,
+      "mean": 305.0,
+      "max": 305,
+      "p": 0.013513513513513514,
+      "steps": [
+        [
+          "NAV-NAVIGATE-06",
+          "PPL-DETECT-01",
+          "NAV-FOLLOW-02"
+        ]
+      ]
+    }
+  }
+}

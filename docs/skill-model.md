@@ -27,7 +27,7 @@ grows as *verbs × properties* and still cannot say "heavy **and** slippery
  taxonomy.yaml          WHAT capability            MAN.Pick
       │                 (intent, success, sub-skills)
       ▼
- dictionary/*.yaml      ONE scored line            MAN-PICK-01B4  "Plate"  +100
+ data/skills/*.yaml     ONE scored line            MAN-PICK-01B4  "Plate"  +100
       │   objects: [plate]
       │   conditions: {reach: table, clutter: nearby, knowledge: known_instance}
       ▼
@@ -37,12 +37,12 @@ grows as *verbs × properties* and still cannot say "heavy **and** slippery
 
 | file | answers | changes when |
 |---|---|---|
-| `vocabulary/taxonomy.yaml` | What is this skill for? What does success look like? What must the referee *not* judge? | a new kind of capability appears |
-| `vocabulary/difficulty_factors.yaml` | Which properties make an instance harder, and by how much? | rarely — TC decision |
-| `vocabulary/objects/catalog.yaml` | What is each real object: mass, grasp width, surface, rigidity, shape? | a new object enters the league |
-| `vocabulary/objects/fixtures.yaml` | Doors, racks, caps: mechanism and force | a new appliance |
-| `vocabulary/objects/sets/<year>.yaml` | Which objects are in play this year, in which classes and rulebook categories? | every year, from the published object list |
-| `dictionary/<AREA>.yaml` | What does this particular line score, on which objects, in which situation, for how many points? | the rulebook changes |
+| `data/vocabulary/taxonomy.yaml` | What is this skill for? What does success look like? What must the referee *not* judge? | a new kind of capability appears |
+| `data/vocabulary/difficulty_factors.yaml` | Which properties make an instance harder, and by how much? | rarely — TC decision |
+| `data/vocabulary/objects/catalog.yaml` | What is each real object: mass, grasp width, surface, rigidity, shape? | a new object enters the league |
+| `data/vocabulary/objects/fixtures.yaml` | Doors, racks, caps: mechanism and force | a new appliance |
+| `data/seasons/<year>/objects.yaml` | Which objects are in play this year, in which classes and rulebook categories? | every year, from the published object list |
+| `data/skills/<AREA>.yaml` | What does this particular line score, on which objects, in which situation, for how many points? | the rulebook changes |
 
 A harder object is **a different difficulty, not a different skill.** The
 dictionary stays short because new objects and situations are profiles, not
@@ -166,7 +166,7 @@ needs revisiting. Both are useful.
 
 ## What the checker reports
 
-`tools/check_taxonomy.py` runs in CI.
+`skilldict check` runs these checks in CI; `skilldict findings` prints the report.
 
 **Errors (fail the build):** unknown node, object, factor or level; a condition
 on a factor the node does not use; a penalty without a `failure_mode`; a line
@@ -213,11 +213,11 @@ Reference an existing dictionary id. Nothing else.
 
 ### Same skill, new object
 
-1. Add the object to `objects/catalog.yaml`: `mass_g`, `grasp_width_mm`,
+1. Add the object to `data/vocabulary/objects/catalog.yaml`: `mass_g`, `grasp_width_mm`,
    `surface`, `rigidity`, `shape`, and `ycb` if it is a YCB item. Set
    `values:` to `measured` (arena object), `ycb` (YCB published values,
    same kind of item only) or `estimate`.
-2. Add it to the year's set file under its class.
+2. Add it to the season's `objects.yaml` under its class.
 3. If an existing line's category already covers it, nothing else changes —
    the line's difficulty range updates by itself. Otherwise add a dictionary
    line under the existing node.
@@ -226,10 +226,13 @@ No new skill, no new verb.
 
 ### A new competition year
 
-1. Copy `objects/sets/<last>.yaml`, paste the new published classes, update
-   `source` and `rulebook_version`.
-2. Re-check `categories` against the new rulebook wording.
-3. Add any new objects to the catalog. CI fails on an unknown or empty name.
+1. Create `data/seasons/<year>/` with a `season.yaml` — see CONTRIBUTING,
+   *Seasons*. A proposal names its `base` season; once the rulebook is
+   published, the season goes `in_force` with its own `challenges/`.
+2. Copy `objects.yaml` from the last season, paste the new published classes,
+   update `source`.
+3. Re-check `categories` against the new rulebook wording.
+4. Add any new objects to the catalog. CI fails on an unknown or empty name.
 
 ### A capability the league has never scored
 

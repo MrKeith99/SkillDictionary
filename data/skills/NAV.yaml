@@ -1,0 +1,137 @@
+area: NAV
+skills:
+- id: NAV-FOLLOW-01
+  area: NAV
+  skill: Follow
+  variant_number: '01'
+  taxonomy: NAV.Follow
+  modifiers:
+  - bag_drop_area
+  - host
+  description: Following the host to the bag drop area
+  conditions:
+    map_knowledge: mapped
+    route_extent: rooms
+    crowd: few
+  level: C
+  points: 200
+  type: achievement
+- id: NAV-FOLLOW-01P1
+  area: NAV
+  skill: Follow
+  variant_number: 01P1
+  taxonomy: NAV.Follow
+  modifiers:
+  - dropped_bag
+  description: Drop the bag while following the host
+  failure_mode: drop
+  level: C
+  points: -50
+  type: penalty_behavior
+- id: NAV-FOLLOW-01P2
+  area: NAV
+  skill: Follow
+  variant_number: 01P2
+  taxonomy: NAV.Follow
+  modifiers:
+  - natural
+  - rediscover_operator
+  description: Rediscovering the operator by natural interaction
+  failure_mode: assistance
+  level: C
+  points: -50
+  type: penalty_behavior
+- id: NAV-FOLLOW-01P3
+  area: NAV
+  skill: Follow
+  variant_number: 01P3
+  taxonomy: NAV.Follow
+  modifiers:
+  - asking_operator_to_wait
+  description: Asking the operator to wait
+  failure_mode: assistance
+  level: C
+  points: -50
+  type: penalty_behavior
+- id: NAV-FOLLOW-01P4
+  area: NAV
+  skill: Follow
+  variant_number: 01P4
+  taxonomy: NAV.Follow
+  modifiers:
+  - physical_contact
+  description: Guiding the robot with physical contact (take by the hand)
+  failure_mode: assistance
+  level: C
+  points: -150
+  type: penalty_behavior
+- id: NAV-GAZEDIRECTION-01
+  area: NAV
+  skill: GazeDirection
+  variant_number: '01'
+  taxonomy: NAV.SignalIntent
+  modifiers:
+  - navigation_goal
+  description: Look in the direction of navigation or at the navigation goal
+  conditions:
+    crowd: few
+  level: E
+  points: 15
+  type: achievement
+- id: NAV-NAVIGATE-01
+  area: NAV
+  skill: Navigate
+  variant_number: '01'
+  taxonomy: NAV.Navigate
+  modifiers:
+  - announced_location
+  description: Navigate to the announced furniture or area (dining table, laundry area)
+  conditions:
+    map_knowledge: moved
+    route_extent: rooms
+    crowd: none
+    obstacle_visibility: large
+  level: E
+  points: 15
+  type: achievement
+- id: NAV-NAVIGATE-03
+  area: NAV
+  skill: Navigate
+  variant_number: '03'
+  taxonomy: NAV.Navigate
+  modifiers:
+  - customer_table
+  description: Reach a customer's table (to take the order, and again to serve it)
+  conditions:
+    map_knowledge: unknown
+    route_extent: room
+    crowd: crowd
+    obstacle_visibility: small
+  level: C
+  points: 80
+  type: achievement
+- id: NAV-NAVIGATE-03P
+  area: NAV
+  skill: Navigate
+  variant_number: 03P
+  taxonomy: NAV.Navigate
+  modifiers:
+  - guided_to_table
+  description: 'Human Assistance: Being guided to a table'
+  failure_mode: assistance
+  level: C
+  points: -80
+  type: penalty_behavior
+- id: NAV-NAVIGATE-05P
+  area: NAV
+  skill: Navigate
+  variant_number: 05P
+  taxonomy: NAV.Navigate
+  modifiers:
+  - bar
+  - not_reaching
+  description: Not reaching the bar (barman has to move from behind the bar to interact)
+  failure_mode: assistance
+  level: C
+  points: -60
+  type: penalty_behavior

@@ -1,6 +1,8 @@
 {
-  "schema_version": "0.3.0",
+  "schema_version": "0.4.0",
   "rulebook_version": "2026.2",
+  "season": 2026,
+  "status": "in_force",
   "taxonomy": {
     "version": 1,
     "failure_modes": {
@@ -1556,7 +1558,6 @@
     },
     "set": {
       "competition": "RoboCup 2026 Incheon",
-      "rulebook_version": "2026.2",
       "source": {
         "repo": "https://github.com/RoboCupAtHome/Incheon2026",
         "path": "objects/objects.md, objects/test_objects.md",

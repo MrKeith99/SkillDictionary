@@ -67,8 +67,8 @@
     "penalty_type": {"enum": ["percentage", "fixed"]},
     "basis": {"type": "string"},
     "process_spec": {"type": "string"},
-    "used_by": {"type": "array", "items": {"type": "string"}},
-    "legacy_ids": {"type": "array", "items": {"type": "string"}}
+    "used_by": {"type": "array", "items": {"type": "string"},
+                "description": "Derived by the build (dist/ only); never authored."}
   },
   "allOf": [{
     "if": {"properties": {"type": {"const": "achievement"}}},

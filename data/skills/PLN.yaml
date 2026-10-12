@@ -1,0 +1,58 @@
+area: PLN
+skills:
+- id: PLN-DEMONSTRATEPLAN-01
+  area: PLN
+  skill: DemonstratePlan
+  variant_number: '01'
+  taxonomy: PLN.Plan
+  modifiers: []
+  description: Demonstrate a plan has been generated
+  conditions:
+    input_variability: paraphrase
+    plan_length:
+    - medium
+    - long
+  level: C
+  points: 100
+  type: achievement
+- id: PLN-INTERLEAVETASKS-01B
+  area: PLN
+  skill: InterleaveTasks
+  variant_number: '01'
+  taxonomy: PLN.Interleave
+  modifiers: []
+  description: Interleaved Task Bonus
+  conditions:
+    plan_length: long
+  level: X
+  points: 200
+  type: bonus
+- id: PLN-SOLVECOMMAND-01
+  area: PLN
+  skill: SolveCommand
+  variant_number: '01'
+  taxonomy: PLN.Execute
+  modifiers:
+  - command
+  description: Solving a command (one line per command)
+  conditions:
+    plan_length:
+    - medium
+    - long
+  level: X
+  points: 250
+  type: achievement
+- id: PLN-SOLVECOMMAND-04P
+  area: PLN
+  skill: SolveCommand
+  variant_number: '04'
+  taxonomy: PLN.Execute
+  modifiers:
+  - partial
+  description: Solving part of a command (percentage penalty)
+  failure_mode: quality
+  level: X
+  points: null
+  type: penalty_behavior
+  penalty_type: percentage
+  basis: similar_scores_in_other_tests

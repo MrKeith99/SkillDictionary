@@ -1,0 +1,45 @@
+area: PPL
+skills:
+- id: PPL-DESCRIBEATTRIBUTE-01B
+  area: PPL
+  skill: DescribeAttribute
+  variant_number: '01'
+  taxonomy: PPL.DescribeAttribute
+  modifiers:
+  - correct
+  - visual
+  description: Tell a visual attribute of the first guest to the second guest (correct)
+  conditions:
+    info_load: single
+    target_motion: static
+    retention: task
+  level: C
+  points: 20
+  type: bonus
+- id: PPL-DESCRIBEATTRIBUTE-02P
+  area: PPL
+  skill: DescribeAttribute
+  variant_number: '02'
+  taxonomy: PPL.DescribeAttribute
+  modifiers:
+  - incorrect
+  - visual
+  description: Tell a visual attribute of the first guest to the second guest (incorrect)
+  failure_mode: wrong_info
+  level: C
+  points: -20
+  type: penalty_behavior
+- id: PPL-DETECTCALLINGORWAVING-01
+  area: PPL
+  skill: DetectCallingOrWaving
+  variant_number: '01'
+  taxonomy: PPL.DetectGesture
+  modifiers:
+  - customer
+  description: Detect calling or waving customer
+  conditions:
+    crowd: crowd
+    perception_range: far
+  level: C
+  points: 80
+  type: achievement

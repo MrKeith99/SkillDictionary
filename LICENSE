@@ -2,21 +2,23 @@ SkillDictionary is licensed in two parts.
 
 TOOLING AND SCHEMA — BSD 3-Clause (see LICENSE.BSD-3-Clause)
 
-    tools/
+    skilldict/
+    templates/
     schema/
+    Makefile
 
 DICTIONARY CONTENT — Creative Commons Attribution-ShareAlike 4.0 International
 (see LICENSE.CC-BY-SA-4.0)
 
-    dictionary/
-    challenges/
-    vocabulary/
+    data/
     dist/
+    docs/
 
 The content files are derived from the RoboCup@Home RuleBook
 (https://github.com/RoboCupAtHome/RuleBook), which is licensed CC BY-SA 4.0.
 Skill descriptions and point values are taken from its scoresheets, so the
 share-alike terms carry over and that content cannot be relicensed here.
 
-The rulebook itself is NOT redistributed by this repository. It is referenced as
+The rulebook itself is NOT redistributed by this repository; `skilldict pdf`
+reads its LaTeX setup from the submodule at build time. It is referenced as
 a pinned git submodule at external/RuleBook and remains under its own license.

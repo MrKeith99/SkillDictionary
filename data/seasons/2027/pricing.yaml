@@ -1,0 +1,55 @@
+# Pricing rule — PROPOSAL for 2027, not in force.
+#
+# Goal: the same skill at the same difficulty pays the same in every challenge,
+# and the same failure costs the same share everywhere. `skilldict prices`
+# applies this rule to every line and reports the change from the rulebook.
+#
+# Achievement   price = base[node] x (1 + D / d_scale), rounded
+#               D = intrinsic difficulty of the easiest instance the line covers
+#               (harder objects are paid by bonus lines, as the rulebook does).
+# Bonus /       effective price (parent + line) = rule price at the line's D;
+# discount      the line pays the difference from its parent.
+# Penalty       -share[failure_mode] x price of the line it belongs to
+#               (related_skill, or the line whose assistance it prices);
+#               conduct failures (fixed_penalty) cost the same everywhere.
+#
+# base[node] is calibrated, not invented: the median over the node's 2026
+# lines of price / (1 + D / d_scale). So the level stays where the league put
+# it; only the spread inside a skill disappears. Override a base below to
+# change how much the league values a skill.
+#
+# Lines the rule cannot price keep their rulebook value and are listed:
+# no difficulty factors, no parent for a penalty, or an explicit 0.
+
+d_scale: 4            # D 0 -> x1, D 4 -> x2, D 8 -> x3
+
+rounding:             # round to the nearest step for prices at or above `from`
+  - {from: 50, step: 10}
+  - {from: 0,  step: 5}
+
+base_overrides: {}    # node: points at D 0, e.g. {MAN.Pick: 60}
+
+base_like:            # skills with no 2026 line borrow the base of a close skill
+  NAV.Guide: NAV.Follow
+  PPL.Detect: PPL.DetectGesture
+  PPL.Reidentify: PPL.DetectGesture
+
+fixed_penalty:
+  # Conduct failures are not tied to one action, so a share of a line makes no
+  # sense: ignoring a person is as bad next to a 15-point line as a 400-point one.
+  neglect: -100
+  unsafe_contact: -200    # on top of the rulebook's immediate stop (§ Collisions)
+
+penalty_share:
+  # Share of the parent line's price. 1.0 = the line is lost as a whole.
+  drop:              0.5
+  spill:             0.5
+  damage:            1.0
+  collision:         0.5
+  wrong_target:      0.5
+  wrong_info:        0.5
+  quality:           1.0    # maximum; the referee scales by the share of the result that fails
+  neglect:           0.5
+  multiple_at_once:  1.0
+  assistance:        0.5    # on top of the assisted element scoring zero (§3.7.2)
+  alternative_input: 0.25
