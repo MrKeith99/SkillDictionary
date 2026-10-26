@@ -123,7 +123,8 @@ with the line's notes, whether help is allowed, its penalties beneath it and
 the score by skill; `#<challenge>` in the URL opens it, and Print prints that
 sheet alone. It is rebuilt by `make check` from `skilldict/render/scoring.html`;
 edit the template, never the output. A push that changes `dist/` publishes it
-to GitHub Pages (`.github/workflows/pages.yml`), with the JSON next to it.
+to GitHub Pages from `main` (`.github/workflows/pages.yml`), with the JSON
+next to it.
 
 ---
 
