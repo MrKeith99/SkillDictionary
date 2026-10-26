@@ -28,7 +28,7 @@
       "type": "array",
       "items": {"type": "string"},
       "uniqueItems": true,
-      "description": "Catalog objects, parts or object-set names (vocabulary/objects/) handled by this variant. Supply the object-side difficulty factors."
+      "description": "Catalog objects, parts or object-set names (vocabulary/) handled by this variant. Supply the object-side difficulty factors."
     },
     "conditions": {
       "type": "object",
@@ -48,10 +48,10 @@
       "description": "Used instead of points when the value derives from the challenge total (e.g. §3.8.3)."
     },
     "type": {
-      "enum": ["achievement", "bonus", "penalty_behavior", "administrative"]
+      "enum": ["achievement", "bonus", "penalty", "administrative"]
     },
     "at": {"type": "array", "items": {"type": "string"}, "minItems": 1,
-           "description": "Where the skill happens: places, furniture or furniture groups (vocabulary/objects/furniture.yaml)."},
+           "description": "Where the skill happens: places, furniture or furniture groups (vocabulary/furniture.yaml)."},
     "failures": {"type": "array", "items": {"type": "string"}, "uniqueItems": true,
                  "description": "Failure modes of this variant beyond its skill's (data/skills.yaml failure_modes, scope variant)."},
     "penalty_of": {"type": "string", "description": "Derived (dist/ only): the variant this penalty is a share of."},

@@ -8,7 +8,7 @@
 #
 # To start a new year: copy this file, replace `classes` from the new list,
 # re-check `categories` against the new rulebook, add any new object to
-# catalog.yaml.
+# objects.yaml.
 
 competition: RoboCup 2026 Incheon
 source:

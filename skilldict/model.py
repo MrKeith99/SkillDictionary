@@ -53,7 +53,7 @@ class Build:
         self.challenges = challenges      # slug -> challenge
         self.vocab = vocab
         self.rulebook_version = release.rulebook.get("version")
-        self.ratings = {}                 # id -> rating, see ratings.py
+        self.ratings = {}                 # id -> difficulty, see difficulty.py
         self.rater = None
         self.errors = []                  # data errors found while rating
         self.reports = []                 # derived numbers worth printing (GPSR commands)
@@ -109,7 +109,7 @@ class Build:
         paths.write_json({**self.meta(), **{k: v for k, v in self.vocab.items()
                                             if k not in ("skills", "failure_modes")}},
                          os.path.join(out, "vocabulary.json"))
-        paths.write_json(self.ratings, os.path.join(out, "variant_ratings.json"), indent=1)
+        paths.write_json(self.ratings, os.path.join(out, "variant_difficulty.json"), indent=1)
         for name, obj in self.extra.items():
             paths.write_json(obj, os.path.join(out, name))
         return out
@@ -185,12 +185,10 @@ def _vocab():
             if k in n:
                 raise DataError(f"skill {nid}: {k} is derived from the skill id, do not author it")
         n["name"], n["code"] = skill_name(nid), skill_code(nid)
-    od = os.path.join(paths.VOCAB, "objects")
     vocab["objects"] = {
-        "catalog": (cat := paths.load_yaml(os.path.join(od, "catalog.yaml")))["objects"],
-        "catalog_values": cat.get("values"),
-        "furniture": paths.load_yaml(os.path.join(od, "furniture.yaml")),
-        "set": paths.load_yaml(os.path.join(od, "set.yaml")),
+        "catalog": paths.load_yaml(os.path.join(paths.VOCAB, "objects.yaml"))["objects"],
+        "furniture": paths.load_yaml(os.path.join(paths.VOCAB, "furniture.yaml")),
+        "set": paths.load_yaml(os.path.join(paths.VOCAB, "object_set.yaml")),
     }
     return vocab
 
@@ -198,10 +196,10 @@ def _vocab():
 def load():
     """The Build of the tree, rated. Data errors found while rating are in
     build.errors; structural errors (duplicate ids, ...) raise DataError."""
-    from . import ratings, commands, penalties
+    from . import difficulty, gpsr, penalties
     vocab = _vocab()
     b = Build(Release(), _variants(vocab["skills"]), _challenges(), vocab)
-    commands.apply(b)
+    gpsr.apply(b)
     penalties.expand(b)
-    ratings.rate(b)
+    difficulty.rate(b)
     return b

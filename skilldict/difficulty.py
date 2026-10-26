@@ -7,7 +7,7 @@ and its conditions. A variant covering several objects or places, or a
 condition given as a list of levels (drawn at test time), gets a D range.
 
 Errors go to build.errors; build.ratings is the per-variant result, written to
-dist/variant_ratings.json. build.rater keeps the intermediate tables for the
+dist/variant_difficulty.json. build.rater keeps the intermediate tables for the
 findings report.
 """
 
@@ -17,7 +17,7 @@ class Rater:
         V = build.vocab
         self.fac = V["difficulty_factors"]
         self.catalog, self.furniture = V["objects"]["catalog"], V["objects"]["furniture"]
-        self.oset, self.catalog_values = V["objects"]["set"], V["objects"]["catalog_values"]
+        self.oset = V["objects"]["set"]
         self.skills, self.fmodes = V["skills"], V["failure_modes"]
         self.factors = self.fac["factors"]
         # Names a dictionary entry may use in `objects:`: a year-set class,
@@ -113,8 +113,6 @@ class Rater:
 
     def _places(self):
         F = self.furniture
-        if F.get("values") not in ("measured", "estimate"):
-            self.err("furniture: values must be measured or estimate")
         for fid, f in F["furniture"].items():
             if "." in fid:
                 self.err(f"furniture {fid}: no dots in ids")
@@ -177,8 +175,6 @@ class Rater:
             for fid, lv in fac.items():
                 if lv not in self.factors[fid]["levels"]:
                     self.err(f"object {oid}: {fid}={lv} not a level")
-        if self.catalog_values not in ("measured", "estimate"):
-            self.err("catalog: values must be measured or estimate")
         for k in ("surface", "rigidity", "shape"):
             for oid, o in self.catalog.items():
                 if k not in o:
@@ -234,7 +230,7 @@ class Rater:
             elif self.factors[fid]["source"] == "place":
                 self.err(f"{e['id']}: {fid} is a property of the place, name it in at: (furniture.yaml)")
             elif self.factors[fid]["source"] != "condition":
-                self.err(f"{e['id']}: {fid} is an object property, set it in vocabulary/objects/catalog.yaml")
+                self.err(f"{e['id']}: {fid} is an object property, set it in vocabulary/objects.yaml")
             elif not lvs or any(x not in self.factors[fid]["levels"] for x in lvs):
                 self.err(f"{e['id']}: {fid}={lv} not a level")
             elif fid not in applies:
@@ -244,7 +240,7 @@ class Rater:
             self.err(f"{e['id']}: unknown failure_mode {fm}")
         if fm and e["type"] in ("achievement", "bonus"):
             self.err(f"{e['id']}: failure_mode on a {e['type']}")
-        if e["type"] == "penalty_behavior" and not fm:
+        if e["type"] == "penalty" and not fm:
             self.err(f"{e['id']}: penalty without failure_mode")
 
     # ── difficulty ───────────────────────────────────────────────────────────

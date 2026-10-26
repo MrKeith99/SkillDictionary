@@ -4,7 +4,7 @@ deserve a second look.
   T1  price rule: an achievement that does not pay base x (1 + D/4)
   T2  penalties per failure mode: derived shares, and the authored ones
   T3  skill coverage: proposed skills, unscored skills
-  T4  object data quality: estimated values, widest difficulty ranges
+  T4  object data: objects and places in use, widest difficulty ranges
 """
 from collections import defaultdict
 from . import RULE
@@ -74,22 +74,18 @@ def skills(b):
         print(f"  proposed and already scored: {', '.join(proposed_used)}")
 
     print(RULE)
-    print(f"T4 — Object data quality ({rt.oset['competition']})")
+    print(f"T4 — Object data ({rt.oset['competition']})")
     in_set = set().union(*[rt.expand(g) for g in rt.groups])
     used_o = set()
     for e in D.values():
         for o in e.get("objects", []):
             used_o |= rt.expand(o)
-    cv = b.vocab["objects"]["catalog_values"]
-    print(f"  objects in set: {len(in_set)}, used by a variant: {len(in_set & used_o)}; masses and sizes are "
-          f"{cv}" + (" — weigh and measure during Setup Days" if cv != "measured" else ""))
-    F = rt.furniture
+    print(f"  objects in set: {len(in_set)}, used by a variant: {len(in_set & used_o)}")
     used_p = set()
     for e in D.values():
         for a in e.get("at", []):
             used_p |= rt.expand_at(a)
-    print(f"  furniture: {len(rt.place)} places, {len(used_p)} used by a variant; heights are "
-          f"{F.get('values')}" + (" — measure during Setup Days" if F.get("values") != "measured" else ""))
+    print(f"  furniture: {len(rt.place)} places, {len(used_p)} used by a variant")
     print("-" * 78)
     print("     Widest difficulty ranges (one line, very different objects or places)")
     wide = sorted(((r[1] - r[0], i) for i, r in rt.rated.items() if r), reverse=True)[:5]

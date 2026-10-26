@@ -1,12 +1,19 @@
-"""A challenge's score sheet for the rulebook, from a Build.
+"""The release as the rulebook's own LaTeX.
 
-tex() writes a {scorelist} for the rulebook's own scoresheet macros
+tex() writes a challenge's {scorelist} for the rulebook's scoresheet macros
 (external/RuleBook/setup/macros_scoresheets.tex), so it drops into
 documents/scoresheets.tex in place of the hand-written file. It keeps the
-rulebook's sections and ends with the score per skill. The interactive
-referee sheets are tabs of dist/scoring.html (render/viz.py).
+rulebook's sections and ends with the score per skill.
+
+pdf() typesets one PDF with, per challenge, the rulebook's official sheet next
+to the release's generated one. It compiles in build/latex/, a copy of the
+pinned RuleBook, with the preamble of the rulebook's own
+documents/scoresheets.tex, so nothing in the submodule is touched and no
+rulebook source is copied into this repo. Needs latexmk and a TeX distribution.
+
+The interactive referee sheets are tabs of dist/scoring.html (render/page.py).
 """
-import os
+import os, shutil, subprocess
 from collections import OrderedDict
 from .. import paths
 
@@ -63,7 +70,7 @@ def tex(b, slug):
         if parent and section_of.get(parent) == it.get("section"):
             macro = r"\scorepen" if pts < 0 else r"\scoremod"
             return f"\t\t{macro}{mult}{{{pts}}}{{{desc}}}"
-        if e["type"] == "penalty_behavior":
+        if e["type"] == "penalty":
             return f"\t\\penaltyitem{mult}{{{abs(pts)}}}{{{desc}}}"
         return f"\t\\scoreitem{mult}{{{pts}}}{{{desc}}}"
 
@@ -101,3 +108,43 @@ def tex(b, slug):
     paths.write_text("\n".join(out), path)
     return path
 
+
+def pdf(b):
+    work = os.path.join(paths.BUILD, "latex")
+    shutil.copytree(paths.RULEBOOK, work, dirs_exist_ok=True,
+                    ignore=shutil.ignore_patterns(".git", ".build"))
+    official = b.release.sheets
+    ref_version = b.rulebook_version
+    label = "generated from the skill dictionary" if b.release.in_force else f"{b.release.year} PROPOSAL (draft)"
+    body = []
+    for slug in sorted(b.challenges):
+        name = b.challenges[slug]["challenge"]
+        src = tex(b, slug)
+        mine = f"skilldict_{slug}"
+        shutil.copy(src, os.path.join(work, "scoresheets", f"{mine}.tex"))
+        pages = []
+        if official.get(slug):
+            pages.append((f"{name} --- official sheet (Rulebook {ref_version})", name, official[slug]))
+        pages.append((f"{name} --- {label}", f"{name} ({label})", mine))
+        for foot, test, sheet in pages:
+            body += [rf"\renewcommand{{\footline}}{{{tex_esc(foot)}}}",
+                     rf"\renewcommand{{\currentTest}}{{{tex_esc(test)}}}",
+                     r"\begin{scoresheet}", rf"\input{{scoresheets/{sheet}}}", r"\end{scoresheet}"]
+    doc = "skilldict"
+    with open(os.path.join(work, "documents", "scoresheets.tex")) as fh:
+        preamble = fh.read().split(r"\begin{document}")[0]
+    paths.write_text(preamble + "\n".join([r"\begin{document}", r"\pagestyle{plain}",
+                                           r"\renewcommand{\shortScoresheet}{false}", *body,
+                                           r"\end{document}", ""]),
+                     os.path.join(work, "documents", f"{doc}.tex"))
+    log = os.path.join(work, f"{doc}.log")
+    with open(log, "w") as fh:
+        r = subprocess.run(["latexmk", "-pdf", "-interaction=nonstopmode", "-outdir=.build",
+                            f"documents/{doc}.tex"], cwd=work, stdout=fh, stderr=subprocess.STDOUT)
+    pdf = os.path.join(work, ".build", f"{doc}.pdf")
+    if r.returncode or not os.path.exists(pdf):
+        raise RuntimeError(f"latexmk failed, see {paths.rel(log)}")
+    out = os.path.join(paths.BUILD, f"sheets_{b.release.year}_vs_rulebook_{ref_version}.pdf")
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    shutil.copy(pdf, out)
+    return out

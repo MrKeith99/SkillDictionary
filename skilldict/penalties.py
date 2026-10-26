@@ -69,7 +69,7 @@ def expand(b):
                         "variant_number": f"{v['variant_number']}-{m['code']}",
                         "skill": v["skill"], "description": m["label"],
                         "failure_mode": f, "points": price(m["share"], v["points"]),
-                        "type": "penalty_behavior", "penalty_of": v["id"], "share": m["share"]}
+                        "type": "penalty", "penalty_of": v["id"], "share": m["share"]}
                 e = {"ref": pid, "count": it.get("count", 1), "related_variant": v["id"]}
                 if it.get("section"):
                     e["section"] = it["section"]

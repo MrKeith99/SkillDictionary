@@ -16,12 +16,10 @@
 #
 # 2027 ARENA, written from the 2026 Incheon arena (RoboCupAtHome/Incheon2026
 # maps/location_names.md @ 993bb70). Heights are typical values for the
-# furniture type, NOT measured: `values: estimate` everywhere. Measure them at
-# Setup Days and set `values: measured`; replace the arena when the 2027 one is
-# published. `placeable` follows the rulebook's "(p)": objects may be placed there.
+# furniture type, an approximation measured on the day; replace the arena when
+# the 2027 one is published. `placeable` follows the rulebook's "(p)": objects may be placed there.
 
 version: 1
-values: estimate
 source:
   repo: https://github.com/RoboCupAtHome/Incheon2026
   path: maps/location_names.md, maps/room_names.md

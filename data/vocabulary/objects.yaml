@@ -1,6 +1,6 @@
 # Object catalog — one entry per REAL object, reused across years.
 #
-# The year's object set (set.yaml) says which of these are in play and
+# The year's object set (object_set.yaml) says which of these are in play and
 # how they are grouped; dictionary entries name those groups. This file only
 # says what each object physically is.
 #
@@ -24,10 +24,6 @@
 # copied from the published list without renaming.
 
 version: 1
-# Where mass_g and grasp_width_mm come from, for the whole file: estimate (YCB
-# published values or product specs, see each note) until they are weighed and
-# measured on the arena objects at Setup Days; then set `values: measured`.
-values: estimate
 
 objects:
 

@@ -32,7 +32,7 @@ grows as *verbs × properties* and still cannot say "heavy **and** slippery
       │   objects: [plate]
       │   at: [dinner_table]   conditions: {clutter: nearby, knowledge: known_instance}
       ▼
- objects/ +             HOW HARD that variant is    D = 7  (thin, flat-lying,
+ vocabulary/            HOW HARD that variant is    D = 7  (thin, flat-lying,
  difficulty_factors.yaml                                     smooth …)
 ```
 
@@ -40,9 +40,9 @@ grows as *verbs × properties* and still cannot say "heavy **and** slippery
 |---|---|---|
 | `data/skills.yaml` | What is this skill for? What does success look like? What must the referee *not* judge? | a new kind of capability appears |
 | `data/vocabulary/difficulty_factors.yaml` | Which properties make an instance harder, and by how much? | rarely — TC decision |
-| `data/vocabulary/objects/catalog.yaml` | What is each real object: mass, grasp width, surface, rigidity, shape? | a new object enters the league |
-| `data/vocabulary/objects/furniture.yaml` | Where skills happen: each place's height and access, and the doors and racks to operate | a new arena, a new appliance |
-| `data/vocabulary/objects/set.yaml` | Which objects are in play this year, in which classes and rulebook categories? | every year, from the published object list |
+| `data/vocabulary/objects.yaml` | What is each real object: mass, grasp width, surface, rigidity, shape? | a new object enters the league |
+| `data/vocabulary/furniture.yaml` | Where skills happen: each place's height and access, and the doors and racks to operate | a new arena, a new appliance |
+| `data/vocabulary/object_set.yaml` | Which objects are in play this year, in which classes and rulebook categories? | every year, from the published object list |
 | `data/variants/<AREA>.yaml` | Which variant of a skill is scored: on which objects, where, in which situation, for how many points? | the rulebook changes |
 
 A harder object is **a different difficulty, not a different skill.** The
@@ -141,12 +141,12 @@ Thirty-two factors, each with at most three levels weighted 0 / 1 / 2. Three kin
   is put), `contents`; for clothing `garment` (flat / tubular / limbed) and
   `spread`; for fixture parts (doors, racks) `handle` and `return_force`; for
   container closures `opening` (lift / twist / pry) and `counterpart`; and
-  `actuation_force`. Set once per object in `objects/catalog.yaml`
+  `actuation_force`. Set once per object in `objects.yaml`
   (fixture parts in `furniture.yaml`). **Mass and size are computed** from
   `mass_g` and `grasp_width_mm` using the factor's numeric cut-offs, so they
   cannot be rated differently by different people; the rest are judged.
 - **place factors** — `height` (computed from `height_mm`) and `access`, set
-  per place in `objects/furniture.yaml`; a variant names its places in `at:`.
+  per place in `furniture.yaml`; a variant names its places in `at:`.
 - **condition factors** — set per variant in `conditions:`, from the rulebook's
   description of the setup:
 
@@ -244,9 +244,9 @@ pointing at a decomposition-only skill.
 | T1 | price rule: an achievement that does not pay `base × (1 + D/4)` | none |
 | T2 | penalties per failure mode: derived at the share, authored conduct penalties listed | ignoring the person −100, unsafe contact −200 |
 | T3 | proposed skills, unscored skills | none while the dictionary is consolidated |
-| T4 | object data quality: unmeasured values; variants whose objects span a wide difficulty range | `MAN-PICK-05`: mangosteen D1 to seaweed D8 for the same points |
+| T4 | object data: objects and places in use; variants whose objects span a wide difficulty range | `MAN-PICK-05`: mangosteen D1 to seaweed D8 for the same points |
 
-`dist/variant_ratings.json` carries every variant's skill, objects, factors and D for the scoring page and the results tracker.
+`dist/variant_difficulty.json` carries every variant's skill, objects, factors and D for the scoring page and the results tracker.
 
 ---
 
@@ -258,10 +258,10 @@ Reference an existing dictionary id. Nothing else.
 
 ### Same skill, new object
 
-1. Add the object to `data/vocabulary/objects/catalog.yaml`: `mass_g`, `grasp_width_mm`,
+1. Add the object to `data/vocabulary/objects.yaml`: `mass_g`, `grasp_width_mm`,
    `surface`, `rigidity`, `shape`, and a `note` saying where the numbers come
    from when it is a YCB item or a product spec.
-2. Add it to `data/vocabulary/objects/set.yaml` under its class.
+2. Add it to `data/vocabulary/object_set.yaml` under its class.
 3. If an existing variant's category already covers it, nothing else changes —
    the variant's difficulty range updates by itself. Otherwise add a variant
    under the existing skill.
@@ -270,7 +270,7 @@ No new skill, no new verb.
 
 ### A new competition year
 
-1. Replace `data/vocabulary/objects/set.yaml` with the new published classes;
+1. Replace `data/vocabulary/object_set.yaml` with the new published classes;
    update `source`. The previous year's set stays in its git tag.
 2. Re-check `categories` against the new rulebook wording.
 3. Add any new objects to the catalog. CI fails on an unknown or empty name.
@@ -305,12 +305,12 @@ penalty under every such variant in every challenge.
   `MAN.Pick` because thin + deformable + flat-lying add up, yet grasping cloth is
   comparatively easy; folding it is what is hard. Per-skill weights would fix
   this at the cost of a bigger vocabulary.
-- **Object values are estimates** (`values: estimate` in the catalog, as in
-  the furniture). The league's object list has names and photos but no masses
-  or sizes. The enamel dishes, cutlery and Pringles can use YCB's published
-  values (their notes say so); the rest come from photos and product specs.
-  YCB fruit is plastic, so its masses are not used for real fruit. Weigh and
-  measure during Setup Days, then set `values: measured`.
+- **Object and furniture values are approximations.** The league's object
+  list has names and photos but no masses or sizes. The enamel dishes, cutlery
+  and Pringles use YCB's published values (their notes say so); the rest come
+  from photos and product specs, and furniture heights are typical for the
+  type. They are measured on the day; D only needs the right level, not the
+  exact number.
 - **No empirical check on D yet.** D is reviewed, not measured. Success rates
   per variant from competition results would show where a factor is still
   missing.

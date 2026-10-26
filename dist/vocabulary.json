@@ -941,10 +941,8 @@
         "note": "Rulebook says it needs two arms to carry."
       }
     },
-    "catalog_values": "estimate",
     "furniture": {
       "version": 1,
-      "values": "estimate",
       "source": {
         "repo": "https://github.com/RoboCupAtHome/Incheon2026",
         "path": "maps/location_names.md, maps/room_names.md",

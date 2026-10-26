@@ -46,7 +46,7 @@ rather than working around it.
 | add or reprice a variant | `data/variants/` |
 | change how a test uses variants | `data/challenges/` |
 | add an object, a factor, a piece of furniture | `data/vocabulary/` |
-| change a page or sheet layout | `templates/` or `skilldict/render/` |
+| change the scoring page or the LaTeX sheets | `skilldict/render/` |
 | add a check | `skilldict/checks/` |
 
 ### Branch names
@@ -149,7 +149,7 @@ Then reference it from the challenge:
 
 Price it with the rule in [docs/skill-model.md](docs/skill-model.md)
 (*Toward a fair price*) and the skill's `base:` in `data/skills.yaml`:
-`make check` writes the variant's D to `dist/variant_ratings.json`, and T1
+`make check` writes the variant's D to `dist/variant_difficulty.json`, and T1
 flags a price that breaks the rule.
 
 Before adding a variant, read [docs/skill-model.md](docs/skill-model.md). In
@@ -157,8 +157,8 @@ short:
 
 - **Reuse a skill.** A new object or situation is new `objects` /
   `conditions` on a variant of an existing skill, not a new skill. If the object has no
-  profile, add one to `data/vocabulary/objects/catalog.yaml` and list it in
-  `data/vocabulary/objects/set.yaml`.
+  profile, add one to `data/vocabulary/objects.yaml` and list it in
+  `data/vocabulary/object_set.yaml`.
 - **A genuinely new capability** gets a skill in `data/skills.yaml`
   first — `intent`, `success`, `not_judged`, `factors` — with `status:
   proposed`, and is reviewed on its definition before anything scores it.
@@ -173,7 +173,7 @@ Controlled vocabularies:
 | field | allowed |
 |---|---|
 | file | `data/variants/<AREA>.yaml`: NAV, MAN, OBJ, PPL, HRI, NLU, PLN, GEN, SPECIAL |
-| `type` | `achievement`, `bonus`, `penalty_behavior`, `administrative` |
+| `type` | `achievement`, `bonus`, `penalty`, `administrative` |
 | `id` | `<AREA>-<code>-<NN>` + optional `B`/`P` + index; `code` from the skill; derived penalties add `-<FAILURE>` |
 
 ### Difficulty is computed
@@ -209,7 +209,7 @@ pinned rulebook; `make pdf` sets each rulebook sheet next to the proposed one.
    `git add external/RuleBook`; update the pin note in `external/README.md`.
 2. In `data/release.yaml`: `status: in_force`, the new `rulebook` version and
    commit, and the sheet file per challenge.
-3. Replace `data/vocabulary/objects/set.yaml` with the year's published object
+3. Replace `data/vocabulary/object_set.yaml` with the year's published object
    list.
 4. `make check` until the rulebook stage matches every sheet.
 5. Tag the commit with the rulebook version (`git tag -a 2027.1`), then start
@@ -255,5 +255,5 @@ sign-off before merging. When in doubt, open the PR as a draft and ask.
 ## License
 
 By contributing you agree your work is licensed under the terms in
-[LICENSE](LICENSE): BSD 3-Clause for `skilldict/`, `templates/` and `schema/`,
+[LICENSE](LICENSE): BSD 3-Clause for `skilldict/` and `schema/`,
 CC BY-SA 4.0 for `data/` and `dist/`, which derive from the RuleBook.

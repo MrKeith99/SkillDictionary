@@ -5,16 +5,16 @@
 # PickLargeUnknown, ..." multiplies verbs by every property and still cannot
 # express "heavy AND slippery AND inside the dishwasher". One Pick skill plus a
 # handful of factors covers every combination, and new objects need a profile in
-# objects/catalog.yaml (new furniture: objects/furniture.yaml), not a new skill.
+# objects.yaml (new furniture: furniture.yaml), not a new skill.
 #
 # Rules
 #   * Every factor has at most three levels, weighted 0 / 1 / 2. Coarse on
 #     purpose: a referee must be able to assign a level by looking, and finer
 #     scales would imply precision nobody can measure consistently.
 #   * `source: object` factors are properties of the thing being handled and
-#     live in objects/catalog.yaml (parts: furniture.yaml). `source: place`
+#     live in objects.yaml (parts: furniture.yaml). `source: place`
 #     factors are properties of where the skill happens and live in
-#     objects/furniture.yaml; a line names its places in `at:`.
+#     furniture.yaml; a line names its places in `at:`.
 #     `source: condition` factors describe the situation and are set on the
 #     dictionary entry (`conditions:`).
 #   * Factors with a `measure` are computed from a number: with `below`

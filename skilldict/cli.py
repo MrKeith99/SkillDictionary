@@ -11,7 +11,7 @@ import argparse, sys
 from . import model, paths
 from .checks import RULE, schema, integrity, rulebook, findings
 from .model import DataError
-from .render import sheets as r_sheets, viz as r_viz, pdf as r_pdf
+from .render import latex, page
 
 
 def _load():
@@ -40,7 +40,7 @@ def cmd_check(a):
         if not a.quiet:
             findings.run(b)
         b.write_dist()
-        r_viz.write(b)
+        page.write(b)
         print(f"  wrote {paths.rel(paths.DIST)}/")
     print(RULE)
     print("ALL CHECKS PASSED" if not fail else f"CHECKS FAILED ({fail})")
@@ -57,12 +57,12 @@ def cmd_sheets(a):
     for slug in a.challenge or b.challenges:
         if slug not in b.challenges:
             sys.exit(f"no challenge {slug}; have {', '.join(b.challenges)}")
-        print(f"wrote {paths.rel(r_sheets.tex(b, slug))}")
+        print(f"wrote {paths.rel(latex.tex(b, slug))}")
     return 0
 
 
 def cmd_pdf(a):
-    print(f"wrote {paths.rel(r_pdf.write(_load()))}")
+    print(f"wrote {paths.rel(latex.pdf(_load()))}")
     return 0
 
 

@@ -3,7 +3,6 @@ SkillDictionary is licensed in two parts.
 TOOLING AND SCHEMA — BSD 3-Clause (see LICENSE.BSD-3-Clause)
 
     skilldict/
-    templates/
     schema/
     Makefile
 

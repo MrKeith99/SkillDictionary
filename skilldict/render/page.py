@@ -1,12 +1,12 @@
 """The scoring page: every challenge's score sheet, and the analysis across them.
 
-templates/scoring.html with the data inlined -> <dist>/scoring.html. One tab per
+render/scoring.html with the data inlined -> <dist>/scoring.html. One tab per
 challenge is its referee sheet (tick boxes add up live; nothing stored); the
 overview compares the challenges.
 """
 import json, os
 from .. import paths
-from ..ratings import drange
+from ..difficulty import drange
 
 
 def _line(b, slug, it):

@@ -50,20 +50,19 @@ data/                       SOURCE — the only place you edit
   challenges/<slug>.yaml      every CHALLENGE: which variants it scores, how often (no points)
   vocabulary/
     difficulty_factors.yaml     what makes a variant harder, and by how much
-    objects/catalog.yaml        every real object: mass, size, surface, ...
-    objects/furniture.yaml      the arena: every place's height and access, doors and racks
-    objects/set.yaml            the year's object set
+    objects.yaml                every real object: mass, size, surface, ...
+    furniture.yaml              the arena: every place's height and access, doors and racks
+    object_set.yaml             the year's object set
 
 skilldict/                  the Python package — one CLI for everything
   model.py                    loading, derived fields (used_by, total_score, names, codes)
   penalties.py                penalty variants, from the failures of each skill
-  commands.py                 GPSR: value every generator command, fill step counts
-  ratings.py                  vocabulary integrity, intrinsic difficulty D
+  gpsr.py                     GPSR: value every generator command, fill step counts
+  difficulty.py               vocabulary integrity, intrinsic difficulty D
   checks/                     schema, integrity, rulebook, findings
   render/                     scoring page, rulebook LaTeX sheets, PDF
   cli.py
 
-templates/                  page templates the renderers fill in
 schema/                     JSON Schema for a variant and a challenge (as written to dist/)
 docs/                       skill-model.md (how it fits together)
 external/RuleBook           the RuleBook, git submodule pinned to the rulebook in release.yaml
@@ -106,7 +105,7 @@ lists the options.
 | `dist/variants.json` | every variant: skill, objects, price, `used_by`; penalty variants included |
 | `dist/challenges.json` | per challenge: references, counts, assistance, `total_score` |
 | `dist/vocabulary.json` | difficulty factors and object profiles |
-| `dist/variant_ratings.json` | per variant: skill, objects, factors, intrinsic difficulty |
+| `dist/variant_difficulty.json` | per variant: skill, objects, factors, intrinsic difficulty |
 | `dist/gpsr_commands.json` | the value of every command the GPSR generator can produce |
 
 `used_by` and `total_score` are **derived** by the build; the sources never
@@ -122,7 +121,7 @@ price rule, and the variants whose single price covers very different
 objects. Each **challenge tab** is its referee sheet: tick boxes add up live,
 with the line's notes, whether help is allowed, its penalties beneath it and
 the score by skill; `#<challenge>` in the URL opens it, and Print prints that
-sheet alone. It is rebuilt by `make check` from `templates/scoring.html`;
+sheet alone. It is rebuilt by `make check` from `skilldict/render/scoring.html`;
 edit the template, never the output.
 
 ---
@@ -174,7 +173,7 @@ questions for the TC, never failures.
 | T1 | price rule: an achievement that does not pay `base × (1 + D/4)` |
 | T2 | penalties per failure mode: derived at its share, and the authored ones |
 | T3 | skill coverage: proposed skills, unscored skills |
-| T4 | object data quality: estimated values, widest difficulty ranges |
+| T4 | object data: objects and places in use, widest difficulty ranges |
 
 ---
 
@@ -189,7 +188,7 @@ run `make check`, commit the source **and** the regenerated `dist/`.
 
 Two parts, mirroring the RuleBook:
 
-- **`skilldict/`, `templates/`, `schema/`** — BSD 3-Clause ([LICENSE.BSD-3-Clause](LICENSE.BSD-3-Clause))
+- **`skilldict/`, `schema/`** — BSD 3-Clause ([LICENSE.BSD-3-Clause](LICENSE.BSD-3-Clause))
 - **`data/`, `dist/`** — CC BY-SA 4.0 ([LICENSE.CC-BY-SA-4.0](LICENSE.CC-BY-SA-4.0))
 
 The content files derive from the RoboCup@Home RuleBook, which is CC BY-SA 4.0.

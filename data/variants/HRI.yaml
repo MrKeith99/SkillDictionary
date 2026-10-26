@@ -5,7 +5,7 @@ variants:
   description: 'Ignoring the person interacting with the robot: turns away from, or never responds to them (per interaction)'
   failure_mode: ignoring_person
   points: -100
-  type: penalty_behavior
+  type: penalty
 - id: HRI-GAZE-01
   skill: HRI.Gaze
   description: Look at the person talking, when receiving a guest

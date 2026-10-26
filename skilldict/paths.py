@@ -9,7 +9,6 @@ VARIANTS = os.path.join(DATA, "variants")          # its priced variants
 VOCAB = os.path.join(DATA, "vocabulary")
 CHALLENGES = os.path.join(DATA, "challenges")
 SCHEMA = os.path.join(ROOT, "schema")
-TEMPLATES = os.path.join(ROOT, "templates")
 DIST = os.path.join(ROOT, "dist")          # committed: JSON for consumers
 BUILD = os.path.join(ROOT, "build")        # not committed: sheets, reports, PDFs
 RULEBOOK = os.environ.get("RULEBOOK_DIR") or os.path.join(ROOT, "external", "RuleBook")
@@ -42,5 +41,6 @@ def write_text(text, path):
 
 
 def template(name):
-    with open(os.path.join(TEMPLATES, name)) as fh:
+    """A page template, kept next to the renderer that fills it."""
+    with open(os.path.join(ROOT, "skilldict", "render", name)) as fh:
         return fh.read()

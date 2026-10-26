@@ -11,7 +11,7 @@
       "skill": "GEN.UnsafeConduct",
       "description": "Touching a person when the task does not ask for it (run also stopped)",
       "failure_mode": "unsafe_contact",
-      "type": "penalty_behavior",
+      "type": "penalty",
       "points": -200,
       "used_by": [
         "doing_laundry",
@@ -29,7 +29,7 @@
       "description": "Ignoring the person interacting with the robot: turns away from, or never responds to them (per interaction)",
       "failure_mode": "ignoring_person",
       "points": -100,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "used_by": [
         "doing_laundry",
         "gpsr",
@@ -1320,7 +1320,7 @@
       "description": "Object dropped",
       "failure_mode": "drop",
       "points": -120,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PICK-03",
       "share": 0.5,
       "used_by": [
@@ -1335,7 +1335,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -120,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PICK-03",
       "share": 0.5,
       "used_by": [
@@ -1350,7 +1350,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -300,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-FOLD-01",
       "share": 0.5,
       "used_by": [
@@ -1365,7 +1365,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -110,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-FIXTURE-04",
       "share": 0.5,
       "used_by": [
@@ -1380,7 +1380,7 @@
       "description": "Object dropped",
       "failure_mode": "drop",
       "points": -120,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PICK-04",
       "share": 0.5,
       "used_by": [
@@ -1395,7 +1395,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -120,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PICK-04",
       "share": 0.5,
       "used_by": [
@@ -1410,7 +1410,7 @@
       "description": "Object dropped",
       "failure_mode": "drop",
       "points": -120,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-TRANSPORT-01",
       "share": 0.5,
       "used_by": [
@@ -1425,7 +1425,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -120,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-TRANSPORT-01",
       "share": 0.5,
       "used_by": [
@@ -1440,7 +1440,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -50,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-STACK-01",
       "share": 0.5,
       "used_by": [
@@ -1455,7 +1455,7 @@
       "description": "Alternative input instead of speech",
       "failure_mode": "alternative_input",
       "points": -25,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "NLU-COMMAND-01",
       "share": 0.25,
       "used_by": [
@@ -1470,7 +1470,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -50,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "NLU-COMMAND-01",
       "share": 0.5,
       "used_by": [
@@ -1485,7 +1485,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -20,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "NAV-NAVIGATE-04",
       "share": 0.5,
       "used_by": [
@@ -1500,7 +1500,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -10,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "OBJ-RECOGNIZE-02",
       "share": 0.5,
       "used_by": [
@@ -1515,7 +1515,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -10,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "OBJ-RECOGNIZE-03",
       "share": 0.5,
       "used_by": [
@@ -1530,7 +1530,7 @@
       "description": "Object dropped",
       "failure_mode": "drop",
       "points": -40,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PICK-06",
       "share": 0.5,
       "used_by": [
@@ -1545,7 +1545,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -40,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PICK-06",
       "share": 0.5,
       "used_by": [
@@ -1560,7 +1560,7 @@
       "description": "Object dropped",
       "failure_mode": "drop",
       "points": -20,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PLACE-04",
       "share": 0.5,
       "used_by": [
@@ -1575,7 +1575,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -20,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PLACE-04",
       "share": 0.5,
       "used_by": [
@@ -1590,7 +1590,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -20,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "HRI-HANDOVER-01",
       "share": 0.5,
       "used_by": [
@@ -1605,7 +1605,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -35,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "PPL-DETECT-01",
       "share": 0.5,
       "used_by": [
@@ -1620,7 +1620,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -30,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "PPL-DETECT-02",
       "share": 0.5,
       "used_by": [
@@ -1635,7 +1635,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -40,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "PPL-REIDENTIFY-01",
       "share": 0.5,
       "used_by": [
@@ -1650,7 +1650,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -10,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "PPL-ATTRIBUTE-03",
       "share": 0.5,
       "used_by": [
@@ -1665,7 +1665,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -10,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "PPL-ATTRIBUTE-04",
       "share": 0.5,
       "used_by": [
@@ -1680,7 +1680,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -20,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "HRI-INFO-03",
       "share": 0.5,
       "used_by": [
@@ -1695,7 +1695,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -25,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "HRI-INFO-04",
       "share": 0.5,
       "used_by": [
@@ -1710,7 +1710,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -100,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "NAV-FOLLOW-02",
       "share": 0.5,
       "used_by": [
@@ -1725,7 +1725,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -100,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "NAV-GUIDE-01",
       "share": 0.5,
       "used_by": [
@@ -1740,7 +1740,7 @@
       "description": "Alternative input instead of speech",
       "failure_mode": "alternative_input",
       "points": -15,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "HRI-INFO-02",
       "share": 0.25,
       "used_by": [
@@ -1755,7 +1755,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -30,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "HRI-INFO-02",
       "share": 0.5,
       "used_by": [
@@ -1770,7 +1770,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -25,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "HRI-HANDOVER-02",
       "share": 0.5,
       "used_by": [
@@ -1785,7 +1785,7 @@
       "description": "Object dropped",
       "failure_mode": "drop",
       "points": -100,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "NAV-FOLLOW-01",
       "share": 0.5,
       "used_by": [
@@ -1800,7 +1800,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -100,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "NAV-FOLLOW-01",
       "share": 0.5,
       "used_by": [
@@ -1815,7 +1815,7 @@
       "description": "Object dropped",
       "failure_mode": "drop",
       "points": -30,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PLACE-01",
       "share": 0.5,
       "used_by": [
@@ -1830,7 +1830,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -30,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PLACE-01",
       "share": 0.5,
       "used_by": [
@@ -1845,7 +1845,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -5,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "OBJ-RECOGNIZE-01",
       "share": 0.5,
       "used_by": [
@@ -1860,7 +1860,7 @@
       "description": "Object dropped",
       "failure_mode": "drop",
       "points": -40,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PICK-01",
       "share": 0.5,
       "used_by": [
@@ -1875,7 +1875,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -40,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PICK-01",
       "share": 0.5,
       "used_by": [
@@ -1890,7 +1890,7 @@
       "description": "Object dropped",
       "failure_mode": "drop",
       "points": -45,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PICK-10",
       "share": 0.5,
       "used_by": [
@@ -1905,7 +1905,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -45,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PICK-10",
       "share": 0.5,
       "used_by": [
@@ -1920,7 +1920,7 @@
       "description": "Object dropped",
       "failure_mode": "drop",
       "points": -80,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PICK-07",
       "share": 0.5,
       "used_by": [
@@ -1935,7 +1935,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -80,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PICK-07",
       "share": 0.5,
       "used_by": [
@@ -1950,7 +1950,7 @@
       "description": "Object dropped",
       "failure_mode": "drop",
       "points": -90,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PICK-08",
       "share": 0.5,
       "used_by": [
@@ -1965,7 +1965,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -90,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PICK-08",
       "share": 0.5,
       "used_by": [
@@ -1980,7 +1980,7 @@
       "description": "Object dropped",
       "failure_mode": "drop",
       "points": -70,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PICK-09",
       "share": 0.5,
       "used_by": [
@@ -1995,7 +1995,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -70,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PICK-09",
       "share": 0.5,
       "used_by": [
@@ -2010,7 +2010,7 @@
       "description": "Object dropped",
       "failure_mode": "drop",
       "points": -30,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PICK-11",
       "share": 0.5,
       "used_by": [
@@ -2025,7 +2025,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -30,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PICK-11",
       "share": 0.5,
       "used_by": [
@@ -2040,7 +2040,7 @@
       "description": "Object dropped",
       "failure_mode": "drop",
       "points": -25,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PLACE-02",
       "share": 0.5,
       "used_by": [
@@ -2055,7 +2055,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -25,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PLACE-02",
       "share": 0.5,
       "used_by": [
@@ -2070,7 +2070,7 @@
       "description": "Object dropped",
       "failure_mode": "drop",
       "points": -35,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PLACE-05",
       "share": 0.5,
       "used_by": [
@@ -2085,7 +2085,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -35,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PLACE-05",
       "share": 0.5,
       "used_by": [
@@ -2100,7 +2100,7 @@
       "description": "Object dropped",
       "failure_mode": "drop",
       "points": -25,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PLACE-06",
       "share": 0.5,
       "used_by": [
@@ -2115,7 +2115,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -25,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PLACE-06",
       "share": 0.5,
       "used_by": [
@@ -2130,7 +2130,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -80,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-INSERT-01",
       "share": 0.5,
       "used_by": [
@@ -2145,7 +2145,7 @@
       "description": "Object dropped",
       "failure_mode": "drop",
       "points": -25,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PLACE-07",
       "share": 0.5,
       "used_by": [
@@ -2160,7 +2160,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -25,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PLACE-07",
       "share": 0.5,
       "used_by": [
@@ -2175,7 +2175,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -130,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-FIXTURE-01",
       "share": 0.5,
       "used_by": [
@@ -2190,7 +2190,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -110,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-FIXTURE-02",
       "share": 0.5,
       "used_by": [
@@ -2205,7 +2205,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -110,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-FIXTURE-03",
       "share": 0.5,
       "used_by": [
@@ -2220,7 +2220,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -200,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-CONTAINER-01",
       "share": 0.5,
       "used_by": [
@@ -2235,7 +2235,7 @@
       "description": "Contents spilled",
       "failure_mode": "spill",
       "points": -100,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-POUR-01",
       "share": 0.5,
       "used_by": [
@@ -2250,7 +2250,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -100,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-POUR-01",
       "share": 0.5,
       "used_by": [
@@ -2265,7 +2265,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -25,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "NAV-NAVIGATE-02",
       "share": 0.5,
       "used_by": [
@@ -2280,7 +2280,7 @@
       "description": "Alternative input instead of speech",
       "failure_mode": "alternative_input",
       "points": -35,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "NLU-COMMAND-02",
       "share": 0.25,
       "used_by": [
@@ -2295,7 +2295,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -70,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "NLU-COMMAND-02",
       "share": 0.5,
       "used_by": [
@@ -2310,7 +2310,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -25,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "HRI-INFO-01",
       "share": 0.5,
       "used_by": [
@@ -2325,7 +2325,7 @@
       "description": "Object dropped",
       "failure_mode": "drop",
       "points": -40,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PICK-05",
       "share": 0.5,
       "used_by": [
@@ -2340,7 +2340,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -40,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PICK-05",
       "share": 0.5,
       "used_by": [
@@ -2355,7 +2355,7 @@
       "description": "Object dropped",
       "failure_mode": "drop",
       "points": -25,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PLACE-03",
       "share": 0.5,
       "used_by": [
@@ -2370,7 +2370,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -25,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-PLACE-03",
       "share": 0.5,
       "used_by": [
@@ -2385,7 +2385,7 @@
       "description": "Object dropped",
       "failure_mode": "drop",
       "points": -140,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-TRANSPORT-02",
       "share": 0.5,
       "used_by": [
@@ -2400,7 +2400,7 @@
       "description": "Human assistance",
       "failure_mode": "assistance",
       "points": -140,
-      "type": "penalty_behavior",
+      "type": "penalty",
       "penalty_of": "MAN-TRANSPORT-02",
       "share": 0.5,
       "used_by": [
