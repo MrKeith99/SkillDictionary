@@ -122,7 +122,8 @@ objects. Each **challenge tab** is its referee sheet: tick boxes add up live,
 with the line's notes, whether help is allowed, its penalties beneath it and
 the score by skill; `#<challenge>` in the URL opens it, and Print prints that
 sheet alone. It is rebuilt by `make check` from `skilldict/render/scoring.html`;
-edit the template, never the output.
+edit the template, never the output. A push that changes `dist/` publishes it
+to GitHub Pages (`.github/workflows/pages.yml`), with the JSON next to it.
 
 ---
 

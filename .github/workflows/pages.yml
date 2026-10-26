@@ -1,0 +1,36 @@
+# Publishes dist/ to GitHub Pages: the scoring page at the site root, the
+# JSON next to it. dist/ is committed, so nothing is built here.
+name: Pages
+
+on:
+  push:
+    branches: [2027]
+    paths: [dist/**]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir _site
+          cp dist/*.json _site/
+          cp dist/scoring.html _site/index.html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
