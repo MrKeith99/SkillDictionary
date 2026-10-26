@@ -1,13 +1,13 @@
 """Vocabulary integrity and intrinsic difficulty.
 
-rate(build) checks that every line can be interpreted (known taxonomy node,
+rate(build) checks that every variant can be interpreted (known skill,
 objects, places, factors and levels; penalties name a failure mode) and rates
-each line: D = sum of the factor weights of its objects, its places (`at:`)
-and its conditions. A line covering several objects or places, or a condition
-given as a list of levels (drawn at test time), gets a D range.
+each variant: D = sum of the factor weights of its objects, its places (`at:`)
+and its conditions. A variant covering several objects or places, or a
+condition given as a list of levels (drawn at test time), gets a D range.
 
-Errors go to build.errors; build.ratings is the per-line result, written to
-dist/skill_ratings.json. build.rater keeps the intermediate tables for the
+Errors go to build.errors; build.ratings is the per-variant result, written to
+dist/variant_ratings.json. build.rater keeps the intermediate tables for the
 findings report.
 """
 
@@ -15,10 +15,10 @@ findings report.
 class Rater:
     def __init__(self, build):
         V = build.vocab
-        self.tax, self.fac = V["taxonomy"], V["difficulty_factors"]
+        self.fac = V["difficulty_factors"]
         self.catalog, self.furniture = V["objects"]["catalog"], V["objects"]["furniture"]
-        self.oset = V["objects"]["set"]
-        self.nodes, self.fmodes = self.tax["nodes"], self.tax["failure_modes"]
+        self.oset, self.catalog_values = V["objects"]["set"], V["objects"]["catalog_values"]
+        self.skills, self.fmodes = V["skills"], V["failure_modes"]
         self.factors = self.fac["factors"]
         # Names a dictionary entry may use in `objects:`: a year-set class,
         # test-object group or category, a catalog object, or a part (x.part).
@@ -37,33 +37,40 @@ class Rater:
             self.expand(g)
         for g in self.place_groups:
             self.expand_at(g)
-        for eid, e in build.skills.items():
+        for eid, e in build.variants.items():
             self._check_entry(e)
-        self.rated = {eid: self.rate(e) for eid, e in build.skills.items()}
+        self.rated = {eid: self.rate(e) for eid, e in build.variants.items()}
 
     def err(self, msg):
         self.errors.append(msg)
 
     # ── vocabulary ───────────────────────────────────────────────────────────
     def _check_vocabulary(self):
-        for nid, n in self.nodes.items():
+        for nid, n in self.skills.items():
             area = nid.split(".")[0]
             for ref in [n.get("parent")] + n.get("composed_of", []) + [n.get("replaced_by")]:
-                if ref and ref not in self.nodes:
-                    self.err(f"taxonomy {nid}: unknown node {ref}")
+                if ref and ref not in self.skills:
+                    self.err(f"skill {nid}: unknown skill {ref}")
             if n.get("parent") and not n["parent"].startswith(area + "."):
-                self.err(f"taxonomy {nid}: parent {n['parent']} is in another area")
+                self.err(f"skill {nid}: parent {n['parent']} is in another area")
             for f in n.get("factors", []):
                 if f not in self.factors:
-                    self.err(f"taxonomy {nid}: unknown factor {f}")
-            for s in n.get("sources", []):
-                if s not in self.tax.get("sources", {}):
-                    self.err(f"taxonomy {nid}: unknown source {s}")
+                    self.err(f"skill {nid}: unknown factor {f}")
             if n.get("status") not in ("active", "proposed", "deprecated"):
-                self.err(f"taxonomy {nid}: bad status {n.get('status')}")
-            for k in ("name", "intent", "success"):
+                self.err(f"skill {nid}: bad status {n.get('status')}")
+            base = n.get("base")
+            if base is not None and (isinstance(base, bool) or not isinstance(base, (int, float)) or base <= 0):
+                self.err(f"skill {nid}: base must be a positive number")
+            for k in ("intent", "success"):
                 if not n.get(k):
-                    self.err(f"taxonomy {nid}: missing {k}")
+                    self.err(f"skill {nid}: missing {k}")
+        codes = {}
+        for nid, n in self.skills.items():
+            if n.get("scored", True):
+                key = (nid.split(".")[0], n["code"])
+                if key in codes:
+                    self.err(f"skill {nid}: code {n['code']} is also {codes[key]}'s; rename one skill")
+                codes[key] = nid
         for fid, f in self.factors.items():
             if f["source"] not in ("object", "place", "condition"):
                 self.err(f"factor {fid}: bad source {f['source']}")
@@ -170,11 +177,8 @@ class Rater:
             for fid, lv in fac.items():
                 if lv not in self.factors[fid]["levels"]:
                     self.err(f"object {oid}: {fid}={lv} not a level")
-        for oid, o in self.catalog.items():
-            if o.get("values") not in ("measured", "ycb", "estimate"):
-                self.err(f"catalog {oid}: values must be measured, ycb or estimate")
-            if o.get("values") == "ycb" and not o.get("ycb"):
-                self.err(f"catalog {oid}: values: ycb but no ycb id")
+        if self.catalog_values not in ("measured", "estimate"):
+            self.err("catalog: values must be measured or estimate")
         for k in ("surface", "rigidity", "shape"):
             for oid, o in self.catalog.items():
                 if k not in o:
@@ -200,21 +204,21 @@ class Rater:
         return out
 
     # ── entries ──────────────────────────────────────────────────────────────
-    def node_factors(self, e):
-        return set(self.nodes[e["taxonomy"]].get("factors", []))
+    def skill_factors(self, e):
+        return set(self.skills[e["skill"]].get("factors", []))
 
     def _check_entry(self, e):
-        nid = e["taxonomy"]
-        if nid not in self.nodes:
-            self.err(f"{e['id']}: unknown taxonomy node {nid}")
+        nid = e["skill"]
+        if nid not in self.skills:
+            self.err(f"{e['id']}: unknown skill {nid}")
             return
         if nid.split(".")[0] != e["area"]:
-            self.err(f"{e['id']}: node {nid} is not in area {e['area']}")
-        if self.nodes[nid]["status"] == "deprecated":
-            self.err(f"{e['id']}: node {nid} is deprecated")
-        if self.nodes[nid].get("scored", True) is False:
-            self.err(f"{e['id']}: node {nid} is decomposition-only (scored: false)")
-        applies = self.node_factors(e)
+            self.err(f"{e['id']}: skill {nid} is not in area {e['area']}")
+        if self.skills[nid]["status"] == "deprecated":
+            self.err(f"{e['id']}: skill {nid} is deprecated")
+        if self.skills[nid].get("scored", True) is False:
+            self.err(f"{e['id']}: skill {nid} is decomposition-only (scored: false)")
+        applies = self.skill_factors(e)
         for o in e.get("objects", []):
             if o not in self.obj and o not in self.groups:
                 self.err(f"{e['id']}: unknown object, part or group {o}")
@@ -240,17 +244,12 @@ class Rater:
             self.err(f"{e['id']}: unknown failure_mode {fm}")
         if fm and e["type"] in ("achievement", "bonus"):
             self.err(f"{e['id']}: failure_mode on a {e['type']}")
-        if e["type"] == "penalty_behavior" and not fm and not e.get("objects"):
-            self.err(f"{e['id']}: penalty without failure_mode (or objects, for a price discount)")
+        if e["type"] == "penalty_behavior" and not fm:
+            self.err(f"{e['id']}: penalty without failure_mode")
 
     # ── difficulty ───────────────────────────────────────────────────────────
     def weight(self, fid, lv):
         return self.factors[fid]["levels"][lv]["weight"]
-
-    def tier(self, d):
-        for t, spec in self.fac["tiers"].items():
-            if spec["max"] is None or d <= spec["max"]:
-                return t
 
     def rate(self, e):
         """(Dmin, Dmax, per-instance breakdown) or None if the entry has no factors.
@@ -258,9 +257,9 @@ class Rater:
         An instance is one object at one place ("plate@dishwasher.rack_top");
         its values are (dmin, dmax, factors), which differ only when a
         condition is a list of levels."""
-        if e["taxonomy"] not in self.nodes:
+        if e["skill"] not in self.skills:
             return None
-        applies = self.node_factors(e)
+        applies = self.skill_factors(e)
         if not applies or not (e.get("objects") or e.get("conditions") or e.get("at")):
             return None
         cond = {f: lv for f, lv in e.get("conditions", {}).items() if f in applies}
@@ -286,16 +285,15 @@ class Rater:
 
     def as_json(self, build):
         out = {}
-        for eid, e in build.skills.items():
+        for eid, e in build.variants.items():
             r = self.rated[eid]
             out[eid] = {
-                "taxonomy": e["taxonomy"],
+                "skill": e["skill"],
                 "objects": e.get("objects", []),
                 "difficulty": None if not r else {
-                    "min": r[0], "max": r[1], "tier": self.tier(r[1]),
+                    "min": r[0], "max": r[1],
                     "per_object": {o: {"min": a, "max": b, "factors": f} for o, (a, b, f) in r[2].items()},
                 },
-                "level": e["level"],
             }
         return out
 
@@ -306,11 +304,8 @@ def rate(build):
     return build
 
 
-def dmin(ratings, eid):
-    r = (ratings.get(eid) or {}).get("difficulty")
-    return None if r is None else r["min"]
-
-
-def drange(ratings, eid):
-    r = (ratings.get(eid) or {}).get("difficulty")
-    return "" if r is None else (f'{r["min"]}' if r["min"] == r["max"] else f'{r["min"]}-{r["max"]}')
+def drange(d):
+    """A difficulty as text: "3", or "3-7" for a range; "" when unrated."""
+    if not d:
+        return ""
+    return f'{d["min"]}' if d["min"] == d["max"] else f'{d["min"]}-{d["max"]}'

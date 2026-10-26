@@ -58,8 +58,8 @@ categories:
     members: [toy, snack, fruit, food, drink, cleaning_supply]
     source: P&P §5.2 "One object category will be treated as trash" — announced at Setup Days, so any non-dish class
   clothing:
-    members: [fabric]
-    source: Doing Laundry
+    members: [white_shirt, grey_shirt, blue_shirt, black_shirt]
+    source: Doing Laundry — the rulebook names T-shirts only
   restaurant_orders:
     members: [drink, snack, fruit, food]
     source: Restaurant — orders drawn from the known objects (not held in 2026 Incheon)

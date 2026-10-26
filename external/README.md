@@ -34,8 +34,8 @@ RULEBOOK_DIR=/path/to/RuleBook python3 -m skilldict check
 
 ## Moving the pin
 
-Changing the pin is a rulebook-version change — see "Targeting a new rulebook
-version" in [../CONTRIBUTING.md](../CONTRIBUTING.md).
+Changing the pin is a rulebook-version change — see "When the rulebook is
+published" in [../CONTRIBUTING.md](../CONTRIBUTING.md).
 
 ```sh
 git -C external/RuleBook fetch --tags

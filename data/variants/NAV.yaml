@@ -1,0 +1,68 @@
+area: NAV
+variants:
+- id: NAV-FOLLOW-01
+  skill: NAV.Follow
+  description: Following the host to the bag drop area
+  conditions:
+    map_knowledge: mapped
+    route_extent: rooms
+    crowd: few
+  points: 200
+  type: achievement
+  failures:
+  - drop
+- id: NAV-FOLLOW-02
+  skill: NAV.Follow
+  description: Follow the person to the named room
+  conditions:
+    map_knowledge: mapped
+    route_extent: rooms
+    crowd: few
+  type: achievement
+  points: 200
+- id: NAV-GUIDE-01
+  skill: NAV.Guide
+  description: Guide the person to the named location
+  conditions:
+    map_knowledge: mapped
+    route_extent: rooms
+    crowd: few
+  type: achievement
+  points: 200
+- id: NAV-INTENT-01
+  skill: NAV.SignalIntent
+  description: Look in the direction of navigation or at the navigation goal
+  conditions:
+    crowd: few
+  points: 15
+  type: achievement
+- id: NAV-NAVIGATE-01
+  skill: NAV.Navigate
+  description: Navigate to the announced furniture or area (dining table, laundry area)
+  conditions:
+    map_knowledge: moved
+    route_extent: rooms
+    crowd: none
+    obstacle_visibility: large
+  points: 35
+  type: achievement
+- id: NAV-NAVIGATE-02
+  skill: NAV.Navigate
+  description: Reach a customer's table (to take the order, and again to serve it)
+  conditions:
+    map_knowledge: unknown
+    route_extent: room
+    crowd: crowd
+    obstacle_visibility: small
+  points: 50
+  type: achievement
+- id: NAV-NAVIGATE-04
+  skill: NAV.Navigate
+  description: Reach the named room or location
+  conditions:
+    map_knowledge: mapped
+    route_extent: rooms
+    crowd: few
+    obstacle_visibility: large
+  type: achievement
+  points: 35

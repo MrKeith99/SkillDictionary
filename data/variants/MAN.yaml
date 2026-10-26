@@ -1,0 +1,336 @@
+area: MAN
+variants:
+- id: MAN-CONTAINER-01
+  skill: MAN.OpenContainer
+  description: Open milk container without assistance
+  objects:
+  - milk.cap
+  points: 400
+  type: achievement
+- id: MAN-FIXTURE-01
+  skill: MAN.OperateFixture
+  description: Pull or push the dishwasher rack
+  objects:
+  - dishwasher.rack
+  points: 250
+  type: achievement
+- id: MAN-FIXTURE-02
+  skill: MAN.OperateFixture
+  description: Open the dishwasher door without assistance
+  objects:
+  - dishwasher.door
+  points: 220
+  type: achievement
+- id: MAN-FIXTURE-03
+  skill: MAN.OperateFixture
+  description: Close the dishwasher door without assistance, after an item is placed inside
+  objects:
+  - dishwasher.door
+  points: 220
+  type: achievement
+- id: MAN-FIXTURE-04
+  skill: MAN.OperateFixture
+  description: Opening the washing machine door
+  objects:
+  - washing_machine.door
+  points: 220
+  type: achievement
+- id: MAN-FIXTURE-05
+  skill: MAN.OperateFixture
+  description: Open the entrance door for a guest
+  objects:
+  - entrance.door
+  points: 190
+  type: achievement
+- id: MAN-FOLD-01
+  skill: MAN.Fold
+  description: Folding a T-shirt (per item)
+  objects:
+  - clothing
+  points: 600
+  type: achievement
+- id: MAN-FOLD-01B1
+  skill: MAN.Fold
+  description: First garment folded (main goal), without assistance and to quality
+  objects:
+  - clothing
+  type: bonus
+  points: 400
+- id: MAN-INSERT-01
+  skill: MAN.Insert
+  description: In the dishwasher tab slot inside the dishwasher
+  objects:
+  - dishwasher_tab
+  at:
+  - dishwasher.tab_slot
+  conditions:
+    placement_tolerance: constrained
+  points: 160
+  type: achievement
+- id: MAN-PICK-01
+  skill: MAN.Pick
+  description: Picking up any other object for transportation
+  objects:
+  - dishwasher_items
+  - cabinet_objects
+  - breakfast
+  at:
+  - dinner_table
+  - counter
+  conditions:
+    clutter: nearby
+    knowledge: known_instance
+  points: 80
+  type: achievement
+- id: MAN-PICK-02B
+  skill: MAN.Pick
+  description: First Pick Bonus
+  points: 100
+  type: bonus
+- id: MAN-PICK-03
+  skill: MAN.Pick
+  description: Picking up a piece of clothing from the basket, one at a time
+  objects:
+  - clothing
+  at:
+  - laundry_basket
+  conditions:
+    clutter: piled
+    knowledge: known_class
+  points: 230
+  type: achievement
+- id: MAN-PICK-04
+  skill: MAN.Pick
+  description: Removing one or more pieces of clothing from the washing machine,
+    without the clothing touching the floor
+  objects:
+  - clothing
+  at:
+  - washing_machine.drum
+  conditions:
+    clutter: piled
+    knowledge: known_class
+  points: 240
+  type: achievement
+- id: MAN-PICK-05
+  skill: MAN.Pick
+  description: Picking up the requested items from the Kitchen-bar
+  objects:
+  - restaurant_orders
+  at:
+  - kitchen_bar
+  conditions:
+    clutter: nearby
+    knowledge: known_instance
+  points: 80
+  type: achievement
+- id: MAN-PICK-06
+  skill: MAN.Pick
+  description: Take the requested object
+  objects:
+  - known_objects
+  at:
+  - placement_locations
+  conditions:
+    clutter: nearby
+    knowledge: known_instance
+  type: achievement
+  points: 80
+- id: MAN-PICK-07
+  skill: MAN.Pick
+  description: Picking up cutlery for transportation
+  objects:
+  - cutlery
+  at:
+  - dinner_table
+  conditions:
+    clutter: nearby
+    knowledge: known_instance
+  points: 150
+  type: achievement
+- id: MAN-PICK-08
+  skill: MAN.Pick
+  description: Picking up a plate for transportation
+  objects:
+  - plate
+  at:
+  - dinner_table
+  conditions:
+    clutter: nearby
+    knowledge: known_instance
+  points: 170
+  type: achievement
+- id: MAN-PICK-09
+  skill: MAN.Pick
+  description: Picking up the dishwasher tab
+  objects:
+  - dishwasher_tab
+  at:
+  - counter
+  conditions:
+    clutter: isolated
+    knowledge: known_instance
+  points: 140
+  type: achievement
+- id: MAN-PICK-10
+  skill: MAN.Pick
+  description: Picking up an object from the floor
+  objects:
+  - trash
+  at:
+  - floor
+  conditions:
+    clutter: isolated
+    knowledge: known_instance
+  points: 90
+  type: achievement
+- id: MAN-PICK-11
+  skill: MAN.Pick
+  description: Picking up a common object from the auxiliary table
+  objects:
+  - common_objects
+  at:
+  - counter
+  conditions:
+    clutter: isolated
+    knowledge: known_instance
+  points: 60
+  type: achievement
+- id: MAN-PLACE-01
+  skill: MAN.Place
+  description: Drop the bag in the correct area
+  objects:
+  - bag
+  at:
+  - floor
+  conditions:
+    placement_tolerance: region
+  points: 60
+  type: achievement
+- id: MAN-PLACE-02
+  skill: MAN.Place
+  description: Place any other object in its designated location
+  objects:
+  - dishwasher_items
+  - cabinet_objects
+  - breakfast
+  at:
+  - dishwasher
+  - cabinet
+  - dinner_table
+  conditions:
+    placement_tolerance: spot
+    clutter: nearby
+  points: 45
+  type: achievement
+- id: MAN-PLACE-02B
+  skill: MAN.Place
+  description: Breakfast laid as a typical meal setting, the area around it clean
+  objects:
+  - breakfast
+  points: 95
+  type: bonus
+- id: MAN-PLACE-03
+  skill: MAN.Place
+  description: Serve the order to the customer
+  objects:
+  - restaurant_orders
+  at:
+  - customer_table
+  conditions:
+    placement_tolerance: region
+    clutter: nearby
+  points: 45
+  type: achievement
+- id: MAN-PLACE-03B
+  skill: MAN.Place
+  description: First Place Bonus
+  points: 100
+  type: bonus
+- id: MAN-PLACE-04
+  skill: MAN.Place
+  description: Place the object on the named placement location, or in the trash
+  objects:
+  - known_objects
+  at:
+  - placement_locations
+  - trash_bins
+  conditions:
+    placement_tolerance: region
+    clutter: nearby
+  type: achievement
+  points: 35
+- id: MAN-PLACE-05
+  skill: MAN.Place
+  description: Place an object correctly in the dishwasher
+  objects:
+  - dishwasher_items
+  at:
+  - dishwasher.rack_bottom
+  - dishwasher.rack_top
+  conditions:
+    placement_tolerance: constrained
+    clutter: nearby
+  points: 70
+  type: achievement
+- id: MAN-PLACE-06
+  skill: MAN.Place
+  description: Place an object in the cabinet, next to similar objects
+  objects:
+  - cabinet_objects
+  at:
+  - cabinet
+  conditions:
+    placement_tolerance: spot
+    clutter: nearby
+  points: 50
+  type: achievement
+- id: MAN-PLACE-07
+  skill: MAN.Place
+  description: Place a common object from the auxiliary table
+  objects:
+  - common_objects
+  at:
+  - cabinet
+  conditions:
+    placement_tolerance: spot
+    clutter: nearby
+  points: 50
+  type: achievement
+- id: MAN-POUR-01
+  skill: MAN.Pour
+  description: Pour cereal or milk into the bowl without assistance
+  objects:
+  - milk
+  - cornflakes
+  conditions:
+    placement_tolerance: spot
+  points: 200
+  type: achievement
+- id: MAN-STACK-01
+  skill: MAN.Stack
+  description: Stacking folded clothes neatly (per item)
+  objects:
+  - clothing
+  conditions:
+    placement_tolerance: constrained
+  points: 100
+  type: achievement
+- id: MAN-TRANSPORT-01
+  skill: MAN.Transport
+  description: Using the basket for transportation
+  objects:
+  - laundry_basket
+  conditions:
+    carrier: unattached
+  points: 240
+  type: achievement
+- id: MAN-TRANSPORT-02
+  skill: MAN.Transport
+  description: Use an unattached tray to transport
+  objects:
+  - tray
+  conditions:
+    carrier: unattached
+  points: 270
+  type: achievement

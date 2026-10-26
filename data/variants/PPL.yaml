@@ -1,95 +1,58 @@
 area: PPL
-skills:
+variants:
 - id: PPL-ATTRIBUTE-01B
-  taxonomy: PPL.DescribeAttribute
-  modifiers:
-  - correct
-  - visual
+  skill: PPL.DescribeAttribute
   description: Tell a visual attribute of the first guest to the second guest (correct)
   conditions:
     info_load: single
     target_motion: static
     retention: task
-  level: C
   points: 20
   type: bonus
-- id: PPL-ATTRIBUTE-02P
-  taxonomy: PPL.DescribeAttribute
-  modifiers:
-  - incorrect
-  - visual
-  description: Tell a visual attribute of the first guest to the second guest (incorrect)
-  failure_mode: wrong_info
-  level: C
-  points: -10
-  type: penalty_behavior
 - id: PPL-ATTRIBUTE-03
-  taxonomy: PPL.DescribeAttribute
-  modifiers:
-  - clothing
-  - identify
+  skill: PPL.DescribeAttribute
   description: Find the person wearing the given colour and garment
   conditions:
     info_load: few
     target_motion: static
     retention: immediate
-  level: '-'
   type: achievement
   points: 20
 - id: PPL-ATTRIBUTE-04
-  taxonomy: PPL.DescribeAttribute
-  modifiers:
-  - name
-  - pose
-  - gesture
-  - report
+  skill: PPL.DescribeAttribute
   description: Report the name, pose or gesture of a person
   conditions:
     info_load: single
     target_motion: static
     retention: task
-  level: '-'
   type: achievement
   points: 20
 - id: PPL-DETECT-01
-  taxonomy: PPL.Detect
-  modifiers:
-  - gesture
-  - pose
-  - name
+  skill: PPL.Detect
   description: Find the person described by gesture, pose or name in a room
   conditions:
     crowd: few
     perception_range: far
-  level: '-'
   type: achievement
   points: 70
 - id: PPL-DETECT-02
-  taxonomy: PPL.Detect
-  modifiers:
-  - count
+  skill: PPL.Detect
   description: Count the people in a room matching a gesture, pose or clothing
   conditions:
     crowd: few
     perception_range: room
-  level: '-'
   type: achievement
   points: 60
 - id: PPL-GESTURE-01
-  taxonomy: PPL.DetectGesture
-  modifiers:
-  - customer
+  skill: PPL.DetectGesture
   description: Detect calling or waving customer
   conditions:
     crowd: crowd
     perception_range: far
-  level: C
   points: 80
   type: achievement
-- id: PPL-REID-01
-  taxonomy: PPL.Reidentify
-  modifiers:
-  - met_earlier
+- id: PPL-REIDENTIFY-01
+  skill: PPL.Reidentify
   description: Find again, in another room, a person met earlier in the command
   conditions:
     crowd: few
@@ -97,6 +60,5 @@ skills:
     retention: task
     target_motion: static
     ambient_noise: background
-  level: '-'
   type: achievement
   points: 80

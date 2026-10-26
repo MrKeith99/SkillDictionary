@@ -1,15 +1,16 @@
 """Loading the data into a Build.
 
 The tree describes one release (data/release.yaml); earlier ones are git tags.
-load() returns a Build: every skill, challenge and the vocabulary, with the
-derived fields (used_by, total_score, GPSR command counts) filled in and every
-line rated. Everything else (checks, sheets, pages) works on a Build.
+load() returns a Build: the skills (what each capability is), their variants
+(the priced instances the sheets score), the challenges and the vocabulary,
+with the derived fields (used_by, total_score, GPSR command counts, penalty
+variants) filled in and every variant rated. Everything else (checks, sheets, pages) works on a Build.
 """
 import glob, math, os, re
 from . import paths
 
 SCHEMA_VERSION = "0.4.0"
-VOCAB_FILES = ["taxonomy", "difficulty_factors"]
+VOCAB_FILES = ["difficulty_factors"]
 REWARD = ("achievement", "bonus")
 
 
@@ -46,12 +47,11 @@ def id_sort_key(eid):
 
 
 class Build:
-    def __init__(self, release, skills, challenges, vocab, global_rules=None):
+    def __init__(self, release, variants, challenges, vocab):
         self.release = release
-        self.skills = skills              # id -> entry, as authored (no derived fields)
+        self.variants = variants          # id -> variant, as authored plus derived fields
         self.challenges = challenges      # slug -> challenge
         self.vocab = vocab
-        self.global_rules = global_rules
         self.rulebook_version = release.rulebook.get("version")
         self.ratings = {}                 # id -> rating, see ratings.py
         self.rater = None
@@ -61,38 +61,41 @@ class Build:
 
     # ── prices ──────────────────────────────────────────────────────────────
     def points(self, ref, slug):
-        """A line's price in a challenge; a points_formula is evaluated there."""
-        e = self.skills[ref]
+        """A variant's price in a challenge; a points_formula is evaluated there."""
+        e = self.variants[ref]
         if e.get("points_formula"):
             return int(eval(e["points_formula"], {"floor": math.floor, "round": round},
                             {"total_score": self.total(slug)}))
         return e.get("points")
 
     def total(self, slug):
-        """Maximum score: every reward line at its count, unless the challenge
-        sets max_score because not all lines are reachable in one run."""
+        """Maximum score: every reward variant at its count, unless the challenge
+        sets max_score because not all variants are reachable in one run."""
         ch = self.challenges[slug]
         if ch.get("max_score"):
             return ch["max_score"]
-        return sum(self.skills[it["ref"]]["points"] * it.get("count", 1) for it in ch["entries"]
-                   if self.skills[it["ref"]]["type"] in REWARD
-                   and self.skills[it["ref"]].get("points") is not None)
+        return sum(self.variants[it["ref"]]["points"] * it.get("count", 1) for it in ch["entries"]
+                   if self.variants[it["ref"]]["type"] in REWARD
+                   and self.variants[it["ref"]].get("points") is not None)
 
     def used_by(self):
         used = {}
         for slug, ch in self.challenges.items():
             for it in ch["entries"]:
                 used.setdefault(it["ref"], set()).add(slug)
-        return {i: sorted(used.get(i, ())) for i in self.skills}
+        return {i: sorted(used.get(i, ())) for i in self.variants}
 
     # ── output ──────────────────────────────────────────────────────────────
     def meta(self):
         return {"schema_version": SCHEMA_VERSION, "year": self.release.year,
                 "status": self.release.status, "rulebook_version": self.rulebook_version}
 
-    def dictionary(self):
+    def variants_doc(self):
         used = self.used_by()
-        return {**self.meta(), "skills": [{**e, "used_by": used[i]} for i, e in self.skills.items()]}
+        return {**self.meta(), "variants": [{**e, "used_by": used[i]} for i, e in self.variants.items()]}
+
+    def skills_doc(self):
+        return {**self.meta(), "skills": self.vocab["skills"], "failure_modes": self.vocab["failure_modes"]}
 
     def challenges_doc(self):
         return {**self.meta(), "challenges": {
@@ -100,50 +103,52 @@ class Build:
 
     def write_dist(self):
         out = paths.DIST
-        paths.write_json(self.dictionary(), os.path.join(out, "dictionary.json"))
+        paths.write_json(self.skills_doc(), os.path.join(out, "skills.json"))
+        paths.write_json(self.variants_doc(), os.path.join(out, "variants.json"))
         paths.write_json(self.challenges_doc(), os.path.join(out, "challenges.json"))
-        paths.write_json({**self.meta(), **self.vocab}, os.path.join(out, "vocabulary.json"))
-        paths.write_json(self.ratings, os.path.join(out, "skill_ratings.json"), indent=1)
-        if self.global_rules is not None:
-            paths.write_json(self.global_rules, os.path.join(out, "global_rules.json"))
+        paths.write_json({**self.meta(), **{k: v for k, v in self.vocab.items()
+                                            if k not in ("skills", "failure_modes")}},
+                         os.path.join(out, "vocabulary.json"))
+        paths.write_json(self.ratings, os.path.join(out, "variant_ratings.json"), indent=1)
         for name, obj in self.extra.items():
             paths.write_json(obj, os.path.join(out, name))
         return out
 
 
 # ── loading ──────────────────────────────────────────────────────────────────
-DERIVED = ("area", "skill", "variant_number", "used_by")
+DERIVED = ("area", "variant_number", "used_by", "penalty_of", "share")
 ID = re.compile(r"^(?P<area>[A-Z]+)(?:-(?P<code>[A-Z]+))?-(?P<variant>\d{2,}(?:[BP]\d*)?)$")
 
 
-def _skills(nodes):
-    """Lines from data/skills/<AREA>.yaml. The id is <AREA>-<code>-<NN>[B|P<n>]
-    with the code of its taxonomy node; area, skill and variant_number are
-    derived from it, never authored."""
-    skills = {}
-    for fn in sorted(glob.glob(os.path.join(paths.SKILLS, "*.yaml"))):
+def _variants(skills):
+    """Variants from data/variants/<AREA>.yaml. The id is <AREA>-<code>-<NN>[B|P<n>]
+    with the code of its skill; area and variant_number are derived from it,
+    never authored. Penalty variants (<variant>-<FAILURE>) are written by
+    penalties.py."""
+    variants = {}
+    for fn in sorted(glob.glob(os.path.join(paths.VARIANTS, "*.yaml"))):
         area = os.path.splitext(os.path.basename(fn))[0]
         doc = paths.load_yaml(fn)
         if doc.get("area") != area:
             raise DataError(f"{paths.rel(fn)}: area {doc.get('area')}, expected {area}")
-        for e in doc["skills"]:
+        for e in doc["variants"]:
             where = f"{paths.rel(fn)}: {e['id']}"
             for k in DERIVED:
                 if k in e:
                     raise DataError(f"{where}: {k} is derived from the id, do not author it")
-            if e["id"] in skills:
+            if e["id"] in variants:
                 raise DataError(f"{paths.rel(fn)}: duplicate id {e['id']}")
             m = ID.match(e["id"])
-            node = nodes.get(e.get("taxonomy"))
+            skill = skills.get(e.get("skill"))
             if not m or m["area"] != area:
                 raise DataError(f"{where}: id must be {area}-<code>-<NN>[B|P<n>]")
-            if node is None:
-                raise DataError(f"{where}: unknown taxonomy node {e.get('taxonomy')}")
-            if (m["code"] or "") != node.get("code", None):
-                raise DataError(f"{where}: id code must be {node.get('code')!r}, the code of {e['taxonomy']}")
-            skills[e["id"]] = {"id": e["id"], "area": area, "skill": e["taxonomy"].split(".")[-1],
-                               "variant_number": m["variant"], **{k: v for k, v in e.items() if k != "id"}}
-    return dict(sorted(skills.items(), key=lambda kv: (kv[1]["area"], id_sort_key(kv[0]))))
+            if skill is None:
+                raise DataError(f"{where}: unknown skill {e.get('skill')}")
+            if (m["code"] or "") != skill["code"]:
+                raise DataError(f"{where}: id code must be {skill['code']!r}, the code of {e['skill']}")
+            variants[e["id"]] = {"id": e["id"], "area": area, "variant_number": m["variant"],
+                                 **{k: v for k, v in e.items() if k != "id"}}
+    return dict(sorted(variants.items(), key=lambda kv: (kv[1]["area"], id_sort_key(kv[0]))))
 
 
 def _challenges():
@@ -157,11 +162,33 @@ def _challenges():
     return out
 
 
+def skill_words(sid):
+    return re.findall(r"[A-Z][a-z]*", sid.split(".")[-1])
+
+
+def skill_code(sid):
+    """MAN.OperateFixture -> FIXTURE: the code in the ids of the skill's variants."""
+    return "" if sid.startswith("SPECIAL.") else skill_words(sid)[-1].upper()
+
+
+def skill_name(sid):
+    """MAN.OpenContainer -> "Open container"."""
+    return " ".join(skill_words(sid)).capitalize()
+
+
 def _vocab():
     vocab = {n: paths.load_yaml(os.path.join(paths.VOCAB, f"{n}.yaml")) for n in VOCAB_FILES}
+    doc = paths.load_yaml(paths.SKILLS)
+    vocab["skills"], vocab["failure_modes"] = doc["skills"], doc["failure_modes"]
+    for nid, n in vocab["skills"].items():
+        for k in ("name", "code"):
+            if k in n:
+                raise DataError(f"skill {nid}: {k} is derived from the skill id, do not author it")
+        n["name"], n["code"] = skill_name(nid), skill_code(nid)
     od = os.path.join(paths.VOCAB, "objects")
     vocab["objects"] = {
-        "catalog": paths.load_yaml(os.path.join(od, "catalog.yaml"))["objects"],
+        "catalog": (cat := paths.load_yaml(os.path.join(od, "catalog.yaml")))["objects"],
+        "catalog_values": cat.get("values"),
         "furniture": paths.load_yaml(os.path.join(od, "furniture.yaml")),
         "set": paths.load_yaml(os.path.join(od, "set.yaml")),
     }
@@ -171,11 +198,10 @@ def _vocab():
 def load():
     """The Build of the tree, rated. Data errors found while rating are in
     build.errors; structural errors (duplicate ids, ...) raise DataError."""
-    from . import ratings, commands
-    gr = os.path.join(paths.VOCAB, "global_rules.yaml")
+    from . import ratings, commands, penalties
     vocab = _vocab()
-    b = Build(Release(), _skills(vocab["taxonomy"]["nodes"]), _challenges(), vocab,
-              paths.load_yaml(gr) if os.path.exists(gr) else None)
+    b = Build(Release(), _variants(vocab["skills"]), _challenges(), vocab)
     commands.apply(b)
+    penalties.expand(b)
     ratings.rate(b)
     return b

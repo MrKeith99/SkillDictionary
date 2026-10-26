@@ -22,23 +22,14 @@
 #     `within` ranges (the first level whose ranges hold the value; a level
 #     without ranges takes the rest). The others are judged once per object or
 #     place.
-#   * A factor only counts for a skill if the skill's taxonomy node lists it.
+#   * A factor only counts for a skill if the skill lists it.
 #     Mass matters to Pick; it does not matter to Recognize.
 #
 # Intrinsic difficulty D = sum of weights of the applicable factors.
-# It is a property of the SPECIFICATION. It is not `level`, which is the
-# empirical, annually reassigned rating of how the field actually performed.
-# Comparing the two is useful: a line with low D but level X means teams find it
-# hard for reasons the factors do not capture yet.
+# It is a property of the SPECIFICATION, and the only difficulty rating: the
+# price follows it (docs/skill-model.md, Toward a fair price).
 
 version: 1
-
-tiers:
-  # Provisional cut points for an intrinsic tier, so D can be read at a glance.
-  # Same letters as `level` to make the comparison easy; different meaning.
-  E: {max: 2}
-  C: {max: 5}
-  X: {max: null}
 
 factors:
 
@@ -74,7 +65,7 @@ factors:
     question: Does the object keep its shape when held?
     levels:
       rigid:      {weight: 0, guide: "cups, boxes, cutlery"}
-      compliant:  {weight: 1, guide: "bags, pouches, fragile items that must not be squeezed"}
+      compliant:  {weight: 1, guide: "gives a little under the grip but keeps its shape — carton, snack bag, sponge, soft fruit; must be held without crushing"}
       deformable: {weight: 2, guide: "clothing, towels — shape changes with every grasp"}
 
   shape:
@@ -85,6 +76,14 @@ factors:
       irregular:  {weight: 1, guide: "concave or asymmetric — bowl, mug by the body"}
       flat_lying: {weight: 2, guide: "lies flush on its support — plate, flat cloth"}
 
+  stability:
+    source: object
+    question: (placing) Does it stay where it is set down?
+    levels:
+      stable:   {weight: 0, guide: "flat or wide base — plate, mug, box, can no taller than twice its width, cloth"}
+      unsteady: {weight: 1, guide: "tips or rocks — taller than twice its width (bottle, slim can), or a curved base (bell pepper)"}
+      rolls:    {weight: 2, guide: "round, rolls away unless placed in a hollow or against an edge — apple, lemon, peach"}
+
   contents:
     source: object
     question: Does the object contain something that constrains its motion?
@@ -92,25 +91,58 @@ factors:
       none:    {weight: 0, guide: "solid object or closed container"}
       upright: {weight: 1, guide: "open container with liquid/granular content, must stay level"}
 
+  garment:
+    source: object
+    question: (clothing) How is the garment built?
+    levels:
+      flat:    {weight: 0, guide: "one flat piece — cleaning cloth, towel, napkin"}
+      tubular: {weight: 1, guide: "a tube, often in pairs — socks"}
+      limbed:  {weight: 2, guide: "sleeves or legs to fold in — T-shirt, shirt, trousers"}
+
+  spread:
+    source: object
+    question: (clothing) How big is it laid out flat, along its longest side?
+    levels:
+      small:  {weight: 0, guide: "< 40 cm — cleaning cloth, socks"}
+      medium: {weight: 1, guide: "40–80 cm — hand towel, T-shirt"}
+      large:  {weight: 2, guide: "> 80 cm — trousers, bath towel; needs re-grasping across the table"}
+
   counterpart:
     source: object
-    question: What holds the part's other side while the robot operates it?
+    question: (containers) What holds the container while the robot opens it?
     levels:
-      fixed:  {weight: 0, guide: "built into furniture or an appliance — door, drawer, rack"}
+      fixed:  {weight: 0, guide: "fixed in place — container clamped or built in"}
       loose:  {weight: 1, guide: "a free-standing object resting on a surface, may slide or tip — jar on a table"}
       held:   {weight: 2, guide: "the robot must hold or steady it while operating the part — soft carton, bottle in hand"}
 
-  mechanism:
+
+  handle:
     source: object
-    question: (articulated objects / controls) What kind of motion does it need?
+    question: (fixture parts) What does the robot take hold of to move it?
     levels:
-      push:    {weight: 0, guide: "button, push-to-close door"}
-      guided:  {weight: 1, guide: "hinge or slide — door, drawer, rack"}
-      latched: {weight: 2, guide: "needs a handle/latch/thread released first — handle door, screw cap"}
+      bar:      {weight: 0, guide: "a protruding bar, rail or edge to pull or push — fridge handle, rack wire"}
+      release:  {weight: 1, guide: "a lever or knob to turn, or a latch to release, before it moves — door lever, porthole handle"}
+      recessed: {weight: 2, guide: "nothing protrudes: finger slot, flush grip, magnetic edge"}
+
+  return_force:
+    source: object
+    question: (fixture parts) Does it stay where it is let go?
+    levels:
+      stays:        {weight: 0, guide: "stays in any position — rack, counterweighted door"}
+      drifts:       {weight: 1, guide: "drifts back near the closed position — fridge door seal"}
+      self_closing: {weight: 2, guide: "swings shut unless held or blocked — door closer, spring hinge"}
+
+  opening:
+    source: object
+    question: (containers) How does the closure come off?
+    levels:
+      lift:  {weight: 0, guide: "lifts or flips off — loose lid, flip-top"}
+      twist: {weight: 1, guide: "torsion — screw cap, jar lid"}
+      pry:   {weight: 2, guide: "press and lever an edge — ring-pull tab, crown cap"}
 
   actuation_force:
     source: object
-    question: (articulated objects) How much force does it take?
+    question: (fixture parts, containers) How much force or torque does it take?
     levels:
       low:    {weight: 0, guide: "< 10 N"}
       medium: {weight: 1, guide: "10–30 N"}

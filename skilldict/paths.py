@@ -4,7 +4,8 @@ import yaml
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
-SKILLS = os.path.join(DATA, "skills")
+SKILLS = os.path.join(DATA, "skills.yaml")         # what each skill is
+VARIANTS = os.path.join(DATA, "variants")          # its priced variants
 VOCAB = os.path.join(DATA, "vocabulary")
 CHALLENGES = os.path.join(DATA, "challenges")
 SCHEMA = os.path.join(ROOT, "schema")

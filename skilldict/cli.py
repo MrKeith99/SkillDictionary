@@ -2,7 +2,7 @@
 
   check      build, run all checks, write dist/  (the CI gate)
   findings   the TC findings report
-  sheets     score sheets, HTML + rulebook LaTeX -> build/sheets/   (-c SLUG for one)
+  sheets     score sheets in the rulebook's LaTeX -> build/sheets/   (-c SLUG for one)
   pdf        rulebook sheet next to generated, per challenge -> build/*.pdf
 
 The tree describes one release (data/release.yaml); earlier ones are git tags.
@@ -29,7 +29,7 @@ def _load():
 def cmd_check(a):
     b = _load()
     print(RULE)
-    print(f"RELEASE {b.release} — {len(b.skills)} lines, {len(b.challenges)} challenges "
+    print(f"RELEASE {b.release} — {len(b.variants)} variants, {len(b.challenges)} challenges "
           f"({', '.join(b.challenges)})")
     fail = integrity.run(b)
     if not fail:
@@ -57,8 +57,7 @@ def cmd_sheets(a):
     for slug in a.challenge or b.challenges:
         if slug not in b.challenges:
             sys.exit(f"no challenge {slug}; have {', '.join(b.challenges)}")
-        for p in (r_sheets.html(b, slug), r_sheets.tex(b, slug)):
-            print(f"wrote {paths.rel(p)}")
+        print(f"wrote {paths.rel(r_sheets.tex(b, slug))}")
     return 0
 
 
@@ -75,7 +74,7 @@ def main(argv=None):
     c.add_argument("-q", "--quiet", action="store_true", help="skip the findings report")
     c.set_defaults(fn=cmd_check)
     sub.add_parser("findings", help="TC findings report").set_defaults(fn=cmd_findings)
-    c = sub.add_parser("sheets", help="score sheets (HTML + LaTeX)")
+    c = sub.add_parser("sheets", help="score sheets in the rulebook's LaTeX")
     c.add_argument("-c", "--challenge", action="append", help="only this challenge (repeatable)")
     c.set_defaults(fn=cmd_sheets)
     sub.add_parser("pdf", help="rulebook vs generated sheets, one PDF").set_defaults(fn=cmd_pdf)

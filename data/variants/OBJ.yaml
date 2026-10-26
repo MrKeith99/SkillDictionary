@@ -1,48 +1,34 @@
 area: OBJ
-skills:
+variants:
 - id: OBJ-EVENT-01
-  taxonomy: OBJ.DetectEvent
-  modifiers:
-  - audio
-  - doorbell
+  skill: OBJ.DetectEvent
   description: Detect the doorbell sound as a signal that a guest has arrived
   conditions:
     knowledge: known_class
     ambient_noise: background
-  level: E
   points: 30
   type: achievement
 - id: OBJ-PLACEMENT-01
-  taxonomy: OBJ.DetectPlacement
-  modifiers:
-  - placement
-  - shelf
+  skill: OBJ.DetectPlacement
   description: Perceive objects on a shelf and indicate the correct placement
   conditions:
     knowledge: known_class
     clutter: nearby
     distractors: similar
-  level: C
   points: 30
   type: achievement
 - id: OBJ-RECOGNIZE-01
-  taxonomy: OBJ.Recognize
-  modifiers:
-  - known_object
+  skill: OBJ.Recognize
   description: Correctly recognize an object
   conditions:
     knowledge: known_instance
     clutter: nearby
     distractors: few
     perception_range: near
-  level: E
   points: 10
   type: achievement
 - id: OBJ-RECOGNIZE-02
-  taxonomy: OBJ.Recognize
-  modifiers:
-  - search
-  - room
+  skill: OBJ.Recognize
   description: Find the requested object in a room or on a placement location
   objects:
   - known_objects
@@ -51,14 +37,10 @@ skills:
     clutter: nearby
     distractors: few
     perception_range: far
-  level: '-'
   type: achievement
   points: 15
 - id: OBJ-RECOGNIZE-03
-  taxonomy: OBJ.Recognize
-  modifiers:
-  - count
-  - compare
+  skill: OBJ.Recognize
   description: Count the objects of a category, or name the biggest/lightest/... one, on a placement location
   objects:
   - known_objects
@@ -67,6 +49,5 @@ skills:
     clutter: nearby
     distractors: similar
     perception_range: near
-  level: '-'
   type: achievement
   points: 15

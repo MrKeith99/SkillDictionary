@@ -1,0 +1,28 @@
+area: NLU
+variants:
+- id: NLU-CLARIFY-01B
+  skill: NLU.Clarify
+  description: Not asking non-essential questions to confirm or correct information
+  conditions:
+    input_variability: open
+    ambient_noise: background
+  points: 15
+  type: bonus
+- id: NLU-COMMAND-01
+  skill: NLU.UnderstandCommand
+  description: Understand the spoken command
+  conditions:
+    input_variability: paraphrase
+    ambient_noise: background
+    info_load: few
+  points: 100
+  type: achievement
+- id: NLU-COMMAND-02
+  skill: NLU.UnderstandCommand
+  description: Understand and confirm the order received to the customer
+  conditions:
+    input_variability: open
+    ambient_noise: loud
+    info_load: few
+  points: 130
+  type: achievement

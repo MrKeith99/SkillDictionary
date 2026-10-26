@@ -1,13 +1,13 @@
 """Challenges whose task is drawn at test time (GPSR): score by the steps.
 
 A challenge with `command_steps` maps every generator template and follow-up
-to the skill lines it exercises. From that the build
+to the skill variants it exercises. From that the build
 
-  - fills in the count of every line without one: the most any
+  - fills in the count of every variant without one: the most any
     COMMANDS_PER_TEST commands can use it,
   - values every command the generator can produce, at its weights
     (dist/<slug>_commands.json),
-  - sets the sheet maximum: the fixed lines plus the best commands.
+  - sets the sheet maximum: the fixed variants plus the best commands.
 """
 from collections import Counter
 from .model import DataError
@@ -33,8 +33,8 @@ def apply(b):
         for seqs in chains.values():
             for seq in seqs:
                 for step in seq:
-                    if step not in b.skills:
-                        raise DataError(f"{slug}: command step {step} is not a line")
+                    if step not in b.variants:
+                        raise DataError(f"{slug}: command step {step} is not a variant")
         most = Counter()
         for seqs in chains.values():
             for seq in seqs:
@@ -51,7 +51,7 @@ def _value(b, slug, ch, cs, chains):
         tot = sum(w.values())
         for t, x in w.items():
             prob[t] += x / tot / len(cs["weights"])      # one list is drawn, uniformly
-    price = lambda i: b.skills[i].get("points") or 0
+    price = lambda i: b.variants[i].get("points") or 0
     value = {}
     for t, seqs in chains.items():
         vals = [sum(price(s) for s in seq) for seq in seqs]
@@ -63,7 +63,7 @@ def _value(b, slug, ch, cs, chains):
     steps = {s for seqs in chains.values() for seq in seqs for s in seq} | {cs.get("completion_bonus")}
     fixed = sum(price(it["ref"]) * it["count"] for it in ch["entries"]
                 if it["ref"] not in steps and price(it["ref"]) > 0
-                and b.skills[it["ref"]]["type"] != "administrative")
+                and b.variants[it["ref"]]["type"] != "administrative")
     ch["max_score"] = fixed + COMMANDS_PER_TEST * best
     rep = [f"COMMANDS — {ch['challenge']}",
            f"  average command (generator weights): {mean_cmd:.0f} in skills + {bonus} "
@@ -72,7 +72,7 @@ def _value(b, slug, ch, cs, chains):
     for t, v in sorted(value.items(), key=lambda x: -x[1]["mean"]):
         rng = f"{v['min']}" if v["min"] == v["max"] else f"{v['min']}-{v['max']}"
         rep.append(f"    {t:28s} {v['p']:5.1%}  {rng:>9s}  mean {v['mean']:.0f}")
-    rep.append(f"  sheet maximum: {ch['max_score']} (fixed lines + {COMMANDS_PER_TEST} x best command)")
+    rep.append(f"  sheet maximum: {ch['max_score']} (fixed variants + {COMMANDS_PER_TEST} x best command)")
     b.reports += rep
     b.extra[f"{slug}_commands.json"] = {
         "mean_command": round(mean_cmd, 1), "completion_bonus": bonus, "max_score": ch["max_score"],

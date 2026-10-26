@@ -10,9 +10,7 @@
     "rulebook_section": {"type": "string"},
     "max_time_minutes": {"type": "integer"},
     "total_score": {"type": "integer", "description": "Derived by the build (dist/ only): max_score, or the sum of the reward lines."},
-    "max_score": {"type": "integer", "description": "Set when not every line is reachable in one run (e.g. GPSR commands)."},
-    "method_note": {"type": "string"},
-    "challenge_rules": {"type": "object"},
+    "max_score": {"type": "integer", "description": "Set when not every variant is reachable in one run (e.g. GPSR commands)."},
     "entries": {
       "type": "array",
       "items": {
@@ -20,36 +18,17 @@
         "required": ["ref"],
         "additionalProperties": false,
         "properties": {
-          "ref": {"type": "string", "pattern": "^[A-Z]+(-[A-Z]+)?-[0-9]{2,}[A-Z]?[0-9]*$"},
+          "ref": {"type": "string", "pattern": "^[A-Z]+(-[A-Z]+)?-[0-9]{2,}[A-Z]?[0-9]*(-[A-Z]+[0-9]*)?$"},
           "count": {"type": "integer", "minimum": 1},
           "section": {"type": "string"},
-          "related_skill": {"type": "string"},
+          "related_variant": {"type": "string"},
           "note": {"type": "string"},
-          "ambiguity": {"type": "string"},
-          "depends_on": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "required": ["ref"],
-              "properties": {
-                "ref": {"type": "string"},
-                "nature": {"enum": ["informational", "physical", "sequential"]},
-                "blocking": {"type": "boolean"},
-                "satisfiable_by_assistance": {"type": "boolean"},
-                "note": {"type": "string"},
-                "unresolved": {"type": "boolean"}
-              }
-            }
-          },
           "assistance": {
             "type": "object",
             "properties": {
               "permitted": {"type": "boolean"},
-              "listed_in_task_description": {"type": "boolean"},
-              "self_score": {"type": "integer"},
               "extra_penalty_ref": {"type": ["string", "null"]},
               "extra_penalty": {"type": "integer"},
-              "blocks_dependents": {"type": "boolean", "default": false},
               "note": {"type": "string"}
             }
           }

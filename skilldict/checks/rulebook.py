@@ -89,7 +89,7 @@ def run(b):
         sheet = parse(path)
         ours = []
         for it in b.challenges[slug]["entries"]:
-            e = b.skills[it["ref"]]
+            e = b.variants[it["ref"]]
             if e["type"] == "administrative" or e.get("points") is None:
                 continue          # §3.8 lines are not scorelist items; unpriced lines are judged
             ours.append({"points": e["points"], "count": it.get("count", 1),
@@ -114,6 +114,6 @@ def run(b):
             ex = next(x["desc"] for x in ours if (x["points"], x["count"]) == (p, c))
             print(f"      {'+' if draft else ''}{new} x{n}: {c}x{p:>5}  {ex[:46]}")
     if draft:
-        print(f"  -> {fail} differences: the proposal (docs/changes-{b.release.year}.md). Not a failure while draft.")
+        print(f"  -> {fail} differences: the proposal. Not a failure while draft.")
         return 0
     return fail

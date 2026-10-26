@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RoboCup@Home Scoring</title>
+<style>
+/* One page: an overview across challenges, then one referee sheet per
+   challenge. Colors are roles; dark mode is its own set of steps. */
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --sunk: #f0efec;
+  --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --grid: #e1e0d9; --axis: #c3c2b7; --ring: rgba(11,11,11,.10);
+  --accent: #2a78d6; --pos: #006300; --neg: #d03b3b;
+  --a-NAV: #2a78d6; --a-MAN: #eb6834; --a-OBJ: #1baf7a; --a-PPL: #eda100;
+  --a-HRI: #e87ba4; --a-NLU: #008300; --a-PLN: #6250d6;
+  --s1: #cde2fb; --s2: #9ec5f4; --s3: #6da7ec; --s4: #3987e5; --s5: #256abf; --s6: #184f95;
+  --s-ink-lo: #0b0b0b; --s-ink-hi: #ffffff;
+  --font: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --sunk: #232321;
+    --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781;
+    --grid: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,.10);
+    --accent: #3987e5; --pos: #0ca30c; --neg: #e66767;
+    --a-NAV: #3987e5; --a-MAN: #d95926; --a-OBJ: #199e70; --a-PPL: #c98500;
+    --a-HRI: #d55181; --a-NLU: #008300; --a-PLN: #9085e9;
+    --s1: #0d366b; --s2: #104281; --s3: #184f95; --s4: #1c5cab; --s5: #256abf; --s6: #3987e5;
+    --s-ink-lo: #f0efec; --s-ink-hi: #ffffff;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --sunk: #232321;
+  --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781;
+  --grid: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,.10);
+  --accent: #3987e5; --pos: #0ca30c; --neg: #e66767;
+  --a-NAV: #3987e5; --a-MAN: #d95926; --a-OBJ: #199e70; --a-PPL: #c98500;
+  --a-HRI: #d55181; --a-NLU: #008300; --a-PLN: #9085e9;
+  --s1: #0d366b; --s2: #104281; --s3: #184f95; --s4: #1c5cab; --s5: #256abf; --s6: #3987e5;
+  --s-ink-lo: #f0efec; --s-ink-hi: #ffffff;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--ink); font: 15px/1.45 var(--font); }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 24px 16px 64px; }
+h1 { font-size: clamp(26px, 5vw, 36px); line-height: 1.1; margin: 4px 0 0; letter-spacing: -.01em; }
+h2 { font-size: 19px; margin: 0 0 4px; }
+h3 { font-size: 15px; margin: 0; }
+p { margin: 0; }
+.eyebrow { font-size: 12.5px; color: var(--ink-2); letter-spacing: .03em; }
+.sub { color: var(--ink-2); font-size: 14px; max-width: 72ch; }
+.mono { font-family: var(--mono); font-size: 12.5px; }
+.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+button { font: inherit; color: inherit; }
+a { color: var(--accent); }
+
+/* header + tabs */
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 18px 0; }
+.tile { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px; padding: 12px 14px; }
+.tile b { display: block; font-size: 26px; line-height: 1.1; }
+.tile span { font-size: 13px; color: var(--ink-2); }
+.tabs { display: flex; gap: 4px; overflow-x: auto; border-bottom: 1px solid var(--axis); margin-bottom: 20px;
+        position: sticky; top: 0; background: var(--page); z-index: 2; }
+.tab { border: 0; background: none; padding: 10px 12px; cursor: pointer; white-space: nowrap; color: var(--ink-2);
+       border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
+.tab:focus-visible, .btn:focus-visible, input:focus-visible, a:focus-visible, [data-v]:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px; }
+[role="tabpanel"] { scroll-margin-top: 56px; }
+[role="tabpanel"][hidden] { display: none; }
+
+.card { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+.card > .sub { margin-bottom: 12px; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { padding: 7px 10px; border-top: 1px solid var(--grid); text-align: left; vertical-align: top; }
+thead th { border-top: 0; font-size: 12px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; vertical-align: bottom; }
+details { margin-top: 12px; font-size: 13.5px; }
+summary { cursor: pointer; color: var(--ink-2); }
+.sk { font-family: var(--mono); font-size: 12.5px; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+
+/* area share bars */
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink-2); margin-bottom: 12px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.bars { display: grid; grid-template-columns: minmax(110px, 200px) 1fr; gap: 10px 12px; align-items: center; }
+.bar { display: flex; gap: 2px; height: 22px; }
+.seg { height: 100%; min-width: 3px; position: relative; cursor: default; }
+.seg:first-child { border-radius: 4px 0 0 4px; } .seg:last-child { border-radius: 0 4px 4px 0; }
+.seg:only-child { border-radius: 4px; }
+.seg:hover, .seg:focus { filter: brightness(1.15); outline: none; }
+.seg span { position: absolute; inset: 0; display: grid; place-items: center; font-size: 11.5px; color: #fff; pointer-events: none; }
+.seg[data-a="PPL"] span { color: #0b0b0b; }
+#tip { position: fixed; pointer-events: none; z-index: 9; background: var(--surface); color: var(--ink); border: 1px solid var(--ring);
+       border-radius: 6px; padding: 6px 9px; font-size: 13px; box-shadow: 0 4px 14px rgba(0,0,0,.14); display: none; max-width: 280px; }
+#tip b { display: block; font-size: 15px; }
+#tip span { color: var(--ink-2); }
+
+/* skills x challenges */
+.heat td.c { text-align: center; font-variant-numeric: tabular-nums; min-width: 70px; border-left: 2px solid var(--surface); }
+.heat td.v1 { background: var(--s1); color: var(--s-ink-lo); } .heat td.v2 { background: var(--s2); color: var(--s-ink-lo); }
+.heat td.v3 { background: var(--s3); color: var(--s-ink-lo); } .heat td.v4 { background: var(--s4); color: var(--s-ink-hi); }
+.heat td.v5 { background: var(--s5); color: var(--s-ink-hi); } .heat td.v6 { background: var(--s6); color: var(--s-ink-hi); }
+.heat td.c:empty::after { content: "·"; color: var(--muted); }
+.heat tr.grp th { font-size: 12px; color: var(--ink-2); padding-top: 14px; text-transform: none; letter-spacing: 0; }
+
+/* price rule */
+.chips { display: flex; flex-wrap: wrap; gap: 4px 6px; }
+.chip { font-size: 12.5px; border: 1px solid var(--grid); border-radius: 4px; padding: 1px 6px; white-space: nowrap; background: var(--page); }
+
+/* score sheet */
+.sheethead { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: flex-end; margin-bottom: 14px; }
+.actions { display: flex; gap: 8px; }
+.btn { border: 1px solid var(--axis); background: var(--surface); border-radius: 6px; padding: 6px 12px; cursor: pointer; font-size: 13.5px; }
+.fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px 16px; margin-bottom: 16px; }
+.fields label { display: grid; gap: 2px; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.fields input { font: 15px var(--font); color: var(--ink); background: transparent; border: 0; border-bottom: 1px solid var(--axis); padding: 4px 0; min-width: 0; }
+.sec { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+.sec h3 { display: flex; justify-content: space-between; padding: 9px 14px; background: var(--sunk); font-size: 14px; }
+.sec h3 output { font-family: var(--mono); }
+.row { display: grid; grid-template-columns: minmax(80px, 200px) minmax(0, 1fr) auto 60px; gap: 4px 14px;
+       align-items: start; padding: 9px 14px; border-top: 1px solid var(--grid); }
+.sec h3 + .row { border-top: 0; }
+.row.child { padding-left: 34px; }
+.row.child .desc::before { content: "+ "; color: var(--pos); }
+.row.pen .desc::before { content: "− "; color: var(--neg); }
+.boxes { display: flex; flex-wrap: wrap; gap: 4px; padding-top: 2px; }
+.boxes input[type=checkbox] { appearance: none; width: 17px; height: 17px; margin: 0; border: 1.5px solid var(--ink-2);
+  border-radius: 3px; background: var(--surface); cursor: pointer; }
+.boxes input[type=checkbox]:checked { background: var(--ink); border-color: var(--ink); box-shadow: inset 0 0 0 2px var(--surface); }
+.row.pen .boxes input[type=checkbox]:checked { background: var(--neg); border-color: var(--neg); }
+.boxes input[type=number] { width: 76px; font: 14px var(--mono); color: var(--ink); background: var(--surface);
+  border: 1.5px solid var(--ink-2); border-radius: 3px; padding: 2px 6px; }
+.desc { font-weight: 600; }
+.row.child .desc, .row.pen .desc { font-weight: 500; }
+.meta { display: flex; flex-wrap: wrap; gap: 3px 10px; margin-top: 3px; font-size: 12.5px; color: var(--ink-2); }
+.meta .d { font-family: var(--mono); border: 1px solid var(--axis); border-radius: 3px; padding: 0 4px; }
+.meta .nohelp { color: var(--muted); }
+.note { margin-top: 5px; font-size: 13px; color: var(--ink-2); border-left: 2px solid var(--axis); padding-left: 8px; max-width: 70ch; }
+.price { font-family: var(--mono); font-size: 14px; text-align: right; white-space: nowrap; }
+.price small { color: var(--muted); }
+.row.pen .price, .row.pen .got { color: var(--neg); }
+.got { font-family: var(--mono); font-size: 15px; text-align: right; font-variant-numeric: tabular-nums; }
+.total { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px;
+         background: var(--surface); border: 2px solid var(--ink); border-radius: 8px; padding: 12px 16px; margin: 16px 0; }
+.total output { font-size: 36px; font-weight: 700; }
+.meter { height: 8px; background: var(--sunk); border-radius: 4px; overflow: hidden; min-width: 80px; margin-top: 6px; }
+.meter span { display: block; height: 100%; width: var(--w, 0%); background: var(--accent); border-radius: 0 4px 4px 0; }
+
+@media (max-width: 640px) {
+  .row { grid-template-columns: minmax(0, 1fr) auto 52px; }
+  .row .boxes { grid-column: 1 / -1; order: 2; }
+  .bars { grid-template-columns: 1fr; }
+  .bars .lab { grid-column: 1 / -1; margin-bottom: -6px; }
+}
+@media print {
+  body { background: #fff; color: #000; }
+  .tabs, .tiles, .actions, header, #overview, #tip { display: none !important; }
+  .sec, .card, .total { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow" id="eyebrow"></p>
+    <h1>RoboCup@Home scoring</h1>
+    <p class="sub" style="margin-top:6px">Every skill is defined once and every variant priced once; the challenges
+    only reference them. The overview compares the challenges; each challenge tab is its referee sheet.</p>
+    <div class="tiles" id="tiles"></div>
+  </header>
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+  <main id="panels"></main>
+</div>
+<div id="tip" role="status"></div>
+
+<script id="payload" type="application/json">__DATA__</script>
+<script>
+(() => {
+const D = JSON.parse(document.getElementById("payload").textContent);
+const CH = D.challenges;
+const AREA_NAME = { NAV: "Navigation", MAN: "Manipulation", OBJ: "Object perception", PPL: "People perception",
+                    HRI: "Interaction", NLU: "Language", PLN: "Planning" };
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const fmt = n => Number(n).toLocaleString("en");
+const reward = l => (l.type === "achievement" || l.type === "bonus") && l.points > 0;
+const pts = l => l.points * l.count;
+
+/* ── derived numbers ─────────────────────────────────────────────────────── */
+for (const c of CH) {
+  c.byArea = {}; c.bySkill = {};
+  let help = 0; c.reward = 0;
+  for (const l of c.lines) if (reward(l)) {
+    c.byArea[l.area] = (c.byArea[l.area] || 0) + pts(l);
+    c.bySkill[l.skill] = (c.bySkill[l.skill] || 0) + pts(l);
+    c.reward += pts(l);
+    if (l.assist && l.assist.permitted) help += pts(l);
+  }
+  c.helpShare = c.reward ? help / c.reward : 0;
+}
+const ids = new Set(), skillsUsed = new Set();
+CH.forEach(c => c.lines.forEach(l => { if (!l.fm) ids.add(l.id); if (reward(l)) skillsUsed.add(l.skill); }));
+
+document.getElementById("eyebrow").textContent =
+  `Skill dictionary · ${D.release} · against rulebook ${D.rulebook_version}`;
+document.getElementById("tiles").innerHTML = [
+  [CH.length, "challenges"], [ids.size, "variants on the sheets"], [skillsUsed.size, "skills scored"],
+  [Object.keys(D.rule).length, "skills under one price rule"],
+].map(([v, l]) => `<div class="tile"><b>${v}</b><span>${l}</span></div>`).join("");
+
+/* ── tabs: #overview or #<challenge> ─────────────────────────────────────── */
+const tabs = document.getElementById("tabs"), panels = document.getElementById("panels");
+const short = c => esc(c.name.replace(/ Challenge$/, "").replace("General Purpose Service Robot", "GPSR")
+  .replace("Human Robot Interaction", "HRI"));
+const views = [{ slug: "overview", name: "Overview" }, ...CH];
+tabs.innerHTML = views.map(v =>
+  `<button class="tab" role="tab" id="t-${v.slug}" aria-controls="${v.slug}">${v.slug === "overview" ? "Overview" : short(v)}</button>`).join("");
+panels.innerHTML = views.map(v =>
+  `<section role="tabpanel" id="${v.slug}" aria-labelledby="t-${v.slug}" hidden></section>`).join("");
+function show(slug) {
+  if (!views.some(v => v.slug === slug)) slug = "overview";
+  for (const v of views) {
+    document.getElementById(v.slug).hidden = v.slug !== slug;
+    document.getElementById("t-" + v.slug).setAttribute("aria-selected", v.slug === slug);
+  }
+  document.title = `${slug === "overview" ? "RoboCup@Home" : CH.find(c => c.slug === slug).name} Scoring`;
+}
+tabs.addEventListener("click", e => {
+  const t = e.target.closest(".tab"); if (!t) return;
+  const slug = t.getAttribute("aria-controls");
+  history.replaceState(null, "", "#" + slug); show(slug);
+});
+window.addEventListener("hashchange", () => show(location.hash.slice(1)));
+
+/* ── tooltip: any element with data-v (value) and data-l (label) ─────────── */
+const tip = document.getElementById("tip");
+function tipShow(el, x, y) {
+  const b = document.createElement("b"), s = document.createElement("span");
+  b.textContent = el.dataset.v; s.textContent = el.dataset.l;
+  tip.replaceChildren(b, s); tip.style.display = "block";
+  const r = tip.getBoundingClientRect();
+  tip.style.left = Math.max(8, Math.min(x + 12, innerWidth - r.width - 8)) + "px";
+  tip.style.top = (y - r.height - 10 < 8 ? y + 18 : y - r.height - 10) + "px";
+}
+document.addEventListener("pointermove", e => {
+  const el = e.target.closest("[data-v]"); el ? tipShow(el, e.clientX, e.clientY) : (tip.style.display = "none");
+});
+document.addEventListener("focusin", e => {
+  const el = e.target.closest("[data-v]"); if (!el) return;
+  const r = el.getBoundingClientRect(); tipShow(el, r.left, r.top);
+});
+document.addEventListener("focusout", () => (tip.style.display = "none"));
+
+/* ── overview ────────────────────────────────────────────────────────────── */
+const areas = D.areas.filter(a => CH.some(c => c.byArea[a]));
+const link = c => `<a href="#${c.slug}">${esc(c.name)}</a>`;
+
+const summary = `<div class="card"><h2>Challenges</h2>
+  <p class="sub">Maximum score, the lines and skills each sheet scores, and how much of the reward a team
+  can still lose to human help: an assisted line scores nothing and costs half its price.</p>
+  <div class="scroll"><table><thead><tr><th>Challenge</th><th>§</th><th class="num">Minutes</th>
+  <th class="num">Max score</th><th class="num">Lines</th><th class="num">Skills</th><th class="num">Help allowed on</th></tr></thead><tbody>
+  ${CH.map(c => `<tr><td>${link(c)}</td><td>${esc(c.section)}</td><td class="num">${c.minutes}</td>
+    <td class="num"><b>${fmt(c.total)}</b></td>
+    <td class="num">${c.lines.filter(l => !l.fm && l.type !== "administrative").length}</td>
+    <td class="num">${Object.keys(c.bySkill).length}</td>
+    <td class="num">${Math.round(100 * c.helpShare)}% of points</td></tr>`).join("")}
+  </tbody></table></div></div>`;
+
+const bars = `<div class="card"><h2>What each challenge tests</h2>
+  <p class="sub">Share of each challenge's reward points by capability area. Shares, not totals, so a
+  short test and a long one compare on what they reward.</p>
+  <div class="legend">${areas.map(a => `<span><i style="background:var(--a-${a})"></i>${a} · ${AREA_NAME[a]}</span>`).join("")}</div>
+  <div class="bars">${CH.map(c => `<div class="lab">${link(c)}</div><div class="bar">${areas.filter(a => c.byArea[a]).map(a => {
+      const p = c.byArea[a] / c.reward, pc = Math.round(100 * p);
+      return `<div class="seg" tabindex="0" data-a="${a}" style="flex:${p};background:var(--a-${a})"
+        data-v="${pc}% · ${fmt(c.byArea[a])} pts" data-l="${AREA_NAME[a]}, ${esc(c.name)}">${pc >= 9 ? `<span>${pc}%</span>` : ""}</div>`;
+    }).join("")}</div>`).join("")}</div>
+  <details><summary>Table view</summary><div class="scroll"><table><thead><tr><th>Challenge</th>
+  ${areas.map(a => `<th class="num">${a}</th>`).join("")}<th class="num">Total</th></tr></thead><tbody>
+  ${CH.map(c => `<tr><td>${esc(c.name)}</td>${areas.map(a => `<td class="num">${c.byArea[a] ? fmt(c.byArea[a]) : "–"}</td>`).join("")}
+  <td class="num">${fmt(c.reward)}</td></tr>`).join("")}</tbody></table></div></details></div>`;
+
+// skills x challenges: maximum points, six steps on a log scale
+const vmax = Math.max(...CH.flatMap(c => Object.values(c.bySkill)));
+const step = v => "v" + Math.max(1, Math.ceil(6 * Math.log(v) / Math.log(vmax)));
+const reach = s => CH.filter(c => c.bySkill[s]).length;
+const sk = [...skillsUsed].sort((a, b) => areas.indexOf(a.split(".")[0]) - areas.indexOf(b.split(".")[0])
+  || reach(b) - reach(a) || a.localeCompare(b));
+let group = "";
+const heat = `<div class="card"><h2>Skills across challenges</h2>
+  <p class="sub">Maximum points per skill in each challenge, darker for more. A skill in several columns is
+  one definition everywhere, so a team's result on it compares directly; a skill in one column is tested
+  nowhere else. GPSR counts each step as often as three commands could use it.</p>
+  <div class="scroll"><table class="heat"><thead><tr><th>Skill</th>${CH.map(c => `<th class="num">${short(c)}</th>`).join("")}
+  <th class="num">In</th></tr></thead><tbody>${sk.map(s => {
+    const a = s.split(".")[0];
+    const head = a !== group ? `<tr class="grp"><th colspan="${CH.length + 2}"><span class="dot" style="background:var(--a-${a})"></span>${a} · ${AREA_NAME[a]}</th></tr>` : "";
+    group = a;
+    return head + `<tr><td title="${esc(D.skills[s].intent)}"><span class="sk">${esc(s)}</span></td>${CH.map(c => {
+      const v = c.bySkill[s];
+      return v ? `<td class="c ${step(v)}" tabindex="0" data-v="${fmt(v)} pts" data-l="${esc(s)}, ${esc(c.name)}">${fmt(v)}</td>` : `<td class="c"></td>`;
+    }).join("")}<td class="num">${reach(s)}</td></tr>`;
+  }).join("")}</tbody></table></div></div>`;
+
+const rule = `<div class="card"><h2>One price rule</h2>
+  <p class="sub">Every achievement pays <span class="mono">base × (1 + D/4)</span>, rounded to 10 (5 below 50),
+  D the difficulty of its easiest instance, so a harder variant of a skill never pays less. Hover a variant
+  for its id and where it is scored.</p>
+  <div class="scroll"><table><thead><tr><th>Skill</th><th class="num">Base</th><th>Variants: D → points</th></tr></thead><tbody>
+  ${Object.keys(D.rule).sort().map(s => `<tr><td title="${esc(D.skills[s].intent)}"><span class="sk">${esc(s)}</span></td>
+    <td class="num">${D.skills[s].base ?? "–"}</td><td><div class="chips">${D.rule[s].map(v =>
+      `<span class="chip" tabindex="0" data-v="${esc(v.id)} · ${v.points} pts" data-l="${esc(v.desc)} — ${esc(v.used_by.join(", "))}">D${v.d} → ${v.points}</span>`).join("")}</div></td></tr>`).join("")}
+  </tbody></table></div></div>`;
+
+const wide = `<div class="card"><h2>One price, very different instances</h2>
+  <p class="sub">Variants whose objects or places span the widest difficulty. Each is priced at its easiest
+  instance, so a team that meets the hardest one earns the same. Candidates to split.</p>
+  <div class="scroll"><table><thead><tr><th>Variant</th><th class="num">D</th><th class="num">Points</th><th>Easiest</th><th>Hardest</th></tr></thead><tbody>
+  ${D.wide.map(w => `<tr><td><span class="mono">${esc(w.id)}</span><br>${esc(w.desc)}</td><td class="num">${w.lo}–${w.hi}</td>
+    <td class="num">${w.points}</td><td class="mono">${esc(w.easy)}</td><td class="mono">${esc(w.hard)}</td></tr>`).join("")}
+  </tbody></table></div></div>`;
+
+document.getElementById("overview").innerHTML = summary + bars + heat + rule + wide;
+
+/* ── score sheets ────────────────────────────────────────────────────────── */
+const BOXES = 24;   // above this the referee types a count
+function row(l, child) {
+  const pen = l.points !== null && l.points < 0;
+  const meta = [`<span class="mono">${esc(l.id)}</span>`,
+                `<span class="sk" title="${esc(D.skills[l.skill].intent)}">${esc(l.skill)}</span>`];
+  if (l.objects.length) meta.push(`<span>${esc(l.objects.join(" · "))}</span>`);
+  if (l.at.length) meta.push(`<span>at ${esc(l.at.join(" · "))}</span>`);
+  if (l.d) meta.push(`<span class="d" title="difficulty from objects, places and conditions">D ${esc(l.d)}</span>`);
+  if (l.assist && !child) meta.push(l.assist.permitted ? `<span>help allowed</span>` : `<span class="nohelp">no help</span>`);
+  const notes = [l.note, l.assist && l.assist.note].filter(Boolean).map(n => `<div class="note">${esc(n)}</div>`).join("");
+  let boxes, price;
+  if (l.points === null) {
+    boxes = `<input type="number" class="free" aria-label="points for ${esc(l.desc)}" placeholder="pts">`;
+    price = `<small>referee</small>`;
+  } else {
+    boxes = l.count <= BOXES
+      ? Array.from({ length: l.count }, (_, i) => `<input type="checkbox" aria-label="${esc(l.desc)} ${i + 1}">`).join("")
+      : `<input type="number" class="cnt" min="0" max="${l.count}" aria-label="count for ${esc(l.desc)}">`;
+    price = `${l.points > 0 && child ? "+" : ""}${l.points}${l.count > 1 ? ` <small>× ${l.count}</small>` : ""}`;
+  }
+  return `<div class="row${child ? " child" : ""}${pen ? " pen" : ""}" data-pts="${l.points ?? ""}" data-skill="${esc(l.skill)}">
+    <div class="boxes">${boxes}</div>
+    <div><div class="desc">${esc(l.desc)}</div><div class="meta">${meta.join("")}</div>${notes}</div>
+    <div class="price">${price}</div><output class="got"></output></div>`;
+}
+function sheet(c) {
+  const kids = {}, secs = new Map();
+  for (const l of c.lines) {
+    if (l.parent) (kids[l.parent] ||= []).push(l);
+    else { if (!secs.has(l.section)) secs.set(l.section, []); secs.get(l.section).push(l); }
+  }
+  return `<div class="sheethead"><div><p class="eyebrow">${esc(D.release)} · §${esc(c.section)} · ${c.minutes} min</p>
+    <h2 style="font-size:24px">${esc(c.name)}</h2></div>
+    <div class="actions"><button class="btn" data-act="reset">Reset</button><button class="btn" data-act="print">Print</button></div></div>
+  <div class="fields">${["Team", "Round / attempt", "Referee", "Time used"].map(f => `<label>${f}<input type="text"></label>`).join("")}</div>
+  ${[...secs].map(([name, ls]) => `<div class="sec"><h3><span>${esc(name)}</span><output class="sub-total">0</output></h3>
+    ${ls.map(l => row(l, false) + (kids[l.id] || []).map(k => row(k, true)).join("")).join("")}</div>`).join("")}
+  <div class="total" aria-live="polite"><div><p class="eyebrow">Total</p><output class="sum">0</output></div>
+    <div class="mono">max ${fmt(c.total)}</div></div>
+  <div class="card"><h2>Score by skill</h2><p class="sub">The same skill scores the same way in every challenge;
+    penalties count against the skill they belong to.</p>
+    <div class="scroll"><table><thead><tr><th>Skill</th><th class="num">Max</th><th class="num">Scored</th></tr></thead><tbody>
+    ${Object.entries(c.bySkill).sort((a, b) => b[1] - a[1]).map(([s, m]) => `<tr data-skill="${esc(s)}" data-max="${m}">
+      <td><span class="sk">${esc(s)}</span> <span style="color:var(--ink-2)">${esc(D.skills[s].name)}</span><div class="meter"><span></span></div></td>
+      <td class="num">${fmt(m)}</td><td class="num"><output>0</output></td></tr>`).join("")}
+    </tbody></table></div></div>`;
+}
+function score(p) {
+  let total = 0; const bySkill = {};
+  p.querySelectorAll(".sec").forEach(sec => {
+    let sub = 0;
+    sec.querySelectorAll(".row").forEach(r => {
+      const free = r.querySelector("input.free"), cnt = r.querySelector("input.cnt");
+      const s = free ? Number(free.value) || 0
+        : (cnt ? Math.max(0, Number(cnt.value) || 0) : r.querySelectorAll("input:checked").length) * Number(r.dataset.pts || 0);
+      r.querySelector(".got").textContent = s || "";
+      sub += s; bySkill[r.dataset.skill] = (bySkill[r.dataset.skill] || 0) + s;
+    });
+    sec.querySelector(".sub-total").textContent = sub; total += sub;
+  });
+  p.querySelector(".sum").textContent = total;
+  p.querySelectorAll("tr[data-skill]").forEach(tr => {
+    const got = bySkill[tr.dataset.skill] || 0;
+    tr.querySelector("output").textContent = got;
+    tr.querySelector(".meter span").style.setProperty("--w", Math.max(0, Math.min(100, 100 * got / tr.dataset.max)) + "%");
+  });
+}
+for (const c of CH) {
+  const p = document.getElementById(c.slug);
+  p.innerHTML = sheet(c);
+  p.addEventListener("input", () => score(p));
+  p.addEventListener("click", e => {
+    const a = e.target.closest("[data-act]"); if (!a) return;
+    if (a.dataset.act === "print") return window.print();
+    p.querySelectorAll("input").forEach(i => i.type === "checkbox" ? (i.checked = false) : (i.value = ""));
+    score(p);
+  });
+  score(p);
+}
+show(location.hash.slice(1));
+})();
+</script>
+</body>
+</html>

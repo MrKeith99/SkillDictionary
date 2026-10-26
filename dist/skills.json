@@ -1,0 +1,579 @@
+{
+  "schema_version": "0.4.0",
+  "year": 2027,
+  "status": "draft",
+  "rulebook_version": "2026.2",
+  "skills": {
+    "MAN.Grasp": {
+      "intent": "Establish a stable hold on an object so it can be moved. The prerequisite of almost every manipulation task; never scored alone.",
+      "success": "Object is lifted clear of its support and held without slipping.",
+      "not_judged": "Grasp type, gripper, suction or any end-effector design. What the object demands of a grasp is in its factors, not in a grasp class.",
+      "factors": [
+        "mass",
+        "size",
+        "surface",
+        "rigidity",
+        "shape",
+        "height",
+        "access",
+        "clutter"
+      ],
+      "scored": false,
+      "status": "active",
+      "name": "Grasp",
+      "code": "GRASP"
+    },
+    "MAN.Pick": {
+      "intent": "Take an object from where it is so it can be carried elsewhere. The single most common manipulation step in household tasks.",
+      "success": "Object is removed from its support and held by the robot.",
+      "not_judged": "Grasp technique, number of attempts within the time limit.",
+      "composed_of": [
+        "OBJ.Recognize",
+        "MAN.Grasp"
+      ],
+      "factors": [
+        "mass",
+        "size",
+        "surface",
+        "rigidity",
+        "shape",
+        "height",
+        "access",
+        "clutter",
+        "knowledge"
+      ],
+      "failures": [
+        "drop"
+      ],
+      "base": 60,
+      "status": "active",
+      "name": "Pick",
+      "code": "PICK"
+    },
+    "MAN.Place": {
+      "intent": "Put a held object down at a target so it stays there, usable and safe \u2014 as a person would set it down, not drop it.",
+      "success": "Object rests at the location the robot chose or was told, stable, in a usable orientation, and was released (not thrown or dropped). Choosing the right location is OBJ.DetectPlacement, scored on its own.",
+      "not_judged": "Trajectory, speed, whether the object was regrasped.",
+      "composed_of": [
+        "OBJ.DetectPlacement"
+      ],
+      "factors": [
+        "mass",
+        "size",
+        "rigidity",
+        "stability",
+        "height",
+        "access",
+        "placement_tolerance",
+        "clutter",
+        "knowledge"
+      ],
+      "failures": [
+        "drop"
+      ],
+      "base": 29,
+      "status": "active",
+      "name": "Place",
+      "code": "PLACE"
+    },
+    "MAN.Insert": {
+      "intent": "Place an object into a receptacle that constrains its pose (slot, holder, socket). A Place with tight tolerance.",
+      "success": "Object is fully seated in the receptacle.",
+      "not_judged": "Technique, number of corrective motions.",
+      "parent": "MAN.Place",
+      "factors": [
+        "size",
+        "height",
+        "access",
+        "placement_tolerance"
+      ],
+      "base": 64,
+      "status": "active",
+      "name": "Insert",
+      "code": "INSERT"
+    },
+    "MAN.Pour": {
+      "intent": "Transfer liquid or granular contents from one container into another \u2014 serving drinks, preparing food.",
+      "success": "A meaningful amount (task-defined) of contents lands in the target container; spillage is scored separately as failure mode `spill`.",
+      "not_judged": "Pouring motion, tilt rate.",
+      "composed_of": [
+        "MAN.Grasp"
+      ],
+      "factors": [
+        "mass",
+        "contents",
+        "placement_tolerance"
+      ],
+      "failures": [
+        "spill"
+      ],
+      "base": 160,
+      "status": "active",
+      "name": "Pour",
+      "code": "POUR"
+    },
+    "MAN.OperateFixture": {
+      "intent": "Move a part built into furniture or an appliance along its hinge or slide: doors, drawers, racks. Needed to reach what is inside or to leave the home in order.",
+      "success": "The part reaches the requested state (open enough to access / fully closed).",
+      "not_judged": "Whether the robot pushes, pulls, hooks or uses its base.",
+      "factors": [
+        "handle",
+        "return_force",
+        "actuation_force",
+        "height",
+        "access"
+      ],
+      "base": 124,
+      "status": "active",
+      "name": "Operate fixture",
+      "code": "FIXTURE"
+    },
+    "MAN.OpenContainer": {
+      "intent": "Remove or open the closure of a free container \u2014 screw cap, lid, ring-pull \u2014 so its contents can be used. The container is not held by the furniture, so the robot must also keep it in place.",
+      "success": "The closure is off or open far enough to pour or take out the contents.",
+      "not_judged": "Whether the robot holds the container, braces it, or uses a tool.",
+      "factors": [
+        "opening",
+        "size",
+        "actuation_force",
+        "counterpart"
+      ],
+      "base": 229,
+      "status": "active",
+      "name": "Open container",
+      "code": "CONTAINER"
+    },
+    "MAN.Transport": {
+      "intent": "Move one or more objects between places while keeping them secure, possibly using a carrier (tray, basket).",
+      "success": "All transported items arrive at the destination without loss.",
+      "not_judged": "Carrier attachment method, path.",
+      "composed_of": [
+        "MAN.Pick",
+        "NAV.Navigate",
+        "MAN.Place"
+      ],
+      "factors": [
+        "mass",
+        "size",
+        "contents",
+        "carrier"
+      ],
+      "failures": [
+        "drop"
+      ],
+      "base": 119,
+      "status": "active",
+      "name": "Transport",
+      "code": "TRANSPORT"
+    },
+    "MAN.Fold": {
+      "intent": "Turn a loose piece of clothing into a compact, regular folded shape.",
+      "success": "Garment meets the task's fold-quality criterion.",
+      "not_judged": "Folding sequence, tools on the robot.",
+      "composed_of": [
+        "MAN.Grasp"
+      ],
+      "factors": [
+        "rigidity",
+        "size",
+        "surface",
+        "garment",
+        "spread"
+      ],
+      "base": 218,
+      "status": "active",
+      "name": "Fold",
+      "code": "FOLD"
+    },
+    "MAN.Stack": {
+      "intent": "Arrange items on top of each other in a neat, stable pile.",
+      "success": "Stack is stable and items are aligned to the task criterion.",
+      "not_judged": "Technique.",
+      "parent": "MAN.Place",
+      "factors": [
+        "rigidity",
+        "placement_tolerance"
+      ],
+      "base": 50,
+      "status": "active",
+      "name": "Stack",
+      "code": "STACK"
+    },
+    "NAV.Navigate": {
+      "intent": "Move to a named or perceived place in the home safely; the glue of every multi-room task.",
+      "success": "Robot stops within the task's tolerance of the goal, without collision.",
+      "not_judged": "Planner, path shape, speed within safety limits.",
+      "factors": [
+        "map_knowledge",
+        "route_extent",
+        "crowd",
+        "obstacle_visibility"
+      ],
+      "base": 23,
+      "status": "active",
+      "name": "Navigate",
+      "code": "NAVIGATE"
+    },
+    "NAV.Follow": {
+      "intent": "Keep up with a walking person to a destination they choose.",
+      "success": "Robot arrives with the person without losing or contacting them.",
+      "not_judged": "Tracking method.",
+      "composed_of": [
+        "PPL.Detect",
+        "NAV.Navigate"
+      ],
+      "factors": [
+        "map_knowledge",
+        "route_extent",
+        "crowd"
+      ],
+      "base": 133,
+      "status": "active",
+      "name": "Follow",
+      "code": "FOLLOW"
+    },
+    "NAV.Guide": {
+      "intent": "Lead a person to a destination, adapting to their pace.",
+      "success": "Person arrives at the destination together with the robot.",
+      "not_judged": "Method of signalling direction.",
+      "composed_of": [
+        "NAV.Navigate",
+        "PPL.Detect"
+      ],
+      "factors": [
+        "map_knowledge",
+        "route_extent",
+        "crowd"
+      ],
+      "base": 133,
+      "status": "active",
+      "name": "Guide",
+      "code": "GUIDE"
+    },
+    "NAV.SignalIntent": {
+      "intent": "Make the robot's movement legible to people around it, e.g. by looking where it is going.",
+      "success": "The intended direction is visibly indicated during motion.",
+      "not_judged": "Which body part signals.",
+      "factors": [
+        "crowd"
+      ],
+      "base": 12,
+      "status": "active",
+      "name": "Signal intent",
+      "code": "INTENT"
+    },
+    "OBJ.Recognize": {
+      "intent": "Tell which object (or class) is in front of the robot, so it acts on the right thing.",
+      "success": "Robot communicates the correct identity/class to the referee.",
+      "not_judged": "Model, sensor.",
+      "factors": [
+        "knowledge",
+        "clutter",
+        "size",
+        "distractors",
+        "perception_range"
+      ],
+      "base": 7,
+      "status": "active",
+      "name": "Recognize",
+      "code": "RECOGNIZE"
+    },
+    "OBJ.DetectPlacement": {
+      "intent": "Decide where an object belongs \u2014 free space on a surface, or the shelf holding semantically similar items.",
+      "success": "Robot indicates a location that satisfies the task's rule.",
+      "not_judged": "Reasoning method.",
+      "factors": [
+        "knowledge",
+        "clutter",
+        "distractors"
+      ],
+      "base": 15,
+      "status": "active",
+      "name": "Detect placement",
+      "code": "PLACEMENT"
+    },
+    "OBJ.DetectEvent": {
+      "intent": "Notice a non-speech signal from the home (doorbell, alarm, knock).",
+      "success": "Robot reacts to the event within the task's time window.",
+      "not_judged": "Sensor.",
+      "factors": [
+        "knowledge",
+        "ambient_noise"
+      ],
+      "base": 20,
+      "status": "active",
+      "name": "Detect event",
+      "code": "EVENT"
+    },
+    "PPL.Detect": {
+      "intent": "Know that a person is present and where.",
+      "success": "Robot orients to / reports each person in scope.",
+      "not_judged": "Sensor, model.",
+      "factors": [
+        "crowd",
+        "perception_range"
+      ],
+      "base": 40,
+      "status": "active",
+      "name": "Detect",
+      "code": "DETECT"
+    },
+    "PPL.DetectGesture": {
+      "intent": "Recognise a deliberate bodily signal (waving, calling, pointing).",
+      "success": "Robot reacts to the correct person's gesture.",
+      "not_judged": "Method.",
+      "composed_of": [
+        "PPL.Detect"
+      ],
+      "factors": [
+        "crowd",
+        "perception_range"
+      ],
+      "base": 40,
+      "status": "active",
+      "name": "Detect gesture",
+      "code": "GESTURE"
+    },
+    "PPL.DescribeAttribute": {
+      "intent": "Tell a visual attribute of a person (clothing, hair, height).",
+      "success": "Stated attribute is correct.",
+      "not_judged": "Phrasing.",
+      "factors": [
+        "info_load",
+        "target_motion",
+        "retention"
+      ],
+      "base": 16,
+      "status": "active",
+      "name": "Describe attribute",
+      "code": "ATTRIBUTE"
+    },
+    "PPL.Reidentify": {
+      "intent": "Recognise a person met earlier, by face, voice or appearance.",
+      "success": "Robot addresses/locates the right person.",
+      "not_judged": "Modality used.",
+      "factors": [
+        "crowd",
+        "distractors",
+        "retention",
+        "target_motion",
+        "ambient_noise"
+      ],
+      "base": 40,
+      "status": "active",
+      "name": "Reidentify",
+      "code": "REIDENTIFY"
+    },
+    "HRI.Attend": {
+      "intent": "Show awareness of the people the robot interacts with \u2014 acknowledge them, face them, do not ignore them.",
+      "success": "Each person in the interaction is acknowledged.",
+      "not_judged": "Exact behaviour used to acknowledge, and gaze quality \u2014 that is scored by HRI.Gaze lines. An ignoring-person penalty here means the robot did not engage at all: it ignored, turned away from, or never responded to the person.",
+      "composed_of": [
+        "PPL.Detect"
+      ],
+      "factors": [
+        "crowd",
+        "target_motion"
+      ],
+      "status": "active",
+      "name": "Attend",
+      "code": "ATTEND"
+    },
+    "HRI.Gaze": {
+      "parent": "HRI.Attend",
+      "intent": "Look at the person speaking or being spoken about.",
+      "success": "Head/gaze is visibly directed at the correct person.",
+      "not_judged": "Eye design.",
+      "factors": [
+        "crowd",
+        "target_motion",
+        "ambient_noise",
+        "distractors"
+      ],
+      "base": 27,
+      "status": "active",
+      "name": "Gaze",
+      "code": "GAZE"
+    },
+    "HRI.Handover": {
+      "intent": "Pass an object to, or take it from, a person directly \u2014 without the person having to adapt to the robot's mechanics.",
+      "success": "Object changes hands without being dropped or placed on the robot.",
+      "not_judged": "Gripper, arm pose.",
+      "composed_of": [
+        "MAN.Grasp",
+        "PPL.Detect"
+      ],
+      "factors": [
+        "mass",
+        "size",
+        "rigidity"
+      ],
+      "base": 33,
+      "status": "active",
+      "name": "Handover",
+      "code": "HANDOVER"
+    },
+    "HRI.Indicate": {
+      "intent": "Direct a person's attention to a place or object (offer a free seat, show where something is).",
+      "success": "Person understands which place/object is meant.",
+      "not_judged": "Pointing vs. speech vs. gaze.",
+      "factors": [
+        "distractors",
+        "crowd"
+      ],
+      "base": 67,
+      "status": "active",
+      "name": "Indicate",
+      "code": "INDICATE"
+    },
+    "HRI.ConveyInfo": {
+      "intent": "Tell a person something the robot learned earlier \u2014 a guest's name, a customer's order, a summary of what happened \u2014 correctly and to the right person.",
+      "success": "All required items are stated correctly to the intended person.",
+      "not_judged": "Phrasing, voice.",
+      "factors": [
+        "info_load",
+        "retention",
+        "distractors"
+      ],
+      "base": 35,
+      "status": "active",
+      "name": "Convey info",
+      "code": "INFO"
+    },
+    "NLU.UnderstandCommand": {
+      "intent": "Turn a spoken request from a non-expert into an actionable goal, despite paraphrase and noise.",
+      "success": "Robot repeats or acts on a correct interpretation.",
+      "not_judged": "ASR/LLM choice.",
+      "factors": [
+        "input_variability",
+        "ambient_noise",
+        "info_load"
+      ],
+      "failures": [
+        "alternative_input"
+      ],
+      "base": 58,
+      "status": "active",
+      "name": "Understand command",
+      "code": "COMMAND"
+    },
+    "NLU.Clarify": {
+      "intent": "Ask only the questions needed to remove ambiguity \u2014 not burden the user with confirmations.",
+      "success": "No non-essential questions asked.",
+      "not_judged": "Question wording.",
+      "factors": [
+        "input_variability",
+        "ambient_noise"
+      ],
+      "base": 9,
+      "status": "active",
+      "name": "Clarify",
+      "code": "CLARIFY"
+    },
+    "PLN.Plan": {
+      "intent": "Decompose a goal into a sequence of executable skills.",
+      "success": "Robot communicates a plan that would achieve the goal.",
+      "not_judged": "Planner.",
+      "factors": [
+        "input_variability",
+        "plan_length"
+      ],
+      "base": 67,
+      "status": "active",
+      "name": "Plan",
+      "code": "PLAN"
+    },
+    "PLN.Execute": {
+      "intent": "Carry a multi-step command through to its goal state.",
+      "success": "Goal conditions of the command hold at the end. Partial completion is scored by goal predicates, not referee impression.",
+      "not_judged": "Order of steps unless the command fixes it.",
+      "composed_of": [
+        "PLN.Plan"
+      ],
+      "factors": [
+        "plan_length"
+      ],
+      "base": 200,
+      "status": "active",
+      "name": "Execute",
+      "code": "EXECUTE"
+    },
+    "PLN.Interleave": {
+      "parent": "PLN.Execute",
+      "intent": "Work on several commands at once when it saves time.",
+      "success": "Steps of different commands are interleaved and all goals hold.",
+      "not_judged": "Scheduling method.",
+      "factors": [
+        "plan_length"
+      ],
+      "base": 133,
+      "status": "active",
+      "name": "Interleave",
+      "code": "INTERLEAVE"
+    },
+    "GEN.UnsafeConduct": {
+      "intent": "Not a skill. Records that the robot endangered a person, so safety has a price in the score and not only in the stop it causes (league draft #90).",
+      "success": "n/a",
+      "not_judged": "n/a",
+      "factors": [],
+      "status": "active",
+      "name": "Unsafe conduct",
+      "code": "CONDUCT"
+    },
+    "SPECIAL.Administrative": {
+      "intent": "Rulebook \u00a73.8 lines that are not robot capabilities.",
+      "success": "n/a",
+      "not_judged": "n/a",
+      "factors": [],
+      "status": "active",
+      "name": "Administrative",
+      "code": ""
+    }
+  },
+  "failure_modes": {
+    "drop": {
+      "code": "DROP",
+      "scope": "variant",
+      "share": 0.5,
+      "label": "Object dropped",
+      "meaning": "Object released unintentionally before reaching its target."
+    },
+    "spill": {
+      "code": "SPILL",
+      "scope": "variant",
+      "share": 0.5,
+      "label": "Contents spilled",
+      "meaning": "Contents (liquid, granular) leave the container outside the target."
+    },
+    "assistance": {
+      "code": "ASSIST",
+      "scope": "variant",
+      "share": 0.5,
+      "label": "Human assistance",
+      "meaning": "A human performed or simplified part of the task (\u00a73.7); on top of forfeiting the variant (\u00a73.7.2)."
+    },
+    "alternative_input": {
+      "code": "ALTINPUT",
+      "scope": "variant",
+      "share": 0.25,
+      "label": "Alternative input instead of speech",
+      "meaning": "Natural interaction replaced by a less natural channel (\u00a73.7.4): custom operator, typing, gestures."
+    },
+    "ignoring_person": {
+      "code": "IGNORING",
+      "scope": "run",
+      "variant": "HRI-ATTEND-01P",
+      "count": 2,
+      "label": "Ignoring the person",
+      "meaning": "Required social behaviour omitted (ignoring the person, no eye contact)."
+    },
+    "unsafe_contact": {
+      "code": "UNSAFE",
+      "scope": "run",
+      "variant": "GEN-CONDUCT-01P",
+      "count": 1,
+      "label": "Unsafe contact with a person",
+      "meaning": "Robot touches a person without the task asking for it."
+    }
+  }
+}

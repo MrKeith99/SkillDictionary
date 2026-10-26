@@ -1,0 +1,8 @@
+area: GEN
+variants:
+- id: GEN-CONDUCT-01P
+  skill: GEN.UnsafeConduct
+  description: Touching a person when the task does not ask for it (run also stopped)
+  failure_mode: unsafe_contact
+  type: penalty_behavior
+  points: -200

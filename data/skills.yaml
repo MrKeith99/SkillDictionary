@@ -1,116 +1,82 @@
-# Skill taxonomy — WHAT a capability is, independent of any challenge or price.
+# Skills — WHAT a capability is, independent of any challenge or price.
 #
-# Each dictionary entry points at exactly one node via `taxonomy:`, and its id
-# starts with the node's code, so an id leads to its definition. Many entries
-# may share a node (MAN-PICK-01, -03, -04, -05 are all MAN.Pick); what separates
-# them is the object and the conditions, not a new skill. That is what keeps the
-# dictionary short: a harder object is a different *difficulty*, not a different
-# skill (see difficulty_factors.yaml).
+# A skill has no price: its variants (data/variants/) are priced, and
+# challenges (data/challenges/) reference variants. See docs/skill-model.md.
 #
-# Node fields
-#   name         human name
-#   code         short code that names the node's lines: <AREA>-<code>-<NN>
-#                (MAN.OperateArticulated: OPERATE -> MAN-OPERATE-01). Unique
-#                within the area; empty for SPECIAL (SPECIAL-01). Not needed
-#                on scored: false nodes.
+# The skill id is AREA.Verb[.Sub], and the build derives the rest from it:
+#   name         the verb in words: MAN.OpenContainer -> "Open container"
+#   code         the verb's last word, which names the skill's variants:
+#                <AREA>-<code>-<NN> (MAN.OperateFixture -> MAN-FIXTURE-01).
+#                Unique within the area; empty for SPECIAL (SPECIAL-01). Pick
+#                the skill id so both read well.
+#
+# Skill fields
 #   parent       optional; a sub-skill refines its parent
 #   intent       why a household robot needs this — written for a human reader
 #   success      the observable end state a referee checks. Outcome only.
 #   not_judged   what the referee must NOT score (mechanism, hardware, style)
 #   composed_of  sub-skills this one usually exercises (for failure attribution
-#                and benchmarking; never scored on their own unless an entry
+#                and benchmarking; never scored on their own unless a variant
 #                points at them)
 #   factors      difficulty factors that apply (keys of difficulty_factors.yaml)
+#   failures     failure modes every variant of the skill can be penalised for
+#                (keys of failure_modes below), in every challenge
+#   base         what the league pays for the skill at D 0. An achievement
+#                variant pays base x (1 + D/4), rounded to 10 (to 5 below 50),
+#                halves away from zero; D is its easiest instance. Calibrated
+#                as the median over the skill's 2026.2 lines of
+#                price / (1 + D/4). `make findings` T1 reports a variant that
+#                breaks the rule
 #   scored       false = decomposition-only: used to attribute failures and
-#                classify demand, never priced by its own line (default true)
+#                classify demand, never priced by a variant of its own
+#                (default true)
 #   status       active | proposed | deprecated
 #                proposed = not yet scored in any challenge; a slot for future
-#                skills so they enter with a definition, not an ad-hoc line
-#   sources      where the definition comes from
+#                skills so they enter with a definition, not an ad-hoc variant
 #
-# Ids are permanent, like variant_number: AREA.Verb[.Sub]. Never rename a node;
-# deprecate it and point `replaced_by` at the new one.
+# Skill ids are permanent, like variant ids. Never rename a skill; deprecate it
+# and point `replaced_by` at the new one.
 
 version: 1
 
 failure_modes:
-  # Shared names for what went wrong. Penalty entries name one, so "dropped an
-  # object" means the same thing — and can be priced consistently — everywhere.
-  drop:            Object released unintentionally before reaching its target.
-  spill:           Contents (liquid, granular) leave the container outside the target.
-  damage:          Object or environment is damaged or left in an unsafe state.
-  collision:       Unintended contact with furniture, objects or people.
-  wrong_target:    Action completed on the wrong object, location or person.
-  wrong_info:      Information stated or stored is incorrect.
-  quality:         Action completed but below the stated quality criterion.
-  neglect:         Required social behaviour omitted (not attending, no eye contact).
-  multiple_at_once: More than the specified quantity handled in one action.
-  assistance:      A human performed or simplified part of the task (§3.7).
-  alternative_input: Natural interaction replaced by a less natural channel (§3.7.4).
-  unsafe_contact:  Robot touches a person without the task asking for it.
-  out_of_bounds:   Robot leaves the designated area.
+  # What can go wrong, defined once for the whole competition, so the same
+  # failure costs the same everywhere. No challenge lists its own penalties.
+  #
+  #   scope: variant  a share of the variant it happens on. A skill lists the
+  #                failures all its variants share (`failures:`, next to
+  #                `factors:`); a variant in data/variants/ may add its own.
+  #                The build writes each as <variant>-<code> (MAN-PICK-01-DROP)
+  #                at share x the variant's price. assistance applies to
+  #                every variant whose challenge permits assistance (§3.7.1),
+  #                on top of forfeiting the variant (§3.7.2).
+  #   scope: run   conduct, not tied to one action: a fixed price on its own
+  #                variant (`variant`), added to every challenge `count` times.
+  #   label        what the referee sheet says.
+  drop:              {code: DROP, scope: variant, share: 0.5, label: Object dropped, meaning: Object released unintentionally before reaching its target.}
+  spill:             {code: SPILL, scope: variant, share: 0.5, label: Contents spilled, meaning: "Contents (liquid, granular) leave the container outside the target."}
+  assistance:        {code: ASSIST, scope: variant, share: 0.5, label: Human assistance, meaning: "A human performed or simplified part of the task (§3.7); on top of forfeiting the variant (§3.7.2)."}
+  alternative_input: {code: ALTINPUT, scope: variant, share: 0.25, label: Alternative input instead of speech, meaning: "Natural interaction replaced by a less natural channel (§3.7.4): custom operator, typing, gestures."}
+  ignoring_person:   {code: IGNORING, scope: run, variant: HRI-ATTEND-01P, count: 2, label: Ignoring the person, meaning: "Required social behaviour omitted (ignoring the person, no eye contact)."}
+  unsafe_contact:    {code: UNSAFE, scope: run, variant: GEN-CONDUCT-01P, count: 1, label: Unsafe contact with a person, meaning: Robot touches a person without the task asking for it.}
 
-nodes:
+skills:
 
   # ───────────────────────────── MAN: manipulation ─────────────────────────────
 
   MAN.Grasp:
-    name: Grasp
     intent: >-
       Establish a stable hold on an object so it can be moved. The prerequisite
-      of almost every manipulation task; rarely scored alone.
+      of almost every manipulation task; never scored alone.
     success: Object is lifted clear of its support and held without slipping.
     not_judged: >-
-      Grasp type, gripper, suction or any end-effector design. The sub-skills
-      below classify the demand the OBJECT places on a grasp, not the technique
-      the robot uses to meet it.
+      Grasp type, gripper, suction or any end-effector design. What the
+      object demands of a grasp is in its factors, not in a grasp class.
     factors: [mass, size, surface, rigidity, shape, height, access, clutter]
     scored: false
     status: active
-    sources: [Feix2016]
-
-  MAN.Grasp.Power:
-    name: Power-demand grasp
-    parent: MAN.Grasp
-    intent: >-
-      Hold objects whose weight or bulk needs the hand/gripper to enclose them
-      and resist large loads (full milk carton, bag, pot).
-    success: As MAN.Grasp, with the object held stable through transport.
-    not_judged: Whether a palm, two arms, suction cups or a hook is used.
-    factors: [mass, size, surface]
-    scored: false
-    status: active
-    sources: [Feix2016]
-
-  MAN.Grasp.Intermediate:
-    name: Intermediate-demand grasp
-    parent: MAN.Grasp
-    intent: >-
-      Hold flat or thin-edged objects that must be pinched from the side — the
-      Feix "lateral" family (plate rim, tray edge, card-like items).
-    success: As MAN.Grasp.
-    not_judged: Technique, including sliding the object to a table edge first.
-    factors: [size, shape, surface, height, access]
-    scored: false
-    status: active
-    sources: [Feix2016]
-
-  MAN.Grasp.Precision:
-    name: Precision-demand grasp
-    parent: MAN.Grasp
-    intent: >-
-      Hold small or thin objects that only fit between fingertips (cutlery,
-      dishwasher tab, pen). Small contact area makes errors in pose costly.
-    success: As MAN.Grasp.
-    not_judged: Technique.
-    factors: [size, surface, shape, clutter]
-    scored: false
-    status: active
-    sources: [Feix2016]
 
   MAN.Pick:
-    name: Pick
-    code: PICK
     intent: >-
       Take an object from where it is so it can be carried elsewhere. The
       single most common manipulation step in household tasks.
@@ -118,25 +84,26 @@ nodes:
     not_judged: Grasp technique, number of attempts within the time limit.
     composed_of: [OBJ.Recognize, MAN.Grasp]
     factors: [mass, size, surface, rigidity, shape, height, access, clutter, knowledge]
+    failures: [drop]
+    base: 60
     status: active
 
   MAN.Place:
-    name: Place
-    code: PLACE
     intent: >-
       Put a held object down at a target so it stays there, usable and safe —
       as a person would set it down, not drop it.
     success: >-
-      Object rests at the target location, stable, in a usable orientation, and
-      was released (not thrown or dropped).
+      Object rests at the location the robot chose or was told, stable, in a
+      usable orientation, and was released (not thrown or dropped). Choosing the
+      right location is OBJ.DetectPlacement, scored on its own.
     not_judged: Trajectory, speed, whether the object was regrasped.
     composed_of: [OBJ.DetectPlacement]
-    factors: [mass, size, rigidity, height, access, placement_tolerance, clutter, knowledge]
+    factors: [mass, size, rigidity, stability, height, access, placement_tolerance, clutter, knowledge]
+    failures: [drop]
+    base: 29
     status: active
 
   MAN.Insert:
-    name: Insert
-    code: INSERT
     intent: >-
       Place an object into a receptacle that constrains its pose (slot, holder,
       socket). A Place with tight tolerance.
@@ -144,11 +111,10 @@ nodes:
     not_judged: Technique, number of corrective motions.
     parent: MAN.Place
     factors: [size, height, access, placement_tolerance]
+    base: 64
     status: active
 
   MAN.Pour:
-    name: Pour
-    code: POUR
     intent: >-
       Transfer liquid or granular contents from one container into another —
       serving drinks, preparing food.
@@ -158,37 +124,35 @@ nodes:
     not_judged: Pouring motion, tilt rate.
     composed_of: [MAN.Grasp]
     factors: [mass, contents, placement_tolerance]
+    failures: [spill]
+    base: 160
     status: active
 
-  MAN.OperateArticulated:
-    name: Operate articulated object
-    code: OPERATE
+  MAN.OperateFixture:
     intent: >-
-      Move the part of a fixture or container that is constrained to a hinge,
-      slide or thread: doors, drawers, racks, lids, caps. Needed to reach what
-      is inside or to leave the home in order.
+      Move a part built into furniture or an appliance along its hinge or
+      slide: doors, drawers, racks. Needed to reach what is inside or to leave
+      the home in order.
     success: >-
-      The articulated part reaches the requested state (open enough to access
-      / fully closed / cap removed).
+      The part reaches the requested state (open enough to access / fully
+      closed).
     not_judged: Whether the robot pushes, pulls, hooks or uses its base.
-    factors: [size, mechanism, actuation_force, counterpart, height, access]
+    factors: [handle, return_force, actuation_force, height, access]
+    base: 124
     status: active
 
-  MAN.OperateControl:
-    name: Operate control
-    code: CONTROL
+  MAN.OpenContainer:
     intent: >-
-      Actuate a button, switch, knob or lever to make a device do something
-      (start a washing machine, switch a light, boil a kettle).
-    success: The device changes state as intended.
-    not_judged: Technique.
-    factors: [size, mechanism, height, access]
-    status: proposed
-    sources: [SkillDictionaryPDF]
+      Remove or open the closure of a free container — screw cap, lid,
+      ring-pull — so its contents can be used. The container is not held by
+      the furniture, so the robot must also keep it in place.
+    success: The closure is off or open far enough to pour or take out the contents.
+    not_judged: Whether the robot holds the container, braces it, or uses a tool.
+    factors: [opening, size, actuation_force, counterpart]
+    base: 229
+    status: active
 
   MAN.Transport:
-    name: Transport
-    code: TRANSPORT
     intent: >-
       Move one or more objects between places while keeping them secure,
       possibly using a carrier (tray, basket).
@@ -196,251 +160,158 @@ nodes:
     not_judged: Carrier attachment method, path.
     composed_of: [MAN.Pick, NAV.Navigate, MAN.Place]
     factors: [mass, size, contents, carrier]
+    failures: [drop]
+    base: 119
     status: active
 
   MAN.Fold:
-    name: Fold
-    code: FOLD
     intent: Turn a loose piece of clothing into a compact, regular folded shape.
     success: Garment meets the task's fold-quality criterion.
     not_judged: Folding sequence, tools on the robot.
     composed_of: [MAN.Grasp]
-    factors: [rigidity, size, surface]
+    factors: [rigidity, size, surface, garment, spread]
+    base: 218
     status: active
 
   MAN.Stack:
-    name: Stack
-    code: STACK
     intent: Arrange items on top of each other in a neat, stable pile.
     success: Stack is stable and items are aligned to the task criterion.
     not_judged: Technique.
     parent: MAN.Place
     factors: [rigidity, placement_tolerance]
+    base: 50
     status: active
-
-  MAN.Wipe:
-    name: Wipe surface
-    code: WIPE
-    intent: Clean a surface (table, counter) by moving a tool or cloth over it.
-    success: Target area is visibly cleared of the defined dirt.
-    not_judged: Tool, pattern of motion.
-    factors: [height, access, clutter]
-    status: proposed
-    sources: [SkillDictionaryPDF]
 
   # ───────────────────────────── NAV: navigation ───────────────────────────────
 
   NAV.Navigate:
-    name: Navigate
-    code: NAVIGATE
     intent: >-
       Move to a named or perceived place in the home safely; the glue of every
       multi-room task.
     success: Robot stops within the task's tolerance of the goal, without collision.
     not_judged: Planner, path shape, speed within safety limits.
     factors: [map_knowledge, route_extent, crowd, obstacle_visibility]
+    base: 23
     status: active
-    sources: [SkillDictionaryPDF]
 
   NAV.Follow:
-    name: Follow person
-    code: FOLLOW
     intent: Keep up with a walking person to a destination they choose.
     success: Robot arrives with the person without losing or contacting them.
     not_judged: Tracking method.
     composed_of: [PPL.Detect, NAV.Navigate]
     factors: [map_knowledge, route_extent, crowd]
+    base: 133
     status: active
-    sources: [SkillDictionaryPDF]
 
   NAV.Guide:
-    name: Guide person
-    code: GUIDE
     intent: Lead a person to a destination, adapting to their pace.
     success: Person arrives at the destination together with the robot.
     not_judged: Method of signalling direction.
     composed_of: [NAV.Navigate, PPL.Detect]
     factors: [map_knowledge, route_extent, crowd]
-    status: proposed
-
-  NAV.AvoidObstacle:
-    name: Avoid obstacle
-    code: AVOID
-    intent: >-
-      Reach a goal despite unexpected objects, restricted zones or people in
-      the way. Scored by outcome (no contact), not by detecting the obstacle.
-    success: No contact with the obstacle and goal still reached.
-    not_judged: Whether the obstacle was detected explicitly.
-    parent: NAV.Navigate
-    factors: [obstacle_visibility, crowd]
-    status: proposed
-    sources: [SkillDictionaryPDF]
+    base: 133  # no 2026 line: as NAV.Follow
+    status: active
 
   NAV.SignalIntent:
-    name: Signal motion intent
-    code: SIGNAL
     intent: >-
       Make the robot's movement legible to people around it, e.g. by looking
       where it is going.
     success: The intended direction is visibly indicated during motion.
     not_judged: Which body part signals.
     factors: [crowd]
+    base: 12
     status: active
 
   # ───────────────────────────── OBJ: object perception ────────────────────────
 
   OBJ.Recognize:
-    name: Recognize object
-    code: RECOGNIZE
     intent: >-
       Tell which object (or class) is in front of the robot, so it acts on the
       right thing.
     success: Robot communicates the correct identity/class to the referee.
     not_judged: Model, sensor.
     factors: [knowledge, clutter, size, distractors, perception_range]
+    base: 7
     status: active
-    sources: [SkillDictionaryPDF]
 
   OBJ.DetectPlacement:
-    name: Determine placement
-    code: PLACEMENT
     intent: >-
       Decide where an object belongs — free space on a surface, or the shelf
       holding semantically similar items.
     success: Robot indicates a location that satisfies the task's rule.
     not_judged: Reasoning method.
     factors: [knowledge, clutter, distractors]
+    base: 15
     status: active
-    sources: [SkillDictionaryPDF]
 
   OBJ.DetectEvent:
-    name: Detect event
-    code: EVENT
     intent: Notice a non-speech signal from the home (doorbell, alarm, knock).
     success: Robot reacts to the event within the task's time window.
     not_judged: Sensor.
     factors: [knowledge, ambient_noise]
+    base: 20
     status: active
-
-  OBJ.EstimatePose:
-    name: Estimate object pose
-    code: POSE
-    intent: Find an object's 3D position and orientation to plan an action on it.
-    success: Downstream action succeeds; not scored on its own.
-    not_judged: Method.
-    factors: [knowledge, clutter, size]
-    status: proposed
-    sources: [SkillDictionaryPDF]
-
-  OBJ.DetectAbsence:
-    name: Detect absence
-    code: ABSENCE
-    intent: Notice that something expected is missing (a guest without a drink).
-    success: Robot correctly reports the missing item or class.
-    not_judged: Method.
-    factors: [knowledge, perception_range, crowd]
-    status: proposed
-    sources: [SkillDictionaryPDF]
 
   # ───────────────────────────── PPL: people perception ────────────────────────
 
   PPL.Detect:
-    name: Detect person
-    code: DETECT
     intent: Know that a person is present and where.
     success: Robot orients to / reports each person in scope.
     not_judged: Sensor, model.
     factors: [crowd, perception_range]
-    status: proposed
+    base: 40  # no 2026 line: as PPL.DetectGesture
+    status: active
 
   PPL.DetectGesture:
-    name: Detect gesture
-    code: GESTURE
     intent: Recognise a deliberate bodily signal (waving, calling, pointing).
     success: Robot reacts to the correct person's gesture.
     not_judged: Method.
     composed_of: [PPL.Detect]
     factors: [crowd, perception_range]
+    base: 40
     status: active
-    sources: [SkillDictionaryPDF]
-
-  PPL.DetectActivity:
-    name: Detect activity
-    code: ACTIVITY
-    intent: >-
-      Recognise what people are doing when they are not signalling the robot —
-      a conversation has ended, a guest is wearing shoes, someone entered — so
-      the robot can choose when and whom to approach.
-    success: Robot reacts to the correct person's state within the task's time window.
-    not_judged: Modality (vision, audio), model.
-    composed_of: [PPL.Detect]
-    factors: [crowd, perception_range, ambient_noise]
-    status: proposed
-    sources: [SkillDictionaryPDF]
-
-  PPL.ResolvePointing:
-    name: Resolve pointing
-    code: POINTING
-    intent: Work out which object or place a person is pointing at.
-    success: Robot names or acts on the object/place the person meant.
-    not_judged: Method.
-    composed_of: [PPL.DetectGesture, OBJ.Recognize]
-    factors: [perception_range, distractors]
-    status: proposed
-    sources: [SkillDictionaryPDF]
 
   PPL.DescribeAttribute:
-    name: Describe person
-    code: ATTRIBUTE
     intent: Tell a visual attribute of a person (clothing, hair, height).
     success: Stated attribute is correct.
     not_judged: Phrasing.
     factors: [info_load, target_motion, retention]
+    base: 16
     status: active
-    sources: [SkillDictionaryPDF]
 
   PPL.Reidentify:
-    name: Re-identify person
-    code: REID
     intent: Recognise a person met earlier, by face, voice or appearance.
     success: Robot addresses/locates the right person.
     not_judged: Modality used.
     factors: [crowd, distractors, retention, target_motion, ambient_noise]
-    status: proposed
-    sources: [SkillDictionaryPDF]
+    base: 40  # no 2026 line: as PPL.DetectGesture
+    status: active
 
   # ───────────────────────────── HRI: interaction ──────────────────────────────
 
   HRI.Attend:
-    name: Attend to people
-    code: ATTEND
     intent: >-
       Show awareness of the people the robot interacts with — acknowledge them,
       face them, do not ignore them.
     success: Each person in the interaction is acknowledged.
     not_judged: >-
       Exact behaviour used to acknowledge, and gaze quality — that is scored by
-      HRI.Gaze lines. A neglect penalty here means the robot did not engage at
+      HRI.Gaze lines. An ignoring-person penalty here means the robot did not engage at
       all: it ignored, turned away from, or never responded to the person.
     composed_of: [PPL.Detect]
     factors: [crowd, target_motion]
     status: active
-    sources: [SkillDictionaryPDF]
 
   HRI.Gaze:
-    name: Social gaze
-    code: GAZE
     parent: HRI.Attend
     intent: Look at the person speaking or being spoken about.
     success: Head/gaze is visibly directed at the correct person.
     not_judged: Eye design.
     factors: [crowd, target_motion, ambient_noise, distractors]
+    base: 27
     status: active
-    sources: [SkillDictionaryPDF]
 
   HRI.Handover:
-    name: Handover
-    code: HANDOVER
     intent: >-
       Pass an object to, or take it from, a person directly — without the
       person having to adapt to the robot's mechanics.
@@ -448,111 +319,64 @@ nodes:
     not_judged: Gripper, arm pose.
     composed_of: [MAN.Grasp, PPL.Detect]
     factors: [mass, size, rigidity]
+    base: 33
     status: active
-    sources: [SkillDictionaryPDF]
 
   HRI.Indicate:
-    name: Indicate
-    code: INDICATE
     intent: >-
       Direct a person's attention to a place or object (offer a free seat,
       show where something is).
     success: Person understands which place/object is meant.
     not_judged: Pointing vs. speech vs. gaze.
     factors: [distractors, crowd]
+    base: 67
     status: active
 
   HRI.ConveyInfo:
-    name: Convey information
-    code: INFO
     intent: >-
       Tell a person something the robot learned earlier — a guest's name, a
       customer's order, a summary of what happened — correctly and to the
       right person.
     success: All required items are stated correctly to the intended person.
     not_judged: Phrasing, voice.
-    composed_of: [NLU.ExtractInfo]
     factors: [info_load, retention, distractors]
+    base: 35
     status: active
-    sources: [SkillDictionaryPDF]
-
-  HRI.Explain:
-    name: Make state visible
-    code: EXPLAIN
-    intent: >-
-      Show people what the robot perceives, hears and intends — camera view,
-      recognised objects, speech-to-text, current subtask, planned path — so
-      referees and users can follow and trust it.
-    success: The required information is shown live and matches what the robot does.
-    not_judged: Display hardware, layout.
-    factors: []
-    status: proposed
-    sources: [SkillDictionaryPDF]
-
-  HRI.Interrupt:
-    name: Stop on request
-    code: INTERRUPT
-    intent: >-
-      Stop the current action at once when a person says "stop" or touches the
-      robot, and resume only when told to. The basic safety contract with
-      untrained users.
-    success: Motion halts within the task's reaction time; resumes on the agreed trigger.
-    not_judged: Trigger channel (speech, touch, button).
-    factors: [ambient_noise, crowd]
-    status: proposed
-    sources: [SkillDictionaryPDF]
 
   # ───────────────────────────── NLU: language ─────────────────────────────────
 
   NLU.UnderstandCommand:
-    name: Understand command
-    code: COMMAND
     intent: >-
       Turn a spoken request from a non-expert into an actionable goal, despite
       paraphrase and noise.
     success: Robot repeats or acts on a correct interpretation.
     not_judged: ASR/LLM choice.
     factors: [input_variability, ambient_noise, info_load]
+    failures: [alternative_input]
+    base: 58
     status: active
-    sources: [SkillDictionaryPDF]
-
-  NLU.ExtractInfo:
-    name: Extract information
-    code: EXTRACT
-    intent: >-
-      Pick out and store facts a person states (name, favourite drink, order,
-      where something is).
-    success: Stored facts are later reproduced correctly.
-    not_judged: Storage format.
-    factors: [input_variability, ambient_noise, knowledge, info_load]
-    status: proposed
-    sources: [SkillDictionaryPDF]
 
   NLU.Clarify:
-    name: Clarify efficiently
-    code: CLARIFY
     intent: >-
       Ask only the questions needed to remove ambiguity — not burden the user
       with confirmations.
     success: No non-essential questions asked.
     not_judged: Question wording.
     factors: [input_variability, ambient_noise]
+    base: 9
     status: active
 
   # ───────────────────────────── PLN: planning ─────────────────────────────────
 
   PLN.Plan:
-    name: Plan
-    code: PLAN
     intent: Decompose a goal into a sequence of executable skills.
     success: Robot communicates a plan that would achieve the goal.
     not_judged: Planner.
     factors: [input_variability, plan_length]
+    base: 67
     status: active
 
   PLN.Execute:
-    name: Execute task
-    code: EXECUTE
     intent: Carry a multi-step command through to its goal state.
     success: >-
       Goal conditions of the command hold at the end. Partial completion is
@@ -560,77 +384,33 @@ nodes:
     not_judged: Order of steps unless the command fixes it.
     composed_of: [PLN.Plan]
     factors: [plan_length]
+    base: 200
     status: active
 
   PLN.Interleave:
-    name: Interleave tasks
-    code: INTERLEAVE
     parent: PLN.Execute
     intent: Work on several commands at once when it saves time.
     success: Steps of different commands are interleaved and all goals hold.
     not_judged: Scheduling method.
     factors: [plan_length]
+    base: 133
     status: active
 
   # ───────────────────────────── GEN: cross-cutting deductions ────────────────
 
-  GEN.HumanAssistance:
-    name: Human assistance
-    code: ASSIST
-    intent: >-
-      Not a robot capability. Records that a human did part of the task, so the
-      score reflects only what the robot did itself (§3.7).
-    success: n/a
-    not_judged: n/a
-    factors: []
-    status: active
-
-  GEN.AlternativeInput:
-    name: Alternative interaction channel
-    code: ALTINPUT
-    intent: >-
-      Not a robot capability. Records that the robot used a less natural input
-      channel than speech with the default operator (§3.7.4).
-    success: n/a
-    not_judged: n/a
-    factors: []
-    status: active
-
   GEN.UnsafeConduct:
-    name: Unsafe conduct
-    code: UNSAFE
     intent: >-
       Not a skill. Records that the robot endangered a person, so safety has a
       price in the score and not only in the stop it causes (league draft #90).
     success: n/a
     not_judged: n/a
     factors: []
-    status: proposed
-    sources: [SkillDictionaryPDF]
-
-  GEN.TaskConstraint:
-    name: Task-specific constraint
-    code: CONSTRAINT
-    intent: >-
-      Not a skill. A task-level rule whose violation is penalised (e.g. the
-      breakfast must look like a typical meal setting).
-    success: n/a
-    not_judged: n/a
-    factors: []
     status: active
 
   SPECIAL.Administrative:
-    name: Administrative
-    code: ''
     intent: Rulebook §3.8 lines that are not robot capabilities.
     success: n/a
     not_judged: n/a
     factors: []
     status: active
 
-sources:
-  Feix2016: >-
-    T. Feix, J. Romero, H.-B. Schmiedmayer, A. M. Dollar, D. Kragic, "The GRASP
-    Taxonomy of Human Grasp Types", IEEE Trans. Human-Machine Systems 46(1),
-    2016. Used for the power / intermediate / precision split only.
-  SkillDictionaryPDF: references/SkillDictionary.pdf (league draft skill list).

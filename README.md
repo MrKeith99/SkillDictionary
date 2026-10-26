@@ -2,8 +2,9 @@
 
 A versioned, machine-checkable skill dictionary for the RoboCup@Home rulebook.
 
-**This tree: 2027 draft** — the rulebook 2026.2 (RuleBook commit `b844d5a`)
-plus the changes proposed for 2027 ([docs/changes-2027.md](docs/changes-2027.md)).
+**This tree: 2027 draft** — the rulebook pinned in `data/release.yaml` (2026.2)
+plus the changes proposed for 2027. The reasoning for each change is in the
+proposal document, which is kept outside this repo.
 Earlier releases are git tags: `2026.2` is the dictionary exactly as that
 rulebook was published.
 
@@ -43,27 +44,28 @@ coupling; the faceted schema follows Johannsmeier et al. (Nature MI, 2025).
 ```
 data/                       SOURCE — the only place you edit
   release.yaml                which year this is, draft | in_force, the rulebook it is checked against
-  skills/<AREA>.yaml          every scored line: definition + price, once
-  challenges/<slug>.yaml      how each test uses the skills (references, counts; no points)
+  skills.yaml                 every SKILL: what it is for, its success criterion,
+                              its difficulty factors and failures; the failure modes
+  variants/<AREA>.yaml        every VARIANT of a skill: objects, place, conditions, price
+  challenges/<slug>.yaml      every CHALLENGE: which variants it scores, how often (no points)
   vocabulary/
-    taxonomy.yaml               what each skill is for, its success criterion, its factors
-    difficulty_factors.yaml     what makes an instance harder, and by how much
-    global_rules.yaml           rulebook §3 rules the challenges refer to
+    difficulty_factors.yaml     what makes a variant harder, and by how much
     objects/catalog.yaml        every real object: mass, size, surface, ...
     objects/furniture.yaml      the arena: every place's height and access, doors and racks
     objects/set.yaml            the year's object set
 
 skilldict/                  the Python package — one CLI for everything
-  model.py                    loading, derived fields (used_by, total_score)
+  model.py                    loading, derived fields (used_by, total_score, names, codes)
+  penalties.py                penalty variants, from the failures of each skill
   commands.py                 GPSR: value every generator command, fill step counts
   ratings.py                  vocabulary integrity, intrinsic difficulty D
   checks/                     schema, integrity, rulebook, findings
-  render/                     score sheets (HTML, LaTeX), coverage page, PDF
+  render/                     scoring page, rulebook LaTeX sheets, PDF
   cli.py
 
 templates/                  page templates the renderers fill in
-schema/                     JSON Schema for a skill and a challenge (as written to dist/)
-docs/                       skill-model.md (how it fits together), changes-<year>.md (why)
+schema/                     JSON Schema for a variant and a challenge (as written to dist/)
+docs/                       skill-model.md (how it fits together)
 external/RuleBook           the RuleBook, git submodule pinned to the rulebook in release.yaml
 
 dist/                       GENERATED, committed: JSON for consumers (CommandGenerator)
@@ -89,7 +91,7 @@ make check       # the CI gate: must end with ALL CHECKS PASSED
 |---|---|
 | `make check` | build, run every check, write `dist/` |
 | `make findings` | the TC findings report |
-| `make sheets` | score sheets, HTML + rulebook LaTeX → `build/sheets/` |
+| `make sheets` | score sheets in the rulebook's LaTeX → `build/sheets/` |
 | `make pdf` | rulebook sheet next to the generated one, per challenge → `build/*.pdf` |
 | `make all` | all of the above |
 
@@ -100,131 +102,42 @@ lists the options.
 
 | file | use |
 |---|---|
-| `dist/dictionary.json` | every line: definition, price, `used_by` |
-| `dist/challenges.json` | per challenge: references, counts, dependencies, `total_score` |
-| `dist/vocabulary.json` | taxonomy, difficulty factors and object profiles |
-| `dist/skill_ratings.json` | per line: taxonomy node, objects, factors, intrinsic difficulty |
-| `dist/global_rules.json` | rulebook §3 rules |
-| `dist/viz_data.json` | flattened rows + area matrix + drift, for the visualizer |
+| `dist/skills.json` | every skill (with its derived name and code) and the failure modes |
+| `dist/variants.json` | every variant: skill, objects, price, `used_by`; penalty variants included |
+| `dist/challenges.json` | per challenge: references, counts, assistance, `total_score` |
+| `dist/vocabulary.json` | difficulty factors and object profiles |
+| `dist/variant_ratings.json` | per variant: skill, objects, factors, intrinsic difficulty |
 | `dist/gpsr_commands.json` | the value of every command the GPSR generator can produce |
 
 `used_by` and `total_score` are **derived** by the build; the sources never
 carry them, so they cannot go stale.
 
-### Skill coverage visualizer
+### Scoring page
 
-`dist/skill_coverage.html` is a self-contained page — no external scripts, works
-offline — showing the area × challenge point matrix, cross-challenge price drift,
-and every scored line with filters. Click an area row or challenge column to
-toggle it; challenge and area chips combine (union within an axis, intersection
-across); tick lines to total an arbitrary subset. It is rebuilt by
-`make check` from `templates/viz.html`; edit the template, never the output.
+`dist/scoring.html` is one self-contained page (no external scripts, works
+offline). Its **overview** compares the challenges: maximum score and how much
+of it allows human help, what share of each challenge goes to each capability
+area, which skills each challenge scores, every skill's variants under the
+price rule, and the variants whose single price covers very different
+objects. Each **challenge tab** is its referee sheet: tick boxes add up live,
+with the line's notes, whether help is allowed, its penalties beneath it and
+the score by skill; `#<challenge>` in the URL opens it, and Print prints that
+sheet alone. It is rebuilt by `make check` from `templates/scoring.html`;
+edit the template, never the output.
 
 ---
 
-## How a skill is described
+## The model in short
 
-A line's id says which skill it scores: `<AREA>-<code>-<NN>[B|P<n>]`.
+A **skill** (`data/skills.yaml`) says what a capability is and never what it
+pays. A **variant** (`data/variants/`) is one priced instance of a skill: which
+objects, where, under what conditions. Its difficulty D is computed from those,
+and its price follows from D and the skill's `base`. A **challenge**
+(`data/challenges/`) only references variants and says how often it scores
+them. Penalties are not written per challenge: the build derives them from the
+failure modes of each skill.
 
-| part | meaning | example |
-|---|---|---|
-| `AREA` | capability area (Roadmap Table 1) | `MAN` |
-| `code` | short code of the taxonomy node — the skill | `OPERATE` = MAN.OperateArticulated |
-| `NN` | the line's number within that skill | `02` (the dishwasher door) |
-| `B` / `P` (`B1`, `P2`, …) | a bonus / penalty on line `NN` | `MAN-PICK-01B3` — the plate bonus on pick 01 |
-
-CI checks that the code matches the line's `taxonomy:`. `area`, `skill` and
-`variant_number` are derived from the id (and still written to `dist/`).
-`modifiers` add object/environment properties to the description, and `level`
-rates the line E/C/X.
-
-`modifiers` describe the *object and environment*, never grasp technique or
-hardware method. Scoring how a robot achieves something rather than whether it
-did penalises unconventional and low-cost builds, and forces referees to judge
-mechanism instead of outcome.
-
-Every line also says **what capability** it scores and **how hard** that
-instance is, so the same skill is judged and compared the same way in every
-challenge:
-
-```yaml
-- id: MAN-PICK-01B3
-  taxonomy: MAN.Pick          # data/vocabulary/taxonomy.yaml: intent, success criterion,
-                              #   what the referee must not judge, factors
-  description: Plate
-  objects: [plate]            # data/vocabulary/objects/catalog.yaml + set.yaml
-  at: [dinner_table]          # data/vocabulary/objects/furniture.yaml: height, access
-  conditions:                 # data/vocabulary/difficulty_factors.yaml
-    clutter: nearby
-    knowledge: known_instance
-```
-
-A harder object or a harder place is a different *difficulty*, not a different
-skill, so the dictionary does not grow as verbs × properties. A line naming a
-piece of furniture (`at: [cabinet]`) covers all its places — bottom to top
-shelf — and gets a difficulty range, like an object category. A condition may be a list of
-levels when it is drawn at test time (GPSR commands, restaurant orders); the
-line then has a difficulty range. Full explanation:
-**[docs/skill-model.md](docs/skill-model.md)**.
-
-### Difficulty levels
-
-`level` rates how hard a skill is **for the field**, not what it is worth, and
-is independent of `points`.
-
-| level | meaning |
-|---|---|
-| `E` | Entry — most teams achieve it reliably |
-| `C` | Competent — typical of the mid-field |
-| `X` | Expert — few teams manage it |
-| `-` | not a robot capability (assistance, administrative) |
-
-Unlike the id, which is permanent, **`level` is reassigned annually
-from empirical team performance**. A frozen id with a moving level is what makes
-year-over-year comparison possible.
-
-> **Provisional.** No quantitative threshold separates the tiers yet; the
-> values were inherited from the original extraction. Finding T1 compares each
-> level with the intrinsic difficulty D.
-
-### Skills and challenges
-
-A **skill** is specification — what it is and what it is worth:
-
-```yaml
-# data/skills/MAN.yaml
-- id: MAN-PICK-01
-  taxonomy: MAN.Pick
-  modifiers: [known, transport]
-  description: Picking up an object for transportation
-  level: C
-  points: 50            # priced here, and only here
-  type: achievement
-```
-
-A **challenge** is usage — how one test employs that skill:
-
-```yaml
-# data/challenges/pick_and_place.yaml
-- ref: MAN-PICK-01      # reference, never a redefinition
-  count: 12             # how many times this test scores it
-  section: Picking
-  assistance:
-    permitted: true
-    extra_penalty_ref: GEN-ASSIST-02P
-```
-
-There is no `points` field, and there cannot be one.
-
-### Assistance is forfeiture, not penalty
-
-§3.7.2 makes an assisted task element score **zero** unless the task description
-says otherwise. A dependency going unmet does *not* block downstream points,
-because assistance can satisfy the precondition — if the referee opens the
-dishwasher door the robot forfeits those 400 points, but "correctly in the
-dishwasher" (3×70) stays fully available. Hence `blocking` and
-`satisfiable_by_assistance` are separate fields, and
-`assistance.blocks_dependents` defaults to false.
+Full explanation, ids and the price rule: **[docs/skill-model.md](docs/skill-model.md)**.
 
 ---
 
@@ -236,8 +149,8 @@ are git tags (`2026.2`), so `git diff 2026.2 -- data/` shows every change and
 
 While `status: draft`, the tree proposes the next rulebook: the rulebook stage
 of `make check` lists every difference from the pinned rulebook's sheets — that
-list *is* the proposal — and [docs/changes-2027.md](docs/changes-2027.md) says
-why each one is there. Once the rulebook is published and pinned, the release
+list *is* the proposal — and the proposal document says why each one is
+there. Once the rulebook is published and pinned, the release
 goes `status: in_force` and any difference fails CI.
 
 ---
@@ -248,53 +161,20 @@ goes `status: in_force` and any difference fails CI.
 
 | stage | fails on |
 |---|---|
-| **data** | unknown taxonomy node, object, factor or level; a factor that does not apply to the skill; a penalty without a failure mode |
-| **integrity** | a challenge naming an unknown line or carrying a price; a stale `*_ref`; a line no challenge uses (an id whose code does not match its node fails at load) |
-| **schema** | a skill or challenge, as written to `dist/`, violating the JSON Schema |
-| **rulebook** | when `in_force`: any scored line or total that differs from the rulebook's `.tex` sheet (when `draft`, the differences are listed, not failed) |
+| **data** | unknown skill, object, factor or factor level; a factor that does not apply to the skill; a penalty without a failure mode |
+| **integrity** | a challenge naming an unknown variant or carrying a price; a reference to a variant that does not exist; a variant no challenge uses (an id whose code does not match its skill fails at load) |
+| **schema** | a variant or challenge, as written to `dist/`, violating the JSON Schema |
+| **rulebook** | when `in_force`: any scored variant or total that differs from the rulebook's `.tex` sheet (when `draft`, the differences are listed, not failed) |
 
 then writes `dist/` and prints the **findings**:
 questions for the TC, never failures.
 
 | finding | asks |
 |---|---|
-| T1 | intrinsic difficulty vs empirical level |
-| T2 | price inversions: a strictly harder line of a skill pays less |
-| T3 | one failure mode priced differently across challenges |
-| T4 | taxonomy coverage: proposed skills, unscored nodes |
-| T5 | object data quality: estimated values, widest difficulty ranges |
-| A1–A3 | assistance: hard gates, unspecified costs, unlisted assistance |
-| A4 | dependencies on lines that do not exist yet |
-| A5 | sibling variants of a skill priced differently across challenges |
-| A6 | ambiguities flagged in the challenge files |
-| A7 | autonomously-available vs raw points, per challenge |
-
-### Known open questions
-
-Highest priority, all surfaced by finding A6:
-
-1. **Percentage vs fixed-point conflict (4 lines).** §3.7.4 prices ASR bypass as a
-   percentage of maximum attainable; every scoresheet prices it in fixed points,
-   and they disagree badly (GPSR custom operator −60 on sheet vs −149 under
-   §3.7.4). Is §3.7.4 a floor, a ceiling, or superseded?
-2. **Laundry / Pick&Place asymmetry.** Washing-machine-door assistance is unpriced
-   (so §3.7.2 makes it cost 300) while the structurally identical dishwasher-door
-   assistance is explicitly −0.
-3. **HRI bag-on-structure.** §5.1 rule 5 says no points awarded *and* the sheet
-   applies −50. Forfeiture plus penalty, or penalty only?
-4. **`MAN-OPERATE-02` bundles open and close** with different preconditions.
-   Should probably split.
-
----
-
-## ID stability
-
-Within a release an id is permanent: the TC cites ids in writing. A merged line
-keeps the surviving id; the retired id is never reused for something else.
-Ids were renumbered once, for 2027, so that each names its skill; the 2026.2
-ids are in the `2026.2` tag. The
-pre-dictionary per-challenge extraction and its id mapping are in the git
-history (before commit `45a982e`), not in the tree.
+| T1 | price rule: an achievement that does not pay `base × (1 + D/4)` |
+| T2 | penalties per failure mode: derived at its share, and the authored ones |
+| T3 | skill coverage: proposed skills, unscored skills |
+| T4 | object data quality: estimated values, widest difficulty ranges |
 
 ---
 

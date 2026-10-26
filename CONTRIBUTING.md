@@ -42,9 +42,10 @@ rather than working around it.
 
 | you want to | edit |
 |---|---|
-| change a skill or its price | `data/skills/` |
-| change how a test uses skills | `data/challenges/` |
-| add an object, a factor, a taxonomy node | `data/vocabulary/` |
+| change what a skill is (its definition, factors, failures) | `data/skills.yaml` |
+| add or reprice a variant | `data/variants/` |
+| change how a test uses variants | `data/challenges/` |
+| add an object, a factor, a piece of furniture | `data/vocabulary/` |
 | change a page or sheet layout | `templates/` or `skilldict/render/` |
 | add a check | `skilldict/checks/` |
 
@@ -54,7 +55,7 @@ Same convention as the RuleBook — lowercase, underscore-separated:
 
 | prefix | use | example |
 |---|---|---|
-| `feature/` | new skills, schema or tooling changes | `feature/process_spec_field` |
+| `feature/` | new skills, schema or tooling changes | `feature/garment_factor` |
 | `fix/` | a specific issue | `fix/#12_dangling_hri_refs` |
 | `year/` | work targeting one rulebook version | `year/2027.1_remove_restaurant` |
 
@@ -68,7 +69,7 @@ Same convention as the RuleBook — lowercase, underscore-separated:
 README, *Checks*. All must pass before
 review.
 
-The findings (T1–T5, A1–A7) are **not** failures. They surface questions for
+The findings (T1–T4) are **not** failures. They surface questions for
 the TC. If your change moves them, say so in the PR description and explain
 why — `make findings` prints them.
 
@@ -79,124 +80,110 @@ why — `make findings` prints them.
 ### Never put `points` in a challenge file
 
 The schema rejects it, and so does the integrity check. Price belongs to the
-skill, in `data/skills/`, once. If you find yourself wanting a per-challenge
-price, the skills are genuinely different and need separate lines with
-different `objects` / `conditions` (and so a different difficulty).
+variant, in `data/variants/`, once. If you find yourself wanting a
+per-challenge price, the variants are genuinely different and need separate
+variants with different `objects` / `conditions` (and so a different
+difficulty).
 
 ### Never author derived fields
 
-`used_by` and `total_score` are computed by the build. The loader refuses
-them in the sources, so they can never go stale.
+`used_by`, `total_score`, a skill's `name` and `code`, and the penalty
+variants (`<variant>-<FAILURE>`, with
+`penalty_of` and `share`) are computed by the build. The loader refuses them
+in the sources, so they can never go stale.
 
 ### Ids: name the skill, never reuse
 
-An id is `<AREA>-<code>-<NN>[B|P<n>]`, with the `code` of its taxonomy node;
-loading fails otherwise. Ids are permanent: the TC cites them in writing, so
-`MAN-OPERATE-02` must keep meaning the dishwasher door. A new line takes the
-next free number for its skill; a bonus or penalty on a line takes that line's
-number plus `B` / `P` (`B1`, `B2`, … when there are several). A retired id is
-never reused. Do not write `area`, `skill` or `variant_number`: they are
-derived from the id.
+Ids follow *Ids* in [docs/skill-model.md](docs/skill-model.md); loading fails
+otherwise. A new variant takes the next free number for its skill, a bonus
+takes its variant's number plus `B`. A retired id is never reused.
 
-### Keep modifiers to object and environment properties
+### Describe outcome, never technique
 
-Good: `heavy`, `deformable`, `known`, `cluttered`, `from_floor`.
+A description or a skill's `success` says *what* is achieved, never *how*
+(`two_handed`, `suction`, `force_controlled`). Scoring mechanism rather than
+outcome penalises unconventional and low-cost builds, and forces referees to
+judge technique instead of result; a skill's `not_judged` says so explicitly.
 
-Not acceptable: `two_handed`, `suction`, `force_controlled` — these describe
-*how* a robot achieves the task. Scoring mechanism rather than outcome penalises
-unconventional and low-cost builds, and forces referees to judge technique
-instead of result.
+### Every variant is used
 
-### Every line is used
-
-An unused line fails the integrity check: remove it in the same PR that
+An unused variant fails the integrity check: remove it in the same PR that
 removes its last reference. Its id is retired, never reused.
 
 ### Same skill, same difficulty, same price
 
-Two lines are one skill only if they have the same taxonomy node, objects and
-conditions. Then they must have one price and become one line. If they differ
-in difficulty, they stay separate — difficulty is a difference, so the price
-may differ too.
+Two variants are one variant only if they have the same skill, objects, places
+and conditions. Then they must have one price and become one variant. If they
+differ in difficulty, they stay separate — difficulty is a difference, so the
+price may differ too.
 
-Bringing differently-priced lines into line is a scoring change: say so in
-the PR and in `docs/changes-<year>.md`.
+Bringing differently-priced variants into line is a scoring change: say so in
+the PR and in the proposal document.
 
 ---
 
-## Adding a skill
+## Adding a variant
 
-Add the entry to the area file in `data/skills/`, keeping entries sorted by id:
+Add it to the area file in `data/variants/`, keeping variants sorted by id:
 
 ```yaml
-- id: MAN-PICK-07
-  taxonomy: MAN.Pick
-  modifiers: [deformable, from_floor]
-  description: Picking up a deformable object from the floor
+- id: MAN-PICK-12
+  skill: MAN.Pick
+  description: Picking up a piece of clothing from the floor
   objects: [clothing]
   at: [floor]
   conditions: {clutter: isolated, knowledge: known_class}
-  level: C
-  points: 80
+  points: 200                 # 60 x (1 + 9/4) = 195, rounded
   type: achievement
 ```
 
 Then reference it from the challenge:
 
 ```yaml
-- ref: MAN-PICK-07
+- ref: MAN-PICK-12
   count: 2
   section: Main Goal
   assistance:
     permitted: false
 ```
 
-Price it with the rule in [docs/changes-2027.md](docs/changes-2027.md)
-(*One price per skill and difficulty*): `make check` writes the line's D to
-`dist/skill_ratings.json`, and T2 flags a price that breaks the rule.
+Price it with the rule in [docs/skill-model.md](docs/skill-model.md)
+(*Toward a fair price*) and the skill's `base:` in `data/skills.yaml`:
+`make check` writes the variant's D to `dist/variant_ratings.json`, and T1
+flags a price that breaks the rule.
 
-Before adding an entry, read [docs/skill-model.md](docs/skill-model.md). In
+Before adding a variant, read [docs/skill-model.md](docs/skill-model.md). In
 short:
 
-- **Reuse a taxonomy node.** A new object or situation is new `objects` /
-  `conditions` on an existing node, not a new skill. If the object has no
+- **Reuse a skill.** A new object or situation is new `objects` /
+  `conditions` on a variant of an existing skill, not a new skill. If the object has no
   profile, add one to `data/vocabulary/objects/catalog.yaml` and list it in
   `data/vocabulary/objects/set.yaml`.
-- **A genuinely new capability** gets a node in `data/vocabulary/taxonomy.yaml`
+- **A genuinely new capability** gets a skill in `data/skills.yaml`
   first — `intent`, `success`, `not_judged`, `factors` — with `status:
   proposed`, and is reviewed on its definition before anything scores it.
-- **Penalties** name a `failure_mode`. If T3 shows the same failure priced
-  differently elsewhere, explain why in the PR.
+- **Penalties** are not written anywhere per task. If a variant can fail in a
+  way its skill does not list, add it to the variant (`failures:`); if the
+  whole skill can, add it to the skill in `data/skills.yaml`; if no failure mode fits,
+  add one to `failure_modes` with its share. Say in the PR which sheets gain
+  penalties.
 
 Controlled vocabularies:
 
 | field | allowed |
 |---|---|
-| file | `data/skills/<AREA>.yaml`: NAV, MAN, OBJ, PPL, HRI, NLU, PLN, GEN, SPECIAL |
-| `level` | `E`, `C`, `X`, `-` — see below |
-| `type` | `achievement`, `bonus`, `penalty_behavior`, `disqualifying`, `administrative` |
-| `id` | `<AREA>-<code>-<NN>` + optional `B`/`P` + index; `code` from the taxonomy node |
+| file | `data/variants/<AREA>.yaml`: NAV, MAN, OBJ, PPL, HRI, NLU, PLN, GEN, SPECIAL |
+| `type` | `achievement`, `bonus`, `penalty_behavior`, `administrative` |
+| `id` | `<AREA>-<code>-<NN>` + optional `B`/`P` + index; `code` from the skill; derived penalties add `-<FAILURE>` |
 
-### Choosing a `level`
+### Difficulty is computed
 
-`level` rates difficulty **for the field**, not point value. The two are
-independent — judge how many teams could actually do it, not what it pays.
+There is no `level` to choose: the variant's difficulty D is computed from its
+objects, places and conditions. If a variant is harder than its D says, the model
+is missing a factor; propose the factor (see docs/skill-model.md, *A new
+difficulty factor*), not a different price.
 
-| level | meaning |
-|---|---|
-| `E` | Entry — most teams achieve it reliably |
-| `C` | Competent — typical of the mid-field |
-| `X` | Expert — few teams manage it |
-| `-` | not a robot capability (assistance, administrative) |
-
-- **No quantitative threshold exists yet.** Match the level of comparable
-  existing skills in the same area and say in the PR why you chose it. T1
-  compares it with the intrinsic difficulty D.
-- **Levels are reassigned annually** from empirical team performance, unlike
-  the id. If last competition's results contradict a level, that is a
-  legitimate PR of its own.
-
-Use `administrative` for §3.8 lines that are not robot capabilities
+Use `administrative` for §3.8 variants that are not robot capabilities
 (outstanding performance, start signal). They are excluded from area-balance
 reports.
 
@@ -210,8 +197,8 @@ change set.
 
 ### While drafting (`status: draft`)
 
-Edit the data directly. Every scoring change goes in
-`docs/changes-<year>.md` with its reasoning — what the rulebook does today,
+Edit the data directly. Every scoring change goes in the proposal document,
+kept outside this repo, with its reasoning — what the rulebook does today,
 what is wrong with it, what the change does — because the TC reviews the
 reasoning with the numbers. `make check` lists every difference from the
 pinned rulebook; `make pdf` sets each rulebook sheet next to the proposed one.
@@ -234,7 +221,7 @@ pinned rulebook; `make pdf` sets each rulebook sheet next to the proposed one.
 
 While the release is `in_force`, **a price change is a rulebook change, not a
 refactor.** It belongs in a PR against the RuleBook repo first. Once the `.tex` sheet is merged there, move the
-pin, update the line, run `make check`. The rulebook stage fails until the
+pin, update the variant, run `make check`. The rulebook stage fails until the
 dictionary and the rulebook agree, in either direction — that is the check
 that catches the dictionary drifting from the rules it describes.
 
@@ -242,21 +229,9 @@ that catches the dictionary drifting from the rules it describes.
 
 ## Modelling assistance
 
-§3.7.2: an assisted task element scores **zero** unless the task description
-says otherwise. The default is forfeiture, not penalty.
-
-Task descriptions override this four ways, all present in the scoresheets:
-
-1. **Forfeit only** — reward text says "without assistance".
-2. **Forfeit + fixed penalty** — e.g. Pick & Place handover, −100.
-3. **Explicitly free** — e.g. dishwasher door, "−0".
-4. **Percentage of test score** — the §3.7.4 ASR ladder.
-
-The common mistake is assuming an unmet dependency blocks downstream points. It
-does not, because assistance can satisfy the precondition. So `blocking` and
-`satisfiable_by_assistance` are **separate fields**, and
-`assistance.blocks_dependents` defaults to `false`. Set `blocking: true` only
-when the dependent line is genuinely impossible without the prerequisite.
+See *Assistance* in [docs/skill-model.md](docs/skill-model.md):
+`assistance.permitted: true` only where the rulebook's task description allows
+that help (§3.7.1); otherwise open an issue on the RuleBook repo.
 
 ---
 
@@ -268,7 +243,7 @@ behaviour, say so explicitly — those get closer review.
 Include:
 
 - **What changed**, and the issue it closes.
-- **Why**, especially for anything touching points, ids or modifiers.
+- **Why**, especially for anything touching points or ids.
 - **CI output** — confirm `ALL CHECKS PASSED`.
 - **Any movement in the findings**, with reasoning.
 

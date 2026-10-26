@@ -1,0 +1,2411 @@
+{
+  "schema_version": "0.4.0",
+  "year": 2027,
+  "status": "draft",
+  "rulebook_version": "2026.2",
+  "variants": [
+    {
+      "id": "GEN-CONDUCT-01P",
+      "area": "GEN",
+      "variant_number": "01P",
+      "skill": "GEN.UnsafeConduct",
+      "description": "Touching a person when the task does not ask for it (run also stopped)",
+      "failure_mode": "unsafe_contact",
+      "type": "penalty_behavior",
+      "points": -200,
+      "used_by": [
+        "doing_laundry",
+        "gpsr",
+        "hri",
+        "pick_and_place",
+        "restaurant"
+      ]
+    },
+    {
+      "id": "HRI-ATTEND-01P",
+      "area": "HRI",
+      "variant_number": "01P",
+      "skill": "HRI.Attend",
+      "description": "Ignoring the person interacting with the robot: turns away from, or never responds to them (per interaction)",
+      "failure_mode": "ignoring_person",
+      "points": -100,
+      "type": "penalty_behavior",
+      "used_by": [
+        "doing_laundry",
+        "gpsr",
+        "hri",
+        "pick_and_place",
+        "restaurant"
+      ]
+    },
+    {
+      "id": "HRI-GAZE-01",
+      "area": "HRI",
+      "variant_number": "01",
+      "skill": "HRI.Gaze",
+      "description": "Look at the person talking, when receiving a guest",
+      "conditions": {
+        "crowd": "few",
+        "target_motion": "shifting",
+        "ambient_noise": "background",
+        "distractors": "none"
+      },
+      "points": 45,
+      "type": "achievement",
+      "used_by": [
+        "hri"
+      ]
+    },
+    {
+      "id": "HRI-GAZE-02",
+      "area": "HRI",
+      "variant_number": "02",
+      "skill": "HRI.Gaze",
+      "description": "While introducing guests, look to the correct guest while talking about the other guest",
+      "conditions": {
+        "crowd": "few",
+        "target_motion": "shifting",
+        "ambient_noise": "background",
+        "distractors": "few"
+      },
+      "points": 50,
+      "type": "achievement",
+      "used_by": [
+        "hri"
+      ]
+    },
+    {
+      "id": "HRI-HANDOVER-01",
+      "area": "HRI",
+      "variant_number": "01",
+      "skill": "HRI.Handover",
+      "description": "Hand the object to the person",
+      "objects": [
+        "known_objects"
+      ],
+      "type": "achievement",
+      "points": 35,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "HRI-HANDOVER-02",
+      "area": "HRI",
+      "variant_number": "02",
+      "skill": "HRI.Handover",
+      "description": "Receive the bag from the guest via handover",
+      "objects": [
+        "bag"
+      ],
+      "points": 50,
+      "type": "achievement",
+      "used_by": [
+        "hri"
+      ]
+    },
+    {
+      "id": "HRI-INDICATE-01",
+      "area": "HRI",
+      "variant_number": "01",
+      "skill": "HRI.Indicate",
+      "description": "Offer a free seat to the new guest",
+      "conditions": {
+        "distractors": "few",
+        "crowd": "few"
+      },
+      "points": 100,
+      "type": "achievement",
+      "used_by": [
+        "hri"
+      ]
+    },
+    {
+      "id": "HRI-INFO-01",
+      "area": "HRI",
+      "variant_number": "01",
+      "skill": "HRI.ConveyInfo",
+      "description": "Communicate the order to the barman",
+      "conditions": {
+        "info_load": "few",
+        "retention": "task",
+        "distractors": "none"
+      },
+      "points": 50,
+      "type": "achievement",
+      "used_by": [
+        "restaurant"
+      ]
+    },
+    {
+      "id": "HRI-INFO-02",
+      "area": "HRI",
+      "variant_number": "02",
+      "skill": "HRI.ConveyInfo",
+      "description": "Say name and favorite drink of each guest (during introduction)",
+      "conditions": {
+        "info_load": "few",
+        "retention": "task",
+        "distractors": "few"
+      },
+      "points": 60,
+      "type": "achievement",
+      "failures": [
+        "alternative_input"
+      ],
+      "used_by": [
+        "hri"
+      ]
+    },
+    {
+      "id": "HRI-INFO-03",
+      "area": "HRI",
+      "variant_number": "03",
+      "skill": "HRI.ConveyInfo",
+      "description": "Say the requested information (the time, the day, the team's name, something about itself)",
+      "conditions": {
+        "info_load": "single",
+        "retention": "immediate",
+        "distractors": "none"
+      },
+      "type": "achievement",
+      "points": 35,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "HRI-INFO-04",
+      "area": "HRI",
+      "variant_number": "04",
+      "skill": "HRI.ConveyInfo",
+      "description": "Tell one person what was learned about another",
+      "conditions": {
+        "info_load": "single",
+        "retention": "task",
+        "distractors": "few"
+      },
+      "type": "achievement",
+      "points": 50,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "MAN-CONTAINER-01",
+      "area": "MAN",
+      "variant_number": "01",
+      "skill": "MAN.OpenContainer",
+      "description": "Open milk container without assistance",
+      "objects": [
+        "milk.cap"
+      ],
+      "points": 400,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-FIXTURE-01",
+      "area": "MAN",
+      "variant_number": "01",
+      "skill": "MAN.OperateFixture",
+      "description": "Pull or push the dishwasher rack",
+      "objects": [
+        "dishwasher.rack"
+      ],
+      "points": 250,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-FIXTURE-02",
+      "area": "MAN",
+      "variant_number": "02",
+      "skill": "MAN.OperateFixture",
+      "description": "Open the dishwasher door without assistance",
+      "objects": [
+        "dishwasher.door"
+      ],
+      "points": 220,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-FIXTURE-03",
+      "area": "MAN",
+      "variant_number": "03",
+      "skill": "MAN.OperateFixture",
+      "description": "Close the dishwasher door without assistance, after an item is placed inside",
+      "objects": [
+        "dishwasher.door"
+      ],
+      "points": 220,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-FIXTURE-04",
+      "area": "MAN",
+      "variant_number": "04",
+      "skill": "MAN.OperateFixture",
+      "description": "Opening the washing machine door",
+      "objects": [
+        "washing_machine.door"
+      ],
+      "points": 220,
+      "type": "achievement",
+      "used_by": [
+        "doing_laundry"
+      ]
+    },
+    {
+      "id": "MAN-FIXTURE-05",
+      "area": "MAN",
+      "variant_number": "05",
+      "skill": "MAN.OperateFixture",
+      "description": "Open the entrance door for a guest",
+      "objects": [
+        "entrance.door"
+      ],
+      "points": 190,
+      "type": "achievement",
+      "used_by": [
+        "hri"
+      ]
+    },
+    {
+      "id": "MAN-FOLD-01",
+      "area": "MAN",
+      "variant_number": "01",
+      "skill": "MAN.Fold",
+      "description": "Folding a T-shirt (per item)",
+      "objects": [
+        "clothing"
+      ],
+      "points": 600,
+      "type": "achievement",
+      "used_by": [
+        "doing_laundry"
+      ]
+    },
+    {
+      "id": "MAN-FOLD-01B1",
+      "area": "MAN",
+      "variant_number": "01B1",
+      "skill": "MAN.Fold",
+      "description": "First garment folded (main goal), without assistance and to quality",
+      "objects": [
+        "clothing"
+      ],
+      "type": "bonus",
+      "points": 400,
+      "used_by": [
+        "doing_laundry"
+      ]
+    },
+    {
+      "id": "MAN-INSERT-01",
+      "area": "MAN",
+      "variant_number": "01",
+      "skill": "MAN.Insert",
+      "description": "In the dishwasher tab slot inside the dishwasher",
+      "objects": [
+        "dishwasher_tab"
+      ],
+      "at": [
+        "dishwasher.tab_slot"
+      ],
+      "conditions": {
+        "placement_tolerance": "constrained"
+      },
+      "points": 160,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PICK-01",
+      "area": "MAN",
+      "variant_number": "01",
+      "skill": "MAN.Pick",
+      "description": "Picking up any other object for transportation",
+      "objects": [
+        "dishwasher_items",
+        "cabinet_objects",
+        "breakfast"
+      ],
+      "at": [
+        "dinner_table",
+        "counter"
+      ],
+      "conditions": {
+        "clutter": "nearby",
+        "knowledge": "known_instance"
+      },
+      "points": 80,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PICK-02B",
+      "area": "MAN",
+      "variant_number": "02B",
+      "skill": "MAN.Pick",
+      "description": "First Pick Bonus",
+      "points": 100,
+      "type": "bonus",
+      "used_by": [
+        "pick_and_place",
+        "restaurant"
+      ]
+    },
+    {
+      "id": "MAN-PICK-03",
+      "area": "MAN",
+      "variant_number": "03",
+      "skill": "MAN.Pick",
+      "description": "Picking up a piece of clothing from the basket, one at a time",
+      "objects": [
+        "clothing"
+      ],
+      "at": [
+        "laundry_basket"
+      ],
+      "conditions": {
+        "clutter": "piled",
+        "knowledge": "known_class"
+      },
+      "points": 230,
+      "type": "achievement",
+      "used_by": [
+        "doing_laundry"
+      ]
+    },
+    {
+      "id": "MAN-PICK-04",
+      "area": "MAN",
+      "variant_number": "04",
+      "skill": "MAN.Pick",
+      "description": "Removing one or more pieces of clothing from the washing machine, without the clothing touching the floor",
+      "objects": [
+        "clothing"
+      ],
+      "at": [
+        "washing_machine.drum"
+      ],
+      "conditions": {
+        "clutter": "piled",
+        "knowledge": "known_class"
+      },
+      "points": 240,
+      "type": "achievement",
+      "used_by": [
+        "doing_laundry"
+      ]
+    },
+    {
+      "id": "MAN-PICK-05",
+      "area": "MAN",
+      "variant_number": "05",
+      "skill": "MAN.Pick",
+      "description": "Picking up the requested items from the Kitchen-bar",
+      "objects": [
+        "restaurant_orders"
+      ],
+      "at": [
+        "kitchen_bar"
+      ],
+      "conditions": {
+        "clutter": "nearby",
+        "knowledge": "known_instance"
+      },
+      "points": 80,
+      "type": "achievement",
+      "used_by": [
+        "restaurant"
+      ]
+    },
+    {
+      "id": "MAN-PICK-06",
+      "area": "MAN",
+      "variant_number": "06",
+      "skill": "MAN.Pick",
+      "description": "Take the requested object",
+      "objects": [
+        "known_objects"
+      ],
+      "at": [
+        "placement_locations"
+      ],
+      "conditions": {
+        "clutter": "nearby",
+        "knowledge": "known_instance"
+      },
+      "type": "achievement",
+      "points": 80,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "MAN-PICK-07",
+      "area": "MAN",
+      "variant_number": "07",
+      "skill": "MAN.Pick",
+      "description": "Picking up cutlery for transportation",
+      "objects": [
+        "cutlery"
+      ],
+      "at": [
+        "dinner_table"
+      ],
+      "conditions": {
+        "clutter": "nearby",
+        "knowledge": "known_instance"
+      },
+      "points": 150,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PICK-08",
+      "area": "MAN",
+      "variant_number": "08",
+      "skill": "MAN.Pick",
+      "description": "Picking up a plate for transportation",
+      "objects": [
+        "plate"
+      ],
+      "at": [
+        "dinner_table"
+      ],
+      "conditions": {
+        "clutter": "nearby",
+        "knowledge": "known_instance"
+      },
+      "points": 170,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PICK-09",
+      "area": "MAN",
+      "variant_number": "09",
+      "skill": "MAN.Pick",
+      "description": "Picking up the dishwasher tab",
+      "objects": [
+        "dishwasher_tab"
+      ],
+      "at": [
+        "counter"
+      ],
+      "conditions": {
+        "clutter": "isolated",
+        "knowledge": "known_instance"
+      },
+      "points": 140,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PICK-10",
+      "area": "MAN",
+      "variant_number": "10",
+      "skill": "MAN.Pick",
+      "description": "Picking up an object from the floor",
+      "objects": [
+        "trash"
+      ],
+      "at": [
+        "floor"
+      ],
+      "conditions": {
+        "clutter": "isolated",
+        "knowledge": "known_instance"
+      },
+      "points": 90,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PICK-11",
+      "area": "MAN",
+      "variant_number": "11",
+      "skill": "MAN.Pick",
+      "description": "Picking up a common object from the auxiliary table",
+      "objects": [
+        "common_objects"
+      ],
+      "at": [
+        "counter"
+      ],
+      "conditions": {
+        "clutter": "isolated",
+        "knowledge": "known_instance"
+      },
+      "points": 60,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-01",
+      "area": "MAN",
+      "variant_number": "01",
+      "skill": "MAN.Place",
+      "description": "Drop the bag in the correct area",
+      "objects": [
+        "bag"
+      ],
+      "at": [
+        "floor"
+      ],
+      "conditions": {
+        "placement_tolerance": "region"
+      },
+      "points": 60,
+      "type": "achievement",
+      "used_by": [
+        "hri"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-02",
+      "area": "MAN",
+      "variant_number": "02",
+      "skill": "MAN.Place",
+      "description": "Place any other object in its designated location",
+      "objects": [
+        "dishwasher_items",
+        "cabinet_objects",
+        "breakfast"
+      ],
+      "at": [
+        "dishwasher",
+        "cabinet",
+        "dinner_table"
+      ],
+      "conditions": {
+        "placement_tolerance": "spot",
+        "clutter": "nearby"
+      },
+      "points": 45,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-02B",
+      "area": "MAN",
+      "variant_number": "02B",
+      "skill": "MAN.Place",
+      "description": "Breakfast laid as a typical meal setting, the area around it clean",
+      "objects": [
+        "breakfast"
+      ],
+      "points": 95,
+      "type": "bonus",
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-03",
+      "area": "MAN",
+      "variant_number": "03",
+      "skill": "MAN.Place",
+      "description": "Serve the order to the customer",
+      "objects": [
+        "restaurant_orders"
+      ],
+      "at": [
+        "customer_table"
+      ],
+      "conditions": {
+        "placement_tolerance": "region",
+        "clutter": "nearby"
+      },
+      "points": 45,
+      "type": "achievement",
+      "used_by": [
+        "restaurant"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-03B",
+      "area": "MAN",
+      "variant_number": "03B",
+      "skill": "MAN.Place",
+      "description": "First Place Bonus",
+      "points": 100,
+      "type": "bonus",
+      "used_by": [
+        "restaurant"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-04",
+      "area": "MAN",
+      "variant_number": "04",
+      "skill": "MAN.Place",
+      "description": "Place the object on the named placement location, or in the trash",
+      "objects": [
+        "known_objects"
+      ],
+      "at": [
+        "placement_locations",
+        "trash_bins"
+      ],
+      "conditions": {
+        "placement_tolerance": "region",
+        "clutter": "nearby"
+      },
+      "type": "achievement",
+      "points": 35,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-05",
+      "area": "MAN",
+      "variant_number": "05",
+      "skill": "MAN.Place",
+      "description": "Place an object correctly in the dishwasher",
+      "objects": [
+        "dishwasher_items"
+      ],
+      "at": [
+        "dishwasher.rack_bottom",
+        "dishwasher.rack_top"
+      ],
+      "conditions": {
+        "placement_tolerance": "constrained",
+        "clutter": "nearby"
+      },
+      "points": 70,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-06",
+      "area": "MAN",
+      "variant_number": "06",
+      "skill": "MAN.Place",
+      "description": "Place an object in the cabinet, next to similar objects",
+      "objects": [
+        "cabinet_objects"
+      ],
+      "at": [
+        "cabinet"
+      ],
+      "conditions": {
+        "placement_tolerance": "spot",
+        "clutter": "nearby"
+      },
+      "points": 50,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-07",
+      "area": "MAN",
+      "variant_number": "07",
+      "skill": "MAN.Place",
+      "description": "Place a common object from the auxiliary table",
+      "objects": [
+        "common_objects"
+      ],
+      "at": [
+        "cabinet"
+      ],
+      "conditions": {
+        "placement_tolerance": "spot",
+        "clutter": "nearby"
+      },
+      "points": 50,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-POUR-01",
+      "area": "MAN",
+      "variant_number": "01",
+      "skill": "MAN.Pour",
+      "description": "Pour cereal or milk into the bowl without assistance",
+      "objects": [
+        "milk",
+        "cornflakes"
+      ],
+      "conditions": {
+        "placement_tolerance": "spot"
+      },
+      "points": 200,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-STACK-01",
+      "area": "MAN",
+      "variant_number": "01",
+      "skill": "MAN.Stack",
+      "description": "Stacking folded clothes neatly (per item)",
+      "objects": [
+        "clothing"
+      ],
+      "conditions": {
+        "placement_tolerance": "constrained"
+      },
+      "points": 100,
+      "type": "achievement",
+      "used_by": [
+        "doing_laundry"
+      ]
+    },
+    {
+      "id": "MAN-TRANSPORT-01",
+      "area": "MAN",
+      "variant_number": "01",
+      "skill": "MAN.Transport",
+      "description": "Using the basket for transportation",
+      "objects": [
+        "laundry_basket"
+      ],
+      "conditions": {
+        "carrier": "unattached"
+      },
+      "points": 240,
+      "type": "achievement",
+      "used_by": [
+        "doing_laundry"
+      ]
+    },
+    {
+      "id": "MAN-TRANSPORT-02",
+      "area": "MAN",
+      "variant_number": "02",
+      "skill": "MAN.Transport",
+      "description": "Use an unattached tray to transport",
+      "objects": [
+        "tray"
+      ],
+      "conditions": {
+        "carrier": "unattached"
+      },
+      "points": 270,
+      "type": "achievement",
+      "used_by": [
+        "restaurant"
+      ]
+    },
+    {
+      "id": "NAV-FOLLOW-01",
+      "area": "NAV",
+      "variant_number": "01",
+      "skill": "NAV.Follow",
+      "description": "Following the host to the bag drop area",
+      "conditions": {
+        "map_knowledge": "mapped",
+        "route_extent": "rooms",
+        "crowd": "few"
+      },
+      "points": 200,
+      "type": "achievement",
+      "failures": [
+        "drop"
+      ],
+      "used_by": [
+        "hri"
+      ]
+    },
+    {
+      "id": "NAV-FOLLOW-02",
+      "area": "NAV",
+      "variant_number": "02",
+      "skill": "NAV.Follow",
+      "description": "Follow the person to the named room",
+      "conditions": {
+        "map_knowledge": "mapped",
+        "route_extent": "rooms",
+        "crowd": "few"
+      },
+      "type": "achievement",
+      "points": 200,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "NAV-GUIDE-01",
+      "area": "NAV",
+      "variant_number": "01",
+      "skill": "NAV.Guide",
+      "description": "Guide the person to the named location",
+      "conditions": {
+        "map_knowledge": "mapped",
+        "route_extent": "rooms",
+        "crowd": "few"
+      },
+      "type": "achievement",
+      "points": 200,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "NAV-INTENT-01",
+      "area": "NAV",
+      "variant_number": "01",
+      "skill": "NAV.SignalIntent",
+      "description": "Look in the direction of navigation or at the navigation goal",
+      "conditions": {
+        "crowd": "few"
+      },
+      "points": 15,
+      "type": "achievement",
+      "used_by": [
+        "hri"
+      ]
+    },
+    {
+      "id": "NAV-NAVIGATE-01",
+      "area": "NAV",
+      "variant_number": "01",
+      "skill": "NAV.Navigate",
+      "description": "Navigate to the announced furniture or area (dining table, laundry area)",
+      "conditions": {
+        "map_knowledge": "moved",
+        "route_extent": "rooms",
+        "crowd": "none",
+        "obstacle_visibility": "large"
+      },
+      "points": 35,
+      "type": "achievement",
+      "used_by": [
+        "doing_laundry",
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "NAV-NAVIGATE-02",
+      "area": "NAV",
+      "variant_number": "02",
+      "skill": "NAV.Navigate",
+      "description": "Reach a customer's table (to take the order, and again to serve it)",
+      "conditions": {
+        "map_knowledge": "unknown",
+        "route_extent": "room",
+        "crowd": "crowd",
+        "obstacle_visibility": "small"
+      },
+      "points": 50,
+      "type": "achievement",
+      "used_by": [
+        "restaurant"
+      ]
+    },
+    {
+      "id": "NAV-NAVIGATE-04",
+      "area": "NAV",
+      "variant_number": "04",
+      "skill": "NAV.Navigate",
+      "description": "Reach the named room or location",
+      "conditions": {
+        "map_knowledge": "mapped",
+        "route_extent": "rooms",
+        "crowd": "few",
+        "obstacle_visibility": "large"
+      },
+      "type": "achievement",
+      "points": 35,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "NLU-CLARIFY-01B",
+      "area": "NLU",
+      "variant_number": "01B",
+      "skill": "NLU.Clarify",
+      "description": "Not asking non-essential questions to confirm or correct information",
+      "conditions": {
+        "input_variability": "open",
+        "ambient_noise": "background"
+      },
+      "points": 15,
+      "type": "bonus",
+      "used_by": [
+        "hri"
+      ]
+    },
+    {
+      "id": "NLU-COMMAND-01",
+      "area": "NLU",
+      "variant_number": "01",
+      "skill": "NLU.UnderstandCommand",
+      "description": "Understand the spoken command",
+      "conditions": {
+        "input_variability": "paraphrase",
+        "ambient_noise": "background",
+        "info_load": "few"
+      },
+      "points": 100,
+      "type": "achievement",
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "NLU-COMMAND-02",
+      "area": "NLU",
+      "variant_number": "02",
+      "skill": "NLU.UnderstandCommand",
+      "description": "Understand and confirm the order received to the customer",
+      "conditions": {
+        "input_variability": "open",
+        "ambient_noise": "loud",
+        "info_load": "few"
+      },
+      "points": 130,
+      "type": "achievement",
+      "used_by": [
+        "restaurant"
+      ]
+    },
+    {
+      "id": "OBJ-EVENT-01",
+      "area": "OBJ",
+      "variant_number": "01",
+      "skill": "OBJ.DetectEvent",
+      "description": "Detect the doorbell sound as a signal that a guest has arrived",
+      "conditions": {
+        "knowledge": "known_class",
+        "ambient_noise": "background"
+      },
+      "points": 30,
+      "type": "achievement",
+      "used_by": [
+        "hri"
+      ]
+    },
+    {
+      "id": "OBJ-PLACEMENT-01",
+      "area": "OBJ",
+      "variant_number": "01",
+      "skill": "OBJ.DetectPlacement",
+      "description": "Perceive objects on a shelf and indicate the correct placement",
+      "conditions": {
+        "knowledge": "known_class",
+        "clutter": "nearby",
+        "distractors": "similar"
+      },
+      "points": 30,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "OBJ-RECOGNIZE-01",
+      "area": "OBJ",
+      "variant_number": "01",
+      "skill": "OBJ.Recognize",
+      "description": "Correctly recognize an object",
+      "conditions": {
+        "knowledge": "known_instance",
+        "clutter": "nearby",
+        "distractors": "few",
+        "perception_range": "near"
+      },
+      "points": 10,
+      "type": "achievement",
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "OBJ-RECOGNIZE-02",
+      "area": "OBJ",
+      "variant_number": "02",
+      "skill": "OBJ.Recognize",
+      "description": "Find the requested object in a room or on a placement location",
+      "objects": [
+        "known_objects"
+      ],
+      "conditions": {
+        "knowledge": "known_instance",
+        "clutter": "nearby",
+        "distractors": "few",
+        "perception_range": "far"
+      },
+      "type": "achievement",
+      "points": 15,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "OBJ-RECOGNIZE-03",
+      "area": "OBJ",
+      "variant_number": "03",
+      "skill": "OBJ.Recognize",
+      "description": "Count the objects of a category, or name the biggest/lightest/... one, on a placement location",
+      "objects": [
+        "known_objects"
+      ],
+      "conditions": {
+        "knowledge": "known_class",
+        "clutter": "nearby",
+        "distractors": "similar",
+        "perception_range": "near"
+      },
+      "type": "achievement",
+      "points": 15,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "PLN-EXECUTE-01B",
+      "area": "PLN",
+      "variant_number": "01B",
+      "skill": "PLN.Execute",
+      "description": "Command goal reached (all its steps done, in a sensible order)",
+      "conditions": {
+        "plan_length": [
+          "medium",
+          "long"
+        ]
+      },
+      "type": "bonus",
+      "points": 35,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "PLN-INTERLEAVE-01B",
+      "area": "PLN",
+      "variant_number": "01B",
+      "skill": "PLN.Interleave",
+      "description": "Interleaved Task Bonus",
+      "conditions": {
+        "plan_length": "long"
+      },
+      "points": 200,
+      "type": "bonus",
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "PLN-PLAN-01",
+      "area": "PLN",
+      "variant_number": "01",
+      "skill": "PLN.Plan",
+      "description": "Demonstrate a plan has been generated",
+      "conditions": {
+        "input_variability": "paraphrase",
+        "plan_length": [
+          "medium",
+          "long"
+        ]
+      },
+      "points": 100,
+      "type": "achievement",
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "PPL-ATTRIBUTE-01B",
+      "area": "PPL",
+      "variant_number": "01B",
+      "skill": "PPL.DescribeAttribute",
+      "description": "Tell a visual attribute of the first guest to the second guest (correct)",
+      "conditions": {
+        "info_load": "single",
+        "target_motion": "static",
+        "retention": "task"
+      },
+      "points": 20,
+      "type": "bonus",
+      "used_by": [
+        "hri"
+      ]
+    },
+    {
+      "id": "PPL-ATTRIBUTE-03",
+      "area": "PPL",
+      "variant_number": "03",
+      "skill": "PPL.DescribeAttribute",
+      "description": "Find the person wearing the given colour and garment",
+      "conditions": {
+        "info_load": "few",
+        "target_motion": "static",
+        "retention": "immediate"
+      },
+      "type": "achievement",
+      "points": 20,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "PPL-ATTRIBUTE-04",
+      "area": "PPL",
+      "variant_number": "04",
+      "skill": "PPL.DescribeAttribute",
+      "description": "Report the name, pose or gesture of a person",
+      "conditions": {
+        "info_load": "single",
+        "target_motion": "static",
+        "retention": "task"
+      },
+      "type": "achievement",
+      "points": 20,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "PPL-DETECT-01",
+      "area": "PPL",
+      "variant_number": "01",
+      "skill": "PPL.Detect",
+      "description": "Find the person described by gesture, pose or name in a room",
+      "conditions": {
+        "crowd": "few",
+        "perception_range": "far"
+      },
+      "type": "achievement",
+      "points": 70,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "PPL-DETECT-02",
+      "area": "PPL",
+      "variant_number": "02",
+      "skill": "PPL.Detect",
+      "description": "Count the people in a room matching a gesture, pose or clothing",
+      "conditions": {
+        "crowd": "few",
+        "perception_range": "room"
+      },
+      "type": "achievement",
+      "points": 60,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "PPL-GESTURE-01",
+      "area": "PPL",
+      "variant_number": "01",
+      "skill": "PPL.DetectGesture",
+      "description": "Detect calling or waving customer",
+      "conditions": {
+        "crowd": "crowd",
+        "perception_range": "far"
+      },
+      "points": 80,
+      "type": "achievement",
+      "used_by": [
+        "restaurant"
+      ]
+    },
+    {
+      "id": "PPL-REIDENTIFY-01",
+      "area": "PPL",
+      "variant_number": "01",
+      "skill": "PPL.Reidentify",
+      "description": "Find again, in another room, a person met earlier in the command",
+      "conditions": {
+        "crowd": "few",
+        "distractors": "few",
+        "retention": "task",
+        "target_motion": "static",
+        "ambient_noise": "background"
+      },
+      "type": "achievement",
+      "points": 80,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "SPECIAL-01",
+      "area": "SPECIAL",
+      "variant_number": "01",
+      "skill": "SPECIAL.Administrative",
+      "description": "Not attending (see sec. 3.8.1)",
+      "points": -500,
+      "type": "administrative",
+      "used_by": [
+        "doing_laundry",
+        "gpsr",
+        "hri",
+        "pick_and_place",
+        "restaurant"
+      ]
+    },
+    {
+      "id": "SPECIAL-02",
+      "area": "SPECIAL",
+      "variant_number": "02",
+      "skill": "SPECIAL.Administrative",
+      "description": "Using alternative start signal (see sec. 3.6.8)",
+      "points": -100,
+      "type": "administrative",
+      "used_by": [
+        "doing_laundry",
+        "gpsr",
+        "pick_and_place",
+        "restaurant"
+      ]
+    },
+    {
+      "id": "SPECIAL-03",
+      "area": "SPECIAL",
+      "variant_number": "03",
+      "skill": "SPECIAL.Administrative",
+      "description": "Outstanding performance (see sec. 3.8.3)",
+      "points": null,
+      "points_formula": "floor(0.10 * total_score)",
+      "type": "administrative",
+      "used_by": [
+        "doing_laundry",
+        "gpsr",
+        "hri",
+        "pick_and_place",
+        "restaurant"
+      ]
+    },
+    {
+      "id": "MAN-PICK-03-DROP",
+      "area": "MAN",
+      "variant_number": "03-DROP",
+      "skill": "MAN.Pick",
+      "description": "Object dropped",
+      "failure_mode": "drop",
+      "points": -120,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PICK-03",
+      "share": 0.5,
+      "used_by": [
+        "doing_laundry"
+      ]
+    },
+    {
+      "id": "MAN-PICK-03-ASSIST",
+      "area": "MAN",
+      "variant_number": "03-ASSIST",
+      "skill": "MAN.Pick",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -120,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PICK-03",
+      "share": 0.5,
+      "used_by": [
+        "doing_laundry"
+      ]
+    },
+    {
+      "id": "MAN-FOLD-01-ASSIST",
+      "area": "MAN",
+      "variant_number": "01-ASSIST",
+      "skill": "MAN.Fold",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -300,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-FOLD-01",
+      "share": 0.5,
+      "used_by": [
+        "doing_laundry"
+      ]
+    },
+    {
+      "id": "MAN-FIXTURE-04-ASSIST",
+      "area": "MAN",
+      "variant_number": "04-ASSIST",
+      "skill": "MAN.OperateFixture",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -110,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-FIXTURE-04",
+      "share": 0.5,
+      "used_by": [
+        "doing_laundry"
+      ]
+    },
+    {
+      "id": "MAN-PICK-04-DROP",
+      "area": "MAN",
+      "variant_number": "04-DROP",
+      "skill": "MAN.Pick",
+      "description": "Object dropped",
+      "failure_mode": "drop",
+      "points": -120,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PICK-04",
+      "share": 0.5,
+      "used_by": [
+        "doing_laundry"
+      ]
+    },
+    {
+      "id": "MAN-PICK-04-ASSIST",
+      "area": "MAN",
+      "variant_number": "04-ASSIST",
+      "skill": "MAN.Pick",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -120,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PICK-04",
+      "share": 0.5,
+      "used_by": [
+        "doing_laundry"
+      ]
+    },
+    {
+      "id": "MAN-TRANSPORT-01-DROP",
+      "area": "MAN",
+      "variant_number": "01-DROP",
+      "skill": "MAN.Transport",
+      "description": "Object dropped",
+      "failure_mode": "drop",
+      "points": -120,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-TRANSPORT-01",
+      "share": 0.5,
+      "used_by": [
+        "doing_laundry"
+      ]
+    },
+    {
+      "id": "MAN-TRANSPORT-01-ASSIST",
+      "area": "MAN",
+      "variant_number": "01-ASSIST",
+      "skill": "MAN.Transport",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -120,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-TRANSPORT-01",
+      "share": 0.5,
+      "used_by": [
+        "doing_laundry"
+      ]
+    },
+    {
+      "id": "MAN-STACK-01-ASSIST",
+      "area": "MAN",
+      "variant_number": "01-ASSIST",
+      "skill": "MAN.Stack",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -50,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-STACK-01",
+      "share": 0.5,
+      "used_by": [
+        "doing_laundry"
+      ]
+    },
+    {
+      "id": "NLU-COMMAND-01-ALTINPUT",
+      "area": "NLU",
+      "variant_number": "01-ALTINPUT",
+      "skill": "NLU.UnderstandCommand",
+      "description": "Alternative input instead of speech",
+      "failure_mode": "alternative_input",
+      "points": -25,
+      "type": "penalty_behavior",
+      "penalty_of": "NLU-COMMAND-01",
+      "share": 0.25,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "NLU-COMMAND-01-ASSIST",
+      "area": "NLU",
+      "variant_number": "01-ASSIST",
+      "skill": "NLU.UnderstandCommand",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -50,
+      "type": "penalty_behavior",
+      "penalty_of": "NLU-COMMAND-01",
+      "share": 0.5,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "NAV-NAVIGATE-04-ASSIST",
+      "area": "NAV",
+      "variant_number": "04-ASSIST",
+      "skill": "NAV.Navigate",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -20,
+      "type": "penalty_behavior",
+      "penalty_of": "NAV-NAVIGATE-04",
+      "share": 0.5,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "OBJ-RECOGNIZE-02-ASSIST",
+      "area": "OBJ",
+      "variant_number": "02-ASSIST",
+      "skill": "OBJ.Recognize",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -10,
+      "type": "penalty_behavior",
+      "penalty_of": "OBJ-RECOGNIZE-02",
+      "share": 0.5,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "OBJ-RECOGNIZE-03-ASSIST",
+      "area": "OBJ",
+      "variant_number": "03-ASSIST",
+      "skill": "OBJ.Recognize",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -10,
+      "type": "penalty_behavior",
+      "penalty_of": "OBJ-RECOGNIZE-03",
+      "share": 0.5,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "MAN-PICK-06-DROP",
+      "area": "MAN",
+      "variant_number": "06-DROP",
+      "skill": "MAN.Pick",
+      "description": "Object dropped",
+      "failure_mode": "drop",
+      "points": -40,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PICK-06",
+      "share": 0.5,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "MAN-PICK-06-ASSIST",
+      "area": "MAN",
+      "variant_number": "06-ASSIST",
+      "skill": "MAN.Pick",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -40,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PICK-06",
+      "share": 0.5,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-04-DROP",
+      "area": "MAN",
+      "variant_number": "04-DROP",
+      "skill": "MAN.Place",
+      "description": "Object dropped",
+      "failure_mode": "drop",
+      "points": -20,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PLACE-04",
+      "share": 0.5,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-04-ASSIST",
+      "area": "MAN",
+      "variant_number": "04-ASSIST",
+      "skill": "MAN.Place",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -20,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PLACE-04",
+      "share": 0.5,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "HRI-HANDOVER-01-ASSIST",
+      "area": "HRI",
+      "variant_number": "01-ASSIST",
+      "skill": "HRI.Handover",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -20,
+      "type": "penalty_behavior",
+      "penalty_of": "HRI-HANDOVER-01",
+      "share": 0.5,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "PPL-DETECT-01-ASSIST",
+      "area": "PPL",
+      "variant_number": "01-ASSIST",
+      "skill": "PPL.Detect",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -35,
+      "type": "penalty_behavior",
+      "penalty_of": "PPL-DETECT-01",
+      "share": 0.5,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "PPL-DETECT-02-ASSIST",
+      "area": "PPL",
+      "variant_number": "02-ASSIST",
+      "skill": "PPL.Detect",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -30,
+      "type": "penalty_behavior",
+      "penalty_of": "PPL-DETECT-02",
+      "share": 0.5,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "PPL-REIDENTIFY-01-ASSIST",
+      "area": "PPL",
+      "variant_number": "01-ASSIST",
+      "skill": "PPL.Reidentify",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -40,
+      "type": "penalty_behavior",
+      "penalty_of": "PPL-REIDENTIFY-01",
+      "share": 0.5,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "PPL-ATTRIBUTE-03-ASSIST",
+      "area": "PPL",
+      "variant_number": "03-ASSIST",
+      "skill": "PPL.DescribeAttribute",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -10,
+      "type": "penalty_behavior",
+      "penalty_of": "PPL-ATTRIBUTE-03",
+      "share": 0.5,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "PPL-ATTRIBUTE-04-ASSIST",
+      "area": "PPL",
+      "variant_number": "04-ASSIST",
+      "skill": "PPL.DescribeAttribute",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -10,
+      "type": "penalty_behavior",
+      "penalty_of": "PPL-ATTRIBUTE-04",
+      "share": 0.5,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "HRI-INFO-03-ASSIST",
+      "area": "HRI",
+      "variant_number": "03-ASSIST",
+      "skill": "HRI.ConveyInfo",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -20,
+      "type": "penalty_behavior",
+      "penalty_of": "HRI-INFO-03",
+      "share": 0.5,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "HRI-INFO-04-ASSIST",
+      "area": "HRI",
+      "variant_number": "04-ASSIST",
+      "skill": "HRI.ConveyInfo",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -25,
+      "type": "penalty_behavior",
+      "penalty_of": "HRI-INFO-04",
+      "share": 0.5,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "NAV-FOLLOW-02-ASSIST",
+      "area": "NAV",
+      "variant_number": "02-ASSIST",
+      "skill": "NAV.Follow",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -100,
+      "type": "penalty_behavior",
+      "penalty_of": "NAV-FOLLOW-02",
+      "share": 0.5,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "NAV-GUIDE-01-ASSIST",
+      "area": "NAV",
+      "variant_number": "01-ASSIST",
+      "skill": "NAV.Guide",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -100,
+      "type": "penalty_behavior",
+      "penalty_of": "NAV-GUIDE-01",
+      "share": 0.5,
+      "used_by": [
+        "gpsr"
+      ]
+    },
+    {
+      "id": "HRI-INFO-02-ALTINPUT",
+      "area": "HRI",
+      "variant_number": "02-ALTINPUT",
+      "skill": "HRI.ConveyInfo",
+      "description": "Alternative input instead of speech",
+      "failure_mode": "alternative_input",
+      "points": -15,
+      "type": "penalty_behavior",
+      "penalty_of": "HRI-INFO-02",
+      "share": 0.25,
+      "used_by": [
+        "hri"
+      ]
+    },
+    {
+      "id": "HRI-INFO-02-ASSIST",
+      "area": "HRI",
+      "variant_number": "02-ASSIST",
+      "skill": "HRI.ConveyInfo",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -30,
+      "type": "penalty_behavior",
+      "penalty_of": "HRI-INFO-02",
+      "share": 0.5,
+      "used_by": [
+        "hri"
+      ]
+    },
+    {
+      "id": "HRI-HANDOVER-02-ASSIST",
+      "area": "HRI",
+      "variant_number": "02-ASSIST",
+      "skill": "HRI.Handover",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -25,
+      "type": "penalty_behavior",
+      "penalty_of": "HRI-HANDOVER-02",
+      "share": 0.5,
+      "used_by": [
+        "hri"
+      ]
+    },
+    {
+      "id": "NAV-FOLLOW-01-DROP",
+      "area": "NAV",
+      "variant_number": "01-DROP",
+      "skill": "NAV.Follow",
+      "description": "Object dropped",
+      "failure_mode": "drop",
+      "points": -100,
+      "type": "penalty_behavior",
+      "penalty_of": "NAV-FOLLOW-01",
+      "share": 0.5,
+      "used_by": [
+        "hri"
+      ]
+    },
+    {
+      "id": "NAV-FOLLOW-01-ASSIST",
+      "area": "NAV",
+      "variant_number": "01-ASSIST",
+      "skill": "NAV.Follow",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -100,
+      "type": "penalty_behavior",
+      "penalty_of": "NAV-FOLLOW-01",
+      "share": 0.5,
+      "used_by": [
+        "hri"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-01-DROP",
+      "area": "MAN",
+      "variant_number": "01-DROP",
+      "skill": "MAN.Place",
+      "description": "Object dropped",
+      "failure_mode": "drop",
+      "points": -30,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PLACE-01",
+      "share": 0.5,
+      "used_by": [
+        "hri"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-01-ASSIST",
+      "area": "MAN",
+      "variant_number": "01-ASSIST",
+      "skill": "MAN.Place",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -30,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PLACE-01",
+      "share": 0.5,
+      "used_by": [
+        "hri"
+      ]
+    },
+    {
+      "id": "OBJ-RECOGNIZE-01-ASSIST",
+      "area": "OBJ",
+      "variant_number": "01-ASSIST",
+      "skill": "OBJ.Recognize",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -5,
+      "type": "penalty_behavior",
+      "penalty_of": "OBJ-RECOGNIZE-01",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PICK-01-DROP",
+      "area": "MAN",
+      "variant_number": "01-DROP",
+      "skill": "MAN.Pick",
+      "description": "Object dropped",
+      "failure_mode": "drop",
+      "points": -40,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PICK-01",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PICK-01-ASSIST",
+      "area": "MAN",
+      "variant_number": "01-ASSIST",
+      "skill": "MAN.Pick",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -40,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PICK-01",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PICK-10-DROP",
+      "area": "MAN",
+      "variant_number": "10-DROP",
+      "skill": "MAN.Pick",
+      "description": "Object dropped",
+      "failure_mode": "drop",
+      "points": -45,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PICK-10",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PICK-10-ASSIST",
+      "area": "MAN",
+      "variant_number": "10-ASSIST",
+      "skill": "MAN.Pick",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -45,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PICK-10",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PICK-07-DROP",
+      "area": "MAN",
+      "variant_number": "07-DROP",
+      "skill": "MAN.Pick",
+      "description": "Object dropped",
+      "failure_mode": "drop",
+      "points": -80,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PICK-07",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PICK-07-ASSIST",
+      "area": "MAN",
+      "variant_number": "07-ASSIST",
+      "skill": "MAN.Pick",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -80,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PICK-07",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PICK-08-DROP",
+      "area": "MAN",
+      "variant_number": "08-DROP",
+      "skill": "MAN.Pick",
+      "description": "Object dropped",
+      "failure_mode": "drop",
+      "points": -90,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PICK-08",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PICK-08-ASSIST",
+      "area": "MAN",
+      "variant_number": "08-ASSIST",
+      "skill": "MAN.Pick",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -90,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PICK-08",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PICK-09-DROP",
+      "area": "MAN",
+      "variant_number": "09-DROP",
+      "skill": "MAN.Pick",
+      "description": "Object dropped",
+      "failure_mode": "drop",
+      "points": -70,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PICK-09",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PICK-09-ASSIST",
+      "area": "MAN",
+      "variant_number": "09-ASSIST",
+      "skill": "MAN.Pick",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -70,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PICK-09",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PICK-11-DROP",
+      "area": "MAN",
+      "variant_number": "11-DROP",
+      "skill": "MAN.Pick",
+      "description": "Object dropped",
+      "failure_mode": "drop",
+      "points": -30,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PICK-11",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PICK-11-ASSIST",
+      "area": "MAN",
+      "variant_number": "11-ASSIST",
+      "skill": "MAN.Pick",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -30,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PICK-11",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-02-DROP",
+      "area": "MAN",
+      "variant_number": "02-DROP",
+      "skill": "MAN.Place",
+      "description": "Object dropped",
+      "failure_mode": "drop",
+      "points": -25,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PLACE-02",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-02-ASSIST",
+      "area": "MAN",
+      "variant_number": "02-ASSIST",
+      "skill": "MAN.Place",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -25,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PLACE-02",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-05-DROP",
+      "area": "MAN",
+      "variant_number": "05-DROP",
+      "skill": "MAN.Place",
+      "description": "Object dropped",
+      "failure_mode": "drop",
+      "points": -35,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PLACE-05",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-05-ASSIST",
+      "area": "MAN",
+      "variant_number": "05-ASSIST",
+      "skill": "MAN.Place",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -35,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PLACE-05",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-06-DROP",
+      "area": "MAN",
+      "variant_number": "06-DROP",
+      "skill": "MAN.Place",
+      "description": "Object dropped",
+      "failure_mode": "drop",
+      "points": -25,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PLACE-06",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-06-ASSIST",
+      "area": "MAN",
+      "variant_number": "06-ASSIST",
+      "skill": "MAN.Place",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -25,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PLACE-06",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-INSERT-01-ASSIST",
+      "area": "MAN",
+      "variant_number": "01-ASSIST",
+      "skill": "MAN.Insert",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -80,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-INSERT-01",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-07-DROP",
+      "area": "MAN",
+      "variant_number": "07-DROP",
+      "skill": "MAN.Place",
+      "description": "Object dropped",
+      "failure_mode": "drop",
+      "points": -25,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PLACE-07",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-07-ASSIST",
+      "area": "MAN",
+      "variant_number": "07-ASSIST",
+      "skill": "MAN.Place",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -25,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PLACE-07",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-FIXTURE-01-ASSIST",
+      "area": "MAN",
+      "variant_number": "01-ASSIST",
+      "skill": "MAN.OperateFixture",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -130,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-FIXTURE-01",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-FIXTURE-02-ASSIST",
+      "area": "MAN",
+      "variant_number": "02-ASSIST",
+      "skill": "MAN.OperateFixture",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -110,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-FIXTURE-02",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-FIXTURE-03-ASSIST",
+      "area": "MAN",
+      "variant_number": "03-ASSIST",
+      "skill": "MAN.OperateFixture",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -110,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-FIXTURE-03",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-CONTAINER-01-ASSIST",
+      "area": "MAN",
+      "variant_number": "01-ASSIST",
+      "skill": "MAN.OpenContainer",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -200,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-CONTAINER-01",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-POUR-01-SPILL",
+      "area": "MAN",
+      "variant_number": "01-SPILL",
+      "skill": "MAN.Pour",
+      "description": "Contents spilled",
+      "failure_mode": "spill",
+      "points": -100,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-POUR-01",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "MAN-POUR-01-ASSIST",
+      "area": "MAN",
+      "variant_number": "01-ASSIST",
+      "skill": "MAN.Pour",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -100,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-POUR-01",
+      "share": 0.5,
+      "used_by": [
+        "pick_and_place"
+      ]
+    },
+    {
+      "id": "NAV-NAVIGATE-02-ASSIST",
+      "area": "NAV",
+      "variant_number": "02-ASSIST",
+      "skill": "NAV.Navigate",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -25,
+      "type": "penalty_behavior",
+      "penalty_of": "NAV-NAVIGATE-02",
+      "share": 0.5,
+      "used_by": [
+        "restaurant"
+      ]
+    },
+    {
+      "id": "NLU-COMMAND-02-ALTINPUT",
+      "area": "NLU",
+      "variant_number": "02-ALTINPUT",
+      "skill": "NLU.UnderstandCommand",
+      "description": "Alternative input instead of speech",
+      "failure_mode": "alternative_input",
+      "points": -35,
+      "type": "penalty_behavior",
+      "penalty_of": "NLU-COMMAND-02",
+      "share": 0.25,
+      "used_by": [
+        "restaurant"
+      ]
+    },
+    {
+      "id": "NLU-COMMAND-02-ASSIST",
+      "area": "NLU",
+      "variant_number": "02-ASSIST",
+      "skill": "NLU.UnderstandCommand",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -70,
+      "type": "penalty_behavior",
+      "penalty_of": "NLU-COMMAND-02",
+      "share": 0.5,
+      "used_by": [
+        "restaurant"
+      ]
+    },
+    {
+      "id": "HRI-INFO-01-ASSIST",
+      "area": "HRI",
+      "variant_number": "01-ASSIST",
+      "skill": "HRI.ConveyInfo",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -25,
+      "type": "penalty_behavior",
+      "penalty_of": "HRI-INFO-01",
+      "share": 0.5,
+      "used_by": [
+        "restaurant"
+      ]
+    },
+    {
+      "id": "MAN-PICK-05-DROP",
+      "area": "MAN",
+      "variant_number": "05-DROP",
+      "skill": "MAN.Pick",
+      "description": "Object dropped",
+      "failure_mode": "drop",
+      "points": -40,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PICK-05",
+      "share": 0.5,
+      "used_by": [
+        "restaurant"
+      ]
+    },
+    {
+      "id": "MAN-PICK-05-ASSIST",
+      "area": "MAN",
+      "variant_number": "05-ASSIST",
+      "skill": "MAN.Pick",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -40,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PICK-05",
+      "share": 0.5,
+      "used_by": [
+        "restaurant"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-03-DROP",
+      "area": "MAN",
+      "variant_number": "03-DROP",
+      "skill": "MAN.Place",
+      "description": "Object dropped",
+      "failure_mode": "drop",
+      "points": -25,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PLACE-03",
+      "share": 0.5,
+      "used_by": [
+        "restaurant"
+      ]
+    },
+    {
+      "id": "MAN-PLACE-03-ASSIST",
+      "area": "MAN",
+      "variant_number": "03-ASSIST",
+      "skill": "MAN.Place",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -25,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-PLACE-03",
+      "share": 0.5,
+      "used_by": [
+        "restaurant"
+      ]
+    },
+    {
+      "id": "MAN-TRANSPORT-02-DROP",
+      "area": "MAN",
+      "variant_number": "02-DROP",
+      "skill": "MAN.Transport",
+      "description": "Object dropped",
+      "failure_mode": "drop",
+      "points": -140,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-TRANSPORT-02",
+      "share": 0.5,
+      "used_by": [
+        "restaurant"
+      ]
+    },
+    {
+      "id": "MAN-TRANSPORT-02-ASSIST",
+      "area": "MAN",
+      "variant_number": "02-ASSIST",
+      "skill": "MAN.Transport",
+      "description": "Human assistance",
+      "failure_mode": "assistance",
+      "points": -140,
+      "type": "penalty_behavior",
+      "penalty_of": "MAN-TRANSPORT-02",
+      "share": 0.5,
+      "used_by": [
+        "restaurant"
+      ]
+    }
+  ]
+}

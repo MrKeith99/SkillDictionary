@@ -1,35 +1,28 @@
 area: PLN
-skills:
+variants:
 - id: PLN-EXECUTE-01B
-  taxonomy: PLN.Execute
-  modifiers:
-  - goal_reached
+  skill: PLN.Execute
   description: Command goal reached (all its steps done, in a sensible order)
   conditions:
     plan_length:
     - medium
     - long
-  level: '-'
   type: bonus
   points: 35
 - id: PLN-INTERLEAVE-01B
-  taxonomy: PLN.Interleave
-  modifiers: []
+  skill: PLN.Interleave
   description: Interleaved Task Bonus
   conditions:
     plan_length: long
-  level: X
   points: 200
   type: bonus
 - id: PLN-PLAN-01
-  taxonomy: PLN.Plan
-  modifiers: []
+  skill: PLN.Plan
   description: Demonstrate a plan has been generated
   conditions:
     input_variability: paraphrase
     plan_length:
     - medium
     - long
-  level: C
   points: 100
   type: achievement

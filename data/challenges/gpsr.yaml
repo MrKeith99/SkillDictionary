@@ -1,80 +1,93 @@
 challenge: General Purpose Service Robot
 rulebook_section: '5.4'
 max_time_minutes: 7
-method_note: Entries are the fixed primitives a generated command is scored against; the command generator composes them at runtime.
-challenge_rules:
-  autonomy_skip:
-    source: §5.3 rule 7
-    reductions_apply_to:
-    - use of a custom operator
-    - bypassing speech recognition
-    - receiving human assistance to accomplish a command
-    - instructing a human assistant to perform the whole task
-    ambiguity: The last two are declared to incur reductions but have no quantified line on the score sheet. Either add explicit entries or state that §3.7.2 (score zero) governs.
-  partial_scoring:
-    source: §5.3 rule 2
-    permitted: true
 entries:
 - ref: NLU-COMMAND-01
   count: 3
   section: Main Goal
   assistance:
     permitted: true
-    listed_in_task_description: true
-    self_score: 0
-    extra_penalty_ref: NLU-COMMAND-01P1
-    blocks_dependents: false
     note: Custom operator available only after the referee attempts three re-phrased commands.
-- ref: NLU-COMMAND-01P1
-  count: 3
-  section: Main Goal
-  related_skill: NLU-COMMAND-01
-  ambiguity: Fixed 3x-20 (-60, ~4% of 1490) conflicts with §3.7.4, which sets custom operator at -10% of maximum attainable score (-149). Confirm which governs.
-- ref: NLU-COMMAND-01P2
-  count: 6
-  section: Main Goal
-  related_skill: NLU-COMMAND-01
 - ref: PLN-PLAN-01
   count: 3
   section: Main Goal
-  depends_on:
-  - ref: NLU-COMMAND-01
-    nature: informational
-    blocking: true
-    satisfiable_by_assistance: true
-    note: Command may be acquired via custom operator or ASR bypass; planning remains scoreable.
   assistance:
     permitted: false
 - ref: NAV-NAVIGATE-04
   section: Command steps
+  assistance:
+    permitted: true
+    note: '§5.3 rule 7: an assisted step is not scored and costs half its price.'
 - ref: OBJ-RECOGNIZE-02
   section: Command steps
+  assistance:
+    permitted: true
+    note: '§5.3 rule 7: an assisted step is not scored and costs half its price.'
 - ref: OBJ-RECOGNIZE-03
   section: Command steps
+  assistance:
+    permitted: true
+    note: '§5.3 rule 7: an assisted step is not scored and costs half its price.'
 - ref: MAN-PICK-06
   section: Command steps
+  assistance:
+    permitted: true
+    note: '§5.3 rule 7: an assisted step is not scored and costs half its price.'
 - ref: MAN-PLACE-04
   section: Command steps
+  assistance:
+    permitted: true
+    note: '§5.3 rule 7: an assisted step is not scored and costs half its price.'
 - ref: HRI-HANDOVER-01
   section: Command steps
+  assistance:
+    permitted: true
+    note: '§5.3 rule 7: an assisted step is not scored and costs half its price.'
 - ref: PPL-DETECT-01
   section: Command steps
+  assistance:
+    permitted: true
+    note: '§5.3 rule 7: an assisted step is not scored and costs half its price.'
 - ref: PPL-DETECT-02
   section: Command steps
-- ref: PPL-REID-01
+  assistance:
+    permitted: true
+    note: '§5.3 rule 7: an assisted step is not scored and costs half its price.'
+- ref: PPL-REIDENTIFY-01
   section: Command steps
+  assistance:
+    permitted: true
+    note: '§5.3 rule 7: an assisted step is not scored and costs half its price.'
 - ref: PPL-ATTRIBUTE-03
   section: Command steps
+  assistance:
+    permitted: true
+    note: '§5.3 rule 7: an assisted step is not scored and costs half its price.'
 - ref: PPL-ATTRIBUTE-04
   section: Command steps
+  assistance:
+    permitted: true
+    note: '§5.3 rule 7: an assisted step is not scored and costs half its price.'
 - ref: HRI-INFO-03
   section: Command steps
+  assistance:
+    permitted: true
+    note: '§5.3 rule 7: an assisted step is not scored and costs half its price.'
 - ref: HRI-INFO-04
   section: Command steps
+  assistance:
+    permitted: true
+    note: '§5.3 rule 7: an assisted step is not scored and costs half its price.'
 - ref: NAV-FOLLOW-02
   section: Command steps
+  assistance:
+    permitted: true
+    note: '§5.3 rule 7: an assisted step is not scored and costs half its price.'
 - ref: NAV-GUIDE-01
   section: Command steps
+  assistance:
+    permitted: true
+    note: '§5.3 rule 7: an assisted step is not scored and costs half its price.'
 - ref: PLN-EXECUTE-01B
   count: 3
   section: Command steps
@@ -83,14 +96,6 @@ entries:
   section: Extra Rewards
   assistance:
     permitted: false
-- ref: NLU-COMMAND-01P3
-  count: 3
-  section: Penalties
-  related_skill: NLU-COMMAND-01
-  ambiguity: Fixed 3x-50 (-150, ~10%) vs §3.7.4 gesture/alternative-HRI rates of -20% of max attainable. Confirm interaction.
-- ref: GEN-UNSAFE-01P
-  count: 1
-  section: Penalties
 - ref: SPECIAL-01
   count: 1
   section: Special Penalties & Bonuses
@@ -125,7 +130,7 @@ command_steps:
     tellCatPropOnPlcmt:          {steps: [NAV-NAVIGATE-04, OBJ-RECOGNIZE-03, NAV-NAVIGATE-04]}
     greetClothDscInRm:           {steps: [NAV-NAVIGATE-04, PPL-ATTRIBUTE-03], then: foundPers}
     greetNameInRm:               {steps: [NAV-NAVIGATE-04, PPL-DETECT-01], then: foundPers}
-    meetNameAtLocThenFindInRm:   {steps: [NAV-NAVIGATE-04, PPL-DETECT-01, NAV-NAVIGATE-04, PPL-REID-01]}
+    meetNameAtLocThenFindInRm:   {steps: [NAV-NAVIGATE-04, PPL-DETECT-01, NAV-NAVIGATE-04, PPL-REIDENTIFY-01]}
     countClothPrsInRoom:         {steps: [NAV-NAVIGATE-04, PPL-DETECT-02, NAV-NAVIGATE-04]}
     tellPrsInfoAtLocToPrsAtLoc:  {steps: [NAV-NAVIGATE-04, PPL-DETECT-01, PPL-ATTRIBUTE-04, NAV-NAVIGATE-04, PPL-DETECT-01, HRI-INFO-04]}
     followPrsAtLoc:              {steps: [NAV-NAVIGATE-04, PPL-DETECT-01, NAV-FOLLOW-02]}

@@ -3,796 +3,8 @@
   "year": 2027,
   "status": "draft",
   "rulebook_version": "2026.2",
-  "taxonomy": {
-    "version": 1,
-    "failure_modes": {
-      "drop": "Object released unintentionally before reaching its target.",
-      "spill": "Contents (liquid, granular) leave the container outside the target.",
-      "damage": "Object or environment is damaged or left in an unsafe state.",
-      "collision": "Unintended contact with furniture, objects or people.",
-      "wrong_target": "Action completed on the wrong object, location or person.",
-      "wrong_info": "Information stated or stored is incorrect.",
-      "quality": "Action completed but below the stated quality criterion.",
-      "neglect": "Required social behaviour omitted (not attending, no eye contact).",
-      "multiple_at_once": "More than the specified quantity handled in one action.",
-      "assistance": "A human performed or simplified part of the task (\u00a73.7).",
-      "alternative_input": "Natural interaction replaced by a less natural channel (\u00a73.7.4).",
-      "unsafe_contact": "Robot touches a person without the task asking for it.",
-      "out_of_bounds": "Robot leaves the designated area."
-    },
-    "nodes": {
-      "MAN.Grasp": {
-        "name": "Grasp",
-        "intent": "Establish a stable hold on an object so it can be moved. The prerequisite of almost every manipulation task; rarely scored alone.",
-        "success": "Object is lifted clear of its support and held without slipping.",
-        "not_judged": "Grasp type, gripper, suction or any end-effector design. The sub-skills below classify the demand the OBJECT places on a grasp, not the technique the robot uses to meet it.",
-        "factors": [
-          "mass",
-          "size",
-          "surface",
-          "rigidity",
-          "shape",
-          "height",
-          "access",
-          "clutter"
-        ],
-        "scored": false,
-        "status": "active",
-        "sources": [
-          "Feix2016"
-        ]
-      },
-      "MAN.Grasp.Power": {
-        "name": "Power-demand grasp",
-        "parent": "MAN.Grasp",
-        "intent": "Hold objects whose weight or bulk needs the hand/gripper to enclose them and resist large loads (full milk carton, bag, pot).",
-        "success": "As MAN.Grasp, with the object held stable through transport.",
-        "not_judged": "Whether a palm, two arms, suction cups or a hook is used.",
-        "factors": [
-          "mass",
-          "size",
-          "surface"
-        ],
-        "scored": false,
-        "status": "active",
-        "sources": [
-          "Feix2016"
-        ]
-      },
-      "MAN.Grasp.Intermediate": {
-        "name": "Intermediate-demand grasp",
-        "parent": "MAN.Grasp",
-        "intent": "Hold flat or thin-edged objects that must be pinched from the side \u2014 the Feix \"lateral\" family (plate rim, tray edge, card-like items).",
-        "success": "As MAN.Grasp.",
-        "not_judged": "Technique, including sliding the object to a table edge first.",
-        "factors": [
-          "size",
-          "shape",
-          "surface",
-          "height",
-          "access"
-        ],
-        "scored": false,
-        "status": "active",
-        "sources": [
-          "Feix2016"
-        ]
-      },
-      "MAN.Grasp.Precision": {
-        "name": "Precision-demand grasp",
-        "parent": "MAN.Grasp",
-        "intent": "Hold small or thin objects that only fit between fingertips (cutlery, dishwasher tab, pen). Small contact area makes errors in pose costly.",
-        "success": "As MAN.Grasp.",
-        "not_judged": "Technique.",
-        "factors": [
-          "size",
-          "surface",
-          "shape",
-          "clutter"
-        ],
-        "scored": false,
-        "status": "active",
-        "sources": [
-          "Feix2016"
-        ]
-      },
-      "MAN.Pick": {
-        "name": "Pick",
-        "code": "PICK",
-        "intent": "Take an object from where it is so it can be carried elsewhere. The single most common manipulation step in household tasks.",
-        "success": "Object is removed from its support and held by the robot.",
-        "not_judged": "Grasp technique, number of attempts within the time limit.",
-        "composed_of": [
-          "OBJ.Recognize",
-          "MAN.Grasp"
-        ],
-        "factors": [
-          "mass",
-          "size",
-          "surface",
-          "rigidity",
-          "shape",
-          "height",
-          "access",
-          "clutter",
-          "knowledge"
-        ],
-        "status": "active"
-      },
-      "MAN.Place": {
-        "name": "Place",
-        "code": "PLACE",
-        "intent": "Put a held object down at a target so it stays there, usable and safe \u2014 as a person would set it down, not drop it.",
-        "success": "Object rests at the target location, stable, in a usable orientation, and was released (not thrown or dropped).",
-        "not_judged": "Trajectory, speed, whether the object was regrasped.",
-        "composed_of": [
-          "OBJ.DetectPlacement"
-        ],
-        "factors": [
-          "mass",
-          "size",
-          "rigidity",
-          "height",
-          "access",
-          "placement_tolerance",
-          "clutter",
-          "knowledge"
-        ],
-        "status": "active"
-      },
-      "MAN.Insert": {
-        "name": "Insert",
-        "code": "INSERT",
-        "intent": "Place an object into a receptacle that constrains its pose (slot, holder, socket). A Place with tight tolerance.",
-        "success": "Object is fully seated in the receptacle.",
-        "not_judged": "Technique, number of corrective motions.",
-        "parent": "MAN.Place",
-        "factors": [
-          "size",
-          "height",
-          "access",
-          "placement_tolerance"
-        ],
-        "status": "active"
-      },
-      "MAN.Pour": {
-        "name": "Pour",
-        "code": "POUR",
-        "intent": "Transfer liquid or granular contents from one container into another \u2014 serving drinks, preparing food.",
-        "success": "A meaningful amount (task-defined) of contents lands in the target container; spillage is scored separately as failure mode `spill`.",
-        "not_judged": "Pouring motion, tilt rate.",
-        "composed_of": [
-          "MAN.Grasp"
-        ],
-        "factors": [
-          "mass",
-          "contents",
-          "placement_tolerance"
-        ],
-        "status": "active"
-      },
-      "MAN.OperateArticulated": {
-        "name": "Operate articulated object",
-        "code": "OPERATE",
-        "intent": "Move the part of a fixture or container that is constrained to a hinge, slide or thread: doors, drawers, racks, lids, caps. Needed to reach what is inside or to leave the home in order.",
-        "success": "The articulated part reaches the requested state (open enough to access / fully closed / cap removed).",
-        "not_judged": "Whether the robot pushes, pulls, hooks or uses its base.",
-        "factors": [
-          "size",
-          "mechanism",
-          "actuation_force",
-          "counterpart",
-          "height",
-          "access"
-        ],
-        "status": "active"
-      },
-      "MAN.OperateControl": {
-        "name": "Operate control",
-        "code": "CONTROL",
-        "intent": "Actuate a button, switch, knob or lever to make a device do something (start a washing machine, switch a light, boil a kettle).",
-        "success": "The device changes state as intended.",
-        "not_judged": "Technique.",
-        "factors": [
-          "size",
-          "mechanism",
-          "height",
-          "access"
-        ],
-        "status": "proposed",
-        "sources": [
-          "SkillDictionaryPDF"
-        ]
-      },
-      "MAN.Transport": {
-        "name": "Transport",
-        "code": "TRANSPORT",
-        "intent": "Move one or more objects between places while keeping them secure, possibly using a carrier (tray, basket).",
-        "success": "All transported items arrive at the destination without loss.",
-        "not_judged": "Carrier attachment method, path.",
-        "composed_of": [
-          "MAN.Pick",
-          "NAV.Navigate",
-          "MAN.Place"
-        ],
-        "factors": [
-          "mass",
-          "size",
-          "contents",
-          "carrier"
-        ],
-        "status": "active"
-      },
-      "MAN.Fold": {
-        "name": "Fold",
-        "code": "FOLD",
-        "intent": "Turn a loose piece of clothing into a compact, regular folded shape.",
-        "success": "Garment meets the task's fold-quality criterion.",
-        "not_judged": "Folding sequence, tools on the robot.",
-        "composed_of": [
-          "MAN.Grasp"
-        ],
-        "factors": [
-          "rigidity",
-          "size",
-          "surface"
-        ],
-        "status": "active"
-      },
-      "MAN.Stack": {
-        "name": "Stack",
-        "code": "STACK",
-        "intent": "Arrange items on top of each other in a neat, stable pile.",
-        "success": "Stack is stable and items are aligned to the task criterion.",
-        "not_judged": "Technique.",
-        "parent": "MAN.Place",
-        "factors": [
-          "rigidity",
-          "placement_tolerance"
-        ],
-        "status": "active"
-      },
-      "MAN.Wipe": {
-        "name": "Wipe surface",
-        "code": "WIPE",
-        "intent": "Clean a surface (table, counter) by moving a tool or cloth over it.",
-        "success": "Target area is visibly cleared of the defined dirt.",
-        "not_judged": "Tool, pattern of motion.",
-        "factors": [
-          "height",
-          "access",
-          "clutter"
-        ],
-        "status": "proposed",
-        "sources": [
-          "SkillDictionaryPDF"
-        ]
-      },
-      "NAV.Navigate": {
-        "name": "Navigate",
-        "code": "NAVIGATE",
-        "intent": "Move to a named or perceived place in the home safely; the glue of every multi-room task.",
-        "success": "Robot stops within the task's tolerance of the goal, without collision.",
-        "not_judged": "Planner, path shape, speed within safety limits.",
-        "factors": [
-          "map_knowledge",
-          "route_extent",
-          "crowd",
-          "obstacle_visibility"
-        ],
-        "status": "active",
-        "sources": [
-          "SkillDictionaryPDF"
-        ]
-      },
-      "NAV.Follow": {
-        "name": "Follow person",
-        "code": "FOLLOW",
-        "intent": "Keep up with a walking person to a destination they choose.",
-        "success": "Robot arrives with the person without losing or contacting them.",
-        "not_judged": "Tracking method.",
-        "composed_of": [
-          "PPL.Detect",
-          "NAV.Navigate"
-        ],
-        "factors": [
-          "map_knowledge",
-          "route_extent",
-          "crowd"
-        ],
-        "status": "active",
-        "sources": [
-          "SkillDictionaryPDF"
-        ]
-      },
-      "NAV.Guide": {
-        "name": "Guide person",
-        "code": "GUIDE",
-        "intent": "Lead a person to a destination, adapting to their pace.",
-        "success": "Person arrives at the destination together with the robot.",
-        "not_judged": "Method of signalling direction.",
-        "composed_of": [
-          "NAV.Navigate",
-          "PPL.Detect"
-        ],
-        "factors": [
-          "map_knowledge",
-          "route_extent",
-          "crowd"
-        ],
-        "status": "proposed"
-      },
-      "NAV.AvoidObstacle": {
-        "name": "Avoid obstacle",
-        "code": "AVOID",
-        "intent": "Reach a goal despite unexpected objects, restricted zones or people in the way. Scored by outcome (no contact), not by detecting the obstacle.",
-        "success": "No contact with the obstacle and goal still reached.",
-        "not_judged": "Whether the obstacle was detected explicitly.",
-        "parent": "NAV.Navigate",
-        "factors": [
-          "obstacle_visibility",
-          "crowd"
-        ],
-        "status": "proposed",
-        "sources": [
-          "SkillDictionaryPDF"
-        ]
-      },
-      "NAV.SignalIntent": {
-        "name": "Signal motion intent",
-        "code": "SIGNAL",
-        "intent": "Make the robot's movement legible to people around it, e.g. by looking where it is going.",
-        "success": "The intended direction is visibly indicated during motion.",
-        "not_judged": "Which body part signals.",
-        "factors": [
-          "crowd"
-        ],
-        "status": "active"
-      },
-      "OBJ.Recognize": {
-        "name": "Recognize object",
-        "code": "RECOGNIZE",
-        "intent": "Tell which object (or class) is in front of the robot, so it acts on the right thing.",
-        "success": "Robot communicates the correct identity/class to the referee.",
-        "not_judged": "Model, sensor.",
-        "factors": [
-          "knowledge",
-          "clutter",
-          "size",
-          "distractors",
-          "perception_range"
-        ],
-        "status": "active",
-        "sources": [
-          "SkillDictionaryPDF"
-        ]
-      },
-      "OBJ.DetectPlacement": {
-        "name": "Determine placement",
-        "code": "PLACEMENT",
-        "intent": "Decide where an object belongs \u2014 free space on a surface, or the shelf holding semantically similar items.",
-        "success": "Robot indicates a location that satisfies the task's rule.",
-        "not_judged": "Reasoning method.",
-        "factors": [
-          "knowledge",
-          "clutter",
-          "distractors"
-        ],
-        "status": "active",
-        "sources": [
-          "SkillDictionaryPDF"
-        ]
-      },
-      "OBJ.DetectEvent": {
-        "name": "Detect event",
-        "code": "EVENT",
-        "intent": "Notice a non-speech signal from the home (doorbell, alarm, knock).",
-        "success": "Robot reacts to the event within the task's time window.",
-        "not_judged": "Sensor.",
-        "factors": [
-          "knowledge",
-          "ambient_noise"
-        ],
-        "status": "active"
-      },
-      "OBJ.EstimatePose": {
-        "name": "Estimate object pose",
-        "code": "POSE",
-        "intent": "Find an object's 3D position and orientation to plan an action on it.",
-        "success": "Downstream action succeeds; not scored on its own.",
-        "not_judged": "Method.",
-        "factors": [
-          "knowledge",
-          "clutter",
-          "size"
-        ],
-        "status": "proposed",
-        "sources": [
-          "SkillDictionaryPDF"
-        ]
-      },
-      "OBJ.DetectAbsence": {
-        "name": "Detect absence",
-        "code": "ABSENCE",
-        "intent": "Notice that something expected is missing (a guest without a drink).",
-        "success": "Robot correctly reports the missing item or class.",
-        "not_judged": "Method.",
-        "factors": [
-          "knowledge",
-          "perception_range",
-          "crowd"
-        ],
-        "status": "proposed",
-        "sources": [
-          "SkillDictionaryPDF"
-        ]
-      },
-      "PPL.Detect": {
-        "name": "Detect person",
-        "code": "DETECT",
-        "intent": "Know that a person is present and where.",
-        "success": "Robot orients to / reports each person in scope.",
-        "not_judged": "Sensor, model.",
-        "factors": [
-          "crowd",
-          "perception_range"
-        ],
-        "status": "proposed"
-      },
-      "PPL.DetectGesture": {
-        "name": "Detect gesture",
-        "code": "GESTURE",
-        "intent": "Recognise a deliberate bodily signal (waving, calling, pointing).",
-        "success": "Robot reacts to the correct person's gesture.",
-        "not_judged": "Method.",
-        "composed_of": [
-          "PPL.Detect"
-        ],
-        "factors": [
-          "crowd",
-          "perception_range"
-        ],
-        "status": "active",
-        "sources": [
-          "SkillDictionaryPDF"
-        ]
-      },
-      "PPL.DetectActivity": {
-        "name": "Detect activity",
-        "code": "ACTIVITY",
-        "intent": "Recognise what people are doing when they are not signalling the robot \u2014 a conversation has ended, a guest is wearing shoes, someone entered \u2014 so the robot can choose when and whom to approach.",
-        "success": "Robot reacts to the correct person's state within the task's time window.",
-        "not_judged": "Modality (vision, audio), model.",
-        "composed_of": [
-          "PPL.Detect"
-        ],
-        "factors": [
-          "crowd",
-          "perception_range",
-          "ambient_noise"
-        ],
-        "status": "proposed",
-        "sources": [
-          "SkillDictionaryPDF"
-        ]
-      },
-      "PPL.ResolvePointing": {
-        "name": "Resolve pointing",
-        "code": "POINTING",
-        "intent": "Work out which object or place a person is pointing at.",
-        "success": "Robot names or acts on the object/place the person meant.",
-        "not_judged": "Method.",
-        "composed_of": [
-          "PPL.DetectGesture",
-          "OBJ.Recognize"
-        ],
-        "factors": [
-          "perception_range",
-          "distractors"
-        ],
-        "status": "proposed",
-        "sources": [
-          "SkillDictionaryPDF"
-        ]
-      },
-      "PPL.DescribeAttribute": {
-        "name": "Describe person",
-        "code": "ATTRIBUTE",
-        "intent": "Tell a visual attribute of a person (clothing, hair, height).",
-        "success": "Stated attribute is correct.",
-        "not_judged": "Phrasing.",
-        "factors": [
-          "info_load",
-          "target_motion",
-          "retention"
-        ],
-        "status": "active",
-        "sources": [
-          "SkillDictionaryPDF"
-        ]
-      },
-      "PPL.Reidentify": {
-        "name": "Re-identify person",
-        "code": "REID",
-        "intent": "Recognise a person met earlier, by face, voice or appearance.",
-        "success": "Robot addresses/locates the right person.",
-        "not_judged": "Modality used.",
-        "factors": [
-          "crowd",
-          "distractors",
-          "retention",
-          "target_motion",
-          "ambient_noise"
-        ],
-        "status": "proposed",
-        "sources": [
-          "SkillDictionaryPDF"
-        ]
-      },
-      "HRI.Attend": {
-        "name": "Attend to people",
-        "code": "ATTEND",
-        "intent": "Show awareness of the people the robot interacts with \u2014 acknowledge them, face them, do not ignore them.",
-        "success": "Each person in the interaction is acknowledged.",
-        "not_judged": "Exact behaviour used to acknowledge, and gaze quality \u2014 that is scored by HRI.Gaze lines. A neglect penalty here means the robot did not engage at all: it ignored, turned away from, or never responded to the person.",
-        "composed_of": [
-          "PPL.Detect"
-        ],
-        "factors": [
-          "crowd",
-          "target_motion"
-        ],
-        "status": "active",
-        "sources": [
-          "SkillDictionaryPDF"
-        ]
-      },
-      "HRI.Gaze": {
-        "name": "Social gaze",
-        "code": "GAZE",
-        "parent": "HRI.Attend",
-        "intent": "Look at the person speaking or being spoken about.",
-        "success": "Head/gaze is visibly directed at the correct person.",
-        "not_judged": "Eye design.",
-        "factors": [
-          "crowd",
-          "target_motion",
-          "ambient_noise",
-          "distractors"
-        ],
-        "status": "active",
-        "sources": [
-          "SkillDictionaryPDF"
-        ]
-      },
-      "HRI.Handover": {
-        "name": "Handover",
-        "code": "HANDOVER",
-        "intent": "Pass an object to, or take it from, a person directly \u2014 without the person having to adapt to the robot's mechanics.",
-        "success": "Object changes hands without being dropped or placed on the robot.",
-        "not_judged": "Gripper, arm pose.",
-        "composed_of": [
-          "MAN.Grasp",
-          "PPL.Detect"
-        ],
-        "factors": [
-          "mass",
-          "size",
-          "rigidity"
-        ],
-        "status": "active",
-        "sources": [
-          "SkillDictionaryPDF"
-        ]
-      },
-      "HRI.Indicate": {
-        "name": "Indicate",
-        "code": "INDICATE",
-        "intent": "Direct a person's attention to a place or object (offer a free seat, show where something is).",
-        "success": "Person understands which place/object is meant.",
-        "not_judged": "Pointing vs. speech vs. gaze.",
-        "factors": [
-          "distractors",
-          "crowd"
-        ],
-        "status": "active"
-      },
-      "HRI.ConveyInfo": {
-        "name": "Convey information",
-        "code": "INFO",
-        "intent": "Tell a person something the robot learned earlier \u2014 a guest's name, a customer's order, a summary of what happened \u2014 correctly and to the right person.",
-        "success": "All required items are stated correctly to the intended person.",
-        "not_judged": "Phrasing, voice.",
-        "composed_of": [
-          "NLU.ExtractInfo"
-        ],
-        "factors": [
-          "info_load",
-          "retention",
-          "distractors"
-        ],
-        "status": "active",
-        "sources": [
-          "SkillDictionaryPDF"
-        ]
-      },
-      "HRI.Explain": {
-        "name": "Make state visible",
-        "code": "EXPLAIN",
-        "intent": "Show people what the robot perceives, hears and intends \u2014 camera view, recognised objects, speech-to-text, current subtask, planned path \u2014 so referees and users can follow and trust it.",
-        "success": "The required information is shown live and matches what the robot does.",
-        "not_judged": "Display hardware, layout.",
-        "factors": [],
-        "status": "proposed",
-        "sources": [
-          "SkillDictionaryPDF"
-        ]
-      },
-      "HRI.Interrupt": {
-        "name": "Stop on request",
-        "code": "INTERRUPT",
-        "intent": "Stop the current action at once when a person says \"stop\" or touches the robot, and resume only when told to. The basic safety contract with untrained users.",
-        "success": "Motion halts within the task's reaction time; resumes on the agreed trigger.",
-        "not_judged": "Trigger channel (speech, touch, button).",
-        "factors": [
-          "ambient_noise",
-          "crowd"
-        ],
-        "status": "proposed",
-        "sources": [
-          "SkillDictionaryPDF"
-        ]
-      },
-      "NLU.UnderstandCommand": {
-        "name": "Understand command",
-        "code": "COMMAND",
-        "intent": "Turn a spoken request from a non-expert into an actionable goal, despite paraphrase and noise.",
-        "success": "Robot repeats or acts on a correct interpretation.",
-        "not_judged": "ASR/LLM choice.",
-        "factors": [
-          "input_variability",
-          "ambient_noise",
-          "info_load"
-        ],
-        "status": "active",
-        "sources": [
-          "SkillDictionaryPDF"
-        ]
-      },
-      "NLU.ExtractInfo": {
-        "name": "Extract information",
-        "code": "EXTRACT",
-        "intent": "Pick out and store facts a person states (name, favourite drink, order, where something is).",
-        "success": "Stored facts are later reproduced correctly.",
-        "not_judged": "Storage format.",
-        "factors": [
-          "input_variability",
-          "ambient_noise",
-          "knowledge",
-          "info_load"
-        ],
-        "status": "proposed",
-        "sources": [
-          "SkillDictionaryPDF"
-        ]
-      },
-      "NLU.Clarify": {
-        "name": "Clarify efficiently",
-        "code": "CLARIFY",
-        "intent": "Ask only the questions needed to remove ambiguity \u2014 not burden the user with confirmations.",
-        "success": "No non-essential questions asked.",
-        "not_judged": "Question wording.",
-        "factors": [
-          "input_variability",
-          "ambient_noise"
-        ],
-        "status": "active"
-      },
-      "PLN.Plan": {
-        "name": "Plan",
-        "code": "PLAN",
-        "intent": "Decompose a goal into a sequence of executable skills.",
-        "success": "Robot communicates a plan that would achieve the goal.",
-        "not_judged": "Planner.",
-        "factors": [
-          "input_variability",
-          "plan_length"
-        ],
-        "status": "active"
-      },
-      "PLN.Execute": {
-        "name": "Execute task",
-        "code": "EXECUTE",
-        "intent": "Carry a multi-step command through to its goal state.",
-        "success": "Goal conditions of the command hold at the end. Partial completion is scored by goal predicates, not referee impression.",
-        "not_judged": "Order of steps unless the command fixes it.",
-        "composed_of": [
-          "PLN.Plan"
-        ],
-        "factors": [
-          "plan_length"
-        ],
-        "status": "active"
-      },
-      "PLN.Interleave": {
-        "name": "Interleave tasks",
-        "code": "INTERLEAVE",
-        "parent": "PLN.Execute",
-        "intent": "Work on several commands at once when it saves time.",
-        "success": "Steps of different commands are interleaved and all goals hold.",
-        "not_judged": "Scheduling method.",
-        "factors": [
-          "plan_length"
-        ],
-        "status": "active"
-      },
-      "GEN.HumanAssistance": {
-        "name": "Human assistance",
-        "code": "ASSIST",
-        "intent": "Not a robot capability. Records that a human did part of the task, so the score reflects only what the robot did itself (\u00a73.7).",
-        "success": "n/a",
-        "not_judged": "n/a",
-        "factors": [],
-        "status": "active"
-      },
-      "GEN.AlternativeInput": {
-        "name": "Alternative interaction channel",
-        "code": "ALTINPUT",
-        "intent": "Not a robot capability. Records that the robot used a less natural input channel than speech with the default operator (\u00a73.7.4).",
-        "success": "n/a",
-        "not_judged": "n/a",
-        "factors": [],
-        "status": "active"
-      },
-      "GEN.UnsafeConduct": {
-        "name": "Unsafe conduct",
-        "code": "UNSAFE",
-        "intent": "Not a skill. Records that the robot endangered a person, so safety has a price in the score and not only in the stop it causes (league draft #90).",
-        "success": "n/a",
-        "not_judged": "n/a",
-        "factors": [],
-        "status": "proposed",
-        "sources": [
-          "SkillDictionaryPDF"
-        ]
-      },
-      "GEN.TaskConstraint": {
-        "name": "Task-specific constraint",
-        "code": "CONSTRAINT",
-        "intent": "Not a skill. A task-level rule whose violation is penalised (e.g. the breakfast must look like a typical meal setting).",
-        "success": "n/a",
-        "not_judged": "n/a",
-        "factors": [],
-        "status": "active"
-      },
-      "SPECIAL.Administrative": {
-        "name": "Administrative",
-        "code": "",
-        "intent": "Rulebook \u00a73.8 lines that are not robot capabilities.",
-        "success": "n/a",
-        "not_judged": "n/a",
-        "factors": [],
-        "status": "active"
-      }
-    },
-    "sources": {
-      "Feix2016": "T. Feix, J. Romero, H.-B. Schmiedmayer, A. M. Dollar, D. Kragic, \"The GRASP Taxonomy of Human Grasp Types\", IEEE Trans. Human-Machine Systems 46(1), 2016. Used for the power / intermediate / precision split only.",
-      "SkillDictionaryPDF": "references/SkillDictionary.pdf (league draft skill list)."
-    }
-  },
   "difficulty_factors": {
     "version": 1,
-    "tiers": {
-      "E": {
-        "max": 2
-      },
-      "C": {
-        "max": 5
-      },
-      "X": {
-        "max": null
-      }
-    },
     "factors": {
       "mass": {
         "source": "object",
@@ -864,7 +76,7 @@
           },
           "compliant": {
             "weight": 1,
-            "guide": "bags, pouches, fragile items that must not be squeezed"
+            "guide": "gives a little under the grip but keeps its shape \u2014 carton, snack bag, sponge, soft fruit; must be held without crushing"
           },
           "deformable": {
             "weight": 2,
@@ -890,6 +102,24 @@
           }
         }
       },
+      "stability": {
+        "source": "object",
+        "question": "(placing) Does it stay where it is set down?",
+        "levels": {
+          "stable": {
+            "weight": 0,
+            "guide": "flat or wide base \u2014 plate, mug, box, can no taller than twice its width, cloth"
+          },
+          "unsteady": {
+            "weight": 1,
+            "guide": "tips or rocks \u2014 taller than twice its width (bottle, slim can), or a curved base (bell pepper)"
+          },
+          "rolls": {
+            "weight": 2,
+            "guide": "round, rolls away unless placed in a hollow or against an edge \u2014 apple, lemon, peach"
+          }
+        }
+      },
       "contents": {
         "source": "object",
         "question": "Does the object contain something that constrains its motion?",
@@ -904,13 +134,49 @@
           }
         }
       },
+      "garment": {
+        "source": "object",
+        "question": "(clothing) How is the garment built?",
+        "levels": {
+          "flat": {
+            "weight": 0,
+            "guide": "one flat piece \u2014 cleaning cloth, towel, napkin"
+          },
+          "tubular": {
+            "weight": 1,
+            "guide": "a tube, often in pairs \u2014 socks"
+          },
+          "limbed": {
+            "weight": 2,
+            "guide": "sleeves or legs to fold in \u2014 T-shirt, shirt, trousers"
+          }
+        }
+      },
+      "spread": {
+        "source": "object",
+        "question": "(clothing) How big is it laid out flat, along its longest side?",
+        "levels": {
+          "small": {
+            "weight": 0,
+            "guide": "< 40 cm \u2014 cleaning cloth, socks"
+          },
+          "medium": {
+            "weight": 1,
+            "guide": "40\u201380 cm \u2014 hand towel, T-shirt"
+          },
+          "large": {
+            "weight": 2,
+            "guide": "> 80 cm \u2014 trousers, bath towel; needs re-grasping across the table"
+          }
+        }
+      },
       "counterpart": {
         "source": "object",
-        "question": "What holds the part's other side while the robot operates it?",
+        "question": "(containers) What holds the container while the robot opens it?",
         "levels": {
           "fixed": {
             "weight": 0,
-            "guide": "built into furniture or an appliance \u2014 door, drawer, rack"
+            "guide": "fixed in place \u2014 container clamped or built in"
           },
           "loose": {
             "weight": 1,
@@ -922,27 +188,63 @@
           }
         }
       },
-      "mechanism": {
+      "handle": {
         "source": "object",
-        "question": "(articulated objects / controls) What kind of motion does it need?",
+        "question": "(fixture parts) What does the robot take hold of to move it?",
         "levels": {
-          "push": {
+          "bar": {
             "weight": 0,
-            "guide": "button, push-to-close door"
+            "guide": "a protruding bar, rail or edge to pull or push \u2014 fridge handle, rack wire"
           },
-          "guided": {
+          "release": {
             "weight": 1,
-            "guide": "hinge or slide \u2014 door, drawer, rack"
+            "guide": "a lever or knob to turn, or a latch to release, before it moves \u2014 door lever, porthole handle"
           },
-          "latched": {
+          "recessed": {
             "weight": 2,
-            "guide": "needs a handle/latch/thread released first \u2014 handle door, screw cap"
+            "guide": "nothing protrudes: finger slot, flush grip, magnetic edge"
+          }
+        }
+      },
+      "return_force": {
+        "source": "object",
+        "question": "(fixture parts) Does it stay where it is let go?",
+        "levels": {
+          "stays": {
+            "weight": 0,
+            "guide": "stays in any position \u2014 rack, counterweighted door"
+          },
+          "drifts": {
+            "weight": 1,
+            "guide": "drifts back near the closed position \u2014 fridge door seal"
+          },
+          "self_closing": {
+            "weight": 2,
+            "guide": "swings shut unless held or blocked \u2014 door closer, spring hinge"
+          }
+        }
+      },
+      "opening": {
+        "source": "object",
+        "question": "(containers) How does the closure come off?",
+        "levels": {
+          "lift": {
+            "weight": 0,
+            "guide": "lifts or flips off \u2014 loose lid, flip-top"
+          },
+          "twist": {
+            "weight": 1,
+            "guide": "torsion \u2014 screw cap, jar lid"
+          },
+          "pry": {
+            "weight": 2,
+            "guide": "press and lever an edge \u2014 ring-pull tab, crown cap"
           }
         }
       },
       "actuation_force": {
         "source": "object",
-        "question": "(articulated objects) How much force does it take?",
+        "question": "(fixture parts, containers) How much force or torque does it take?",
         "levels": {
           "low": {
             "weight": 0,
@@ -1301,103 +603,97 @@
     "catalog": {
       "cup": {
         "name": "Enamel mug",
-        "ycb": "025_mug",
         "mass_g": 118,
         "grasp_width_mm": 80,
-        "values": "ycb",
         "surface": "smooth",
         "rigidity": "rigid",
         "shape": "regular",
+        "stability": "stable",
         "note": "YCB mug 80 x 82 mm. Has a handle."
       },
       "plate": {
         "name": "Enamel plate",
-        "ycb": "029_plate",
         "mass_g": 279,
         "grasp_width_mm": 3,
-        "values": "ycb",
         "surface": "smooth",
         "rigidity": "rigid",
         "shape": "flat_lying",
+        "stability": "stable",
         "note": "YCB plate 258 x 24 mm; rim thickness is not in YCB, estimated. Only the rim can be gripped across."
       },
       "bowl": {
         "name": "Enamel bowl",
-        "ycb": "024_bowl",
         "mass_g": 147,
         "grasp_width_mm": 3,
-        "values": "ycb",
         "surface": "smooth",
         "rigidity": "rigid",
         "shape": "irregular",
+        "stability": "stable",
         "note": "YCB bowl 159 x 53 mm; wall thickness is not in YCB, estimated. Gripped across the wall at the rim; concave."
       },
       "spoon": {
         "name": "Spoon",
-        "ycb": "031_spoon",
         "mass_g": 30,
         "grasp_width_mm": 14,
-        "values": "ycb",
         "surface": "smooth",
         "rigidity": "rigid",
         "shape": "flat_lying",
+        "stability": "stable",
         "note": "YCB spoon 14 x 20 x 195 mm."
       },
       "fork": {
         "name": "Fork",
-        "ycb": "030_fork",
         "mass_g": 34,
         "grasp_width_mm": 14,
-        "values": "ycb",
         "surface": "smooth",
         "rigidity": "rigid",
         "shape": "flat_lying",
+        "stability": "stable",
         "note": "YCB fork 14 x 20 x 198 mm."
       },
       "knife": {
         "name": "Knife",
-        "ycb": "032_knife",
         "mass_g": 31,
         "grasp_width_mm": 14,
-        "values": "ycb",
         "surface": "smooth",
         "rigidity": "rigid",
         "shape": "flat_lying",
+        "stability": "stable",
         "note": "YCB knife 14 x 20 x 215 mm."
       },
       "coke": {
         "name": "Coca-Cola can (355 ml)",
         "mass_g": 370,
         "grasp_width_mm": 66,
-        "values": "estimate",
         "surface": "smooth",
         "rigidity": "rigid",
-        "shape": "regular"
+        "shape": "regular",
+        "stability": "stable"
       },
       "red_bull": {
         "name": "Red Bull can (250 ml)",
         "mass_g": 275,
         "grasp_width_mm": 53,
-        "values": "estimate",
         "surface": "smooth",
         "rigidity": "rigid",
         "shape": "regular",
+        "stability": "unsteady",
         "note": "Rulebook common object."
       },
       "milk": {
         "name": "Milk carton (~250 ml)",
         "mass_g": 270,
         "grasp_width_mm": 60,
-        "values": "estimate",
         "surface": "grippy",
         "rigidity": "compliant",
         "shape": "regular",
+        "stability": "stable",
         "note": "Paper carton with screw cap; squeezes if gripped hard.",
         "parts": {
           "cap": {
             "name": "Milk carton cap",
             "grasp_width_mm": 30,
-            "mechanism": "latched",
+            "opening": "twist",
             "actuation_force": "low",
             "counterpart": "held",
             "note": "Screw cap ~3 cm; the soft carton must be steadied while twisting."
@@ -1408,30 +704,30 @@
         "name": "Soju glass bottle (360 ml)",
         "mass_g": 650,
         "grasp_width_mm": 60,
-        "values": "estimate",
         "surface": "smooth",
-        "rigidity": "compliant",
+        "rigidity": "rigid",
         "shape": "regular",
-        "note": "Glass; rated compliant because it must not be dropped or knocked."
+        "stability": "unsteady",
+        "note": "Glass. Rigid, but breaks if dropped (the drop failure)."
       },
       "pepsi": {
         "name": "Pepsi PET bottle (~1.5 l)",
         "mass_g": 1550,
         "grasp_width_mm": 90,
-        "values": "estimate",
         "surface": "smooth",
         "rigidity": "rigid",
         "shape": "regular",
+        "stability": "unsteady",
         "note": "1.5 l confirmed; mass = contents + PET bottle."
       },
       "cornflakes": {
         "name": "Cereal cup",
         "mass_g": 60,
         "grasp_width_mm": 85,
-        "values": "estimate",
         "surface": "grippy",
         "rigidity": "compliant",
         "shape": "regular",
+        "stability": "stable",
         "contents": "none",
         "note": "Paper cup; when opened for pouring it must stay upright."
       },
@@ -1439,208 +735,213 @@
         "name": "Instant noodle pack",
         "mass_g": 120,
         "grasp_width_mm": 40,
-        "values": "estimate",
         "surface": "slippery",
         "rigidity": "compliant",
         "shape": "irregular",
+        "stability": "stable",
         "note": "Film-wrapped pillow pack."
       },
       "pringles": {
         "name": "Pringles can",
-        "ycb": "001_chips_can",
         "mass_g": 205,
         "grasp_width_mm": 75,
-        "values": "ycb",
         "surface": "smooth",
         "rigidity": "rigid",
         "shape": "regular",
+        "stability": "unsteady",
         "note": "YCB chips can 75 x 250 mm. Rulebook common object."
       },
       "seaweed": {
         "name": "Seaweed snack pack",
         "mass_g": 30,
         "grasp_width_mm": 12,
-        "values": "estimate",
         "surface": "slippery",
         "rigidity": "compliant",
-        "shape": "flat_lying"
+        "shape": "flat_lying",
+        "stability": "stable"
       },
       "apple": {
         "name": "Apple",
-        "ycb": "013_apple",
         "mass_g": 200,
         "grasp_width_mm": 75,
-        "values": "estimate",
         "surface": "smooth",
         "rigidity": "rigid",
         "shape": "regular",
+        "stability": "rolls",
         "note": "YCB apple is plastic (68 g); arena fruit is real, so YCB mass not used."
       },
       "peach": {
         "name": "Peach",
-        "ycb": "015_peach",
         "mass_g": 150,
         "grasp_width_mm": 65,
-        "values": "estimate",
         "surface": "grippy",
         "rigidity": "compliant",
         "shape": "regular",
+        "stability": "rolls",
         "note": "Bruises easily. YCB peach is plastic (33 g); arena fruit is real, so YCB mass not used."
       },
       "mangostane": {
         "name": "Mangosteen",
         "mass_g": 80,
         "grasp_width_mm": 55,
-        "values": "estimate",
         "surface": "grippy",
         "rigidity": "rigid",
-        "shape": "regular"
+        "shape": "regular",
+        "stability": "rolls"
       },
       "lemon": {
         "name": "Lemon",
-        "ycb": "014_lemon",
         "mass_g": 100,
         "grasp_width_mm": 55,
-        "values": "estimate",
         "surface": "smooth",
         "rigidity": "rigid",
         "shape": "regular",
+        "stability": "rolls",
         "note": "YCB lemon is plastic (29 g); arena fruit is real, so YCB mass not used."
       },
       "red_bellpepper": {
         "name": "Red bell pepper",
         "mass_g": 180,
         "grasp_width_mm": 80,
-        "values": "estimate",
         "surface": "smooth",
         "rigidity": "rigid",
-        "shape": "irregular"
+        "shape": "irregular",
+        "stability": "unsteady"
       },
       "yellow_bellpepper": {
         "name": "Yellow bell pepper",
         "mass_g": 180,
         "grasp_width_mm": 80,
-        "values": "estimate",
         "surface": "smooth",
         "rigidity": "rigid",
-        "shape": "irregular"
+        "shape": "irregular",
+        "stability": "unsteady"
       },
       "dishwasher_tab": {
         "name": "Dishwasher tab",
         "mass_g": 20,
         "grasp_width_mm": 14,
-        "values": "estimate",
         "surface": "smooth",
         "rigidity": "rigid",
-        "shape": "flat_lying"
+        "shape": "flat_lying",
+        "stability": "stable"
       },
       "sponge": {
         "name": "Kitchen sponge",
-        "ycb": "026_sponge",
         "mass_g": 15,
         "grasp_width_mm": 40,
-        "values": "estimate",
         "surface": "grippy",
         "rigidity": "compliant",
         "shape": "regular",
+        "stability": "stable",
         "note": "Thick kitchen sponge in the 2026 photo; YCB's sponge is a 14 mm scrub pad, so YCB values not used."
       },
       "toothpaste": {
         "name": "Colgate toothpaste box",
         "mass_g": 140,
         "grasp_width_mm": 40,
-        "values": "estimate",
         "surface": "grippy",
         "rigidity": "rigid",
         "shape": "regular",
+        "stability": "stable",
         "note": "Rulebook common object."
       },
       "rubiks_cube": {
         "name": "Rubik's cube",
-        "ycb": "077_rubiks_cube",
         "mass_g": 100,
         "grasp_width_mm": 57,
-        "values": "estimate",
         "surface": "smooth",
         "rigidity": "rigid",
         "shape": "regular",
-        "note": "Rulebook common object."
+        "stability": "stable",
+        "note": "YCB 077_rubiks_cube. Rulebook common object."
       },
       "white_shirt": {
         "name": "T-shirt (white)",
         "mass_g": 180,
         "grasp_width_mm": 3,
-        "values": "estimate",
         "surface": "grippy",
         "rigidity": "deformable",
-        "shape": "flat_lying"
+        "shape": "flat_lying",
+        "stability": "stable",
+        "garment": "limbed",
+        "spread": "medium"
       },
       "grey_shirt": {
         "name": "T-shirt (grey)",
         "mass_g": 180,
         "grasp_width_mm": 3,
-        "values": "estimate",
         "surface": "grippy",
         "rigidity": "deformable",
-        "shape": "flat_lying"
+        "shape": "flat_lying",
+        "stability": "stable",
+        "garment": "limbed",
+        "spread": "medium"
       },
       "blue_shirt": {
         "name": "T-shirt (blue)",
         "mass_g": 180,
         "grasp_width_mm": 3,
-        "values": "estimate",
         "surface": "grippy",
         "rigidity": "deformable",
-        "shape": "flat_lying"
+        "shape": "flat_lying",
+        "stability": "stable",
+        "garment": "limbed",
+        "spread": "medium"
       },
       "black_shirt": {
         "name": "T-shirt (black)",
         "mass_g": 180,
         "grasp_width_mm": 3,
-        "values": "estimate",
         "surface": "grippy",
         "rigidity": "deformable",
-        "shape": "flat_lying"
+        "shape": "flat_lying",
+        "stability": "stable",
+        "garment": "limbed",
+        "spread": "medium"
       },
       "hand_towel": {
         "name": "Hand towel",
         "mass_g": 100,
         "grasp_width_mm": 5,
-        "values": "estimate",
         "surface": "grippy",
         "rigidity": "deformable",
-        "shape": "irregular"
+        "shape": "irregular",
+        "stability": "stable",
+        "garment": "flat",
+        "spread": "medium"
       },
       "bag": {
         "name": "Tote bag with handles (guest luggage)",
         "mass_g": 500,
         "grasp_width_mm": 25,
-        "values": "estimate",
         "surface": "grippy",
         "rigidity": "compliant",
         "shape": "regular",
+        "stability": "stable",
         "note": "Mass depends on what the guest puts in it \u2014 fix a reference load."
       },
       "tray": {
         "name": "Serving tray",
         "mass_g": 400,
         "grasp_width_mm": 5,
-        "values": "estimate",
         "surface": "smooth",
         "rigidity": "rigid",
-        "shape": "flat_lying"
+        "shape": "flat_lying",
+        "stability": "stable"
       },
       "laundry_basket": {
         "name": "Laundry basket, loaded",
         "mass_g": 1500,
         "grasp_width_mm": 20,
-        "values": "estimate",
         "surface": "grippy",
         "rigidity": "rigid",
         "shape": "regular",
+        "stability": "stable",
         "note": "Rulebook says it needs two arms to carry."
       }
     },
+    "catalog_values": "estimate",
     "furniture": {
       "version": 1,
       "values": "estimate",
@@ -1680,9 +981,9 @@
               "name": "Washing machine door",
               "height_mm": 500,
               "access": "open",
-              "mechanism": "latched",
+              "handle": "release",
+              "return_force": "stays",
               "actuation_force": "medium",
-              "counterpart": "fixed",
               "note": "Side-hinged porthole; latch released by pulling a handle."
             }
           }
@@ -1788,17 +1089,6 @@
             }
           }
         },
-        "coat_rack": {
-          "name": "Coat rack",
-          "room": "living room",
-          "placeable": false,
-          "places": {
-            "hook": {
-              "height_mm": 1600,
-              "access": "open"
-            }
-          }
-        },
         "entrance": {
           "name": "Entrance",
           "room": "living room",
@@ -1808,10 +1098,10 @@
               "name": "Entrance door",
               "height_mm": 1000,
               "access": "open",
-              "mechanism": "latched",
+              "handle": "release",
+              "return_force": "stays",
               "actuation_force": "medium",
-              "counterpart": "fixed",
-              "note": "Lever handle, side-hinged."
+              "note": "Lever handle, side-hinged. self_closing if the arena door has a closer."
             }
           }
         },
@@ -1834,22 +1124,6 @@
             }
           }
         },
-        "refrigerator": {
-          "name": "Refrigerator",
-          "room": "kitchen",
-          "placeable": false,
-          "parts": {
-            "door": {
-              "name": "Refrigerator door",
-              "height_mm": 1100,
-              "access": "open",
-              "mechanism": "guided",
-              "actuation_force": "medium",
-              "counterpart": "fixed",
-              "note": "Magnetic seal; pull handle."
-            }
-          }
-        },
         "counter": {
           "name": "Counter",
           "room": "kitchen",
@@ -1858,17 +1132,6 @@
             "top": {
               "height_mm": 900,
               "access": "open"
-            }
-          }
-        },
-        "sink": {
-          "name": "Sink",
-          "room": "kitchen",
-          "placeable": false,
-          "places": {
-            "basin": {
-              "height_mm": 750,
-              "access": "bounded"
             }
           }
         },
@@ -1908,18 +1171,18 @@
               "name": "Dishwasher door",
               "height_mm": 800,
               "access": "open",
-              "mechanism": "guided",
+              "handle": "recessed",
+              "return_force": "stays",
               "actuation_force": "medium",
-              "counterpart": "fixed",
-              "note": "Bottom-hinged, counterweighted; open position is horizontal."
+              "note": "Bottom-hinged, counterweighted; open position is horizontal. Flush grip under the top edge."
             },
             "rack": {
               "name": "Dishwasher rack",
               "height_mm": 200,
               "access": "enclosed",
-              "mechanism": "guided",
+              "handle": "bar",
+              "return_force": "stays",
               "actuation_force": "low",
-              "counterpart": "fixed",
               "note": "Slides on rails; requires the door open."
             }
           }
@@ -2136,9 +1399,12 @@
         },
         "clothing": {
           "members": [
-            "fabric"
+            "white_shirt",
+            "grey_shirt",
+            "blue_shirt",
+            "black_shirt"
           ],
-          "source": "Doing Laundry"
+          "source": "Doing Laundry \u2014 the rulebook names T-shirts only"
         },
         "restaurant_orders": {
           "members": [

@@ -6,8 +6,8 @@
 #            works on (shelf board, rack, table top, drum floor)
 #   access   judged once: open surface / bounded (a board above, walls around:
 #            shelf, basket, bin) / enclosed (behind a door, inside a drum or rack)
-# A part is rated by mechanism and actuation_force, plus height and access of
-# where its handle is.
+# A part is rated by handle, return_force and actuation_force, plus height and
+# access of where its handle is.
 #
 # A dictionary line names its places in `at:` — `cabinet.shelf_top` (one place),
 # `cabinet` (all its places), or a group below — and its parts in `objects:`
@@ -47,9 +47,9 @@ furniture:
         name: Washing machine door
         height_mm: 500
         access: open
-        mechanism: latched
+        handle: release
+        return_force: stays
         actuation_force: medium
-        counterpart: fixed
         note: Side-hinged porthole; latch released by pulling a handle.
   laundry_trash_bin:
     name: Laundry trash bin
@@ -107,12 +107,6 @@ furniture:
     placeable: true
     places:
       top: {height_mm: 450, access: open}
-  coat_rack:
-    name: Coat rack
-    room: living room
-    placeable: false
-    places:
-      hook: {height_mm: 1600, access: open}
   entrance:
     name: Entrance
     room: living room
@@ -122,10 +116,10 @@ furniture:
         name: Entrance door
         height_mm: 1000
         access: open
-        mechanism: latched
+        handle: release
+        return_force: stays
         actuation_force: medium
-        counterpart: fixed
-        note: Lever handle, side-hinged.
+        note: Lever handle, side-hinged. self_closing if the arena door has a closer.
 
   # ── kitchen ────────────────────────────────────────────────────────────────
   cabinet:
@@ -136,31 +130,12 @@ furniture:
       shelf_bottom: {height_mm: 150,  access: bounded}
       shelf_middle: {height_mm: 750,  access: bounded}
       shelf_top:    {height_mm: 1350, access: bounded}
-  refrigerator:
-    name: Refrigerator
-    room: kitchen
-    placeable: false
-    parts:
-      door:
-        name: Refrigerator door
-        height_mm: 1100
-        access: open
-        mechanism: guided
-        actuation_force: medium
-        counterpart: fixed
-        note: Magnetic seal; pull handle.
   counter:
     name: Counter
     room: kitchen
     placeable: true
     places:
       top: {height_mm: 900, access: open}
-  sink:
-    name: Sink
-    room: kitchen
-    placeable: false
-    places:
-      basin: {height_mm: 750, access: bounded}
   cooking_table:
     name: Cooking table
     room: kitchen
@@ -180,17 +155,17 @@ furniture:
         name: Dishwasher door
         height_mm: 800
         access: open
-        mechanism: guided
+        handle: recessed
+        return_force: stays
         actuation_force: medium
-        counterpart: fixed
-        note: Bottom-hinged, counterweighted; open position is horizontal.
+        note: Bottom-hinged, counterweighted; open position is horizontal. Flush grip under the top edge.
       rack:
         name: Dishwasher rack
         height_mm: 200
         access: enclosed
-        mechanism: guided
+        handle: bar
+        return_force: stays
         actuation_force: low
-        counterpart: fixed
         note: Slides on rails; requires the door open.
   kitchen_trash_bin:
     name: Kitchen trash bin

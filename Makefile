@@ -13,7 +13,7 @@ check:           ## CI gate: build, all checks, write dist/ (must end ALL CHECKS
 findings:        ## TC findings report
 	$(SD) findings
 
-sheets:          ## score sheets, HTML + rulebook LaTeX -> build/sheets/
+sheets:          ## score sheets in the rulebook's LaTeX -> build/sheets/
 	$(SD) sheets
 
 pdf:             ## rulebook sheet next to the generated one, per challenge (needs latexmk)

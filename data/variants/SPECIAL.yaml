@@ -1,24 +1,18 @@
 area: SPECIAL
-skills:
+variants:
 - id: SPECIAL-01
-  taxonomy: SPECIAL.Administrative
-  modifiers: []
+  skill: SPECIAL.Administrative
   description: Not attending (see sec. 3.8.1)
-  level: '-'
   points: -500
   type: administrative
 - id: SPECIAL-02
-  taxonomy: SPECIAL.Administrative
-  modifiers: []
+  skill: SPECIAL.Administrative
   description: Using alternative start signal (see sec. 3.6.8)
-  level: '-'
   points: -100
   type: administrative
 - id: SPECIAL-03
-  taxonomy: SPECIAL.Administrative
-  modifiers: []
+  skill: SPECIAL.Administrative
   description: Outstanding performance (see sec. 3.8.3)
-  level: '-'
   points: null
   points_formula: floor(0.10 * total_score)
   type: administrative
